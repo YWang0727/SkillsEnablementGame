@@ -1,0 +1,30 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "question":"You’re consulting with a company that specializes in bone-and-joint surgery. They wish to share information about their work with anyone who’s interested in securely storing x-rays of their individual patients. Which solution do you recommend",
+        "options": [
+          "Private cloud.",
+          "Public cloud.",
+          "Hybrid cloud.",
+          "Multicloud.",
+        ],
+        "answers": [
+            3
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Complete the sentence. Cloud computing means storing and accessing data and programs over _______________ servers instead of using servers owned and operated by individual organizations.",
+        "options": [
+          "container.",
+          "subsidiary.",
+          "regional.",
+          "internet.",
+        ],
+        "answers": [
+            4
+        ]
+      }
+    ]
+  }

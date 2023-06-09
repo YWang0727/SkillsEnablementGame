@@ -1,0 +1,30 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "question":"Why do weather websites like weather.com and wunderground.com face a harder scalability challenge than an online retail store?",
+        "options": [
+          "The Weather Company relies on government funding.",
+          "Weather is hyperlocal and unpredictable.",
+          "Weather data is confidential.",
+          "Weather occurs around the globe."
+        ],
+        "answers": [
+            2
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Complete the sentence. During major weather events, The Weather Company relies on its hybrid cloud infrastructure to deliver ________________..",
+        "options": [
+          "confidential files to remote locations.",
+          "very high performance when its servers are under the most intense load .",
+          "online purchase stability for free subscribers who need more information.",
+          "artificial intelligence to forecast avatars around the world."
+        ],
+        "answers": [
+            2
+        ]
+      }
+    ]
+  }
