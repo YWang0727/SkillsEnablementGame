@@ -1,9 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://da6grjhiqdcnw"]
+[gd_scene load_steps=17 format=3 uid="uid://da6grjhiqdcnw"]
+
+[ext_resource type="Texture2D" uid="uid://80fs6jct5m70" path="res://Sprites/Icon/LearningScene/Security.png" id="1_j83q0"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="2_68ux3"]
+[ext_resource type="Texture2D" uid="uid://cljvkg1gh4ik6" path="res://Sprites/Icon/LearningScene/AI.png" id="2_le277"]
+[ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://Font/Roboto/Roboto-Light.ttf" id="3_u8hkq"]
+[ext_resource type="Script" path="res://AIButton.gd" id="3_ynaev"]
+[ext_resource type="Texture2D" uid="uid://3usvyjxv3ei2" path="res://Sprites/Icon/LearningScene/Cloud.png" id="4_p0bx5"]
+[ext_resource type="Texture2D" uid="uid://h143riuulra4" path="res://Sprites/Icon/LearningScene/DS.png" id="5_f3ob3"]
+[ext_resource type="Script" path="res://SecurityButton.gd" id="6_3qmt5"]
+[ext_resource type="Texture2D" uid="uid://des76ywgp2n68" path="res://Sprites/Icon/LearningScene/Automation.png" id="6_v0l1a"]
+[ext_resource type="Script" path="res://CloudButton.gd" id="8_e4knn"]
+[ext_resource type="Script" path="res://DSButton.gd" id="10_0hlxf"]
+[ext_resource type="Script" path="res://AutomationButton.gd" id="12_gwvre"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu525"]
-bg_color = Color(0.180392, 0.333333, 0.701961, 1)
-shadow_color = Color(0.960784, 0.960784, 0.960784, 0.6)
-shadow_size = 10
+bg_color = Color(0.215686, 0.47451, 0.905882, 1)
+shadow_color = Color(0.442911, 0.442911, 0.442911, 1)
+shadow_size = 6
+shadow_offset = Vector2(3, 2)
 
 [sub_resource type="GDScript" id="GDScript_qunky"]
 script/source = "extends Control
@@ -21,6 +35,15 @@ func _process(delta):
 	pass
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0flk"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ellaa"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="LearningScene" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -29,11 +52,347 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
 [node name="BackButton" type="Button" parent="."]
-offset_left = 45.0
-offset_top = 973.0
-offset_right = 245.0
-offset_bottom = 1033.0
+offset_left = 63.0
+offset_top = 971.0
+offset_right = 263.0
+offset_bottom = 1031.0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_mu525")
 text = "BACK"
 script = SubResource("GDScript_qunky")
+
+[node name="AI" type="Node2D" parent="."]
+
+[node name="AIButton" type="Button" parent="AI" groups=["Modules"]]
+offset_left = 460.0
+offset_top = 64.0
+offset_right = 1460.0
+offset_bottom = 204.0
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_68ux3")
+theme_override_font_sizes/font_size = 50
+text = "       Artificial Intelligence"
+icon = ExtResource("2_le277")
+alignment = 0
+expand_icon = true
+script = ExtResource("3_ynaev")
+
+[node name="Status" type="Label" parent="AI/AIButton"]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 58.0
+offset_right = 972.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("3_u8hkq")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
+text = "Not started"
+horizontal_alignment = 1
+
+[node name="PopupMenu" type="PopupMenu" parent="AI"]
+position = Vector2i(610, 200)
+size = Vector2i(700, 600)
+borderless = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_ellaa")
+hide_on_item_selection = false
+hide_on_checkable_item_selection = false
+
+[node name="Lesson1Button" type="Button" parent="AI/PopupMenu"]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 1"
+
+[node name="Lesson2Button" type="Button" parent="AI/PopupMenu"]
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 2"
+
+[node name="Quiz1Button" type="Button" parent="AI/PopupMenu"]
+offset_left = 480.0
+offset_top = 100.0
+offset_right = 602.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 1"
+
+[node name="Quiz2Button" type="Button" parent="AI/PopupMenu"]
+offset_left = 480.0
+offset_top = 300.0
+offset_right = 602.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 2"
+
+[node name="Security" type="Node2D" parent="."]
+
+[node name="SecurityButton" type="Button" parent="Security" groups=["Modules"]]
+offset_left = 460.0
+offset_top = 256.0
+offset_right = 1460.0
+offset_bottom = 396.0
+theme_override_fonts/font = ExtResource("2_68ux3")
+theme_override_font_sizes/font_size = 50
+text = "       IBM Security"
+icon = ExtResource("1_j83q0")
+alignment = 0
+expand_icon = true
+script = ExtResource("6_3qmt5")
+
+[node name="Status" type="Label" parent="Security/SecurityButton"]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 58.0
+offset_right = 972.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("3_u8hkq")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
+text = "Not started"
+horizontal_alignment = 1
+
+[node name="PopupMenu" type="PopupMenu" parent="Security"]
+position = Vector2i(610, 200)
+size = Vector2i(700, 600)
+borderless = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_ellaa")
+hide_on_item_selection = false
+hide_on_checkable_item_selection = false
+
+[node name="Lesson1Button" type="Button" parent="Security/PopupMenu"]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 1"
+
+[node name="Lesson2Button" type="Button" parent="Security/PopupMenu"]
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 2"
+
+[node name="Quiz1Button" type="Button" parent="Security/PopupMenu"]
+offset_left = 480.0
+offset_top = 100.0
+offset_right = 602.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 1"
+
+[node name="Quiz2Button" type="Button" parent="Security/PopupMenu"]
+offset_left = 480.0
+offset_top = 300.0
+offset_right = 602.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 2"
+
+[node name="Cloud" type="Node2D" parent="."]
+
+[node name="CloudButton" type="Button" parent="Cloud" groups=["Modules"]]
+offset_left = 460.0
+offset_top = 448.0
+offset_right = 1460.0
+offset_bottom = 588.0
+theme_override_fonts/font = ExtResource("2_68ux3")
+theme_override_font_sizes/font_size = 50
+text = "       IBM Cloud"
+icon = ExtResource("4_p0bx5")
+alignment = 0
+expand_icon = true
+script = ExtResource("8_e4knn")
+
+[node name="Status" type="Label" parent="Cloud/CloudButton"]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 58.0
+offset_right = 972.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("3_u8hkq")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
+text = "Not started"
+horizontal_alignment = 1
+
+[node name="PopupMenu" type="PopupMenu" parent="Cloud"]
+position = Vector2i(610, 200)
+size = Vector2i(700, 600)
+borderless = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_ellaa")
+hide_on_item_selection = false
+hide_on_checkable_item_selection = false
+
+[node name="Lesson1Button" type="Button" parent="Cloud/PopupMenu"]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 1"
+
+[node name="Lesson2Button" type="Button" parent="Cloud/PopupMenu"]
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 2"
+
+[node name="Quiz1Button" type="Button" parent="Cloud/PopupMenu"]
+offset_left = 480.0
+offset_top = 100.0
+offset_right = 602.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 1"
+
+[node name="Quiz2Button" type="Button" parent="Cloud/PopupMenu"]
+offset_left = 480.0
+offset_top = 300.0
+offset_right = 602.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 2"
+
+[node name="DS" type="Node2D" parent="."]
+
+[node name="DSButton" type="Button" parent="DS" groups=["Modules"]]
+offset_left = 460.0
+offset_top = 640.0
+offset_right = 1460.0
+offset_bottom = 780.0
+theme_override_fonts/font = ExtResource("2_68ux3")
+theme_override_font_sizes/font_size = 50
+text = "       Data Science"
+icon = ExtResource("5_f3ob3")
+alignment = 0
+expand_icon = true
+script = ExtResource("10_0hlxf")
+
+[node name="Status" type="Label" parent="DS/DSButton"]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 58.0
+offset_right = 972.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("3_u8hkq")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
+text = "Not started"
+horizontal_alignment = 1
+
+[node name="PopupMenu" type="PopupMenu" parent="DS"]
+position = Vector2i(610, 200)
+size = Vector2i(700, 600)
+borderless = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_ellaa")
+hide_on_item_selection = false
+hide_on_checkable_item_selection = false
+
+[node name="Lesson1Button" type="Button" parent="DS/PopupMenu"]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 1"
+
+[node name="Lesson2Button" type="Button" parent="DS/PopupMenu"]
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 2"
+
+[node name="Quiz1Button" type="Button" parent="DS/PopupMenu"]
+offset_left = 480.0
+offset_top = 100.0
+offset_right = 602.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 1"
+
+[node name="Quiz2Button" type="Button" parent="DS/PopupMenu"]
+offset_left = 480.0
+offset_top = 300.0
+offset_right = 602.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 2"
+
+[node name="Automation" type="Node2D" parent="."]
+
+[node name="AutomationButton" type="Button" parent="Automation" groups=["Modules"]]
+offset_left = 460.0
+offset_top = 832.0
+offset_right = 1460.0
+offset_bottom = 972.0
+theme_override_fonts/font = ExtResource("2_68ux3")
+theme_override_font_sizes/font_size = 50
+text = "       IBM Automation"
+icon = ExtResource("6_v0l1a")
+alignment = 0
+expand_icon = true
+script = ExtResource("12_gwvre")
+
+[node name="Status" type="Label" parent="Automation/AutomationButton"]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 58.0
+offset_right = 972.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("3_u8hkq")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
+text = "Not started"
+horizontal_alignment = 1
+
+[node name="PopupMenu" type="PopupMenu" parent="Automation"]
+position = Vector2i(610, 200)
+size = Vector2i(700, 600)
+borderless = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_ellaa")
+hide_on_item_selection = false
+hide_on_checkable_item_selection = false
+
+[node name="Lesson1Button" type="Button" parent="Automation/PopupMenu"]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 1"
+
+[node name="Lesson2Button" type="Button" parent="Automation/PopupMenu"]
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 2"
+
+[node name="Quiz1Button" type="Button" parent="Automation/PopupMenu"]
+offset_left = 480.0
+offset_top = 100.0
+offset_right = 602.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 1"
+
+[node name="Quiz2Button" type="Button" parent="Automation/PopupMenu"]
+offset_left = 480.0
+offset_top = 300.0
+offset_right = 602.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 2"
