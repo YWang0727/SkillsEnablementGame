@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxf41utelmq4l"]
+
+[ext_resource type="Script" path="res://quiz_scene.gd" id="1_n7pra"]
+[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://Font/Roboto/Roboto-Regular.ttf" id="2_5ctth"]
+
+[node name="QuizScene" type="CanvasLayer"]
+script = ExtResource("1_n7pra")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="OptionsButtonContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 710.0
+offset_top = 450.0
+offset_right = 1210.0
+offset_bottom = 950.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="QuestionLabel" type="Label" parent="."]
+offset_left = 460.0
+offset_top = 111.0
+offset_right = 1460.0
+offset_bottom = 411.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5ctth")
+theme_override_font_sizes/font_size = 30
+autowrap_mode = 2
+
+[node name="NavigationButtonContainer" type="HBoxContainer" parent="."]
+offset_left = 1341.0
+offset_top = 908.0
+offset_right = 1841.0
+offset_bottom = 1008.0
+alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0

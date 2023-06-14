@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=8 format=3 uid="uid://ckpvbylmvtoo8"]
 
+[ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="Texture2D" uid="uid://bgjrwhmklnslp" path="res://Sprites/CitySet/Grounds + Roads/ground_asphalt.png" id="1_q0cp5"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
 [ext_resource type="PackedScene" uid="uid://bgtanwq7wueob" path="res://learning_entry.tscn" id="3_spkwt"]
@@ -19,6 +20,9 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_ndgy7")
 
 [node name="MainScene" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_ihn2m")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-1, 0)
