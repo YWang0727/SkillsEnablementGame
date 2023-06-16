@@ -3,7 +3,6 @@ extends CanvasLayer
 var currentQuestionIndex := 0
 var questionSize := 0
 var quizData := {}
-#var selectedOptionIndex := 
 
 # init compons
 var questionLabel := Label.new()
@@ -13,6 +12,7 @@ var previousButton := Button.new()
 var nextButton := Button.new()
 var submitButton := Button.new()
 var showScore := ColorRect.new()
+var exitButton := Button.new()
 
 # store answers and final score
 var optionsArray = []
@@ -55,6 +55,9 @@ func _ready():
 	
 	showScore = get_node("ShowScore")
 	showScore.visible = false
+	
+	exitButton = get_node("ExitButton")
+	exitButton.connect("pressed", _on_exit_pressed)
 	
 	# show the first question
 	_show_question(currentQuestionIndex)
@@ -110,8 +113,6 @@ func _show_question(index: int):
 		var option = question.options[optionIndex]
 		var button := Button.new()
 		button.text = option
-		#if multi:
-		#	button.toggle_mode = true
 		button.add_theme_font_size_override("font_size", 25)
 		button.custom_minimum_size.x = 200
 		button.custom_minimum_size.y = 70
@@ -182,9 +183,11 @@ func _on_submit_button_pressed():
 	
 	
 func _show_score():
+	# TODO: 金币结算 ！！！
 	optionsButtonContainer.visible = false
 	questionLabel.visible = false
 	navigationButtonContainer.visible = false
+	exitButton.visible = false
 	showScore.visible = true
 	
 	# show final score
@@ -201,8 +204,8 @@ func _show_score():
 	tryAgainButton.connect("pressed", _on_tryAgain_pressed)
 	
 	# Exit
-	var exitButton = get_node("ShowScore/ExitButton")
-	exitButton.connect("pressed", _on_exit_pressed)
+	var ScoreExitButton = get_node("ShowScore/ExitButton")
+	ScoreExitButton.connect("pressed", _on_exit_pressed)
 	
 	
 func _on_tryAgain_pressed():
