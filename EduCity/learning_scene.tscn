@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://da6grjhiqdcnw"]
+[gd_scene load_steps=12 format=3 uid="uid://da6grjhiqdcnw"]
 
 [ext_resource type="Texture2D" uid="uid://80fs6jct5m70" path="res://Sprites/Icon/LearningScene/Security.png" id="1_j83q0"]
 [ext_resource type="Script" path="res://learning_scene.gd" id="1_mgcs3"]
@@ -6,13 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cljvkg1gh4ik6" path="res://Sprites/Icon/LearningScene/AI.png" id="2_le277"]
 [ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://Font/Roboto/Roboto-Light.ttf" id="3_u8hkq"]
 [ext_resource type="Texture2D" uid="uid://3usvyjxv3ei2" path="res://Sprites/Icon/LearningScene/Cloud.png" id="4_p0bx5"]
-[ext_resource type="Script" path="res://PopupMenu_ai.gd" id="5_03dn5"]
 [ext_resource type="Texture2D" uid="uid://h143riuulra4" path="res://Sprites/Icon/LearningScene/DS.png" id="5_f3ob3"]
-[ext_resource type="Script" path="res://PopupMenu_security.gd" id="6_4gend"]
 [ext_resource type="Texture2D" uid="uid://des76ywgp2n68" path="res://Sprites/Icon/LearningScene/Automation.png" id="6_v0l1a"]
-[ext_resource type="Script" path="res://PopupMenu_cloud.gd" id="7_0s4k7"]
-[ext_resource type="Script" path="res://PopupMenu_ds.gd" id="8_ikfba"]
-[ext_resource type="Script" path="res://PopupMenu_automation.gd" id="13_3kw5b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu525"]
 bg_color = Color(0.215686, 0.47451, 0.905882, 1)
@@ -36,7 +31,7 @@ border_color = Color(0, 0, 0, 1)
 [node name="LearningScene" type="Node2D"]
 script = ExtResource("1_mgcs3")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
@@ -78,61 +73,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
 text = "Not started"
 horizontal_alignment = 1
 
-[node name="PopupMenu_ai" type="ColorRect" parent="AI"]
-visible = false
-top_level = true
-offset_left = 610.0
-offset_top = 200.0
-offset_right = 1310.0
-offset_bottom = 800.0
-script = ExtResource("5_03dn5")
-
-[node name="Lesson1Button" type="Button" parent="AI/PopupMenu_ai"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 400.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 40
-text = "LESSON 1"
-
-[node name="Lesson2Button" type="Button" parent="AI/PopupMenu_ai"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 300.0
-offset_right = 400.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 40
-text = "LESSON 2"
-
-[node name="Quiz2Button" type="Button" parent="AI/PopupMenu_ai"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 300.0
-offset_right = 602.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 2"
-
-[node name="Quiz1Button" type="Button" parent="AI/PopupMenu_ai"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 100.0
-offset_right = 602.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 1"
-
-[node name="CloseButton" type="Button" parent="AI/PopupMenu_ai"]
-layout_mode = 0
-offset_left = 620.0
-offset_right = 700.0
-offset_bottom = 49.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_p48kg")
-text = "X"
-
 [node name="Security" type="Node2D" parent="."]
 
 [node name="SecurityButton" type="Button" parent="Security" groups=["Modules"]]
@@ -158,61 +98,6 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
 text = "Not started"
 horizontal_alignment = 1
-
-[node name="PopupMenu_security" type="ColorRect" parent="Security"]
-visible = false
-top_level = true
-offset_left = 610.0
-offset_top = 200.0
-offset_right = 1310.0
-offset_bottom = 800.0
-script = ExtResource("6_4gend")
-
-[node name="Lesson1Button" type="Button" parent="Security/PopupMenu_security"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 400.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 40
-text = "LESSON 1"
-
-[node name="Lesson2Button" type="Button" parent="Security/PopupMenu_security"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 300.0
-offset_right = 400.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 40
-text = "LESSON 2"
-
-[node name="Quiz2Button" type="Button" parent="Security/PopupMenu_security"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 300.0
-offset_right = 602.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 2"
-
-[node name="Quiz1Button" type="Button" parent="Security/PopupMenu_security"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 100.0
-offset_right = 602.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 1"
-
-[node name="CloseButton" type="Button" parent="Security/PopupMenu_security"]
-layout_mode = 0
-offset_left = 620.0
-offset_right = 700.0
-offset_bottom = 49.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_p48kg")
-text = "X"
 
 [node name="Cloud" type="Node2D" parent="."]
 
@@ -240,61 +125,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
 text = "Not started"
 horizontal_alignment = 1
 
-[node name="PopupMenu_cloud" type="ColorRect" parent="Cloud"]
-visible = false
-top_level = true
-offset_left = 610.0
-offset_top = 200.0
-offset_right = 1310.0
-offset_bottom = 800.0
-script = ExtResource("7_0s4k7")
-
-[node name="Lesson1Button" type="Button" parent="Cloud/PopupMenu_cloud"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 400.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 40
-text = "LESSON 1"
-
-[node name="Lesson2Button" type="Button" parent="Cloud/PopupMenu_cloud"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 300.0
-offset_right = 400.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 40
-text = "LESSON 2"
-
-[node name="Quiz2Button" type="Button" parent="Cloud/PopupMenu_cloud"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 300.0
-offset_right = 602.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 2"
-
-[node name="Quiz1Button" type="Button" parent="Cloud/PopupMenu_cloud"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 100.0
-offset_right = 602.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 1"
-
-[node name="CloseButton" type="Button" parent="Cloud/PopupMenu_cloud"]
-layout_mode = 0
-offset_left = 620.0
-offset_right = 700.0
-offset_bottom = 49.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_p48kg")
-text = "X"
-
 [node name="DS" type="Node2D" parent="."]
 
 [node name="DSButton" type="Button" parent="DS" groups=["Modules"]]
@@ -320,61 +150,6 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
 text = "Not started"
 horizontal_alignment = 1
-
-[node name="PopupMenu_ds" type="ColorRect" parent="DS"]
-visible = false
-top_level = true
-offset_left = 610.0
-offset_top = 200.0
-offset_right = 1310.0
-offset_bottom = 800.0
-script = ExtResource("8_ikfba")
-
-[node name="Lesson1Button" type="Button" parent="DS/PopupMenu_ds"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 400.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 40
-text = "LESSON 1"
-
-[node name="Lesson2Button" type="Button" parent="DS/PopupMenu_ds"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 300.0
-offset_right = 400.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 40
-text = "LESSON 2"
-
-[node name="Quiz2Button" type="Button" parent="DS/PopupMenu_ds"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 300.0
-offset_right = 602.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 2"
-
-[node name="Quiz1Button" type="Button" parent="DS/PopupMenu_ds"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 100.0
-offset_right = 602.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 1"
-
-[node name="CloseButton" type="Button" parent="DS/PopupMenu_ds"]
-layout_mode = 0
-offset_left = 620.0
-offset_right = 700.0
-offset_bottom = 49.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_p48kg")
-text = "X"
 
 [node name="Automation" type="Node2D" parent="."]
 
@@ -402,15 +177,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_y0flk")
 text = "Not started"
 horizontal_alignment = 1
 
-[node name="PopupMenu_automation" type="ColorRect" parent="Automation"]
+[node name="PopupMenu" type="ColorRect" parent="."]
 visible = false
+z_as_relative = false
 offset_left = 610.0
 offset_top = 200.0
 offset_right = 1310.0
 offset_bottom = 800.0
-script = ExtResource("13_3kw5b")
 
-[node name="Lesson1Button" type="Button" parent="Automation/PopupMenu_automation"]
+[node name="Lesson1Button" type="Button" parent="PopupMenu"]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 100.0
@@ -419,7 +194,7 @@ offset_bottom = 200.0
 theme_override_font_sizes/font_size = 40
 text = "LESSON 1"
 
-[node name="Lesson2Button" type="Button" parent="Automation/PopupMenu_automation"]
+[node name="Lesson2Button" type="Button" parent="PopupMenu"]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 300.0
@@ -428,7 +203,7 @@ offset_bottom = 400.0
 theme_override_font_sizes/font_size = 40
 text = "LESSON 2"
 
-[node name="Quiz2Button" type="Button" parent="Automation/PopupMenu_automation"]
+[node name="Quiz2Button" type="Button" parent="PopupMenu"]
 layout_mode = 0
 offset_left = 480.0
 offset_top = 300.0
@@ -437,7 +212,7 @@ offset_bottom = 400.0
 theme_override_font_sizes/font_size = 35
 text = "QUIZ 2"
 
-[node name="Quiz1Button" type="Button" parent="Automation/PopupMenu_automation"]
+[node name="Quiz1Button" type="Button" parent="PopupMenu"]
 layout_mode = 0
 offset_left = 480.0
 offset_top = 100.0
@@ -446,7 +221,7 @@ offset_bottom = 200.0
 theme_override_font_sizes/font_size = 35
 text = "QUIZ 1"
 
-[node name="CloseButton" type="Button" parent="Automation/PopupMenu_automation"]
+[node name="CloseButton" type="Button" parent="PopupMenu"]
 layout_mode = 0
 offset_left = 620.0
 offset_right = 700.0

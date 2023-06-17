@@ -21,13 +21,13 @@ func _ready():
 	# click url
 	richTextLabel.connect("meta_clicked", _richtextlabel_on_meta_clicked)
 	
+	completedButton.connect("pressed", _on_completedButton_clicked)
 	# check if scroll to bottom
-	completedButton.visible = false
+	#completedButton.visible = false
 	#scrollContainer.connect("scroll_ended", _scroll_to_bottom)
-	vScrollbar = scrollContainer.get_v_scroll_bar()
+	#vScrollbar = scrollContainer.get_v_scroll_bar()
 	#vScrollbar.connect("scrolling", _scroll_to_bottom)
 
-	
 	# exit button
 	exitButton.connect("pressed", _on_exitButton_pressed)
 	
@@ -44,15 +44,19 @@ func _load_reading(file_path: String):
 		print("File doesn't exist!")
 
 
-func _scroll_to_bottom():
-	print(scrollContainer.size.y)
+func _on_completedButton_clicked():
+	#TODO: 存储reading完成数据到数据库！！！
+	get_tree().change_scene_to_file("res://learning_scene.tscn")
 	
-	if ((vScrollbar.max_value - scrollContainer.size.y) - vScrollbar.value) <= 0:
-		completedButton.visible = true
+	
+#func _scroll_to_bottom():
+#	print(scrollContainer.size.y)
+#	
+#	if ((vScrollbar.max_value - scrollContainer.size.y) - vScrollbar.value) <= 0:
+#		completedButton.visible = true
 		
 	
 func _on_exitButton_pressed():
-	#TODO: 存储reading完成数据到数据库！！！
 	get_tree().change_scene_to_file("res://learning_scene.tscn")
 	
 	
@@ -62,4 +66,5 @@ func _richtextlabel_on_meta_clicked(meta):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	_scroll_to_bottom()
+	pass
+#	_scroll_to_bottom()

@@ -26,18 +26,18 @@ mouse_filter = 2
 [node name="OptionsButtonContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = 210.0
-offset_top = 550.0
+offset_top = 560.0
 offset_right = 1710.0
-offset_bottom = 1050.0
+offset_bottom = 1060.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="QuestionLabel" type="Label" parent="."]
 offset_left = 210.0
-offset_top = 80.0
+offset_top = 60.0
 offset_right = 1710.0
-offset_bottom = 480.0
+offset_bottom = 460.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_5ctth")
 theme_override_font_sizes/font_size = 30
