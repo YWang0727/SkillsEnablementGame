@@ -1,0 +1,186 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc5mllfb4ul6n"]
+
+[ext_resource type="Texture2D" uid="uid://cm3owmmuoofi0" path="res://Sprites/CitySet/Background/bg.jpg" id="1_d0uv6"]
+[ext_resource type="Theme" uid="uid://bb5a5sfuw330h" path="res://loginPage/theme/login_theme.tres" id="1_de1nd"]
+
+[sub_resource type="Theme" id="Theme_nv403"]
+Panel/styles/panel = null
+
+[node name="Control" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_de1nd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+offset_right = 919.0
+offset_bottom = 635.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.682, 0.682)
+texture = ExtResource("1_d0uv6")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(700, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tabars" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_nv403")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Tabars"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Log in" type="Button" parent="VBoxContainer/Tabars/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Log In"
+
+[node name="Sign in" type="Button" parent="VBoxContainer/Tabars/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sign In"
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.61
+
+[node name="email_input" type="Panel" parent="VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -158.5
+offset_bottom = -62.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel/email_input"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 94.0
+offset_top = -24.0
+offset_right = 194.0
+offset_bottom = 26.0
+grow_vertical = 2
+text = "E-mail:"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/email_input"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -486.0
+offset_top = -32.0
+offset_right = -86.0
+offset_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="pw_input" type="Panel" parent="VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -46.5
+offset_right = -2.0
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Panel/pw_input"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -24.0
+offset_right = 188.0
+offset_bottom = 26.0
+grow_vertical = 2
+text = "Password:"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/pw_input"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -486.0
+offset_top = -32.0
+offset_right = -86.0
+offset_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="login_button" type="Panel" parent="VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = 73.5
+offset_right = -2.0
+offset_bottom = 169.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Log in2" type="Button" parent="VBoxContainer/Panel/login_button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -32.5
+offset_right = 115.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Log In"
