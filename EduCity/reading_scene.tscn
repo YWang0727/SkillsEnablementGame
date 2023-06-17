@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvy7fsci0hmnw"]
+
+[ext_resource type="Script" path="res://reading_scene.gd" id="1_geiyo"]
+[ext_resource type="Texture2D" uid="uid://v25avekmfw0o" path="res://Sprites/Icon/exit-door.png" id="2_qnqub"]
+[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://Font/Roboto/Roboto-Regular.ttf" id="3_iypsb"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="4_648j2"]
+[ext_resource type="FontFile" uid="uid://bju8b1u2ttqoa" path="res://Font/Roboto/Roboto-Italic.ttf" id="5_dlx5m"]
+[ext_resource type="FontFile" uid="uid://uue3yy1kgul5" path="res://Font/Roboto/Roboto-BoldItalic.ttf" id="6_xpmyw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n47a7"]
+bg_color = Color(0.788235, 0.545098, 0.184314, 1)
+border_width_top = 3
+border_width_right = 3
+border_color = Color(0.815686, 0.705882, 0.121569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h7ga"]
+bg_color = Color(1, 0.92549, 0.560784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwm0w"]
+bg_color = Color(0.819608, 0.607843, 0.298039, 1)
+
+[node name="ReadingScene" type="Node2D"]
+script = ExtResource("1_geiyo")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(1000, 500)
+offset_left = 100.0
+offset_right = 1820.0
+offset_bottom = 1080.0
+horizontal_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1720, 1080)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Header" type="ColorRect" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1720, 50)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScrollContainer/VBoxContainer/Header"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_right = 1920.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="ExitButton" type="Button" parent="ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_n47a7")
+icon = ExtResource("2_qnqub")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1720, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_iypsb")
+theme_override_fonts/bold_font = ExtResource("4_648j2")
+theme_override_fonts/italics_font = ExtResource("5_dlx5m")
+theme_override_fonts/bold_italics_font = ExtResource("6_xpmyw")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_6h7ga")
+selection_enabled = true
+
+[node name="CompletedButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_nwm0w")
+text = "COMPLETED"
+
+[node name="VScrollBar" type="VScrollBar" parent="ScrollContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 3

@@ -1,12 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxf41utelmq4l"]
+[gd_scene load_steps=8 format=3 uid="uid://cxf41utelmq4l"]
 
 [ext_resource type="Script" path="res://quiz_scene.gd" id="1_n7pra"]
 [ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://Font/Roboto/Roboto-Regular.ttf" id="2_5ctth"]
 [ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="3_4vsma"]
 [ext_resource type="FontFile" uid="uid://uue3yy1kgul5" path="res://Font/Roboto/Roboto-BoldItalic.ttf" id="4_64uh1"]
+[ext_resource type="Texture2D" uid="uid://v25avekmfw0o" path="res://Sprites/Icon/exit-door.png" id="5_8ivkk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdqst"]
 bg_color = Color(0.00392157, 0.00392157, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_auoky"]
+bg_color = Color(0.788235, 0.545098, 0.184314, 1)
+border_width_top = 3
+border_width_right = 3
+border_color = Color(0.815686, 0.705882, 0.121569, 1)
 
 [node name="QuizScene" type="CanvasLayer"]
 script = ExtResource("1_n7pra")
@@ -108,3 +115,13 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_cdqst")
 text = "EXIT
 "
+
+[node name="ExitButton" type="Button" parent="."]
+custom_minimum_size = Vector2(80, 60)
+offset_right = 80.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_auoky")
+icon = ExtResource("5_8ivkk")
+icon_alignment = 1
+expand_icon = true
