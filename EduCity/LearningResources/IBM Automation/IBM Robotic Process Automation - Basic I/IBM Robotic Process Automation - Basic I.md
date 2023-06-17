@@ -2,10 +2,26 @@
 
 
     [font_size={40}]1. Course instructions[/font_size]
+    [font_size={30}]1.1 Course instructions[/font_size]
     To get the most out of a Self-Paced Virtual Class (SPVC), be an active and attentive learner. The following tips can help.
     - Try to minimize interruptions. Being interrupted every 10 minutes does not allow you to concentrate on learning. Block one to two hours for a unit and try to complete the lecture and the student exercises for the entire unit.
     - Complete the units of the course in order. Many times, material from later units build on earlier units.
     
+    [font_size={30}]1.2 How to Take This Self-paced Virtual Course[/font_size]
+    Perform the following steps to complete this course.
+
+    STEP 1: WATCH THE VIDEO
+    The main knowledge comes from videos that explain concepts and present the practice. 
+
+    STEP 2: ACCESS SUPPORT MATERIAL
+    Complementary knowledge may be available through a link to the IBM Documentation, a PDF, or any other textual and visual resource.
+
+    STEP 3: DO THE FINAL QUIZ
+    Take a test after watch the videos. Try to understand what you are doing and why you are doing it. 
+
+    [font_size={30}]1.3 How to navigate this course[/font_size]
+    [b][url=https://cdnapisec.kaltura.com/html5/html5lib/v2.101/mwEmbedFrame.php/p/1773841/uiconf_id/39954662/entry_id/1_nwaupv11?wid=_1773841&iframeembed=true&playerId=kaltura_player&entry_id=1_nwaupv11&flashvars\akamaiHD.loadingPolicy\=preInitialize&flashvars\akamaiHD.asyncInit\=true&flashvars\twoPhaseManifest\=true&flashvars\streamerType\=hdnetworkmanifest&flashvars\localizationCode\=en&flashvars\leadWithHTML5\=true&flashvars\sideBarContainer.plugin\=true&flashvars\sideBarContainer.position\=left&flashvars\sideBarContainer.clickToClose\=true&flashvars\chapters.plugin\=true&flashvars\chapters.layout\=vertical&flashvars\chapters.thumbnailRotator\=false&flashvars\streamSelector.plugin\=true&flashvars\EmbedPlayer.SpinnerTarget\=videoHolder&flashvars\dualScreen.plugin\=true&flashvars\Kaltura.addCrossoriginToIframe\=true&&wid=1_cma4pykg#]Navigating your Digital Learning Platform(DLP) course (kaltura.com)[/url][/b]
+
 
     [font_size={40}]2. Introduction[/font_size]
     [font_size={30}]2.1 RPA and RDA[/font_size]
