@@ -83,12 +83,12 @@ func _on_quiz1Button_pressed():
 	
 	
 func _on_quiz2Button_pressed():
-	GameManager.question_path = "/module2/quiz.json"
+	GameManager.question_path = GameManager.question_path + "/module2/quiz.json"
 	get_tree().change_scene_to_file("res://quiz_scene.tscn")
 	
 	
 func _on_quiz3Button_pressed():
-	GameManager.question_path = "/module3/quiz.json"
+	GameManager.question_path = GameManager.question_path + "/module3/quiz.json"
 	get_tree().change_scene_to_file("res://quiz_scene.tscn")
 
 

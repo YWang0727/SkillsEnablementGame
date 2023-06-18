@@ -13,11 +13,13 @@ anchors_preset = 0
 script = ExtResource("1_xbj0w")
 
 [node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
 [node name="LoadingLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 810.0
 offset_top = 400.0
 offset_right = 1110.0
@@ -28,6 +30,7 @@ text = "Loading......"
 
 [node name="ProgressLabel" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 915.0
 offset_top = 600.0
 offset_right = 1005.0
