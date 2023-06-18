@@ -183,7 +183,7 @@ z_as_relative = false
 offset_left = 610.0
 offset_top = 200.0
 offset_right = 1310.0
-offset_bottom = 800.0
+offset_bottom = 900.0
 
 [node name="Lesson1Button" type="Button" parent="PopupMenu"]
 layout_mode = 0
@@ -203,14 +203,13 @@ offset_bottom = 400.0
 theme_override_font_sizes/font_size = 40
 text = "LESSON 2"
 
-[node name="Quiz2Button" type="Button" parent="PopupMenu"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = 300.0
-offset_right = 602.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 35
-text = "QUIZ 2"
+[node name="Lesson3Button" type="Button" parent="PopupMenu"]
+offset_left = 100.0
+offset_top = 500.0
+offset_right = 400.0
+offset_bottom = 600.0
+theme_override_font_sizes/font_size = 40
+text = "LESSON 3"
 
 [node name="Quiz1Button" type="Button" parent="PopupMenu"]
 layout_mode = 0
@@ -220,6 +219,23 @@ offset_right = 602.0
 offset_bottom = 200.0
 theme_override_font_sizes/font_size = 35
 text = "QUIZ 1"
+
+[node name="Quiz2Button" type="Button" parent="PopupMenu"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 300.0
+offset_right = 602.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 2"
+
+[node name="Quiz3Button" type="Button" parent="PopupMenu"]
+offset_left = 480.0
+offset_top = 500.0
+offset_right = 602.0
+offset_bottom = 600.0
+theme_override_font_sizes/font_size = 35
+text = "QUIZ 3"
 
 [node name="CloseButton" type="Button" parent="PopupMenu"]
 layout_mode = 0
