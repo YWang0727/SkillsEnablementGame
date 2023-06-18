@@ -64,17 +64,17 @@ func _ready():
 # generate lesson/quiz path
 func _on_lesson1Button_pressed():
 	GameManager.reading_path = GameManager.reading_path + "/module1/reading.md"
-	get_tree().change_scene_to_file("res://reading_scene.tscn")
+	get_tree().change_scene_to_file("res://loading_scene.tscn")
 
 
 func _on_lesson2Button_pressed():
 	GameManager.reading_path = GameManager.reading_path + "/module2/reading.md"
-	get_tree().change_scene_to_file("res://reading_scene.tscn")
+	get_tree().change_scene_to_file("res://loading_scene.tscn")
 	
 
 func _on_lesson3Button_pressed():
 	GameManager.reading_path = GameManager.reading_path + "/module3/reading.md"
-	get_tree().change_scene_to_file("res://reading_scene.tscn")
+	get_tree().change_scene_to_file("res://loading_scene.tscn")
 	
 
 func _on_quiz1Button_pressed():
