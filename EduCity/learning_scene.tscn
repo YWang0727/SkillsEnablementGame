@@ -204,6 +204,7 @@ theme_override_font_sizes/font_size = 40
 text = "LESSON 2"
 
 [node name="Lesson3Button" type="Button" parent="PopupMenu"]
+layout_mode = 0
 offset_left = 100.0
 offset_top = 500.0
 offset_right = 400.0
@@ -230,6 +231,7 @@ theme_override_font_sizes/font_size = 35
 text = "QUIZ 2"
 
 [node name="Quiz3Button" type="Button" parent="PopupMenu"]
+layout_mode = 0
 offset_left = 480.0
 offset_top = 500.0
 offset_right = 602.0
