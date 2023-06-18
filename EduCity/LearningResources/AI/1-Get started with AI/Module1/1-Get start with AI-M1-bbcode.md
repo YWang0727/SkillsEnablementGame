@@ -1,0 +1,71 @@
+    [font_size={50}]Get started with AI[/font_size]
+
+
+    [font_size={40}]Course overview[/font_size]
+    
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_01.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_02.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_03.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_04.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_05.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_06.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_07.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_08.png[/img][/center]
+
+
+    [font_size={40}]Module1: AI Foundations[/font_size]
+    
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_09.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_10.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_11.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_12.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_13.png[/img][/center]
+    
+    [b][url=https://www.ustream.tv/embed/recorded/128528581[/url][/b]
+    
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_14.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_15.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_16.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_17.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_18.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_19.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_20.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_21.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_22.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_23.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_24.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_25.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_26.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_27.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_28.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_29.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_30.png[/img][/center]
+    
+    [b][url=https://www.ustream.tv/embed/recorded/128525506[/url][/b]
+    
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_31.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_32.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_33.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_34.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_35.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_36.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_37.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_38.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_39.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_40.png[/img][/center]
+    
+    [b][url=https://www.ustream.tv/embed/recorded/128525438[/url][/b]
+    
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_41.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_42.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_43.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_44.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_45.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_46.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_47.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_48.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_49.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_50.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_51.png[/img][/center]
+    [center][img]res://LearningResources\AI\1-Get started with AI\Module1\images\1-Get started with AI_52.png[/img][/center]
+
