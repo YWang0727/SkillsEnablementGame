@@ -35,7 +35,7 @@ grow_vertical = 2
 theme = ExtResource("1_de1nd")
 script = ExtResource("2_jj6vr")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="background" type="TextureRect" parent="."]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -50,7 +50,7 @@ scale = Vector2(0.682, 0.682)
 texture = ExtResource("1_d0uv6")
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Game name" type="Label" parent="."]
 layout_mode = 0
 offset_left = 837.0
 offset_top = 136.0
@@ -92,6 +92,7 @@ toggle_mode = true
 text = "Sign In"
 
 [node name="log in" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 611.0
@@ -102,7 +103,7 @@ scale = Vector2(0.996063, 0.983238)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
 
-[node name="username2" type="Panel" parent="log in"]
+[node name="username_panel" type="Panel" parent="log in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -113,20 +114,7 @@ offset_bottom = -190.778
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="log in/username2"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 94.3715
-offset_top = -25.6249
-offset_right = 273.372
-offset_bottom = 24.3751
-grow_vertical = 2
-text = "Username:"
-
-[node name="LineEdit" type="LineEdit" parent="log in/username2"]
+[node name="LineEdit" type="LineEdit" parent="log in/username_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -140,8 +128,12 @@ offset_right = 250.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Imput Username"
+clear_button_enabled = true
+caret_blink = true
 
-[node name="email_input2" type="Panel" parent="log in"]
+[node name="email_input_panel" type="Panel" parent="log in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -154,20 +146,7 @@ offset_bottom = -73.8179
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="log in/email_input2"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 91.3517
-offset_top = -25.0
-offset_right = 231.352
-offset_bottom = 25.0
-grow_vertical = 2
-text = "E-mail:"
-
-[node name="LineEdit" type="LineEdit" parent="log in/email_input2"]
+[node name="LineEdit4" type="LineEdit" parent="log in/email_input_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -181,8 +160,12 @@ offset_right = 275.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Imput E-mail"
+clear_button_enabled = true
+caret_blink = true
 
-[node name="pw_input1" type="Panel" parent="log in"]
+[node name="pw_input1_panel" type="Panel" parent="log in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -193,20 +176,7 @@ offset_bottom = 45.1769
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="log in/pw_input1"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 94.0
-offset_top = -24.0
-offset_right = 194.0
-offset_bottom = 26.0
-grow_vertical = 2
-text = "Password:"
-
-[node name="LineEdit" type="LineEdit" parent="log in/pw_input1"]
+[node name="LineEdit" type="LineEdit" parent="log in/pw_input1_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -220,8 +190,13 @@ offset_right = 275.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Set Password"
+secret = true
+clear_button_enabled = true
+caret_blink = true
 
-[node name="pw_input2" type="Panel" parent="log in"]
+[node name="pw_input2_panel" type="Panel" parent="log in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -232,20 +207,7 @@ offset_bottom = 160.103
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="log in/pw_input2"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 94.3715
-offset_top = -26.642
-offset_right = 409.371
-offset_bottom = 23.358
-grow_vertical = 2
-text = "Password comfirmed:"
-
-[node name="LineEdit" type="LineEdit" parent="log in/pw_input2"]
+[node name="LineEdit3" type="LineEdit" parent="log in/pw_input2_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -259,6 +221,11 @@ offset_right = 275.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Password Comfirm"
+secret = true
+clear_button_enabled = true
+caret_blink = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="log in"]
 custom_minimum_size = Vector2(500, 0)
@@ -298,7 +265,6 @@ size_flags_horizontal = 3
 text = "Complete"
 
 [node name="sign in" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 611.0
@@ -309,72 +275,20 @@ scale = Vector2(1, 0.987)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
 
-[node name="username2" type="Panel" parent="sign in"]
+[node name="email_input_panel2" type="Panel" parent="sign in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -180.267
-offset_bottom = -84.2675
+offset_left = 1.0
+offset_top = -176.039
+offset_right = 1.0
+offset_bottom = -80.0384
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="sign in/username2"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 94.3715
-offset_top = -25.6249
-offset_right = 273.372
-offset_bottom = 24.3751
-grow_vertical = 2
-text = "Imput E-mail"
-
-[node name="LineEdit" type="LineEdit" parent="sign in/username2"]
-custom_minimum_size = Vector2(550, 60)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -30.0
-offset_right = 250.0
-offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="email_input2" type="Panel" parent="sign in"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1.0119
-offset_top = -63.3069
-offset_right = 1.0119
-offset_bottom = 32.6931
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="sign in/email_input2"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 92.9881
-offset_top = -24.9666
-offset_right = 328.988
-offset_bottom = 25.0334
-grow_vertical = 2
-text = "Imput Password"
-
-[node name="LineEdit" type="LineEdit" parent="sign in/email_input2"]
+[node name="LineEdit4" type="LineEdit" parent="sign in/email_input_panel2"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -388,6 +302,41 @@ offset_right = 275.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Imput E-mail"
+clear_button_enabled = true
+caret_blink = true
+
+[node name="pw_input1_panel2" type="Panel" parent="sign in"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -59.5238
+offset_bottom = 36.4762
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="sign in/pw_input1_panel2"]
+custom_minimum_size = Vector2(550, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -30.0
+offset_right = 275.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Imput Password"
+secret = true
+clear_button_enabled = true
+caret_blink = true
 
 [node name="login_button" type="Panel" parent="sign in"]
 layout_mode = 1
