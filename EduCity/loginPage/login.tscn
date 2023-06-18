@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=8 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Texture2D" uid="uid://cm3owmmuoofi0" path="res://Sprites/CitySet/Background/bg.jpg" id="1_d0uv6"]
 [ext_resource type="Theme" uid="uid://bb5a5sfuw330h" path="res://loginPage/theme/login_theme.tres" id="1_de1nd"]
@@ -23,6 +23,8 @@ RichTextLabel/font_sizes/bold_font_size = 22
 RichTextLabel/font_sizes/bold_italics_font_size = 36
 RichTextLabel/font_sizes/italics_font_size = 27
 RichTextLabel/font_sizes/mono_font_size = 28
+
+[sub_resource type="Theme" id="Theme_i4oag"]
 
 [node name="Control" type="Control"]
 clip_contents = true
@@ -91,8 +93,7 @@ size_flags_horizontal = 3
 toggle_mode = true
 text = "Sign In"
 
-[node name="log in" type="Panel" parent="."]
-visible = false
+[node name="sign_in" type="Panel" parent="."]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 611.0
@@ -103,7 +104,7 @@ scale = Vector2(0.996063, 0.983238)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
 
-[node name="username_panel" type="Panel" parent="log in"]
+[node name="username_panel" type="Panel" parent="sign_in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -114,7 +115,7 @@ offset_bottom = -190.778
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit" type="LineEdit" parent="log in/username_panel"]
+[node name="LineEdit" type="LineEdit" parent="sign_in/username_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -122,10 +123,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -30.0
-offset_right = 250.0
-offset_bottom = 30.0
+offset_left = -274.704
+offset_top = -31.3014
+offset_right = 275.296
+offset_bottom = 28.6986
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 25
@@ -133,7 +134,7 @@ placeholder_text = "Imput Username"
 clear_button_enabled = true
 caret_blink = true
 
-[node name="email_input_panel" type="Panel" parent="log in"]
+[node name="email_input_panel" type="Panel" parent="sign_in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -146,7 +147,7 @@ offset_bottom = -73.8179
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit4" type="LineEdit" parent="log in/email_input_panel"]
+[node name="LineEdit" type="LineEdit" parent="sign_in/email_input_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -165,7 +166,7 @@ placeholder_text = "Imput E-mail"
 clear_button_enabled = true
 caret_blink = true
 
-[node name="pw_input1_panel" type="Panel" parent="log in"]
+[node name="pw_input1_panel" type="Panel" parent="sign_in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -176,7 +177,7 @@ offset_bottom = 45.1769
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit" type="LineEdit" parent="log in/pw_input1_panel"]
+[node name="LineEdit" type="LineEdit" parent="sign_in/pw_input1_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -196,7 +197,7 @@ secret = true
 clear_button_enabled = true
 caret_blink = true
 
-[node name="pw_input2_panel" type="Panel" parent="log in"]
+[node name="pw_input2_panel" type="Panel" parent="sign_in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -207,7 +208,7 @@ offset_bottom = 160.103
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit3" type="LineEdit" parent="log in/pw_input2_panel"]
+[node name="LineEdit" type="LineEdit" parent="sign_in/pw_input2_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -227,7 +228,7 @@ secret = true
 clear_button_enabled = true
 caret_blink = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="log in"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="sign_in"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_left = 127.502
@@ -241,7 +242,7 @@ text = "Already have an acount?  [color=yellow]Log in! [/color]"
 fit_content = true
 scroll_active = false
 
-[node name="Signin_button" type="Panel" parent="log in"]
+[node name="sign_in_button_panel" type="Panel" parent="sign_in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -254,17 +255,34 @@ offset_bottom = 323.257
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sign_in" type="Button" parent="log in/Signin_button"]
+[node name="complete_button" type="Button" parent="sign_in/sign_in_button_panel"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 11
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_left = -346.609
+offset_top = -6.10352e-05
+offset_right = 3.39124
+grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 text = "Complete"
 
-[node name="sign in" type="Panel" parent="."]
+[node name="reset_button" type="Button" parent="sign_in/sign_in_button_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -350.0
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Reset"
+
+[node name="log_in" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 611.0
@@ -275,7 +293,7 @@ scale = Vector2(1, 0.987)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
 
-[node name="email_input_panel2" type="Panel" parent="sign in"]
+[node name="email_input_panel" type="Panel" parent="log_in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -288,7 +306,7 @@ offset_bottom = -80.0384
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit4" type="LineEdit" parent="sign in/email_input_panel2"]
+[node name="LineEdit_email" type="LineEdit" parent="log_in/email_input_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -307,7 +325,7 @@ placeholder_text = "Imput E-mail"
 clear_button_enabled = true
 caret_blink = true
 
-[node name="pw_input1_panel2" type="Panel" parent="sign in"]
+[node name="pw_input_panel" type="Panel" parent="log_in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -318,7 +336,7 @@ offset_bottom = 36.4762
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit" type="LineEdit" parent="sign in/pw_input1_panel2"]
+[node name="LineEdit_pw" type="LineEdit" parent="log_in/pw_input_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -338,7 +356,7 @@ secret = true
 clear_button_enabled = true
 caret_blink = true
 
-[node name="login_button" type="Panel" parent="sign in"]
+[node name="login_button_panel" type="Panel" parent="log_in"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -351,7 +369,7 @@ offset_bottom = 252.837
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Log in2" type="Button" parent="sign in/login_button"]
+[node name="Login_button" type="Button" parent="log_in/login_button_panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,7 +379,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 text = "Log In"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="sign in"]
+[node name="RichTextLabel" type="RichTextLabel" parent="log_in"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_left = 125.0
@@ -375,5 +393,23 @@ text = "Don't have an acount?  [color=yellow]Sign in! [/color]"
 fit_content = true
 scroll_active = false
 
+[node name="Remember_me" type="CheckBox" parent="log_in"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 339.412
+offset_right = 714.0
+offset_bottom = 389.412
+scale = Vector2(1.5, 1.5)
+focus_mode = 0
+theme = SubResource("Theme_i4oag")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.521569, 0.882353, 0.941176, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.521569, 0.882353, 0.941176, 1)
+theme_override_colors/font_focus_color = Color(0.521569, 0.882353, 0.941176, 1)
+theme_override_constants/h_separation = 4
+theme_override_font_sizes/font_size = 16
+text = "Remember me"
+
 [connection signal="pressed" from="Tabars/HBoxContainer/Log in" to="." method="_on_log_in_pressed"]
 [connection signal="pressed" from="Tabars/HBoxContainer/Sign in" to="." method="_on_sign_in_pressed"]
+[connection signal="pressed" from="sign_in/sign_in_button_panel/reset_button" to="." method="_on_reset_button_pressed"]
