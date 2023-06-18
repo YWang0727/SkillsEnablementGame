@@ -17,8 +17,8 @@
       "options": [
         "Narrow and Broad intelligence is distinguished by complexity of algorithms.",
         "Broad intelligence requires huge amounts of data, whereas narrow intelligence relies on minimum data.",
-        "Narrow AI can only do a certain task-and it can do it quite well, but narrow AI can't transfer its knowledge to different sorts of problems as with Broad AI.",
-        "Broad intelligence can extract meaning from images, whereas Narrow Intelligence is best suited for language processing."
+        "Narrow AI can only do a certain task-and it can do it quite well, but narrow AI can't transfer its knowledge\n to different sorts of problems as with Broad AI.",
+        "Broad intelligence can extract meaning from images, whereas Narrow Intelligence is best suited for \nlanguage processing."
       ],
       "answers": [2]
     },
@@ -126,8 +126,8 @@
       "question": "Which of the following best depicts or exemplifies Broad AI?",
       "options": [
         "A self-driving car, which happens to be a collection of narrow AI technologies.",
-        "A system that supports engineers who work on complex maintenance tasks on a platform in the middle of the Atlantic Ocean.",
-        "A system within a bank that analyzes the balance sheet of corporate customers to recommend the best currency hedging strategy.",
+        "A system that supports engineers who work on complex maintenance tasks on a platform \nin the middle of the Atlantic Ocean.",
+        "A system within a bank that analyzes the balance sheet of corporate customers to recommend \nthe best currency hedging strategy.",
         "All of the above"
       ],
       "answers": [3]
