@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/rbac
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+logging:
+  level:
+    root: info    # ????????info
+    com.EduCity: debug    # ??com.EduCity????????debug
+
