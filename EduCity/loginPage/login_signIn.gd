@@ -118,6 +118,12 @@ func _on_password_line_edit_text_changed(new_text):
 			validPw2Label.visible = false
 			invalidPw1Label.visible = true
 			invalidPw2Label.visible = true
+	else:
+		validPw1Label.visible = false
+		validPw2Label.visible = false
+		invalidPw1Label.visible = false
+		invalidPw2Label.visible = false
+		
 		
 
 func checkEmailFormat(new_text):

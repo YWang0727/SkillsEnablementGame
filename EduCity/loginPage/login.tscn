@@ -237,6 +237,7 @@ theme = SubResource("Theme_5q2ag")
 text = "Get Verification Code"
 
 [node name="sign_in2" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
@@ -392,7 +393,6 @@ size_flags_horizontal = 3
 text = "Reset"
 
 [node name="log_in" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
