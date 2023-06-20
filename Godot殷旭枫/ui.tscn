@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bloaimjkjgbg"]
+
+[ext_resource type="Texture2D" uid="uid://du7xol4sd5irg" path="res://Buildings/house_small_blue_a.png" id="1_ld8xt"]
+[ext_resource type="Script" path="res://ui.gd" id="1_mk1pf"]
+[ext_resource type="Texture2D" uid="uid://bv2cfxj626jvs" path="res://Buildings/auto_shop_a.png" id="2_4ll50"]
+[ext_resource type="Texture2D" uid="uid://cpqkhib2tes2y" path="res://Buildings/construction_site_a.png" id="3_01llo"]
+[ext_resource type="Texture2D" uid="uid://pgtnga2ld6q7" path="res://Buildings/barber_shop_a.png" id="4_rx22x"]
+
+[node name="UI" type="Node2D"]
+script = ExtResource("1_mk1pf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 956.0
+offset_top = -1.0
+offset_right = 1152.0
+offset_bottom = 646.0
+color = Color(0.898438, 0.61466, 0.171967, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 996.0
+offset_top = 37.0
+offset_right = 1135.0
+offset_bottom = 190.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HouseButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_ld8xt")
+
+[node name="ShopButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_4ll50")
+
+[node name="ConstructionButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_01llo")
+
+[node name="BarberButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_rx22x")
+
+[connection signal="pressed" from="VBoxContainer/HouseButton" to="." method="_on_house_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ConstructionButton" to="." method="_on_construction_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BarberButton" to="." method="_on_barber_button_pressed"]
