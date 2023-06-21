@@ -18,12 +18,7 @@
     </properties>
     <dependencies>
 
-        <!-- Spring Boot及Spring Security相关依赖 -->
-        <!--Spring Boot中基础的安全依赖，提供了安全框架的基础支持-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+
         <!--Spring Boot中基础的Web依赖，提供了Web开发所需要的基本功能-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -42,12 +37,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--Spring Security中的测试依赖，提供了安全框架测试所需要的基本功能-->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <!--用于解决swagger报错问题-->
         <dependency>
             <groupId>io.springfox</groupId>

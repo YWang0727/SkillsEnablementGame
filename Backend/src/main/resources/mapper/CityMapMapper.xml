@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.EduCity.mapper.CityMapMapper">
+<mapper namespace="com.imyuewang.EduCity.mapper.CitymapMapper">
 
-    <resultMap id="BaseResultMap" type="com.EduCity.model.entity.CityMap">
+    <resultMap id="BaseResultMap" type="com.imyuewang.EduCity.model.entity.Citymap">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="prosperity" column="prosperity" jdbcType="BIGINT"/>
             <result property="gold" column="gold" jdbcType="BIGINT"/>
-            <result property="constructionspeedlevel" column="constructionSpeedLevel" jdbcType="BIGINT"/>
+            <result property="constructionspeed" column="constructionSpeed" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,name,prosperity,
-        gold,constructionSpeedLevel
+        gold,constructionSpeed
     </sql>
 </mapper>

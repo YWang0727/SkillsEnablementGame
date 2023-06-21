@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.EduCity.mapper.TakenMapCellMapper">
+<mapper namespace="com.imyuewang.EduCity.mapper.TakenmapcellMapper">
 
-    <resultMap id="BaseResultMap" type="com.EduCity.model.entity.TakenMapCell">
-            <id property="mapid" column="mapID" jdbcType="BIGINT"/>
-            <result property="positionx" column="positionX" jdbcType="BIGINT"/>
-            <result property="positiony" column="positionY" jdbcType="BIGINT"/>
-            <result property="housetype" column="houseType" jdbcType="BIGINT"/>
-            <result property="houselevel" column="houseLevel" jdbcType="BIGINT"/>
+    <resultMap id="BaseResultMap" type="com.imyuewang.EduCity.model.entity.Takenmapcell">
+            <id property="mapid" column="mapId" jdbcType="BIGINT"/>
+            <id property="positionx" column="positionX" jdbcType="INTEGER"/>
+            <id property="positiony" column="positionY" jdbcType="INTEGER"/>
+            <result property="housetype" column="houseType" jdbcType="INTEGER"/>
+            <result property="houselevel" column="houseLevel" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        mapID,positionX,positionY,
+        mapId,positionX,positionY,
         houseType,houseLevel
     </sql>
 </mapper>
