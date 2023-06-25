@@ -1,4 +1,5 @@
 extends Control
+
 #tabars
 var logButton 
 var signButton
@@ -68,6 +69,10 @@ func _ready():
 	invalidPw2Label = createLabel("Passwords do not match!", Vector2(70, 265), 20, Color(0.78, 0.19, 0.24),signPanel2)
 	validPw2Label.visible = false
 	invalidPw2Label.visible = false
+	
+	HttpLayer.connect("http_completed", http_completed)
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -153,8 +158,15 @@ func _on_next_button_pressed():
 	signPanel2.visible = true
 	
 
-
 func _on_login_button_pressed():
-	get_tree().change_scene_to_file("res://main_scene.tscn")
+	HttpLayer._login({
+				"email": get_node("log_in/email_input_panel/LineEdit").text,
+				"password": get_node("log_in/pw_input_panel/LineEdit").text
+			}, "res://main_scene.tscn")
+			
+			
+func http_completed(res, response_code, headers, route) -> void:
+	if res == null : 
+		print("res = null")
+		return
 	
-	pass # Replace with function body.
