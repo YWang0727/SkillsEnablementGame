@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://caynyc7x0vneo"]
+
+[ext_resource type="Script" path="res://src/setting/setting.gd" id="1_f4kvs"]
+[ext_resource type="Texture2D" uid="uid://crxum4iobj7ep" path="res://assets/setting/background.png" id="2_ycdv5"]
+[ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://src/themes/text_button.tres" id="3_rfr0n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4lot"]
+
+[node name="SettingPopup" type="Popup"]
+size = Vector2i(1158, 650)
+mode = 3
+visible = true
+script = ExtResource("1_f4kvs")
+metadata/_edit_vertical_guides_ = [514.0]
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ycdv5")
+expand_mode = 1
+
+[node name="Settings" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Music" type="HBoxContainer" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 300
+alignment = 1
+
+[node name="Label" type="Label" parent="Settings/VBoxContainer/Music"]
+layout_mode = 2
+theme = ExtResource("3_rfr0n")
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/Music"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="Sound" type="HBoxContainer" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 300
+alignment = 1
+
+[node name="Label" type="Label" parent="Settings/VBoxContainer/Sound"]
+layout_mode = 2
+theme = ExtResource("3_rfr0n")
+text = "Sound Volume"
+
+[node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/Sound"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="HSeparator" type="HSeparator" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+theme_override_styles/separator = SubResource("StyleBoxEmpty_w4lot")
+
+[node name="Resume" type="Button" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_rfr0n")
+text = "Resume"
+
+[node name="Save" type="Button" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_rfr0n")
+text = "Save"
+
+[node name="Quit" type="Button" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_rfr0n")
+text = "Quit"
