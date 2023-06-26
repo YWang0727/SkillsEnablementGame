@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmkyfo2tlcok7"]
+
+[ext_resource type="Texture2D" uid="uid://crxum4iobj7ep" path="res://assets/setting/background.png" id="1_3lqjh"]
+[ext_resource type="Script" path="res://src/account/account_setting.gd" id="1_fsgm4"]
+[ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://src/themes/text_button.tres" id="2_t5dig"]
+[ext_resource type="Texture2D" uid="uid://cvryfjg2nirqg" path="res://assets/sim_backEnd/avatar.jpg" id="4_rb8y3"]
+[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://src/themes/icon_button.tres" id="4_thl7b"]
+[ext_resource type="Texture2D" uid="uid://dafsqaa82r6o2" path="res://assets/account/ArrowLeft.png" id="4_v8bw6"]
+[ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://src/themes/pure_icon.tres" id="5_swt6b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjsd6"]
+
+[node name="AccountSetting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsgm4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3lqjh")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("5_swt6b")
+icon = ExtResource("4_v8bw6")
+
+[node name="FileUploadWindow" type="FileDialog" parent="."]
+title = "Open a File"
+position = Vector2i(300, 200)
+size = Vector2i(1000, 700)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="Edit" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Edit"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Profile" type="Label" parent="Edit/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+theme_override_font_sizes/font_size = 50
+text = "Edit Profile"
+vertical_alignment = 1
+
+[node name="Username" type="VBoxContainer" parent="Edit/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Edit/VBoxContainer/Username"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+text = "New Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Edit/VBoxContainer/Username"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+
+[node name="Email" type="VBoxContainer" parent="Edit/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Edit/VBoxContainer/Email"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+text = "New Email:"
+
+[node name="LineEdit" type="LineEdit" parent="Edit/VBoxContainer/Email"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+
+[node name="Avatar" type="VBoxContainer" parent="Edit/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Edit/VBoxContainer/Avatar"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+text = "New Avatar:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Edit/VBoxContainer/Avatar"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="DisplayAvatar" type="TextureRect" parent="Edit/VBoxContainer/Avatar/HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("4_rb8y3")
+expand_mode = 2
+
+[node name="Upload" type="VBoxContainer" parent="Edit/VBoxContainer/Avatar/HBoxContainer"]
+layout_mode = 2
+
+[node name="UploadButton" type="Button" parent="Edit/VBoxContainer/Avatar/HBoxContainer/Upload"]
+layout_mode = 2
+text = "upload file"
+
+[node name="ProfileButtons" type="HBoxContainer" parent="Edit/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Save" type="Button" parent="Edit/VBoxContainer/ProfileButtons"]
+layout_mode = 2
+theme = ExtResource("4_thl7b")
+text = "Save"
+
+[node name="Cancel" type="Button" parent="Edit/VBoxContainer/ProfileButtons"]
+layout_mode = 2
+theme = ExtResource("5_swt6b")
+text = "Cancel
+"
+
+[node name="HSeparator" type="HSeparator" parent="Edit/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tjsd6")
+
+[node name="Password" type="Label" parent="Edit/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+theme_override_font_sizes/font_size = 50
+text = "Edit Password"
+
+[node name="OldPassword" type="VBoxContainer" parent="Edit/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Edit/VBoxContainer/OldPassword"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+text = "Old Password:"
+
+[node name="LineEdit" type="LineEdit" parent="Edit/VBoxContainer/OldPassword"]
+layout_mode = 2
+
+[node name="NewPassword" type="VBoxContainer" parent="Edit/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Edit/VBoxContainer/NewPassword"]
+layout_mode = 2
+theme = ExtResource("2_t5dig")
+text = "New Password:"
+
+[node name="LineEdit" type="LineEdit" parent="Edit/VBoxContainer/NewPassword"]
+layout_mode = 2
+
+[node name="PasswordButtons" type="HBoxContainer" parent="Edit/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Save" type="Button" parent="Edit/VBoxContainer/PasswordButtons"]
+layout_mode = 2
+theme = ExtResource("4_thl7b")
+text = "Save"
+
+[node name="Cancel" type="Button" parent="Edit/VBoxContainer/PasswordButtons"]
+layout_mode = 2
+theme = ExtResource("5_swt6b")
+text = "Cancel
+"

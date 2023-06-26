@@ -1,6 +1,6 @@
 extends ColorRect
 
-var account_scene:PackedScene = preload("res://src/account/profile.tscn")
+var profile_scene: String = "res://src/account/profile.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,4 +17,4 @@ func to_setting():
 	$setting.popup_centered()
 
 func to_account():
-	get_tree().change_scene_to_packed(account_scene)
+	get_tree().change_scene_to_file(profile_scene)

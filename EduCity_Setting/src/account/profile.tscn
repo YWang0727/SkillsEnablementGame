@@ -1,0 +1,201 @@
+[gd_scene load_steps=9 format=3 uid="uid://cv1d7uwtp6lab"]
+
+[ext_resource type="Script" path="res://src/account/profile.gd" id="1_tncov"]
+[ext_resource type="Texture2D" uid="uid://crxum4iobj7ep" path="res://assets/setting/background.png" id="2_fxqit"]
+[ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://src/themes/pure_icon.tres" id="3_fqii1"]
+[ext_resource type="Texture2D" uid="uid://cvryfjg2nirqg" path="res://assets/sim_backEnd/avatar.jpg" id="3_tj0hy"]
+[ext_resource type="Texture2D" uid="uid://dafsqaa82r6o2" path="res://assets/account/ArrowLeft.png" id="4_1ys64"]
+[ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://src/themes/text_button.tres" id="4_u24iu"]
+[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://src/themes/icon_button.tres" id="5_blv3x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8krav"]
+
+[node name="Profile" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tncov")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fxqit")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 125.0
+offset_bottom = 99.0
+theme = ExtResource("3_fqii1")
+icon = ExtResource("4_1ys64")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 1.0
+scale = Vector2(1.00259, 1)
+
+[node name="Profile" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="Avatar" type="TextureRect" parent="MarginContainer/Profile"]
+layout_mode = 2
+texture = ExtResource("3_tj0hy")
+expand_mode = 3
+
+[node name="BasicInfo" type="VBoxContainer" parent="MarginContainer/Profile"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Name" type="HBoxContainer" parent="MarginContainer/Profile/BasicInfo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/BasicInfo/Name"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "name:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/BasicInfo/Name"]
+layout_mode = 2
+
+[node name="Prosperity" type="HBoxContainer" parent="MarginContainer/Profile/BasicInfo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/BasicInfo/Prosperity"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "Prosperity:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/BasicInfo/Prosperity"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "data"
+
+[node name="Gold" type="HBoxContainer" parent="MarginContainer/Profile/BasicInfo"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/BasicInfo/Gold"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "Gold:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/BasicInfo/Gold"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "data"
+
+[node name="EditButton" type="Button" parent="MarginContainer/Profile/BasicInfo"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("5_blv3x")
+text = "Edit Profile"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Profile/BasicInfo"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8krav")
+
+[node name="PlaceHolder" type="HBoxContainer" parent="MarginContainer/Profile"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="MoreInfo" type="VBoxContainer" parent="MarginContainer/Profile"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ResidentialBuilding" type="HBoxContainer" parent="MarginContainer/Profile/MoreInfo"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/MoreInfo/ResidentialBuilding"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "Residential Building:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/MoreInfo/ResidentialBuilding"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "data"
+
+[node name="Bank" type="HBoxContainer" parent="MarginContainer/Profile/MoreInfo"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/MoreInfo/Bank"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "Bank:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/MoreInfo/Bank"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "data"
+
+[node name="Supermarket" type="HBoxContainer" parent="MarginContainer/Profile/MoreInfo"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/MoreInfo/Supermarket"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "Supermarket:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/MoreInfo/Supermarket"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "data"
+
+[node name="Park" type="HBoxContainer" parent="MarginContainer/Profile/MoreInfo"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/MoreInfo/Park"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "Park:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/MoreInfo/Park"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "data"
+
+[node name="Farm" type="HBoxContainer" parent="MarginContainer/Profile/MoreInfo"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/MoreInfo/Farm"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "Farm:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/MoreInfo/Farm"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "data"
+
+[node name="ConstructionSite" type="HBoxContainer" parent="MarginContainer/Profile/MoreInfo"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/Profile/MoreInfo/ConstructionSite"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "Construction Site:"
+
+[node name="Data" type="Label" parent="MarginContainer/Profile/MoreInfo/ConstructionSite"]
+layout_mode = 2
+theme = ExtResource("4_u24iu")
+text = "data"
