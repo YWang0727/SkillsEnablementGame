@@ -1,22 +1,34 @@
 extends Popup
 
-
+var musicSlider: HSlider
+var soundSlider: HSlider
+var resumeButton: Button
+var quitButton: Button
+var saveButton: Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	initiate_variables()
 	connect_signals()
 	
 	# default settings of volume
-	$Settings/VBoxContainer/Music/HSlider.value = 0.7
-	$Settings/VBoxContainer/Sound/HSlider.value = 0.7
+	musicSlider.value = 0.7
+	soundSlider.value = 0.7
 
+func initiate_variables():
+	musicSlider = get_node("Settings/VBoxContainer/Music/HSlider")
+	soundSlider = get_node("Settings/VBoxContainer/Sound/HSlider")
+	resumeButton = get_node("Settings/VBoxContainer/Resume")
+	quitButton = get_node("Settings/VBoxContainer/Quit")
+	saveButton = get_node("Settings/VBoxContainer/Save")
+	
 func connect_signals():
-	$Settings/VBoxContainer/Resume.pressed.connect(_on_resume_pressed)
-	$Settings/VBoxContainer/Quit.pressed.connect(_on_quit_pressed)
-	$Settings/VBoxContainer/Save.pressed.connect(_on_save_pressed)
+	resumeButton.pressed.connect(_on_resume_pressed)
+	quitButton.pressed.connect(_on_quit_pressed)
+	saveButton.pressed.connect(_on_save_pressed)
 	# volume setting
-	$Settings/VBoxContainer/Music/HSlider.value_changed.connect(_on_music_volume_changed)
-	$Settings/VBoxContainer/Sound/HSlider.value_changed.connect(_on_sound_volume_changed)
+	musicSlider.value_changed.connect(_on_music_volume_changed)
+	soundSlider.value_changed.connect(_on_sound_volume_changed)
 
 # control background music volume
 func _on_music_volume_changed(value: float):

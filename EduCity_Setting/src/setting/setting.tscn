@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/setting/setting.gd" id="1_f4kvs"]
 [ext_resource type="Texture2D" uid="uid://crxum4iobj7ep" path="res://assets/setting/background.png" id="2_ycdv5"]
-[ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://src/themes/text_button.tres" id="3_rfr0n"]
+[ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://src/common/themes/text_button.tres" id="3_hucki"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4lot"]
 
@@ -41,7 +41,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Settings/VBoxContainer/Music"]
 layout_mode = 2
-theme = ExtResource("3_rfr0n")
+theme = ExtResource("3_hucki")
 text = "Music Volume"
 
 [node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/Music"]
@@ -58,7 +58,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Settings/VBoxContainer/Sound"]
 layout_mode = 2
-theme = ExtResource("3_rfr0n")
+theme = ExtResource("3_hucki")
 text = "Sound Volume"
 
 [node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/Sound"]
@@ -75,15 +75,15 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_w4lot")
 
 [node name="Resume" type="Button" parent="Settings/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_rfr0n")
+theme = ExtResource("3_hucki")
 text = "Resume"
 
 [node name="Save" type="Button" parent="Settings/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_rfr0n")
+theme = ExtResource("3_hucki")
 text = "Save"
 
 [node name="Quit" type="Button" parent="Settings/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_rfr0n")
+theme = ExtResource("3_hucki")
 text = "Quit"
