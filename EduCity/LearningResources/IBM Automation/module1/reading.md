@@ -54,7 +54,7 @@
 
     [font_size={30}]2.2 IBM RPA main components[/font_size]
 
-    [center][img]res://LearningResources/IBM Automation/IBM Robotic Process Automation - Basic I/picture1.png[/img][/center]
+    [center][img]res://LearningResources/IBM Automation/module1/picture1.png[/img][/center]
 
     [font_size={28}]（1）Windows Client[/font_size]
     - The client-side is agent-centric, allowing main communication between client and service.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://da6grjhiqdcnw"]
+[gd_scene load_steps=18 format=3 uid="uid://da6grjhiqdcnw"]
 
 [ext_resource type="Texture2D" uid="uid://80fs6jct5m70" path="res://Sprites/Icon/LearningScene/Security.png" id="1_j83q0"]
 [ext_resource type="Script" path="res://learning_scene.gd" id="1_mgcs3"]
@@ -21,12 +21,47 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl6wn"]
+bg_color = Color(0.215686, 0.47451, 0.905882, 1)
+shadow_color = Color(0.454902, 0.454902, 0.454902, 0.6)
+shadow_size = 2
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24pv0"]
+bg_color = Color(0.215686, 0.47451, 0.905882, 1)
+shadow_color = Color(0.454902, 0.454902, 0.454902, 0.6)
+shadow_size = 2
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5c7vv"]
+bg_color = Color(0.215686, 0.47451, 0.905882, 1)
+shadow_color = Color(0.454902, 0.454902, 0.454902, 0.6)
+shadow_size = 2
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkqwb"]
+shadow_size = 2
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vma5y"]
+shadow_size = 2
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eleua"]
+shadow_size = 2
+shadow_offset = Vector2(3, 3)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p48kg"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="LearningScene" type="Node2D"]
 script = ExtResource("1_mgcs3")
@@ -192,6 +227,7 @@ offset_top = 100.0
 offset_right = 400.0
 offset_bottom = 200.0
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_pl6wn")
 text = "LESSON 1"
 
 [node name="Lesson2Button" type="Button" parent="PopupMenu"]
@@ -201,6 +237,7 @@ offset_top = 300.0
 offset_right = 400.0
 offset_bottom = 400.0
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_24pv0")
 text = "LESSON 2"
 
 [node name="Lesson3Button" type="Button" parent="PopupMenu"]
@@ -210,6 +247,7 @@ offset_top = 500.0
 offset_right = 400.0
 offset_bottom = 600.0
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5c7vv")
 text = "LESSON 3"
 
 [node name="Quiz1Button" type="Button" parent="PopupMenu"]
@@ -219,6 +257,7 @@ offset_top = 100.0
 offset_right = 602.0
 offset_bottom = 200.0
 theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_vkqwb")
 text = "QUIZ 1"
 
 [node name="Quiz2Button" type="Button" parent="PopupMenu"]
@@ -228,6 +267,7 @@ offset_top = 300.0
 offset_right = 602.0
 offset_bottom = 400.0
 theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_vma5y")
 text = "QUIZ 2"
 
 [node name="Quiz3Button" type="Button" parent="PopupMenu"]
@@ -237,11 +277,13 @@ offset_top = 500.0
 offset_right = 602.0
 offset_bottom = 600.0
 theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_eleua")
 text = "QUIZ 3"
 
 [node name="CloseButton" type="Button" parent="PopupMenu"]
 layout_mode = 0
 offset_left = 620.0
+offset_top = -1.0
 offset_right = 700.0
 offset_bottom = 49.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
