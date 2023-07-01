@@ -6,12 +6,12 @@ var completedButton = Button.new()
 var scrollContainer = ScrollContainer.new()
 var vScrollbar = VScrollBar.new()
 
-var max_scroll
+#var isScrollingToBottom: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	richTextLabel = get_node("ScrollContainer/VBoxContainer/RichTextLabel")
-	exitButton = get_node("ScrollContainer/VBoxContainer/Header/ExitButton")
+	exitButton = get_node("ExitButton")
 	completedButton = get_node("ScrollContainer/VBoxContainer/CompletedButton")
 	scrollContainer = get_node("ScrollContainer")
 	
@@ -24,9 +24,9 @@ func _ready():
 	completedButton.connect("pressed", _on_completedButton_clicked)
 	# check if scroll to bottom
 	#completedButton.visible = false
-	#scrollContainer.connect("scroll_ended", _scroll_to_bottom)
+	#vScrollbar.connect("value_changed", _scroll_to_bottom)
+	#scrollContainer.connect("scroll_started", _on_scroll_moved)
 	#vScrollbar = scrollContainer.get_v_scroll_bar()
-	#vScrollbar.connect("scrolling", _scroll_to_bottom)
 
 	# exit button
 	exitButton.connect("pressed", _on_exitButton_pressed)
@@ -49,10 +49,9 @@ func _on_completedButton_clicked():
 	get_tree().change_scene_to_file("res://learning_scene.tscn")
 	
 	
-#func _scroll_to_bottom():
-#	print(scrollContainer.size.y)
-#	
-#	if ((vScrollbar.max_value - scrollContainer.size.y) - vScrollbar.value) <= 0:
+#func _scroll_to_bottom(value: float):
+#	print("111")
+#	if isScrollingToBottom and value >= vScrollbar.max_value:
 #		completedButton.visible = true
 		
 	

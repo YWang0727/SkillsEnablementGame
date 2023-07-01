@@ -102,7 +102,7 @@ func _show_question(index: int):
 
 	var question: Dictionary = quizData.questions[index]
 	# show current question
-	var questionLabel := get_node("QuestionLabel") as Label
+	questionLabel = get_node("QuestionLabel") as Label
 	questionLabel.text = var_to_str(index + 1) + ". " + question["question"]
 
 	# clear previous options
