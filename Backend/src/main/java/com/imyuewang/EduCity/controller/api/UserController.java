@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-@Auth(id = 1000, name = "Accounts Management")
 @Api(tags = "User Management Interface")
 public class UserController {
 
@@ -25,7 +24,6 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/email")
-    @Auth(id = 1, name = "email verification")
     @ApiOperation(value = "Email verification")
     public String emailVerification(@RequestBody @Validated(UserParam.emailVerification.class) UserParam param) {
         userService.emailVerification(param);
@@ -33,7 +31,6 @@ public class UserController {
     }
 
     @PostMapping("/active")
-    @Auth(id = 2, name = "active code")
     @ApiOperation(value = "Active code")
     public String emailRegister(@RequestBody String activeCode) {
         userService.active(activeCode);
@@ -41,25 +38,15 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    @Auth(id = 3, name = "add user")
     @ApiOperation(value = "Add user")
     public String createUser(@RequestBody @Validated(UserParam.CreateUser.class) UserParam param) {
         userService.createUser(param);
         return CommonUtil.ACTION_SUCCESSFUL;
     }
 
-//    @PutMapping("/update")
-//    @Auth(id = 4, name = "update user")
-//    @ApiOperation(value = "Update user")
-//    public String updateUser(@RequestBody @Validated(UserParam.Update.class) UserParam param) {
-//        userService.update(param);
-//        return CommonUtil.ACTION_SUCCESSFUL;
-//    }
-
     @GetMapping("/get/{id}")
-    @Auth(id = 5, name = "get user info based on user ID")
     @ApiOperation(value = "Get user info based on user ID")
-    public User getUserById(@ApiParam(value = "User ID", required = true)
+    public  User getUserById(@ApiParam(value = "User ID", required = true)
                             @PathVariable("id") Long id) {
         return userService.getById(id);
     }
