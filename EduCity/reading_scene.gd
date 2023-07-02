@@ -1,5 +1,8 @@
 extends Node2D
 
+var quizId = null
+var quizConfig = {}
+
 var richTextLabel = RichTextLabel.new()
 var exitButton = Button.new()
 var completedButton = Button.new()
@@ -17,7 +20,7 @@ func _ready():
 	
 	# load reading material
 	_load_reading(GameManager.reading_path)
-	
+
 	# click url
 	richTextLabel.connect("meta_clicked", _richtextlabel_on_meta_clicked)
 	
@@ -42,11 +45,38 @@ func _load_reading(file_path: String):
 		
 	else:
 		print("File doesn't exist!")
+		
+		
+func _get_quizId(file_path: String):
+	if FileAccess.file_exists(file_path):
+		var file = FileAccess.open(file_path, FileAccess.READ)
+		var json_text = file.get_as_text()
+		var config = JSON.new()
+		var result = config.parse(json_text)
+		if result != OK:
+			print("JSON parsing error:", result.error_string)
+			return
+		var quizConfig = config.get_data()
+		file.close()
+		
+		if quizConfig.has(GameManager.reading_path):
+			return quizConfig[GameManager.reading_path]
+		else:
+			print("Quiz ID not found for file:", file_path)
+			return -1
+	else:
+		print("File doesn't exist!")
 
 
 func _on_completedButton_clicked():
-	#TODO: 存储reading完成数据到数据库！！！
-	get_tree().change_scene_to_file("res://learning_scene.tscn")
+	quizId = _get_quizId("res://Config/quizConfig.json")
+	
+	# store complete status to database
+	HttpLayer._completeLesson({
+				"id": GameManager.user_id,
+				"quizId": quizId,
+			}, "res://learning_scene.tscn")
+	#get_tree().change_scene_to_file("res://learning_scene.tscn")
 	
 	
 #func _scroll_to_bottom(value: float):

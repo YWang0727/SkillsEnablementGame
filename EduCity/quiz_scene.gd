@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var quizId = null
+var quizConfig = {}
 var currentQuestionIndex := 0
 var questionSize := 0
 var quizData := {}
@@ -19,9 +21,14 @@ var optionsArray = []
 var selectedArray = []
 var answerArray = []
 var finalScore = 0.00
+var scoreDifference = 0.00
+var attempts = null
+var golds = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	quizId = _get_quizId("res://Config/quizConfig.json")
+	print(quizId)
 	_load_questions_from_json(GameManager.question_path)
 	
 	# create question node
@@ -61,6 +68,27 @@ func _ready():
 	
 	# show the first question
 	_show_question(currentQuestionIndex)
+	
+	
+func _get_quizId(file_path: String):
+	if FileAccess.file_exists(file_path):
+		var file = FileAccess.open(file_path, FileAccess.READ)
+		var json_text = file.get_as_text()
+		var config = JSON.new()
+		var result = config.parse(json_text)
+		if result != OK:
+			print("JSON parsing error:", result.error_string)
+			return
+		var quizConfig = config.get_data()
+		file.close()
+		
+		if quizConfig.has(GameManager.question_path):
+			return quizConfig[GameManager.question_path]
+		else:
+			print("Quiz ID not found for file:", file_path)
+			return -1
+	else:
+		print("File doesn't exist!")
 	
 	
 func _load_questions_from_json(file_path: String) -> void:
@@ -176,14 +204,30 @@ func _on_option_button_pressed(multi: bool, button:Button, questionIndex: int, o
 
 
 func _on_submit_button_pressed():
-	# TODO：存储提交次数到数据库！！！
 	print("submit success")
+	
+	# calculate final score
 	_calcu_score()
+	# submit quiz data to backend
+	HttpLayer._submitQuiz({
+				"id": GameManager.user_id,
+				"quizId": quizId,
+				"score": finalScore
+			})
+	# get attempts and golds from backend
+	# show score scene
 	_show_score()
 	
 	
+func http_completed(res, response_code, headers, route) -> void:
+	if res == null : 
+		return
+	if res.status == "success" && route == "_submitQuiz":
+		attempts = res['attempts']
+		scoreDifference = res['scoreDifference']
+		
+	
 func _show_score():
-	# TODO: 金币结算 ！！！
 	optionsButtonContainer.visible = false
 	questionLabel.visible = false
 	navigationButtonContainer.visible = false
@@ -194,10 +238,19 @@ func _show_score():
 	var scoreLabel = get_node("ShowScore/Score")
 	scoreLabel.text = var_to_str(finalScore)
 	
+	# gold bonus
+	# TODO: 需要将金币增加数据传给map attributes
+	if attempts == 1 :
+		golds = finalScore
+	else :
+		if scoreDifference > 0 :
+			golds = scoreDifference
+	var goldLabel = get_node("ShowScore/Gold")
+	goldLabel.text = goldLabel.text + golds
+	
 	# attempts remaining
 	var attemptsLabel = get_node("ShowScore/Attempts")
-	# TODO:从数据库获取提交次数！！！
-	attemptsLabel.text = attemptsLabel.text + var_to_str(1) # test data need to be replaced
+	attemptsLabel.text = attemptsLabel.text + var_to_str(3 - attempts)
 	
 	# Try Again
 	var tryAgainButton = get_node("ShowScore/TryAgainButton")

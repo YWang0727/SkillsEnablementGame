@@ -1,5 +1,7 @@
 extends Node
 
+var user_id = null
+
 var user_token = null
 var user_data = null
 var save_data = null
