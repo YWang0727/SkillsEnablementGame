@@ -20,8 +20,8 @@ var exitButton := Button.new()
 var optionsArray = []
 var selectedArray = []
 var answerArray = []
-var finalScore = 0.00
-var scoreDifference = 0.00
+var finalScore = 0
+var scoreDifference = 0
 var attempts = null
 var golds = null
 
@@ -271,8 +271,8 @@ func _on_exit_pressed():
 	
 # calculate final score
 func _calcu_score():
-	var score = 0.00
-	var eachScore = snapped(100.00 / questionSize, 0.01)
+	var score = 0
+	var eachScore = 100 / questionSize
 	
 	for i in range(questionSize):
 		var flag = true
