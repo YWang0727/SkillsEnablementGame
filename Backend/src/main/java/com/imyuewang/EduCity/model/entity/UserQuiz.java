@@ -16,7 +16,7 @@ public class UserQuiz implements Serializable {
     /**
      * 
      */
-    @TableId(value = "id, quizId")
+    @TableId(value = "id")
     private Long id;
 
     /**

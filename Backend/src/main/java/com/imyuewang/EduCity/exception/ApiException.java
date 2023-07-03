@@ -2,6 +2,7 @@ package com.imyuewang.EduCity.exception;
 
 import com.imyuewang.EduCity.enums.ResultCode;
 import lombok.Getter;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Author: Yue Wang

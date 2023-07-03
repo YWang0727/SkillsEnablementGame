@@ -13,16 +13,12 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body, rou
 	var json = JSON.new()
 	json.parse(body.get_string_from_utf8())
 	var res = json.get_data()
+	print(response_code)
 	print(res)
 	
 	emit_signal("http_completed", res, response_code, headers, route)
-
-	if res == null:
-		print("API is not running")
-		return
 		
-	if res.has("status"):
-		
+	if res != null && res.has("status"):
 		match res.status:
 			"error":
 				var msg = res.message
@@ -71,7 +67,6 @@ func _apiCore(_endpoint, _data, _authorize = false, _method="GET", _route = "", 
 	# Create a new instance of HTTPRequest and connect it to the signal request_completed to trigger the specified callback function _on_HTTPRequest_request_completed when the request completes.
 	var http = HTTPRequest.new()
 	add_child(http)
-	print("success api1")
 	http.use_threads = use_threads
 	http.request_completed.connect(_on_HTTPRequest_request_completed.bind(_route, http, _redirectTo))
 	
@@ -85,7 +80,7 @@ func _apiCore(_endpoint, _data, _authorize = false, _method="GET", _route = "", 
 	if _authorize:
 		headers.append(str("Authorization: Bearer ", GameManager.user_token))
 		
-	print("success api2")
+	#print("api success")
 		
 	# Loading progress scene
 	#Loader.prog = http
@@ -103,3 +98,13 @@ func _login(_credentials, _redirectTo):
 	
 func _register(_credentials, _redirectTo):
 	_apiCore("register", _credentials, false, "POST", "register", _redirectTo)
+	
+# api for learning_related scene	
+func _completeLesson(_credentials, _redirectTo):
+	_apiCore("learn/complete", _credentials, false, "POST", "complete", _redirectTo)
+
+func _submitQuiz(_credentials):
+	_apiCore("learn/submit", _credentials, false, "POST", "submit")
+	
+func _checkQuiz(_credentials):
+	_apiCore("learn/check", _credentials, false, "POST", "check")

@@ -11,6 +11,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,5 +45,11 @@ public class LearningController {
     @ApiOperation(value = "Submit quiz")
     public QuizVO submitQuiz(@RequestBody QuizParam param) {
         return userQuizService.submitQuiz(param);
+    }
+
+    @PostMapping("/check")
+    @ApiOperation(value = "Check quiz status")
+    public QuizVO checkQuiz(@RequestBody QuizParam param) {
+        return userQuizService.checkQuiz(param);
     }
 }

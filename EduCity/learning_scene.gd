@@ -16,9 +16,14 @@ var quiz1Button = Button.new()
 var quiz2Button = Button.new()
 var quiz3Button = Button.new()
 
+var completeList = []
+var buttonList = []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	HttpLayer.connect("http_completed", http_completed)
+	
 	backButton = get_node("BackButton")
 	backButton.connect("pressed", _on_backButton_pressed)
 	
@@ -51,12 +56,15 @@ func _ready():
 	lesson3Button.visible = false
 	
 	quiz1Button = get_node("PopupMenu/Quiz1Button")
+	quiz1Button.disabled = true
 	quiz1Button.connect("pressed", _on_quiz1Button_pressed)
 	
 	quiz2Button = get_node("PopupMenu/Quiz2Button")
+	quiz2Button.disabled = true
 	quiz2Button.connect("pressed", _on_quiz2Button_pressed)
 	
 	quiz3Button = get_node("PopupMenu/Quiz3Button")
+	quiz3Button.disabled = true
 	quiz3Button.connect("pressed", _on_quiz3Button_pressed)
 	quiz3Button.visible = false
 	
@@ -104,7 +112,7 @@ func _on_aiButton_pressed():
 	var popup = get_node("PopupMenu")
 	popup.visible = true
 	
-	_show_buttons()
+	_show_buttons(1)
 
 
 func _on_securityButton_pressed():
@@ -114,7 +122,7 @@ func _on_securityButton_pressed():
 	var popup = get_node("PopupMenu")
 	popup.visible = true
 	
-	_show_buttons()
+	_show_buttons(2)
 	
 	
 func _on_cloudButton_pressed():
@@ -124,7 +132,7 @@ func _on_cloudButton_pressed():
 	var popup = get_node("PopupMenu")
 	popup.visible = true
 	
-	_show_buttons()
+	_show_buttons(3)
 	
 	
 func _on_dsButton_pressed():
@@ -134,7 +142,7 @@ func _on_dsButton_pressed():
 	var popup = get_node("PopupMenu")
 	popup.visible = true
 	
-	_show_buttons()
+	_show_buttons(4)
 	
 	
 func _on_automationButton_pressed():
@@ -144,7 +152,7 @@ func _on_automationButton_pressed():
 	var popup = get_node("PopupMenu")
 	popup.visible = true
 	
-	_show_buttons()
+	_show_buttons(5)
 	
 	
 func _on_closeButton_pressed():
@@ -153,11 +161,39 @@ func _on_closeButton_pressed():
 	get_node("PopupMenu").visible = false
 	
 	
-func _show_buttons():
+func _show_buttons(knowledge):
 	var module3_path = GameManager.reading_path + "/module3/reading.md"
 	if FileAccess.file_exists(module3_path):
 		lesson3Button.visible = true
 		quiz3Button.visible = true
+	
+	# check if quizzes under current knowledge are available
+	HttpLayer._checkQuiz({
+			"id": GameManager.user_id,
+			"knowledge": knowledge
+		})
+		
+		
+func http_completed(res, response_code, headers, route) -> void:
+	if response_code == 200:
+		completeList = res['completeList']
+		# if lesson completed and quiz attempts didn't meet maximum
+		for index in completeList.size():
+			if(completeList[index].attempts != 3):
+				buttonList.append(str(completeList[index].quizid).substr(1,1))
+		print(buttonList)
+		for index in buttonList.size():
+			match buttonList[index]:
+				"1":
+					quiz1Button.disabled = false
+				"2":
+					quiz2Button.disabled = false
+				"3":
+					quiz3Button.disabled = false
+					
+	else:
+		print("lesson not finished yet")
+		return
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

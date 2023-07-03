@@ -13,6 +13,8 @@ var vScrollbar = VScrollBar.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	HttpLayer.connect("http_completed", http_completed)
+		
 	richTextLabel = get_node("ScrollContainer/VBoxContainer/RichTextLabel")
 	exitButton = get_node("ExitButton")
 	completedButton = get_node("ScrollContainer/VBoxContainer/CompletedButton")
@@ -77,6 +79,11 @@ func _on_completedButton_clicked():
 				"quizId": quizId,
 			}, "res://learning_scene.tscn")
 	#get_tree().change_scene_to_file("res://learning_scene.tscn")
+	
+	
+func http_completed(res, response_code, headers, route) -> void:
+	if response_code == 200 :
+		print("success")
 	
 	
 #func _scroll_to_bottom(value: float):

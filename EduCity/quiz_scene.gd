@@ -27,6 +27,8 @@ var golds = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	HttpLayer.connect("http_completed", http_completed)
+	
 	quizId = _get_quizId("res://Config/quizConfig.json")
 	print(quizId)
 	_load_questions_from_json(GameManager.question_path)
@@ -215,16 +217,17 @@ func _on_submit_button_pressed():
 				"score": finalScore
 			})
 	# get attempts and golds from backend
-	# show score scene
-	_show_score()
 	
 	
 func http_completed(res, response_code, headers, route) -> void:
-	if res == null : 
-		return
-	if res.status == "success" && route == "_submitQuiz":
+	if response_code == 200:
 		attempts = res['attempts']
 		scoreDifference = res['scoreDifference']
+		# show score scene
+		_show_score()
+	else:
+		print("lesson not finished yet")
+		return
 		
 	
 func _show_score():
@@ -238,22 +241,26 @@ func _show_score():
 	var scoreLabel = get_node("ShowScore/Score")
 	scoreLabel.text = var_to_str(finalScore)
 	
-	# gold bonus
+	# calculate gold bonus
 	# TODO: 需要将金币增加数据传给map attributes
 	if attempts == 1 :
 		golds = finalScore
 	else :
 		if scoreDifference > 0 :
 			golds = scoreDifference
+		else:
+			golds = 0
 	var goldLabel = get_node("ShowScore/Gold")
-	goldLabel.text = goldLabel.text + golds
+	goldLabel.text = goldLabel.text + var_to_str(golds)
 	
 	# attempts remaining
 	var attemptsLabel = get_node("ShowScore/Attempts")
-	attemptsLabel.text = attemptsLabel.text + var_to_str(3 - attempts)
+	attemptsLabel.text = attemptsLabel.text + var_to_str((3 - attempts) as int)
 	
 	# Try Again
 	var tryAgainButton = get_node("ShowScore/TryAgainButton")
+	if attempts == 3:
+		tryAgainButton.disabled = true
 	tryAgainButton.connect("pressed", _on_tryAgain_pressed)
 	
 	# Exit
@@ -262,8 +269,8 @@ func _show_score():
 	
 	
 func _on_tryAgain_pressed():
-	get_tree().reload_current_scene()
-	
+		get_tree().reload_current_scene()
+		
 	
 func _on_exit_pressed():
 	get_tree().change_scene_to_file("res://learning_scene.tscn")

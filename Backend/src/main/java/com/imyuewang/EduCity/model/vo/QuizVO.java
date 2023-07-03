@@ -1,7 +1,10 @@
 package com.imyuewang.EduCity.model.vo;
 
+import com.imyuewang.EduCity.model.entity.UserQuiz;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.util.List;
 
 /**
  * @ClassName QuizVO
@@ -16,4 +19,6 @@ public class QuizVO {
     private int attempts;
 
     private int scoreDifference;
+
+    private List<UserQuiz> completeList;
 }

@@ -87,6 +87,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Gold" type="Label" parent="ShowScore"]
+layout_mode = 0
 offset_left = 281.0
 offset_top = 373.0
 offset_right = 681.0
@@ -95,7 +96,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_khu5f")
-text = "   Gold BONUS:"
+text = "   Gold BONUS:  "
 vertical_alignment = 1
 
 [node name="Attempts" type="Label" parent="ShowScore"]

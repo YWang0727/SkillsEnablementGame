@@ -20,4 +20,6 @@ public class QuizParam {
     private int attempts;
 
     private int currScore;
+
+    private int knowledge;
 }
