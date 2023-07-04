@@ -1,10 +1,62 @@
-[gd_scene format=3 uid="uid://c18vwbwsjkur3"]
+[gd_scene load_steps=17 format=3 uid="uid://c18vwbwsjkur3"]
+
+[ext_resource type="Script" path="res://town_attributes.gd" id="1_rsode"]
+[ext_resource type="Texture2D" uid="uid://bixh8slmdb4yk" path="res://setting/assets/setting/button.png" id="2_37eon"]
+[ext_resource type="Texture2D" uid="uid://bc5bbcwsyk0qa" path="res://setting/assets/account/house.png" id="3_evprf"]
+[ext_resource type="PackedScene" uid="uid://caynyc7x0vneo" path="res://setting/src/setting/setting.tscn" id="4_86h04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3dgyx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxfjo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v1rw2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pf4ny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hd7dq"]
+
+[sub_resource type="Theme" id="Theme_1vnx0"]
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_hover_color = Color(0.960784, 0.54902, 0.45098, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_3dgyx")
+Button/styles/focus = SubResource("StyleBoxEmpty_wxfjo")
+Button/styles/hover = SubResource("StyleBoxEmpty_v1rw2")
+Button/styles/normal = SubResource("StyleBoxEmpty_pf4ny")
+Button/styles/pressed = SubResource("StyleBoxEmpty_hd7dq")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4af3h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tu2ni"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8atjb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8xf5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4en3a"]
+
+[sub_resource type="Theme" id="Theme_sfaue"]
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_hover_color = Color(0.960784, 0.54902, 0.45098, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_4af3h")
+Button/styles/focus = SubResource("StyleBoxEmpty_tu2ni")
+Button/styles/hover = SubResource("StyleBoxEmpty_8atjb")
+Button/styles/normal = SubResource("StyleBoxEmpty_x8xf5")
+Button/styles/pressed = SubResource("StyleBoxEmpty_4en3a")
 
 [node name="TownAttributes" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -1750.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rsode")
 
 [node name="Prosperity" type="ColorRect" parent="."]
 layout_mode = 0
@@ -19,3 +71,25 @@ offset_top = -1.0
 offset_right = 44.0
 offset_bottom = 22.0
 text = "Prosperity:"
+
+[node name="settingButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 1.0
+scale = Vector2(0.606831, 0.539353)
+theme = SubResource("Theme_1vnx0")
+icon = ExtResource("2_37eon")
+
+[node name="accountButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_bottom = 1.0
+scale = Vector2(0.177977, 0.177977)
+theme = SubResource("Theme_sfaue")
+icon = ExtResource("3_evprf")
+
+[node name="setting" parent="." instance=ExtResource("4_86h04")]
+visible = false

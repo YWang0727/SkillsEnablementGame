@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcx3vhp6sqehe"]
+
+[ext_resource type="AudioStream" uid="uid://dt3i5e1bo3d4n" path="res://setting/assets/music/Energetic town.wav" id="1_vemvn"]
+
+[node name="music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_vemvn")
+autoplay = true
+bus = &"Music"

@@ -39,7 +39,5 @@ offset_right = 48.0
 offset_bottom = 854.0
 
 [node name="TownAttributes" parent="." instance=ExtResource("4_vkmqv")]
-offset_left = 58.0
-offset_top = 22.0
-offset_right = 98.0
-offset_bottom = 62.0
+offset_right = 170.0
+offset_bottom = 720.0
