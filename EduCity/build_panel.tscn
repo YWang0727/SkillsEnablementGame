@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk0awdfht7gu7"]
+[gd_scene load_steps=15 format=3 uid="uid://bk0awdfht7gu7"]
 
 [ext_resource type="Texture2D" uid="uid://t05pe2odaxxh" path="res://Sprites/Icon/horizontal-flip.png" id="1_jd812"]
 [ext_resource type="Script" path="res://build_panel.gd" id="1_mmosn"]
 [ext_resource type="Script" path="res://InteractiveButton.gd" id="3_5var6"]
+[ext_resource type="Texture2D" uid="uid://d048ec4o4d3fy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_2.png" id="5_c6hji"]
+[ext_resource type="Texture2D" uid="uid://bpkxb270wo4fk" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_2.png" id="6_7exuj"]
+[ext_resource type="Texture2D" uid="uid://dwnd6ua2oci35" path="res://XufengPart/Icon_Buildings/Bank/bank_1.png" id="7_00kln"]
+[ext_resource type="Texture2D" uid="uid://dahxnhd8cox47" path="res://XufengPart/Icon_Buildings/Farm/farm_2.png" id="8_jgumf"]
+[ext_resource type="Texture2D" uid="uid://cmanatnt1bkvm" path="res://XufengPart/Icon_Buildings/Construction Site_1.png" id="9_yymq1"]
+[ext_resource type="Texture2D" uid="uid://dow1mcdsd0e3f" path="res://XufengPart/Icon_Buildings/Hospital/hospital_2.png" id="10_sdy6q"]
 
 [sub_resource type="GDScript" id="GDScript_v4m6m"]
 script/source = "extends Container
@@ -25,6 +31,20 @@ func _onToggleButtonPressed():
 func _process(delta):
 	pass
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muyls"]
+bg_color = Color(1, 1, 1, 0.396078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df7q7"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jgvb"]
+bg_color = Color(1, 1, 1, 0.643137)
+
+[sub_resource type="Theme" id="Theme_gy46w"]
+Button/styles/hover = SubResource("StyleBoxFlat_muyls")
+Button/styles/normal = SubResource("StyleBoxFlat_df7q7")
+Button/styles/pressed = SubResource("StyleBoxFlat_3jgvb")
 
 [node name="BuildPanel" type="Control"]
 layout_mode = 3
@@ -59,3 +79,56 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = SubResource("GDScript_v4m6m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 75.0
+offset_top = 40.0
+offset_right = 251.0
+offset_bottom = 1060.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_gy46w")
+theme_override_constants/separation = 50
+
+[node name="ResBuildingButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+icon = ExtResource("5_c6hji")
+icon_alignment = 1
+
+[node name="SupermarketButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+icon = ExtResource("6_7exuj")
+icon_alignment = 1
+
+[node name="BankButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+icon = ExtResource("7_00kln")
+icon_alignment = 1
+expand_icon = true
+
+[node name="FarmButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+icon = ExtResource("8_jgumf")
+icon_alignment = 1
+
+[node name="ConstructionSiteButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+icon = ExtResource("9_yymq1")
+icon_alignment = 1
+
+[node name="HospitalButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("10_sdy6q")
+icon_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/ResBuildingButton" to="." method="_on_res_building_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SupermarketButton" to="." method="_on_supermarket_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BankButton" to="." method="_on_bank_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/FarmButton" to="." method="_on_farm_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ConstructionSiteButton" to="." method="_on_construction_site_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HospitalButton" to="." method="_on_hospital_button_pressed"]
