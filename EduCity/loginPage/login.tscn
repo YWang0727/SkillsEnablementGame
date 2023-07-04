@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=12 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Theme" uid="uid://bb5a5sfuw330h" path="res://loginPage/theme/login_theme.tres" id="1_de1nd"]
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://qow8cruc54nv" path="res://loginPage/cityPicture2.jpg" id="3_ohuu6"]
+[ext_resource type="Texture2D" uid="uid://o628e2s2tbmu" path="res://loginPage/eye-hiden.png" id="4_5feks"]
+[ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
 
 [sub_resource type="Theme" id="Theme_noebi"]
 Label/colors/font_color = Color(1, 1, 1, 1)
@@ -308,6 +310,24 @@ secret = true
 clear_button_enabled = true
 caret_blink = true
 
+[node name="eyeHide" type="TextureButton" parent="sign_in2/pw_input1_panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -17.0
+offset_right = 70.0
+offset_bottom = 183.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("4_5feks")
+texture_pressed = ExtResource("5_e7cc7")
+
 [node name="pw_input2_panel" type="Panel" parent="sign_in2"]
 layout_mode = 1
 anchors_preset = 14
@@ -338,6 +358,24 @@ placeholder_text = "Password Comfirm"
 secret = true
 clear_button_enabled = true
 caret_blink = true
+
+[node name="eyeHide2" type="TextureButton" parent="sign_in2/pw_input2_panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -12.5566
+offset_right = 71.0
+offset_bottom = 187.443
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("4_5feks")
+texture_pressed = ExtResource("5_e7cc7")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="sign_in2"]
 custom_minimum_size = Vector2(500, 0)
@@ -464,6 +502,24 @@ secret = true
 clear_button_enabled = true
 caret_blink = true
 
+[node name="eyeHide3" type="TextureButton" parent="log_in/pw_input_panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -14.5237
+offset_right = 71.0
+offset_bottom = 185.476
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.15, 0.15)
+toggle_mode = true
+texture_normal = ExtResource("4_5feks")
+texture_pressed = ExtResource("5_e7cc7")
+
 [node name="login_button_panel" type="Panel" parent="log_in"]
 layout_mode = 1
 anchors_preset = 14
@@ -521,8 +577,9 @@ text = "Remember me"
 [connection signal="pressed" from="Tabars/HBoxContainer/Log in" to="." method="_on_log_in_pressed"]
 [connection signal="pressed" from="Tabars/HBoxContainer/Sign in" to="." method="_on_sign_in_pressed"]
 [connection signal="pressed" from="sign_in1/next_button_panel/next_button" to="." method="_on_next_button_pressed"]
+[connection signal="toggled" from="sign_in2/pw_input1_panel/eyeHide" to="." method="_on_eye_hide_toggled"]
+[connection signal="toggled" from="sign_in2/pw_input2_panel/eyeHide2" to="." method="_on_eye_hide_2_toggled"]
 [connection signal="pressed" from="sign_in2/sign_in2_button_panel/complete_button" to="." method="_on_complete_button_pressed"]
 [connection signal="pressed" from="sign_in2/sign_in2_button_panel/reset_button" to="." method="_on_reset_button_pressed"]
-[connection signal="text_changed" from="log_in/email_input_panel/LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="text_changed" from="log_in/pw_input_panel/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="toggled" from="log_in/pw_input_panel/eyeHide3" to="." method="_on_eye_hide_3_toggled"]
 [connection signal="pressed" from="log_in/login_button_panel/Login_button" to="." method="_on_login_button_pressed"]

@@ -1,5 +1,4 @@
 extends Control
-
 #tabars
 var logButton 
 var signButton
@@ -30,15 +29,17 @@ var passwordLog
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	HttpLayer.connect("http_completed", http_completed)//这个信号是从哪里发出来的，发出来的过程是什么
+	
 	logButton = get_node("Tabars/HBoxContainer/Log in")
 	signButton = get_node("Tabars/HBoxContainer/Sign in")
 	logPanel = get_node("log_in")
 	signPanel1 = get_node("sign_in1")
 	signPanel2 = get_node("sign_in2")
-	logButton.connect("pressed",  _on_log_in_pressed)
-	signButton.connect("pressed", _on_sign_in_pressed)
+	#logButton.connect("pressed",  _on_log_in_pressed)
+	#signButton.connect("pressed", _on_sign_in_pressed)
 	#get node from sign_in1_panel
-	emailSign = get_node("sign_in1/email_input_panel/LineEdit")
+	#emailSign = get_node("sign_in1/email_input_panel/LineEdit")
 	#get node from sign_in2_panel
 	usernameSign = get_node("sign_in2/username_panel/LineEdit")
 	password1Sign =get_node("sign_in2/pw_input1_panel/LineEdit")
@@ -46,9 +47,9 @@ func _ready():
 	password2Sign = get_node("sign_in2/pw_input2_panel/LineEdit")
 	password2Sign.connect("text_changed",  _on_password_line_edit_text_changed)
 	resetButton = get_node("sign_in2/sign_in2_button_panel/reset_button")
-	resetButton.connect("pressed", _on_reset_button_pressed)
+	#resetButton.connect("pressed", _on_reset_button_pressed)
 	completeButton = get_node("sign_in2/sign_in2_button_panel/complete_button")
-	completeButton.connect("pressed", _on_complete_button_pressed)
+	#completeButton.connect("pressed", _on_complete_button_pressed)
 	#get node from log_in_panel
 	emailLog = get_node("log_in/email_input_panel/LineEdit")
 	emailLog.connect("text_changed",  _on_email_line_edit_text_changed)
@@ -69,10 +70,6 @@ func _ready():
 	invalidPw2Label = createLabel("Passwords do not match!", Vector2(70, 265), 20, Color(0.78, 0.19, 0.24),signPanel2)
 	validPw2Label.visible = false
 	invalidPw2Label.visible = false
-	
-	HttpLayer.connect("http_completed", http_completed)
-	
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -84,6 +81,12 @@ func _on_log_in_pressed():
 	logPanel.visible = true
 	signPanel1.visible = false
 	signPanel2.visible = false
+	
+	var credentials = {
+				"email": emailLog.text,//怎么和后端保持一致？
+				"password": passwordLog.text
+			}
+	HttpLayer._login(credentials,"res://main_scene.tscn")
 
 func _on_sign_in_pressed():
 	logButton.set_pressed(false)
@@ -99,6 +102,7 @@ func _on_reset_button_pressed():
 	validPw2Label.visible = false
 	
 func _on_complete_button_pressed():
+	
 	pass
 
 
@@ -158,15 +162,20 @@ func _on_next_button_pressed():
 	signPanel2.visible = true
 	
 
-func _on_login_button_pressed():
-	HttpLayer._login({
-				"email": get_node("log_in/email_input_panel/LineEdit").text,
-				"password": get_node("log_in/pw_input_panel/LineEdit").text
-			}, "res://main_scene.tscn")
-			
-			
-func http_completed(res, response_code, headers, route) -> void:
-	if res == null : 
-		print("res = null")
-		return
+
+func _on_eye_hide_toggled(button_pressed):
+	changePasswordHideState(password1Sign)
+
+func _on_eye_hide_2_toggled(button_pressed):
+	changePasswordHideState(password2Sign)
+
+func _on_eye_hide_3_toggled(button_pressed):
+	changePasswordHideState(passwordLog)
 	
+func changePasswordHideState(passwordNode: Node):
+	print(passwordNode.secret)
+	passwordNode.set_secret(!passwordNode.secret)
+
+
+func _on_login_button_pressed():
+	get_tree().change_scene_to_file("res://main_scene.tscn")
