@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://reading_scene.gd" id="1_geiyo"]
 [ext_resource type="Texture2D" uid="uid://v25avekmfw0o" path="res://Sprites/Icon/exit-door.png" id="2_qnqub"]
-[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://Font/Roboto/Roboto-Regular.ttf" id="3_iypsb"]
-[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="4_648j2"]
-[ext_resource type="FontFile" uid="uid://bju8b1u2ttqoa" path="res://Font/Roboto/Roboto-Italic.ttf" id="5_dlx5m"]
+[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://setting/assets/Font/Roboto/Roboto-Regular.ttf" id="3_iypsb"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="4_648j2"]
+[ext_resource type="FontFile" uid="uid://bju8b1u2ttqoa" path="res://setting/assets/Font/Roboto/Roboto-Italic.ttf" id="5_dlx5m"]
 [ext_resource type="Texture2D" uid="uid://ud7w6sykerp3" path="res://Sprites/Icon/check-mark.png" id="6_em3o4"]
-[ext_resource type="FontFile" uid="uid://uue3yy1kgul5" path="res://Font/Roboto/Roboto-BoldItalic.ttf" id="6_xpmyw"]
+[ext_resource type="FontFile" uid="uid://uue3yy1kgul5" path="res://setting/assets/Font/Roboto/Roboto-BoldItalic.ttf" id="6_xpmyw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h7ga"]
 bg_color = Color(0, 0, 0, 1)

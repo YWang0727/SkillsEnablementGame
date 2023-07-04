@@ -1,10 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://dc5mllfb4ul6n"]
 
-[ext_resource type="Theme" uid="uid://bb5a5sfuw330h" path="res://loginPage/theme/login_theme.tres" id="1_de1nd"]
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://qow8cruc54nv" path="res://loginPage/cityPicture2.jpg" id="3_ohuu6"]
 [ext_resource type="Texture2D" uid="uid://o628e2s2tbmu" path="res://loginPage/eye-hiden.png" id="4_5feks"]
 [ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
+
+[sub_resource type="Theme" id="Theme_6rjng"]
+Button/font_sizes/font_size = 28
 
 [sub_resource type="Theme" id="Theme_noebi"]
 Label/colors/font_color = Color(1, 1, 1, 1)
@@ -42,7 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_de1nd")
+theme = SubResource("Theme_6rjng")
 script = ExtResource("2_jj6vr")
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -29,7 +29,7 @@ var passwordLog
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	HttpLayer.connect("http_completed", http_completed)//这个信号是从哪里发出来的，发出来的过程是什么
+	#HttpLayer.connect("http_completed", http_completed)//这个信号是从哪里发出来的，发出来的过程是什么
 	
 	logButton = get_node("Tabars/HBoxContainer/Log in")
 	signButton = get_node("Tabars/HBoxContainer/Sign in")
@@ -82,11 +82,11 @@ func _on_log_in_pressed():
 	signPanel1.visible = false
 	signPanel2.visible = false
 	
-	var credentials = {
-				"email": emailLog.text,//怎么和后端保持一致？
-				"password": passwordLog.text
-			}
-	HttpLayer._login(credentials,"res://main_scene.tscn")
+	#var credentials = {
+	#			"email": emailLog.text,//怎么和后端保持一致？
+	#			"password": passwordLog.text
+	#		}
+	#HttpLayer._login(credentials,"res://main_scene.tscn")
 
 func _on_sign_in_pressed():
 	logButton.set_pressed(false)
