@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://GameManager.gd"
 HttpLayer="*res://httpLayer.gd"
+Music="*res://setting/src/music/music.tscn"
 
 [display]
 
@@ -27,3 +28,12 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="viewport"
 window/main_scene="res://main_scene.tscn"
+
+[importer_defaults]
+
+wav={
+"edit/loop_mode": 2
+}
+mp3={
+"loop": true
+}
