@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvy7fsci0hmnw"]
+
+[ext_resource type="Script" path="res://LearningPage/reading_scene.gd" id="1_kwhu4"]
+[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://setting/assets/Font/Roboto/Roboto-Regular.ttf" id="2_qxxt5"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="3_uqb3i"]
+[ext_resource type="FontFile" uid="uid://bju8b1u2ttqoa" path="res://setting/assets/Font/Roboto/Roboto-Italic.ttf" id="4_lrkt1"]
+[ext_resource type="FontFile" uid="uid://uue3yy1kgul5" path="res://setting/assets/Font/Roboto/Roboto-BoldItalic.ttf" id="5_jfay5"]
+[ext_resource type="Texture2D" uid="uid://ud7w6sykerp3" path="res://LearningPage/Icon/check-mark.png" id="6_450tj"]
+[ext_resource type="Texture2D" uid="uid://v25avekmfw0o" path="res://LearningPage/Icon/exit-door.png" id="7_ajdm3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h7ga"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwm0w"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n47a7"]
+bg_color = Color(0, 0, 0, 0)
+border_color = Color(0.694118, 0.635294, 0.615686, 0.462745)
+
+[node name="ReadingScene" type="Node2D"]
+script = ExtResource("1_kwhu4")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0.258824, 0.396078, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(1000, 500)
+offset_left = 100.0
+offset_top = 60.0
+offset_right = 1820.0
+offset_bottom = 1080.0
+horizontal_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1720, 1000)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1720, 0)
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/selection_color = Color(0.313726, 0.313726, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_qxxt5")
+theme_override_fonts/bold_font = ExtResource("3_uqb3i")
+theme_override_fonts/italics_font = ExtResource("4_lrkt1")
+theme_override_fonts/bold_italics_font = ExtResource("5_jfay5")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_6h7ga")
+selection_enabled = true
+
+[node name="CompletedButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+tooltip_text = "Click to complete this lesson"
+theme_override_colors/font_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_nwm0w")
+icon = ExtResource("6_450tj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ExitButton" type="Button" parent="."]
+custom_minimum_size = Vector2(80, 60)
+offset_right = 100.0
+offset_bottom = 60.0
+tooltip_text = "EXIT"
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_n47a7")
+icon = ExtResource("7_ajdm3")
+icon_alignment = 1
+expand_icon = true

@@ -1,10 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=8 format=3 uid="uid://ckpvbylmvtoo8"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
-[ext_resource type="PackedScene" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
+[ext_resource type="PackedScene" uid="uid://dot5ybej34rg7" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
-[ext_resource type="PackedScene" uid="uid://bgtanwq7wueob" path="res://learning_entry.tscn" id="3_spkwt"]
 [ext_resource type="PackedScene" uid="uid://c18vwbwsjkur3" path="res://town_attributes.tscn" id="4_vkmqv"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="5_grol7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjjod"]
+bg_color = Color(0, 0.443137, 0.294118, 0.917647)
+corner_radius_top_left = 100
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 50
+anti_aliasing_size = 10.0
+
+[sub_resource type="GDScript" id="GDScript_467n3"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.connect(\"pressed\", _on_Button_pressed)
+
+
+func _on_Button_pressed():
+	get_tree().change_scene_to_file(\"res://LearningPage/learning_scene.tscn\")
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="MainScene" type="Node2D"]
 
@@ -16,12 +40,29 @@ position = Vector2(-1, 0)
 
 [node name="BuildPanel" parent="." instance=ExtResource("2_oso2h")]
 
-[node name="LearningEntry" parent="." instance=ExtResource("3_spkwt")]
-offset_left = 48.0
-offset_top = 854.0
-offset_right = 48.0
-offset_bottom = 854.0
-
 [node name="TownAttributes" parent="." instance=ExtResource("4_vkmqv")]
 offset_right = 170.0
 offset_bottom = 720.0
+
+[node name="LearningEntryButton" type="Button" parent="."]
+offset_left = 42.0
+offset_top = 895.0
+offset_right = 242.0
+offset_bottom = 1045.0
+mouse_force_pass_scroll_events = false
+theme_override_fonts/font = ExtResource("5_grol7")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_mjjod")
+script = SubResource("GDScript_467n3")
+
+[node name="Label" type="Label" parent="LearningEntryButton"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 43.0
+offset_right = 118.0
+offset_bottom = 87.0
+scale = Vector2(1.43302, 1.45022)
+theme_override_fonts/font = ExtResource("5_grol7")
+text = "START
+LEARNING"
+horizontal_alignment = 1

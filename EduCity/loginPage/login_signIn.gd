@@ -178,6 +178,8 @@ func changePasswordHideState(passwordNode: Node):
 
 
 func _on_login_button_pressed():
+	# need to be deleted when login system completed!!!
+	get_tree().change_scene_to_file("res://main_scene.tscn")
 	# When login is [![successful]!], get the required data from the database to localStorage
 	# get current user's learning status and save in localStorage
 	_get_localStorage()
