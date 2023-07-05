@@ -14,7 +14,7 @@ logging:
     com.EduCity: debug    # ??com.EduCity????????debug
 
 mail:
-  user: EduCity2023@gamil.com
+  user: EduCity2023@gmail.com
   password: 2023EduCity
 
 
