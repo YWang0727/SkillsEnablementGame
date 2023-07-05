@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cxf41utelmq4l"]
 
 [ext_resource type="Script" path="res://LearningPage/quiz_scene.gd" id="1_w4nba"]
-[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://Font/Roboto/Roboto-Regular.ttf" id="2_r0ucc"]
-[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="3_wf4m1"]
-[ext_resource type="FontFile" uid="uid://uue3yy1kgul5" path="res://Font/Roboto/Roboto-BoldItalic.ttf" id="4_nqr4e"]
+[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://setting/assets/Font/Roboto/Roboto-Regular.ttf" id="2_r0ucc"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="3_wf4m1"]
+[ext_resource type="FontFile" uid="uid://uue3yy1kgul5" path="res://setting/assets/Font/Roboto/Roboto-BoldItalic.ttf" id="4_nqr4e"]
 [ext_resource type="Texture2D" uid="uid://v25avekmfw0o" path="res://LearningPage/Icon/exit-door.png" id="5_ylh64"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khu5f"]
