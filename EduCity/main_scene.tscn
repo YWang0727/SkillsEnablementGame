@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=7 format=3 uid="uid://ckpvbylmvtoo8"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
+[ext_resource type="Script" path="res://XufengPart/TileMap.gd" id="3_l5ctd"]
 [ext_resource type="PackedScene" uid="uid://bgtanwq7wueob" path="res://learning_entry.tscn" id="3_spkwt"]
 [ext_resource type="PackedScene" uid="uid://c18vwbwsjkur3" path="res://town_attributes.tscn" id="4_vkmqv"]
 
@@ -13,6 +14,7 @@ script = ExtResource("1_ihn2m")
 
 [node name="TileMap" parent="." instance=ExtResource("2_1ue0x")]
 position = Vector2(-1, 0)
+script = ExtResource("3_l5ctd")
 
 [node name="BuildPanel" parent="." instance=ExtResource("2_oso2h")]
 
