@@ -13,9 +13,11 @@ import com.imyuewang.EduCity.model.param.QuizParam;
 import com.imyuewang.EduCity.model.vo.QuizVO;
 import com.imyuewang.EduCity.service.UserQuizService;
 import com.imyuewang.EduCity.mapper.UserQuizMapper;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,15 +79,62 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
 
     @Override
     public QuizVO checkQuiz(QuizParam param){
-        int knowledge = param.getKnowledge();
-
+        // get current knowledge
         LambdaQueryWrapper<UserQuiz> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.likeRight(UserQuiz::getQuizid, knowledge);
+        queryWrapper.likeRight(UserQuiz::getQuizid, param.getKnowledge());
 
         List<UserQuiz> result = baseMapper.selectList(queryWrapper);
 
         QuizVO quizVO = new QuizVO();
         quizVO.setCompleteList(result);
+        return quizVO;
+    }
+
+    @Override
+    public QuizVO getStatus(QuizParam param){
+        //get current user's completed knowledge
+        LambdaQueryWrapper<UserQuiz> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.likeRight(UserQuiz::getId, param.getId());
+
+        List<UserQuiz> records = baseMapper.selectList(queryWrapper);
+
+        int[] kList = {0,0,0,0,0};
+
+        for (UserQuiz each: records) {
+            int k = each.getQuizid() / 10;
+            switch (k) {
+                case 1 -> kList[0] ++;
+                case 2 -> kList[1] ++;
+                case 3 -> kList[2] ++;
+                case 4 -> kList[3] ++;
+                case 5 -> kList[4] ++;
+            }
+        }
+
+        // Put the status of each module into an array: 0 - not started, 1 - in progress, 2 - completed
+        // Need to be modified according to the actual number of modules per knowledge
+        for(int i = 0; i < kList.length; i ++){
+            if(i == 0){
+                if(kList[0] == 1 || kList[0] == 2){
+                    kList[0] = 1;
+                }else if(kList[0] == 3){
+                    kList[0] = 2;
+                }else{
+                    kList[0] = 0;
+                }
+            }else{
+                if(kList[i] == 1){
+                    kList[i] = 1;
+                }else if(kList[0] == 2){
+                    kList[i] = 2;
+                }else{
+                    kList[i] = 0;
+                }
+            }
+        }
+
+        QuizVO quizVO = new QuizVO();
+        quizVO.setStatusList(kList);
         return quizVO;
     }
 }

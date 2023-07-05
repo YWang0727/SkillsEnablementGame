@@ -68,6 +68,22 @@ func _ready():
 	quiz3Button.connect("pressed", _on_quiz3Button_pressed)
 	quiz3Button.visible = false
 	
+	_set_status()
+	
+	
+# get each knowledge session's status
+func _set_status():
+	var labelList = [get_node("AI/AIButton/Status"), get_node("Security/SecurityButton/Status"), 
+	get_node("Cloud/CloudButton/Status"), get_node("DS/DSButton/Status"), get_node("Automation/AutomationButton/Status")]
+	
+	for i in GameManager.statusList.size():
+		if GameManager.statusList[i] == 0:
+			labelList[i].text = "not started"
+		elif GameManager.statusList[i] == 1:
+			labelList[i].text = "in progress"
+		else:
+			labelList[i].text = "completed"
+	
 	
 # generate lesson/quiz path
 func _on_lesson1Button_pressed():

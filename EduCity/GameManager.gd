@@ -9,6 +9,7 @@ var save_data = null
 #Main Attributes: prosperity\coins\speed...etc
 
 #Reading
+var statusList = []
 var reading_path = ""
 
 #Quiz

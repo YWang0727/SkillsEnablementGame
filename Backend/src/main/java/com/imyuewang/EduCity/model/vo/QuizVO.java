@@ -21,4 +21,6 @@ public class QuizVO {
     private int scoreDifference;
 
     private List<UserQuiz> completeList;
+
+    private int[] statusList;
 }
