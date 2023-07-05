@@ -58,11 +58,11 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
             throw new ApiException(ResultCode.FAILED,"This user_quiz record does not exist");
         }
 
-        int scoreDifference = param.getCurrScore() - userQuiz.getTopscore();
+        int scoreDifference = param.getScore() - userQuiz.getTopscore();
 
         // set attempts and topScore
         userQuiz.setAttempts(userQuiz.getAttempts() + 1);
-        userQuiz.setTopscore(Math.max(param.getCurrScore(), userQuiz.getTopscore()));
+        userQuiz.setTopscore(Math.max(param.getScore(), userQuiz.getTopscore()));
 
         // update to database
         UpdateWrapper<UserQuiz> updateWrapper = Wrappers.update();
