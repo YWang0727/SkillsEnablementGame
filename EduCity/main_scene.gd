@@ -17,5 +17,5 @@ func _on_components_leader_board():
 
 
 func _on_components_study():
-	var s = preload("res://learning_scene.tscn").instantiate()
+	var s = preload("res://LearningPage/learning_scene.tscn").instantiate()
 	add_child(s)

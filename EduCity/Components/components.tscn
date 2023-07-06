@@ -68,6 +68,7 @@ offset_bottom = 25.0
 color = Color(0.529412, 0.807843, 0.980392, 1)
 
 [node name="Bt_Gold" type="Button" parent="Gold/ColorRect"]
+layout_mode = 0
 offset_right = 30.0
 offset_bottom = 31.0
 text = "+"
