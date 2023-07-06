@@ -1,15 +1,5 @@
 [gd_scene load_steps=18 format=3 uid="uid://da6grjhiqdcnw"]
 
-<<<<<<< HEAD:EduCity/learning_scene.tscn
-[ext_resource type="Texture2D" uid="uid://80fs6jct5m70" path="res://Sprites/Icon/LearningScene/Security.png" id="1_j83q0"]
-[ext_resource type="Script" path="res://learning_scene.gd" id="1_mgcs3"]
-[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="2_68ux3"]
-[ext_resource type="Texture2D" uid="uid://cljvkg1gh4ik6" path="res://Sprites/Icon/LearningScene/AI.png" id="2_le277"]
-[ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://setting/assets/Font/Roboto/Roboto-Light.ttf" id="3_u8hkq"]
-[ext_resource type="Texture2D" uid="uid://3usvyjxv3ei2" path="res://Sprites/Icon/LearningScene/Cloud.png" id="4_p0bx5"]
-[ext_resource type="Texture2D" uid="uid://h143riuulra4" path="res://Sprites/Icon/LearningScene/DS.png" id="5_f3ob3"]
-[ext_resource type="Texture2D" uid="uid://des76ywgp2n68" path="res://Sprites/Icon/LearningScene/Automation.png" id="6_v0l1a"]
-=======
 [ext_resource type="Script" path="res://LearningPage/learning_scene.gd" id="1_2vlb4"]
 [ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="2_ic5kt"]
 [ext_resource type="Texture2D" uid="uid://cljvkg1gh4ik6" path="res://LearningPage/Icon/LearningScene/AI.png" id="3_d6mea"]
@@ -18,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://3usvyjxv3ei2" path="res://LearningPage/Icon/LearningScene/Cloud.png" id="6_gyhmw"]
 [ext_resource type="Texture2D" uid="uid://h143riuulra4" path="res://LearningPage/Icon/LearningScene/DS.png" id="7_2bdkh"]
 [ext_resource type="Texture2D" uid="uid://des76ywgp2n68" path="res://LearningPage/Icon/LearningScene/Automation.png" id="8_j6vq3"]
->>>>>>> e909be45fc60c7b7448d0c2ff63994448a736119:EduCity/LearningPage/learning_scene.tscn
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu525"]
 bg_color = Color(0.215686, 0.47451, 0.905882, 1)

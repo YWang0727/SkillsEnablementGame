@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-[gd_scene load_steps=8 format=3 uid="uid://ckpvbylmvtoo8"]
-=======
 [gd_scene load_steps=9 format=3 uid="uid://ckpvbylmvtoo8"]
->>>>>>> e909be45fc60c7b7448d0c2ff63994448a736119
 
-[ext_resource type="Script" path="res://main_scene.gd" id="1_3ipq6"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://dot5ybej34rg7" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
 [ext_resource type="PackedScene" uid="uid://c18vwbwsjkur3" path="res://town_attributes.tscn" id="4_vkmqv"]
-<<<<<<< HEAD
-[ext_resource type="PackedScene" uid="uid://bnsn8jn5g4gmi" path="res://Components/components.tscn" id="6_npl34"]
-=======
 [ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="6_45dsv"]
 
 [sub_resource type="GDScript" id="GDScript_wthq0"]
@@ -121,10 +113,8 @@ func _on_Button_pressed():
 func _process(delta):
 	pass
 "
->>>>>>> e909be45fc60c7b7448d0c2ff63994448a736119
 
 [node name="MainScene" type="Node2D"]
-script = ExtResource("1_3ipq6")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_ihn2m")
@@ -139,12 +129,6 @@ script = SubResource("GDScript_wthq0")
 offset_right = 170.0
 offset_bottom = 720.0
 
-<<<<<<< HEAD
-[node name="components" parent="." instance=ExtResource("6_npl34")]
-
-[connection signal="leader_board" from="components" to="." method="_on_components_leader_board"]
-[connection signal="study" from="components" to="." method="_on_components_study"]
-=======
 [node name="LearningEntryButton" type="Button" parent="."]
 offset_left = 35.0
 offset_top = 904.0
@@ -167,4 +151,3 @@ theme_override_fonts/font = ExtResource("6_45dsv")
 text = "START
 LEARNING"
 horizontal_alignment = 1
->>>>>>> e909be45fc60c7b7448d0c2ff63994448a736119
