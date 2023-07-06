@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgtanwq7wueob"]
 
-[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="1_t5mgm"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="1_t5mgm"]
 [ext_resource type="Script" path="res://LearningEntryButton.gd" id="2_yxaq1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jtyl"]

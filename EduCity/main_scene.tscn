@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=8 format=3 uid="uid://ckpvbylmvtoo8"]
 
+[ext_resource type="Script" path="res://main_scene.gd" id="1_3ipq6"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
-[ext_resource type="PackedScene" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
+[ext_resource type="PackedScene" uid="uid://dot5ybej34rg7" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
 [ext_resource type="PackedScene" uid="uid://bgtanwq7wueob" path="res://learning_entry.tscn" id="3_spkwt"]
 [ext_resource type="PackedScene" uid="uid://c18vwbwsjkur3" path="res://town_attributes.tscn" id="4_vkmqv"]
+[ext_resource type="PackedScene" uid="uid://bnsn8jn5g4gmi" path="res://Components/components.tscn" id="6_npl34"]
 
 [node name="MainScene" type="Node2D"]
+script = ExtResource("1_3ipq6")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_ihn2m")
@@ -25,3 +28,8 @@ offset_bottom = 854.0
 [node name="TownAttributes" parent="." instance=ExtResource("4_vkmqv")]
 offset_right = 170.0
 offset_bottom = 720.0
+
+[node name="components" parent="." instance=ExtResource("6_npl34")]
+
+[connection signal="leader_board" from="components" to="." method="_on_components_leader_board"]
+[connection signal="study" from="components" to="." method="_on_components_study"]

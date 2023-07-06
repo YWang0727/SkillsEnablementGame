@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://80fs6jct5m70" path="res://Sprites/Icon/LearningScene/Security.png" id="1_j83q0"]
 [ext_resource type="Script" path="res://learning_scene.gd" id="1_mgcs3"]
-[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="2_68ux3"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="2_68ux3"]
 [ext_resource type="Texture2D" uid="uid://cljvkg1gh4ik6" path="res://Sprites/Icon/LearningScene/AI.png" id="2_le277"]
-[ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://Font/Roboto/Roboto-Light.ttf" id="3_u8hkq"]
+[ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://setting/assets/Font/Roboto/Roboto-Light.ttf" id="3_u8hkq"]
 [ext_resource type="Texture2D" uid="uid://3usvyjxv3ei2" path="res://Sprites/Icon/LearningScene/Cloud.png" id="4_p0bx5"]
 [ext_resource type="Texture2D" uid="uid://h143riuulra4" path="res://Sprites/Icon/LearningScene/DS.png" id="5_f3ob3"]
 [ext_resource type="Texture2D" uid="uid://des76ywgp2n68" path="res://Sprites/Icon/LearningScene/Automation.png" id="6_v0l1a"]
