@@ -77,13 +77,37 @@ func _on_completedButton_clicked():
 	HttpLayer._completeLesson({
 				"id": GameManager.user_id,
 				"quizId": quizId,
-			}, "res://LearningPage/learning_scene.tscn")
-	#get_tree().change_scene_to_file("res://learning_scene.tscn")
+			})
+	
+	
+func _update_status():
+	HttpLayer._getStatus({
+		"id": GameManager.user_id
+	})
 	
 	
 func http_completed(res, response_code, headers, route) -> void:
-	if response_code == 200 :
+	if response_code == 200 && route == "complete":
 		print("success")
+		# update local data
+		_update_status()
+		
+	elif response_code == 200 && route == "status":
+		GameManager.statusList.clear()
+		GameManager.quizStatus.clear()
+		
+		# save data to knowledge status list in GameManager
+		for i in res['statusList'].size():
+			GameManager.statusList.append(res['statusList'][i])	
+			
+		# save data to quiz status list in GameManager	
+		for i in res['completeList'].size():
+			GameManager.quizStatus.append(res['completeList'][i])	
+			
+		print(GameManager.statusList)
+		print(GameManager.quizStatus)
+		
+		get_tree().change_scene_to_file("res://LearningPage/learning_scene.tscn")
 	
 	
 #func _scroll_to_bottom(value: float):

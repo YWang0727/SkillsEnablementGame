@@ -100,14 +100,11 @@ func _register(_credentials, _redirectTo):
 	_apiCore("register", _credentials, false, "POST", "register", _redirectTo)
 	
 # api for learning_related scene	
-func _completeLesson(_credentials, _redirectTo):
-	_apiCore("learn/complete", _credentials, false, "POST", "complete", _redirectTo)
+func _completeLesson(_credentials):
+	_apiCore("learn/complete", _credentials, false, "POST", "complete")
 
 func _submitQuiz(_credentials):
 	_apiCore("learn/submit", _credentials, false, "POST", "submit")
-	
-func _checkQuiz(_credentials):
-	_apiCore("learn/check", _credentials, false, "POST", "check")
 	
 func _getStatus(_credentials):
 	_apiCore("learn/status", _credentials, false, "POST", "status")

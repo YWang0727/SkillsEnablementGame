@@ -17,12 +17,12 @@ var quiz2Button = Button.new()
 var quiz3Button = Button.new()
 
 var completeList = []
-var buttonList = []
+var buttonList = {}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	HttpLayer.connect("http_completed", http_completed)
+	#HttpLayer.connect("http_completed", http_completed)
 	
 	backButton = get_node("BackButton")
 	backButton.connect("pressed", _on_backButton_pressed)
@@ -103,17 +103,17 @@ func _on_lesson3Button_pressed():
 
 func _on_quiz1Button_pressed():
 	GameManager.question_path = GameManager.question_path + "/module1/quiz.json"
-	get_tree().change_scene_to_file("res://quiz_scene.tscn")
+	get_tree().change_scene_to_file("res://LearningPage/quiz_scene.tscn")
 	
 	
 func _on_quiz2Button_pressed():
 	GameManager.question_path = GameManager.question_path + "/module2/quiz.json"
-	get_tree().change_scene_to_file("res://quiz_scene.tscn")
+	get_tree().change_scene_to_file("res://LearningPage/quiz_scene.tscn")
 	
 	
 func _on_quiz3Button_pressed():
 	GameManager.question_path = GameManager.question_path + "/module3/quiz.json"
-	get_tree().change_scene_to_file("res://quiz_scene.tscn")
+	get_tree().change_scene_to_file("res://LearningPage/quiz_scene.tscn")
 
 
 func _on_backButton_pressed():
@@ -122,8 +122,8 @@ func _on_backButton_pressed():
 	
 # generate module path
 func _on_aiButton_pressed():
-	GameManager.reading_path = "res://LearningPage/LearningResources/IBM AI/"
-	GameManager.question_path = "res://LearningPage/LearningResources/IBM AI/"
+	GameManager.reading_path = "res://LearningPage/LearningResources/IBM AI"
+	GameManager.question_path = "res://LearningPage/LearningResources/IBM AI"
 	
 	var popup = get_node("PopupMenu")
 	popup.visible = true
@@ -182,35 +182,52 @@ func _show_buttons(knowledge):
 	if FileAccess.file_exists(module3_path):
 		lesson3Button.visible = true
 		quiz3Button.visible = true
+	# get each quiz's status
+	_get_quizStatus(knowledge)
+		
+		
+func _get_quizStatus(knowledge):
+	var quizStatus = []
+	# get current knowledge
+	for index in GameManager.quizStatus.size():
+		if(str_to_var(str(GameManager.quizStatus[index].quizid).substr(0,1)) == knowledge):
+			quizStatus.append(GameManager.quizStatus[index])
+	print(quizStatus)		
 	
-	# check if quizzes under current knowledge are available
-	HttpLayer._checkQuiz({
-			"id": GameManager.user_id,
-			"knowledge": knowledge
-		})
-		
-		
-func http_completed(res, response_code, headers, route) -> void:
-	if response_code == 200:
-		completeList = res['completeList']
-		# if lesson completed and quiz attempts didn't meet maximum
-		for index in completeList.size():
-			if(completeList[index].attempts != 3):
-				buttonList.append(str(completeList[index].quizid).substr(1,1))
-		print(buttonList)
-		for index in buttonList.size():
-			match buttonList[index]:
-				"1":
+	# if lesson completed and quiz attempts didn't meet maximum
+	for index in quizStatus.size():
+		# quiz with attempts - 1
+		if(quizStatus[index].attempts != 3):
+			buttonList[str(quizStatus[index].quizid).substr(1,1)] = 1
+		# quiz without attempts - 2
+		else:
+			buttonList[str(quizStatus[index].quizid).substr(1,1)] = 2
+	print(buttonList)
+	
+	for index in buttonList:
+		match index:
+			"1":
+				if(buttonList[index] == 1):
 					quiz1Button.disabled = false
-				"2":
+					quiz1Button.text = "QUIZ 1"
+					quiz1Button.icon = null
+				else:
+					quiz1Button.icon = ResourceLoader.load("res://LearningPage/Icon/finish.png")
+			"2":
+				if(buttonList[index] == 1):
 					quiz2Button.disabled = false
-				"3":
+					quiz2Button.text = "QUIZ 2"
+					quiz2Button.icon = null
+				else:
+					quiz2Button.icon = ResourceLoader.load("res://LearningPage/Icon/finish.png")
+			"3":
+				if(buttonList[index] == 1):
 					quiz3Button.disabled = false
-					
-	else:
-		print("lesson not finished yet")
-		return
-
+					quiz3Button.text = "QUIZ 3"
+					quiz3Button.icon = null
+				else:
+					quiz3Button.icon = ResourceLoader.load("res://LearningPage/Icon/finish.png")
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://da6grjhiqdcnw"]
+[gd_scene load_steps=19 format=3 uid="uid://da6grjhiqdcnw"]
 
 [ext_resource type="Script" path="res://LearningPage/learning_scene.gd" id="1_2vlb4"]
 [ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="2_ic5kt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3usvyjxv3ei2" path="res://LearningPage/Icon/LearningScene/Cloud.png" id="6_gyhmw"]
 [ext_resource type="Texture2D" uid="uid://h143riuulra4" path="res://LearningPage/Icon/LearningScene/DS.png" id="7_2bdkh"]
 [ext_resource type="Texture2D" uid="uid://des76ywgp2n68" path="res://LearningPage/Icon/LearningScene/Automation.png" id="8_j6vq3"]
+[ext_resource type="Texture2D" uid="uid://bfksryoffkqfk" path="res://LearningPage/Icon/locked.png" id="9_it7lq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu525"]
 bg_color = Color(0.215686, 0.47451, 0.905882, 1)
@@ -258,7 +259,8 @@ offset_right = 602.0
 offset_bottom = 200.0
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_vkqwb")
-text = "QUIZ 1"
+icon = ExtResource("9_it7lq")
+icon_alignment = 1
 
 [node name="Quiz2Button" type="Button" parent="PopupMenu"]
 layout_mode = 0
@@ -268,7 +270,8 @@ offset_right = 602.0
 offset_bottom = 400.0
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_vma5y")
-text = "QUIZ 2"
+icon = ExtResource("9_it7lq")
+icon_alignment = 1
 
 [node name="Quiz3Button" type="Button" parent="PopupMenu"]
 layout_mode = 0
@@ -278,7 +281,8 @@ offset_right = 602.0
 offset_bottom = 600.0
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_eleua")
-text = "QUIZ 3"
+icon = ExtResource("9_it7lq")
+icon_alignment = 1
 
 [node name="CloseButton" type="Button" parent="PopupMenu"]
 layout_mode = 0

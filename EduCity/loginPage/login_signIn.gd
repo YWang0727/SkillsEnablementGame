@@ -162,7 +162,6 @@ func _on_next_button_pressed():
 	signPanel2.visible = true
 	
 
-
 func _on_eye_hide_toggled(button_pressed):
 	changePasswordHideState(password1Sign)
 
@@ -178,8 +177,6 @@ func changePasswordHideState(passwordNode: Node):
 
 
 func _on_login_button_pressed():
-	# need to be deleted when login system completed!!!
-	get_tree().change_scene_to_file("res://main_scene.tscn")
 	# When login is !successful!, get the required data from the database to localStorage
 	# get current user's learning status and save in localStorage
 	_get_localStorage()
@@ -193,10 +190,16 @@ func _get_localStorage():
 	
 func http_completed(res, response_code, headers, route) -> void:
 	if response_code == 200 && route == "status":
-		# save data to status list in GameManager
+		# save data to knowledge status list in GameManager
 		for i in res['statusList'].size():
 			GameManager.statusList.append(res['statusList'][i])	
+			
+		# save data to quiz status list in GameManager	
+		for i in res['completeList'].size():
+			GameManager.quizStatus.append(res['completeList'][i])	
+			
 		print(GameManager.statusList)
+		print(GameManager.quizStatus)
 		
 		get_tree().change_scene_to_file("res://main_scene.tscn")
 

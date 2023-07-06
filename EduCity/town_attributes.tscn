@@ -50,27 +50,11 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -1750.0
-offset_bottom = -360.0
+offset_right = -1770.0
+offset_bottom = -380.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rsode")
-
-[node name="Prosperity" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 50.0
-color = Color(0.541176, 0.231373, 0.0941176, 1)
-
-[node name="Label" type="Label" parent="Prosperity"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = -1.0
-offset_right = 44.0
-offset_bottom = 22.0
-text = "Prosperity:"
 
 [node name="settingButton" type="Button" parent="."]
 layout_mode = 1
@@ -78,6 +62,10 @@ anchors_preset = -1
 anchor_top = 0.15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -65.0
+offset_right = 62.0
+offset_bottom = -65.0
 scale = Vector2(0.606831, 0.539353)
 theme = SubResource("Theme_1vnx0")
 icon = ExtResource("2_37eon")
@@ -87,6 +75,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.1
 anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -50.0
+offset_right = 620.0
+offset_bottom = -50.0
 scale = Vector2(0.177977, 0.177977)
 theme = SubResource("Theme_sfaue")
 icon = ExtResource("3_evprf")

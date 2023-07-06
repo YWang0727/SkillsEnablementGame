@@ -219,12 +219,35 @@ func _on_submit_button_pressed():
 	# get attempts and golds from backend
 	
 	
+func _update_status():
+	HttpLayer._getStatus({
+		"id": GameManager.user_id
+	})
+	
+	
 func http_completed(res, response_code, headers, route) -> void:
 	if response_code == 200:
-		attempts = res['attempts']
-		scoreDifference = res['scoreDifference']
-		# show score scene
-		_show_score()
+		if route == "submit":
+			attempts = res['attempts']
+			scoreDifference = res['scoreDifference']
+			# update local data
+			_update_status()
+			# show score scene
+			_show_score()
+		elif route == "status":
+			GameManager.statusList.clear()
+			GameManager.quizStatus.clear()
+			
+			# save data to knowledge status list in GameManager
+			for i in res['statusList'].size():
+				GameManager.statusList.append(res['statusList'][i])	
+				
+			# save data to quiz status list in GameManager	
+			for i in res['completeList'].size():
+				GameManager.quizStatus.append(res['completeList'][i])	
+				
+			print(GameManager.statusList)
+			print(GameManager.quizStatus)
 	else:
 		print("lesson not finished yet")
 		return

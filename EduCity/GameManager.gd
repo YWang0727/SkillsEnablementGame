@@ -13,6 +13,7 @@ var statusList = []
 var reading_path = ""
 
 #Quiz
+var quizStatus = []
 var question_path = ""
 
 #TileMap

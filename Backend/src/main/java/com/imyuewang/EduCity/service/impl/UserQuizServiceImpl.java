@@ -78,25 +78,15 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
     }
 
     @Override
-    public QuizVO checkQuiz(QuizParam param){
-        // get current knowledge
-        LambdaQueryWrapper<UserQuiz> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.likeRight(UserQuiz::getQuizid, param.getKnowledge());
-
-        List<UserQuiz> result = baseMapper.selectList(queryWrapper);
-
-        QuizVO quizVO = new QuizVO();
-        quizVO.setCompleteList(result);
-        return quizVO;
-    }
-
-    @Override
     public QuizVO getStatus(QuizParam param){
         //get current user's completed knowledge
         LambdaQueryWrapper<UserQuiz> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.likeRight(UserQuiz::getId, param.getId());
+        queryWrapper.eq(UserQuiz::getId, param.getId());
 
         List<UserQuiz> records = baseMapper.selectList(queryWrapper);
+
+        QuizVO quizVO = new QuizVO();
+        quizVO.setCompleteList(records);
 
         int[] kList = {0,0,0,0,0};
 
@@ -133,7 +123,6 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
             }
         }
 
-        QuizVO quizVO = new QuizVO();
         quizVO.setStatusList(kList);
         return quizVO;
     }

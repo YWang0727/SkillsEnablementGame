@@ -11,9 +11,9 @@
 script = ExtResource("1_7j8by")
 
 [node name="Prosperity" type="Label" parent="."]
-offset_left = 301.0
+offset_left = 200.0
 offset_top = 57.0
-offset_right = 572.0
+offset_right = 471.0
 offset_bottom = 83.0
 text = "Prosperity    :    xxx (可对应城市规模)"
 script = ExtResource("2_tcrol")
@@ -34,25 +34,25 @@ text = "num"
 script = ExtResource("3_lr3lp")
 
 [node name="Population" type="Label" parent="."]
-offset_left = 301.0
+offset_left = 200.0
 offset_top = 117.0
-offset_right = 632.0
+offset_right = 531.0
 offset_bottom = 143.0
 text = "Population  :  xxx (计算得到 动态 规则待探讨)"
 script = ExtResource("3_vx0kv")
 
 [node name="Build_Speed" type="Label" parent="."]
-offset_left = 301.0
+offset_left = 200.0
 offset_top = 87.0
-offset_right = 610.0
+offset_right = 509.0
 offset_bottom = 113.0
 text = "Build Speed : xxx (根据房屋属性计算得到)"
 script = ExtResource("4_osojb")
 
 [node name="Gold" type="Label" parent="."]
-offset_left = 301.0
+offset_left = 200.0
 offset_top = 27.0
-offset_right = 452.0
+offset_right = 351.0
 offset_bottom = 53.0
 text = "Gold              :    $xxx"
 horizontal_alignment = 1
