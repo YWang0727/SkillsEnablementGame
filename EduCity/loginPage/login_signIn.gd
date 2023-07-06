@@ -29,7 +29,7 @@ var passwordLog
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#HttpLayer.connect("http_completed", http_completed)//这个信号是从哪里发出来的，发出来的过程是什么
+	HttpLayer.connect("http_completed", http_completed)
 	
 	logButton = get_node("Tabars/HBoxContainer/Log in")
 	signButton = get_node("Tabars/HBoxContainer/Sign in")
@@ -178,4 +178,28 @@ func changePasswordHideState(passwordNode: Node):
 
 
 func _on_login_button_pressed():
+	# need to be deleted when login system completed!!!
 	get_tree().change_scene_to_file("res://main_scene.tscn")
+	# When login is !successful!, get the required data from the database to localStorage
+	# get current user's learning status and save in localStorage
+	_get_localStorage()
+	
+	
+func _get_localStorage():
+	HttpLayer._getStatus({
+		"id": GameManager.user_id
+	})
+	
+	
+func http_completed(res, response_code, headers, route) -> void:
+	if response_code == 200 && route == "status":
+		# save data to status list in GameManager
+		for i in res['statusList'].size():
+			GameManager.statusList.append(res['statusList'][i])	
+		print(GameManager.statusList)
+		
+		get_tree().change_scene_to_file("res://main_scene.tscn")
+
+	else:
+		print("local storage failed")
+		return

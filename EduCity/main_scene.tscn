@@ -1,12 +1,127 @@
+<<<<<<< HEAD
 [gd_scene load_steps=8 format=3 uid="uid://ckpvbylmvtoo8"]
+=======
+[gd_scene load_steps=9 format=3 uid="uid://ckpvbylmvtoo8"]
+>>>>>>> e909be45fc60c7b7448d0c2ff63994448a736119
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_3ipq6"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://dot5ybej34rg7" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
-[ext_resource type="PackedScene" uid="uid://bgtanwq7wueob" path="res://learning_entry.tscn" id="3_spkwt"]
 [ext_resource type="PackedScene" uid="uid://c18vwbwsjkur3" path="res://town_attributes.tscn" id="4_vkmqv"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://bnsn8jn5g4gmi" path="res://Components/components.tscn" id="6_npl34"]
+=======
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="6_45dsv"]
+
+[sub_resource type="GDScript" id="GDScript_wthq0"]
+script/source = "extends TileMap
+
+var selectedTile: int = 98
+var selectedLayer: int = 1
+var buildingLayer: int = 2
+var selectedBuildingType: int = -1  # 选择的图块索引
+var mapDict = {}
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func _input(event: InputEvent) -> void:
+	var cellPos
+	# After choosing a building type, show selected cells when mouse hover
+	if event is InputEventMouseMotion and selectedBuildingType != -1:
+		cellPos = local_to_map(get_global_mouse_position())  # 将全局位置转换为TileMap单元位置
+		clear_layer(selectedLayer)
+		if _checkCellOverlap(selectedBuildingType,cellPos):
+			_drawSelectedCells(selectedBuildingType,cellPos)
+	# After pressing mouse on a cell, place a new building
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectedBuildingType != -1:
+		cellPos = local_to_map(get_global_mouse_position())  # 将鼠标位置转换为TileMap单元位置
+		if _checkCellOverlap(selectedBuildingType,cellPos):
+			clear_layer(selectedLayer)
+			set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
+			_updateMapDict(selectedBuildingType, cellPos)
+			selectedBuildingType = -1
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+	
+# If a new building overlaps with an existing house, return false
+func _checkCellOverlap(selectedBuildingType, cellPos) -> bool:
+	match selectedBuildingType:
+		# a building occupying 1 cell
+		GameManager.BuildingType.residential_building_1:
+			if mapDict.has(cellPos):
+				return false
+		# a building occupying 2 cells
+		GameManager.BuildingType.supermarket_1, GameManager.BuildingType.hospital_1, GameManager.BuildingType.farm_1, GameManager.BuildingType.constrction_site_1:
+			if mapDict.has(cellPos) or mapDict.has(cellPos+Vector2i(1, 0)):
+				return false
+		# a building occupying 4 cells
+		GameManager.BuildingType.bank_1:
+			if mapDict.has(cellPos) or mapDict.has(cellPos+Vector2i(1, 0)) or mapDict.has(cellPos+Vector2i(0, 1)) or mapDict.has(cellPos+Vector2i(1, 1)):
+				return false
+	return true
+	
+func _drawSelectedCells(selectedBuildingType, cellPos) -> void:
+	match selectedBuildingType:
+		# a building occupying 1 cell
+		GameManager.BuildingType.residential_building_1:
+			set_cell(selectedLayer,cellPos,selectedTile,Vector2i(0,0))
+		# a building occupying 2 cells
+		GameManager.BuildingType.supermarket_1, GameManager.BuildingType.hospital_1, GameManager.BuildingType.farm_1, GameManager.BuildingType.constrction_site_1:
+			set_cell(selectedLayer,cellPos,selectedTile,Vector2i(0,0))
+			set_cell(selectedLayer,cellPos+Vector2i(1, 0),98,Vector2i(0,0))
+		# a building occupying 4 cells
+		GameManager.BuildingType.bank_1:
+			set_cell(selectedLayer,cellPos,selectedTile,Vector2i(0,0))
+			set_cell(selectedLayer,cellPos+Vector2i(1, 0),98,Vector2i(0,0))
+			set_cell(selectedLayer,cellPos+Vector2i(0, 1),98,Vector2i(0,0))
+			set_cell(selectedLayer,cellPos+Vector2i(1, 1),98,Vector2i(0,0))
+
+func _updateMapDict(selectedBuildingType, cellPos) -> void:
+	match selectedBuildingType:
+		# a building occupying 1 cell
+		GameManager.BuildingType.residential_building_1:
+			mapDict[cellPos] = selectedBuildingType
+		# a building occupying 2 cells
+		GameManager.BuildingType.supermarket_1, GameManager.BuildingType.hospital_1, GameManager.BuildingType.farm_1, GameManager.BuildingType.constrction_site_1:
+			mapDict[cellPos] = selectedBuildingType
+			mapDict[cellPos+Vector2i(1, 0)] = selectedTile
+		# a building occupying 4 cells
+		GameManager.BuildingType.bank_1:
+			mapDict[cellPos] = selectedBuildingType
+			mapDict[cellPos+Vector2i(1, 0)] = selectedTile
+			mapDict[cellPos+Vector2i(0, 1)] = selectedTile
+			mapDict[cellPos+Vector2i(1, 1)] = selectedTile
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmu37"]
+bg_color = Color(0, 0.443137, 0.294118, 0.917647)
+corner_radius_top_left = 100
+corner_radius_bottom_right = 500
+corner_radius_bottom_left = 50
+anti_aliasing_size = 10.0
+
+[sub_resource type="GDScript" id="GDScript_lw47u"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.connect(\"pressed\", _on_Button_pressed)
+
+
+func _on_Button_pressed():
+	get_tree().change_scene_to_file(\"res://LearningPage/learning_scene.tscn\")
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+>>>>>>> e909be45fc60c7b7448d0c2ff63994448a736119
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_3ipq6")
@@ -16,20 +131,40 @@ script = ExtResource("1_ihn2m")
 
 [node name="TileMap" parent="." instance=ExtResource("2_1ue0x")]
 position = Vector2(-1, 0)
+script = SubResource("GDScript_wthq0")
 
 [node name="BuildPanel" parent="." instance=ExtResource("2_oso2h")]
-
-[node name="LearningEntry" parent="." instance=ExtResource("3_spkwt")]
-offset_left = 48.0
-offset_top = 854.0
-offset_right = 48.0
-offset_bottom = 854.0
 
 [node name="TownAttributes" parent="." instance=ExtResource("4_vkmqv")]
 offset_right = 170.0
 offset_bottom = 720.0
 
+<<<<<<< HEAD
 [node name="components" parent="." instance=ExtResource("6_npl34")]
 
 [connection signal="leader_board" from="components" to="." method="_on_components_leader_board"]
 [connection signal="study" from="components" to="." method="_on_components_study"]
+=======
+[node name="LearningEntryButton" type="Button" parent="."]
+offset_left = 35.0
+offset_top = 904.0
+offset_right = 235.0
+offset_bottom = 1054.0
+mouse_force_pass_scroll_events = false
+theme_override_fonts/font = ExtResource("6_45dsv")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_gmu37")
+script = SubResource("GDScript_lw47u")
+
+[node name="Label" type="Label" parent="LearningEntryButton"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 43.0
+offset_right = 118.0
+offset_bottom = 87.0
+scale = Vector2(1.43302, 1.45022)
+theme_override_fonts/font = ExtResource("6_45dsv")
+text = "START
+LEARNING"
+horizontal_alignment = 1
+>>>>>>> e909be45fc60c7b7448d0c2ff63994448a736119

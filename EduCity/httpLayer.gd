@@ -108,3 +108,6 @@ func _submitQuiz(_credentials):
 	
 func _checkQuiz(_credentials):
 	_apiCore("learn/check", _credentials, false, "POST", "check")
+	
+func _getStatus(_credentials):
+	_apiCore("learn/status", _credentials, false, "POST", "status")

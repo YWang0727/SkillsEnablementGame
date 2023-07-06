@@ -52,4 +52,10 @@ public class LearningController {
     public QuizVO checkQuiz(@RequestBody QuizParam param) {
         return userQuizService.checkQuiz(param);
     }
+
+    @PostMapping("/status")
+    @ApiOperation(value = "get user's learning status")
+    public QuizVO getStatus(@RequestBody QuizParam param) {
+        return userQuizService.getStatus(param);
+    }
 }

@@ -19,4 +19,6 @@ public interface UserQuizService extends IService<UserQuiz> {
     QuizVO submitQuiz(QuizParam param);
 
     QuizVO checkQuiz(QuizParam param);
+
+    QuizVO getStatus(QuizParam param);
 }
