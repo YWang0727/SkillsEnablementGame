@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=10 format=3 uid="uid://ckpvbylmvtoo8"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://dot5ybej34rg7" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
 [ext_resource type="PackedScene" uid="uid://c18vwbwsjkur3" path="res://town_attributes.tscn" id="4_vkmqv"]
-[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="6_45dsv"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="6_45dsv"]
+[ext_resource type="PackedScene" uid="uid://bnsn8jn5g4gmi" path="res://Components/components.tscn" id="6_dvg2h"]
 
 [sub_resource type="GDScript" id="GDScript_wthq0"]
 script/source = "extends TileMap
@@ -151,3 +152,5 @@ theme_override_fonts/font = ExtResource("6_45dsv")
 text = "START
 LEARNING"
 horizontal_alignment = 1
+
+[node name="components" parent="." instance=ExtResource("6_dvg2h")]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://q77g2t8y7440"]
+
+[ext_resource type="Script" path="res://Leaderboard/leaderboard.gd" id="1_hieti"]
+
+[node name="leader_board" type="Node"]
+script = ExtResource("1_hieti")
+metadata/_edit_vertical_guides_ = [994.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 690.0
+offset_top = 106.0
+offset_right = 1301.0
+offset_bottom = 981.0
+color = Color(0.529412, 0.807843, 0.980392, 0.898039)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 2.0
+offset_right = 309.0
+offset_bottom = 28.0
+scale = Vector2(1.6, 1.6)
+size_flags_stretch_ratio = 0.0
+text = "leaderboard"
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 812.0
+offset_right = 583.0
+offset_bottom = 855.0
+text = "back to game"
+
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
