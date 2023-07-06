@@ -19,4 +19,15 @@ var question_path = ""
 #TileMap
 enum BuildingType { residential_building_1, supermarket_1, bank_1, farm_1, constrction_site_1, hospital_1}
 
+func _ready():
+	var file = FileAccess.open("res://XufengPart/BuildingType.json", FileAccess.READ)
+	var json_text = file.get_as_text()
+	file.close()
+	var json = JSON.new()
+	var parse_result = json.parse(json_text)
+	if not parse_result == OK:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_text, " at line ", json.get_error_line())
+	var BuildingTypeData = json.get_data()
+	print(BuildingTypeData)
+
 

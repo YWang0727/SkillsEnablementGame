@@ -1,0 +1,46 @@
+{
+  "buildings": [
+    {
+      "name": "Residential Building",
+      "tileID": 0,
+      "cost": 300,
+      "prosperity": 5,
+      "money": 0
+    },
+    {
+      "name": "Supermarket",
+      "tileID": 1,
+      "cost": 300,
+      "prosperity": 2,
+      "money": 100
+    },
+    {
+      "name": "Bank",
+      "tileID": 2,
+      "cost": 800,
+      "prosperity": 5,
+      "money": 300
+    },
+    {
+      "name": "Farm",
+      "tileID": 3,
+      "cost": 200,
+      "prosperity": 3,
+      "money": 0
+    },
+    {
+      "name": "Construction Site",
+      "tileID": 4,
+      "cost": 300,
+      "prosperity": 1,
+      "money": 0
+    },
+    {
+      "name": "Hospital",
+      "tileID": 5,
+      "cost": 200,
+      "prosperity": 3,
+      "money": 0
+    }
+  ]
+}
