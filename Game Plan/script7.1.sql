@@ -28,7 +28,7 @@ create table user
         primary key,
     email      varchar(256) not null,
     password   varchar(256) not null,
-    avatar     mediumblob   null,
+    avatar     varchar(256)   null,
     name       varchar(50)  not null,
     cityMap    bigint       not null,
     isActive   tinyint      not null comment '0-not actived 1-actived',

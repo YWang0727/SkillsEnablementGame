@@ -17,5 +17,11 @@ mail:
   user: EduCity2023@gmail.com
   password: 2023EduCity
 
+aws:
+  s3:
+    region: eu-north-1
+    bucket: educity-develop
+    accessKey: AKIASJCBGYOULFO355B4
+    secretKey: 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
 
 

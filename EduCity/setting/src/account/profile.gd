@@ -5,9 +5,6 @@ var HttpLayer_Account = preload("res://setting/src/account/HttpLayer_Account.gd"
 var account_setting_scene: String = "res://setting/src/account/account_setting.tscn"
 var main_scene: String = ("res://main_scene.tscn")
 
-# instance of HttpLayer_Account Node
-var account_API
-
 # global variables
 var accountSettingButton: Button
 var backButton: Button
@@ -19,19 +16,20 @@ var bank: Label
 var supermarket: Label
 var hospital: Label
 var farm: Label
-var constructionSite: Label
+var policeStation: Label
 var avatar: TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameManager.user_id = 1
 	initiate_variables()
 	connect_signals()
-
-
-func initiate_variables():
-	account_API = HttpLayer_Account.new()
-	add_child(account_API)
 	
+	fetch_user_info()
+	fetch_user_property_info()
+
+
+func initiate_variables():	
 	#buttons
 	accountSettingButton = get_node("MarginContainer/Profile/BasicInfo/AccountSetting")
 	backButton = get_node("BackButton")
@@ -45,7 +43,7 @@ func initiate_variables():
 	supermarket = get_node("MarginContainer/Profile/PropertyInfo/Supermarket/Data")
 	hospital = get_node("MarginContainer/Profile/PropertyInfo/Hospital/Data")
 	farm = get_node("MarginContainer/Profile/PropertyInfo/Farm/Data")
-	constructionSite = get_node("MarginContainer/Profile/PropertyInfo/ConstructionSite/Data")
+	policeStation = get_node("MarginContainer/Profile/PropertyInfo/PoliceStation/Data")
 
 	avatar = get_node("MarginContainer/Profile/Avatar")
 
@@ -61,37 +59,63 @@ func _on_back_button_pressed():
 	get_tree().change_scene_to_file(main_scene)
 
 
+
+
+
+
+
 # fetch user basic infomation data from server
 func fetch_user_info():
+	var account_API = HttpLayer_Account.new()
+	add_child(account_API)
+	
 	# http bind
 	HttpLayer.http_completed.connect(display_user_info)
-	account_API.fetch_user_info()
+	account_API.fetch_user_info(GameManager.user_id)
 
-# fetch user's property infomation from server
-func fetch_user_property_info():
-	HttpLayer.http_completed.connect(display_user_property_info)
-	account_API.fetch_user_property_info()
 
 # diaplay user basic infomation in label
 func display_user_info(res, response_code, headers, route):
-	username.text = res.data.username
-	prosperity.text = res.data.prosperity
-	gold.text = res.data.gold
+	username.text = res.name
+	prosperity.text = str(res.prosperity)
+	gold.text = str(res.gold)
+	
+	# get the url of avatar and fetch avatar data from aws 
+	var avatarUrl = res.avatar
+	# if url is empty, display default image
+	if (avatarUrl != "" && avatarUrl != null):
+		fetch_user_avatar(avatarUrl)
+
+
+# get avatar file by calling avatar url
+func fetch_user_avatar(avatarUrl: String):
+	var httpRequest = HTTPRequest.new()
+	add_child(httpRequest)
+	
+	httpRequest.request(avatarUrl)
+	httpRequest.request_completed.connect(display_user_avatar)
+
+func display_user_avatar(result, result_code, headers, body):
+	var image = Image.new()
+	image.load_png_from_buffer(body)
+	var image_texture = ImageTexture.create_from_image(image)
+	avatar.texture = image_texture
+
+
+# fetch user's property infomation from server
+func fetch_user_property_info():
+	var account_API = HttpLayer_Account.new()
+	add_child(account_API)
+	
+	HttpLayer.http_completed.connect(display_user_property_info)
+	account_API.fetch_user_property_info(GameManager.user_id)
+
 
 # diaplay user property infomation in label
 func display_user_property_info(res, response_code, headers, route):
-	residentialBuilding.text = res.data.residentialBuilding
-	bank.text = res.data.bank
-	supermarket.text = res.data.supermarket
-	hospital.text = res.data.hospital
-	farm.text = res.data.farm
-	constructionSite.text = res.data.constructionSite
-
-
-# TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-func fetch_user_avatar():
-	account_API.fetch_user_avatar()
-	
-func display_user_avatar():
-	#avatar.text = 
-	pass
+	residentialBuilding.text = str(res.residentialBuildingAmount)
+	bank.text = str(res.bankAmount)
+	supermarket.text = str(res.supermarketAmount)
+	hospital.text = str(res.hospitalAmount)
+	farm.text = str(res.farmAmount)
+	policeStation.text = str(res.policeStationAmount)

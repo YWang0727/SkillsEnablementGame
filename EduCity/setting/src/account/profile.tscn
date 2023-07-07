@@ -190,16 +190,16 @@ layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
 
-[node name="ConstructionSite" type="HBoxContainer" parent="MarginContainer/Profile/PropertyInfo"]
+[node name="PoliceStation" type="HBoxContainer" parent="MarginContainer/Profile/PropertyInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/PropertyInfo/ConstructionSite"]
+[node name="Label" type="Label" parent="MarginContainer/Profile/PropertyInfo/PoliceStation"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
-text = "Construction Site:"
+text = "Police Station:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/PropertyInfo/ConstructionSite"]
+[node name="Data" type="Label" parent="MarginContainer/Profile/PropertyInfo/PoliceStation"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"

@@ -61,7 +61,7 @@ public class User implements Serializable {
      * 
      */
     @TableField(value = "avatar")
-    private byte[] avatar;
+    private String avatar;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -85,7 +85,8 @@ public class User implements Serializable {
             && (this.getCitymap() == null ? other.getCitymap() == null : this.getCitymap().equals(other.getCitymap()))
             && (this.getIsactive() == null ? other.getIsactive() == null : this.getIsactive().equals(other.getIsactive()))
             && (this.getActivecode() == null ? other.getActivecode() == null : this.getActivecode().equals(other.getActivecode()))
-            && (Arrays.equals(this.getAvatar(), other.getAvatar()));
+//            && (Arrays.equals(this.getAvatar(), other.getAvatar()));
+        ;
     }
 
     @Override
@@ -99,7 +100,7 @@ public class User implements Serializable {
         result = prime * result + ((getCitymap() == null) ? 0 : getCitymap().hashCode());
         result = prime * result + ((getIsactive() == null) ? 0 : getIsactive().hashCode());
         result = prime * result + ((getActivecode() == null) ? 0 : getActivecode().hashCode());
-        result = prime * result + (Arrays.hashCode(getAvatar()));
+//        result = prime * result + (Arrays.hashCode(getAvatar()));
         return result;
     }
 

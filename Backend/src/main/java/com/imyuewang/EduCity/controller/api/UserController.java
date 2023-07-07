@@ -46,7 +46,7 @@ public class UserController {
 
     @GetMapping("/get/{id}")
     @ApiOperation(value = "Get user info based on user ID")
-    public  User getUserById(@ApiParam(value = "User ID", required = true)
+    public User getUserById(@ApiParam(value = "User ID", required = true)
                             @PathVariable("id") Long id) {
         return userService.getById(id);
     }

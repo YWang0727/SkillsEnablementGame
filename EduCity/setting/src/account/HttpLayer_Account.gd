@@ -6,26 +6,14 @@ func _ready():
 	pass # Replace with function body.
 
 # fetch user basic infomation from server
-func fetch_user_info():
-	HttpLayer._apiCore("user/auth/getUserInfo", null, true, "GET", "getUserInfo", null)
+func fetch_user_info(userId):
+	HttpLayer._apiCore("setting/getUserInfo/" + str(userId), null, true, "GET", "getUserInfo")
 
-func fetch_user_property_info():
-	HttpLayer._apiCore("user/auth/getPropertyInfo", null, true, "GET", "getPropertyInfo", null)
-
-# send editing profile request to server
-func edit_user_profile(editedInfo):
-	HttpLayer._apiCore("user/auth/editUserInfo", editedInfo, true, "PUT", "editUserInfo", null)
+func fetch_user_property_info(userId):
+	HttpLayer._apiCore("setting/getPropertyInfo/" + str(userId), null, true, "GET", "getPropertyInfo")
 
 # send editing password request to server
-func edit_user_password(editedPassword):
-	HttpLayer._apiCore("user/auth/editPassword", editedPassword, true, "PUT", "editPassword", null)
+func edit_user_password(_credentials):
+	HttpLayer._apiCore("setting/editPassword", _credentials, true, "PUT", "editPassword")
 
-# TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-# get user's avatar picture file from server
-func fetch_user_avatar():
-	pass
-
-# send user's new avatar picture file to server
-func save_user_avatar():
-	pass
 
