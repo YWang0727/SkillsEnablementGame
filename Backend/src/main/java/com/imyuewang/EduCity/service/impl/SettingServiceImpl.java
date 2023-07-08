@@ -11,17 +11,12 @@ import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.EditUserParam;
 import com.imyuewang.EduCity.model.vo.PropertyInfoVO;
 import com.imyuewang.EduCity.model.vo.UserInfoVO;
-import com.imyuewang.EduCity.service.OSSService;
 import com.imyuewang.EduCity.service.SettingService;
-import com.imyuewang.EduCity.config.OSSConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 
 @Slf4j
 @Service
@@ -36,21 +31,19 @@ public class SettingServiceImpl implements SettingService {
     @Resource
     private TakenmapcellMapper takenMapCellMapper;
 
-    @Autowired
-    private OSSService ossService;
-
     /**
      * get userVO by user id
      */
     @Override
     public UserInfoVO getUserInfo(Long userId) {
         User user = userMapper.selectById(userId);
-        // get cityMap according to map id
-        Long cityMapId = user.getCitymap();
-        Citymap cityMap = cityMapMapper.selectById(cityMapId);
 
         UserInfoVO userInfoVO = new UserInfoVO();
         BeanUtils.copyProperties(user, userInfoVO);
+
+        // get cityMap according to map id
+        Long cityMapId = user.getCitymap();
+        Citymap cityMap = cityMapMapper.selectById(cityMapId);
         userInfoVO.setGold(cityMap.getGold());
         userInfoVO.setProsperity(cityMap.getProsperity());
 
@@ -99,14 +92,8 @@ public class SettingServiceImpl implements SettingService {
         User user = userMapper.selectById(editUserParam.getId());
         user.setName(editUserParam.getName());
         user.setEmail(editUserParam.getEmail());
+        user.setAvatar(avatar);
 
-        // upload avatar and get the url of avatar
-        // use user id as the name of avatar file
-        String key = "avatar/" + editUserParam.getId();
-        String url = ossService.putObject(OSSConfig.BUCKET, key, avatar);
-        user.setAvatar(url);
-
-        // update user
         userMapper.updateById(user);
     }
 

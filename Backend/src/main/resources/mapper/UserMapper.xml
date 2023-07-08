@@ -8,7 +8,7 @@
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="password" column="password" jdbcType="VARCHAR"/>
-            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="BLOB"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="citymap" column="cityMap" jdbcType="BIGINT"/>
             <result property="isactive" column="isActive" jdbcType="TINYINT"/>

@@ -26,7 +26,7 @@ func _ready():
 	connect_signals()
 	
 	fetch_user_info()
-	fetch_user_property_info()
+	#fetch_user_property_info()
 
 
 func initiate_variables():	
@@ -69,7 +69,6 @@ func fetch_user_info():
 	var account_API = HttpLayer_Account.new()
 	add_child(account_API)
 	
-	# http bind
 	HttpLayer.http_completed.connect(display_user_info)
 	account_API.fetch_user_info(GameManager.user_id)
 
@@ -80,36 +79,27 @@ func display_user_info(res, response_code, headers, route):
 	prosperity.text = str(res.prosperity)
 	gold.text = str(res.gold)
 	
-	# get the url of avatar and fetch avatar data from aws 
-	var avatarUrl = res.avatar
-	# if url is empty, display default image
-	if (avatarUrl != "" && avatarUrl != null):
-		fetch_user_avatar(avatarUrl)
+	# display byte data of avatar
+	var avatarStr = res.avatarStr
+	if (avatarStr != null && avatarStr != ""):
+		display_user_avatar(avatarStr)
 
-
-# get avatar file by calling avatar url
-func fetch_user_avatar(avatarUrl: String):
-	var httpRequest = HTTPRequest.new()
-	add_child(httpRequest)
-	
-	httpRequest.request(avatarUrl)
-	httpRequest.request_completed.connect(display_user_avatar)
-
-func display_user_avatar(result, result_code, headers, body):
+# decode avatar data stored in string and display it
+func display_user_avatar(avatarStr: String):
+	var avatarData = Marshalls.base64_to_raw(avatarStr)
 	var image = Image.new()
-	image.load_png_from_buffer(body)
+	image.load_jpg_from_buffer(avatarData)
 	var image_texture = ImageTexture.create_from_image(image)
 	avatar.texture = image_texture
 
 
 # fetch user's property infomation from server
 func fetch_user_property_info():
-	var account_API = HttpLayer_Account.new()
-	add_child(account_API)
+	var account_API2 = HttpLayer_Account.new()
+	add_child(account_API2)
 	
 	HttpLayer.http_completed.connect(display_user_property_info)
-	account_API.fetch_user_property_info(GameManager.user_id)
-
+	account_API2.fetch_user_property_info(GameManager.user_id)
 
 # diaplay user property infomation in label
 func display_user_property_info(res, response_code, headers, route):

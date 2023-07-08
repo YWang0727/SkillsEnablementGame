@@ -9,7 +9,9 @@ public class UserInfoVO {
 
     private String name;
 
-    private String avatar;
+    private byte[] avatar;
+
+    private String avatarStr;
 
     private Long prosperity;
 

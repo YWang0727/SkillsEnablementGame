@@ -77,22 +77,16 @@ func display_user_info(res, response_code, headers, route):
 	username.text = res.name
 	email.text = res.email
 	
-	var avatarUrl = res.avatar
-	# if url is empty, display default image
-	if (avatarUrl != "" && avatarUrl != null):
-		fetch_user_avatar(avatarUrl)
+	# display byte data of avatar
+	var avatarStr = res.avatarStr
+	if (avatarStr != null && avatarStr != ""):
+		display_user_avatar(avatarStr)
 
-# get avatar data by calling avatar url
-func fetch_user_avatar(avatarUrl: String):
-	var httpRequest = HTTPRequest.new()
-	add_child(httpRequest)
-	
-	httpRequest.request(avatarUrl)
-	httpRequest.request_completed.connect(display_user_avatar)
-
-func display_user_avatar(result, result_code, headers, body):
+# decode avatar data stored in string and display it
+func display_user_avatar(avatarStr: String):
+	var avatarData = Marshalls.base64_to_raw(avatarStr)
 	var image = Image.new()
-	image.load_png_from_buffer(body)
+	image.load_jpg_from_buffer(avatarData)
 	var image_texture = ImageTexture.create_from_image(image)
 	avatar.texture = image_texture
 
