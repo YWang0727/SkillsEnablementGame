@@ -22,6 +22,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectedBuildingType != -1:
 		cellPos = local_to_map(get_global_mouse_position())  # 将鼠标位置转换为TileMap单元位置
 		if _checkCellOverlap(selectedBuildingType,cellPos):
+			
+			# 读取所属building的属性，验证是否有钱可以建造，建造后属性加成
+			print(GameManager.buildings_data[selectedBuildingType])
+			
 			clear_layer(selectedLayer)
 			set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
 			_updateMapDict(selectedBuildingType, cellPos)
