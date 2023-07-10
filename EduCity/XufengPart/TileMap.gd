@@ -25,11 +25,19 @@ func _input(event: InputEvent) -> void:
 			
 			# 读取所属building的属性，验证是否有钱可以建造，建造后属性加成
 			print(GameManager.buildings_data[selectedBuildingType])
+	
+			var cost = GameManager.buildings_data[selectedBuildingType].cost
+			var prosperity = GameManager.buildings_data[selectedBuildingType].prosperity
+			var money = GameManager.buildings_data[selectedBuildingType].money
+		
+			if cost < Num.gold:
+				Num.gold = Num.gold - cost
+				Num.prosperity += prosperity
+				clear_layer(selectedLayer)
+				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
+				_updateMapDict(selectedBuildingType, cellPos)
+				selectedBuildingType = -1
 			
-			clear_layer(selectedLayer)
-			set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
-			_updateMapDict(selectedBuildingType, cellPos)
-			selectedBuildingType = -1
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
