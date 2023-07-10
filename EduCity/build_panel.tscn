@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bk0awdfht7gu7"]
+[gd_scene load_steps=16 format=3 uid="uid://bk0awdfht7gu7"]
 
 [ext_resource type="Texture2D" uid="uid://t05pe2odaxxh" path="res://LearningPage/Icon/horizontal-flip.png" id="1_jd812"]
 [ext_resource type="Script" path="res://build_panel.gd" id="1_mmosn"]
 [ext_resource type="Script" path="res://InteractiveButton.gd" id="3_5var6"]
+[ext_resource type="Script" path="res://XufengPart/VBoxContainer.gd" id="4_pxrgc"]
 [ext_resource type="Texture2D" uid="uid://d048ec4o4d3fy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_2.png" id="5_c6hji"]
 [ext_resource type="Texture2D" uid="uid://bpkxb270wo4fk" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_2.png" id="6_7exuj"]
 [ext_resource type="Texture2D" uid="uid://dwnd6ua2oci35" path="res://XufengPart/Icon_Buildings/Bank/bank_1.png" id="7_00kln"]
@@ -90,6 +91,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_gy46w")
 theme_override_constants/separation = 50
+script = ExtResource("4_pxrgc")
 
 [node name="ResBuildingButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
@@ -97,11 +99,60 @@ layout_mode = 2
 icon = ExtResource("5_c6hji")
 icon_alignment = 1
 
+[node name="Message" type="Control" parent="VBoxContainer/ResBuildingButton"]
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ResBuildingButton/Message"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/ResBuildingButton/Message"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "1
+2
+3"
+
 [node name="SupermarketButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 icon = ExtResource("6_7exuj")
 icon_alignment = 1
+
+[node name="Message" type="Control" parent="VBoxContainer/SupermarketButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/SupermarketButton/Message"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/SupermarketButton/Message"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "1
+2
+3"
 
 [node name="BankButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
@@ -110,11 +161,61 @@ icon = ExtResource("7_00kln")
 icon_alignment = 1
 expand_icon = true
 
+[node name="Message" type="Control" parent="VBoxContainer/BankButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/BankButton/Message"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/BankButton/Message"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "1
+2
+3"
+
 [node name="FarmButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 icon = ExtResource("8_jgumf")
 icon_alignment = 1
+
+[node name="Message" type="Control" parent="VBoxContainer/FarmButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/FarmButton/Message"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/FarmButton/Message"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "1
+2
+3"
 
 [node name="ConstructionSiteButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
@@ -122,14 +223,76 @@ layout_mode = 2
 icon = ExtResource("9_yymq1")
 icon_alignment = 1
 
+[node name="Message" type="Control" parent="VBoxContainer/ConstructionSiteButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ConstructionSiteButton/Message"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/ConstructionSiteButton/Message"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "1
+2
+3"
+
 [node name="HospitalButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 icon = ExtResource("10_sdy6q")
 icon_alignment = 1
 
+[node name="Message" type="Control" parent="VBoxContainer/HospitalButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HospitalButton/Message"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/HospitalButton/Message"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "1
+2
+3"
+
+[connection signal="mouse_entered" from="VBoxContainer/ResBuildingButton" to="VBoxContainer" method="_on_res_building_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/ResBuildingButton" to="VBoxContainer" method="_on_res_building_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/ResBuildingButton" to="." method="_on_res_building_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/SupermarketButton" to="VBoxContainer" method="_on_supermarket_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/SupermarketButton" to="VBoxContainer" method="_on_supermarket_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/SupermarketButton" to="." method="_on_supermarket_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/BankButton" to="VBoxContainer" method="_on_bank_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/BankButton" to="VBoxContainer" method="_on_bank_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/BankButton" to="." method="_on_bank_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/FarmButton" to="VBoxContainer" method="_on_farm_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/FarmButton" to="VBoxContainer" method="_on_farm_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/FarmButton" to="." method="_on_farm_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/ConstructionSiteButton" to="VBoxContainer" method="_on_construction_site_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/ConstructionSiteButton" to="VBoxContainer" method="_on_construction_site_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/ConstructionSiteButton" to="." method="_on_construction_site_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/HospitalButton" to="VBoxContainer" method="_on_hospital_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HospitalButton" to="VBoxContainer" method="_on_hospital_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/HospitalButton" to="." method="_on_hospital_button_pressed"]
