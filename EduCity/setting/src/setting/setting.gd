@@ -12,8 +12,8 @@ func _ready():
 	connect_signals()
 	
 	# default settings of volume
-	musicSlider.value = 0.7
-	soundSlider.value = 0.7
+	musicSlider.value = GameManager.music_volume
+	soundSlider.value = GameManager.sound_volume
 
 func initiate_variables():
 	musicSlider = get_node("Settings/VBoxContainer/Music/HSlider")
@@ -32,11 +32,13 @@ func connect_signals():
 
 # control background music volume
 func _on_music_volume_changed(value: float):
+	GameManager.music_volume = value
 	AudioServer.set_bus_volume_db(0, linear_to_db(value))
 	AudioServer.set_bus_mute(0, value < 0.01)
 
 # control sound effect volume
 func _on_sound_volume_changed(value: float):
+	GameManager.sound_volume = value
 	AudioServer.set_bus_volume_db(1, linear_to_db(value))
 	AudioServer.set_bus_mute(1, value < 0.01)
 

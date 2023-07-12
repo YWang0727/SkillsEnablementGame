@@ -108,3 +108,4 @@ func _submitQuiz(_credentials):
 	
 func _getStatus(_credentials):
 	_apiCore("learn/status", _credentials, false, "POST", "status")
+	

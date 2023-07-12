@@ -23,6 +23,10 @@ var gold = 0
 var prosperity = 0
 var construction_speed = 0
 
+#Setting
+var music_volume = 0.7
+var sound_volume = 0.7
+
 func _ready():
 	var file = FileAccess.open("res://XufengPart/BuildingType.json", FileAccess.READ)
 	var json_text = file.get_as_text()
@@ -33,4 +37,10 @@ func _ready():
 		#print("JSON Parse Error: ", json.get_error_message(), " in ", json_text, " at line ", json.get_error_line())
 	var BuildingJsonData = json.get_data()
 	buildings_data = BuildingJsonData["buildings"]
+	
+	set_volume()
 
+# initialize the volume of music and sound effect
+func set_volume():
+	AudioServer.set_bus_volume_db(0, linear_to_db(music_volume))
+	AudioServer.set_bus_volume_db(1, linear_to_db(sound_volume))

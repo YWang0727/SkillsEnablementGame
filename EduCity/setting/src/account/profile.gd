@@ -2,6 +2,7 @@ extends Control
 
 # preload the HttpLayer_Account Node
 var HttpLayer_Account = preload("res://setting/src/account/HttpLayer_Account.gd")
+var account_API
 var account_setting_scene: String = "res://setting/src/account/account_setting.tscn"
 var main_scene: String = ("res://main_scene.tscn")
 
@@ -21,15 +22,20 @@ var avatar: TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameManager.user_id = 1
 	initiate_variables()
 	connect_signals()
 	
+	# it turns out a signal can only be connected to one function...
+	HttpLayer.http_completed.connect(http_completed)
+	
+	# render profiles
 	fetch_user_info()
-	#fetch_user_property_info()
+	fetch_user_property_info()
 
 
-func initiate_variables():	
+func initiate_variables():
+	account_API = HttpLayer_Account.new()
+
 	#buttons
 	accountSettingButton = get_node("MarginContainer/Profile/BasicInfo/AccountSetting")
 	backButton = get_node("BackButton")
@@ -60,21 +66,26 @@ func _on_back_button_pressed():
 
 
 
-
-
-
-
 # fetch user basic infomation data from server
 func fetch_user_info():
-	var account_API = HttpLayer_Account.new()
-	add_child(account_API)
-	
-	HttpLayer.http_completed.connect(display_user_info)
 	account_API.fetch_user_info(GameManager.user_id)
+
+# fetch user's property infomation from server
+func fetch_user_property_info():
+	account_API.fetch_user_property_info(GameManager.user_id)
+
+func http_completed(res, response_code, headers, route):
+	if (response_code == 200):
+		if (route == "getUserInfo"):
+			display_user_info(res)
+		elif (route == "getPropertyInfo"):
+			display_user_property_info(res)
+	else:
+		print("can't get user's data")
 
 
 # diaplay user basic infomation in label
-func display_user_info(res, response_code, headers, route):
+func display_user_info(res):
 	username.text = res.name
 	prosperity.text = str(res.prosperity)
 	gold.text = str(res.gold)
@@ -93,16 +104,8 @@ func display_user_avatar(avatarStr: String):
 	avatar.texture = image_texture
 
 
-# fetch user's property infomation from server
-func fetch_user_property_info():
-	var account_API2 = HttpLayer_Account.new()
-	add_child(account_API2)
-	
-	HttpLayer.http_completed.connect(display_user_property_info)
-	account_API2.fetch_user_property_info(GameManager.user_id)
-
 # diaplay user property infomation in label
-func display_user_property_info(res, response_code, headers, route):
+func display_user_property_info(res):
 	residentialBuilding.text = str(res.residentialBuildingAmount)
 	bank.text = str(res.bankAmount)
 	supermarket.text = str(res.supermarketAmount)

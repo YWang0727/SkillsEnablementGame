@@ -27,13 +27,12 @@ func _ready():
 	initiate_variales()
 	connect_signals()
 	
-	GameManager.user_id = 1
+	HttpLayer.http_completed.connect(http_completed)
 	
 	fetch_user_info()
 
 func initiate_variales():
 	account_API = HttpLayer_Account.new()
-	add_child(account_API)
 	
 	alert = get_node("Alert")
 	uploadFileButton = get_node("Edit/VBoxContainer/Avatar/HBoxContainer/Upload/UploadButton")
@@ -69,30 +68,12 @@ func _on_back_button_pressed():
 
 # fetched user basic infomation from server
 func fetch_user_info():
-	HttpLayer.http_completed.connect(display_user_info)
 	account_API.fetch_user_info(GameManager.user_id)
-
-# diaplay user infomation as default text in line editor
-func display_user_info(res, response_code, headers, route):
-	username.text = res.name
-	email.text = res.email
-	
-	# display byte data of avatar
-	var avatarStr = res.avatarStr
-	if (avatarStr != null && avatarStr != ""):
-		display_user_avatar(avatarStr)
-
-# decode avatar data stored in string and display it
-func display_user_avatar(avatarStr: String):
-	var avatarData = Marshalls.base64_to_raw(avatarStr)
-	var image = Image.new()
-	image.load_jpg_from_buffer(avatarData)
-	var image_texture = ImageTexture.create_from_image(image)
-	avatar.texture = image_texture
 
 
 # display the window for uploading file when pressing button upload
 func _on_fileupload_button_pressed():
+	fileUploadWindow.add_filter("*.jpg", "Images")
 	fileUploadWindow.popup_centered()
 
 # process the uploaded file
@@ -111,11 +92,13 @@ func _on_file_upload_window_file_selected(path: String):
 func edit_user_profile():
 	var httpRequest = HTTPRequest.new()
 	add_child(httpRequest)
+	httpRequest.request_completed.connect(self.edit_user_profile_request_completed.bind(httpRequest))
 	
 	var url = "http://localhost:8080/setting/editUserInfo"
 	var headers = PackedStringArray(["Content-Type: multipart/form-data; boundary=MyBoundary"])
 	
-	# create the body part of editing user info request
+	# create the body of editing user info request
+	# use from to send request, first part is the json data, second is the picture byte data
 	var body = PackedByteArray()
 	body.append_array("--MyBoundary\r\n".to_utf8_buffer())
 	body.append_array("Content-Disposition: form-data; name=\"json\"\r\n".to_utf8_buffer())
@@ -135,16 +118,17 @@ func edit_user_profile():
 	body.append_array("\r\n".to_utf8_buffer())
 	body.append_array(uploadedFile)
 	body.append_array("\r\n".to_utf8_buffer())
-	
 	body.append_array("--MyBoundary--".to_utf8_buffer())
 	
 	httpRequest.request_raw(url, headers, HTTPClient.METHOD_PUT, body)
 
+func edit_user_profile_request_completed(result, response_code, headers, body, httpRequest: HTTPRequest):
+	if (response_code == 200):
+		HttpLayer._destroyHttpObject(httpRequest)
+		print("success in editting user's profile")
+	else:
+		print("fail to edit user's profile")
 
-
-
-
-# TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 # send editing password request to server
 func edit_user_password():
 	account_API.edit_user_password({
@@ -164,3 +148,29 @@ func check_password_format():
 	alert.set_message("Wrong old password")
 	alert.popup_centered_ratio(0.3)
 
+func http_completed(res, response_code, headers, route):
+	if (response_code == 200):
+		if (route == "getUserInfo"):
+			display_user_info(res)
+		elif (route == "editPassword"):
+			pass
+	else:
+		print("can't get user's data")
+		
+# diaplay user infomation as default text in line editor
+func display_user_info(res):
+	username.text = res.name
+	email.text = res.email
+	
+	# display byte data of avatar
+	var avatarStr = res.avatarStr
+	if (avatarStr != null && avatarStr != ""):
+		display_user_avatar(avatarStr)
+
+# decode avatar data stored in string and display it
+func display_user_avatar(avatarStr: String):
+	var avatarData = Marshalls.base64_to_raw(avatarStr)
+	var image = Image.new()
+	image.load_jpg_from_buffer(avatarData)
+	var image_texture = ImageTexture.create_from_image(image)
+	avatar.texture = image_texture

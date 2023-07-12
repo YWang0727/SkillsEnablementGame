@@ -34,6 +34,7 @@ public class SettingController {
     public UserInfoVO getUserInfo(@PathVariable("id") Long id) {
         UserInfoVO userInfoVO = settingService.getUserInfo(id);
         // convert byte to string using base64 encoder
+        // only using jpg, not png etc.
         String strAvatar = Base64.getEncoder().encodeToString(userInfoVO.getAvatar());
         userInfoVO.setAvatarStr(strAvatar);
         userInfoVO.setAvatar(null);

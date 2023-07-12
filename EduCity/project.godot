@@ -15,6 +15,10 @@ run/main_scene="res://loginPage/login.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://setting/src/music/default_bus_layout.tres"
+
 [autoload]
 
 GameManager="*res://GameManager.gd"
