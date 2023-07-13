@@ -25,16 +25,21 @@ func _on_res_building_button_pressed():
 	tileMap.selectedBuildingType = GameManager.BuildingType.residential_building_1
 
 func _on_supermarket_button_pressed():
-	tileMap.selectedBuildingType = GameManager.BuildingType.supermarket_1
+	if IfLock.if_lock[1] == 1:
+		tileMap.selectedBuildingType = GameManager.BuildingType.supermarket_1
 
 func _on_bank_button_pressed():
-	tileMap.selectedBuildingType = GameManager.BuildingType.bank_1
+	if IfLock.if_lock[2] == 1:
+		tileMap.selectedBuildingType = GameManager.BuildingType.bank_1
 
 func _on_farm_button_pressed():
-	tileMap.selectedBuildingType = GameManager.BuildingType.farm_1
+	if IfLock.if_lock[3] == 1:
+		tileMap.selectedBuildingType = GameManager.BuildingType.farm_1
 
 func _on_construction_site_button_pressed():
-	tileMap.selectedBuildingType = GameManager.BuildingType.constrction_site_1
+	if IfLock.if_lock[4] == 1:
+		tileMap.selectedBuildingType = GameManager.BuildingType.constrction_site_1
 
 func _on_hospital_button_pressed():
-	tileMap.selectedBuildingType = GameManager.BuildingType.hospital_1
+	if IfLock.if_lock[5] == 1:
+		tileMap.selectedBuildingType = GameManager.BuildingType.hospital_1
