@@ -1,122 +1,122 @@
 {
-    "questions": [
-      {
-        "id": 1,
-        "question": "In WDG Automation Studio, several commands for handling files have the parameter “File System”, which must be filled in for the correct handling of files. If the parameter is not entered, the script will run normally. basis is best encapsulated by which of the following cloud business enablers?",
-        "options": [
-          "True",
-          "False"
-        ],
-        "answers": [
-            0
-        ]
-      },
-      {
-        "id": 2,
-        "question": "WDG Studio is integrated with WDG Automation's built-in version control system, allowing scripts to be published to the client repository and WDG app. Wdg's version control system allows you to:\nI) Simple incremental versioning: Each published script increments the last version number;\nII) Modification History: The script’s modification history can be viewed in comments added during its publication;\nIII) Restoration: Earlier versions of a script can be restored to accommodate changes;\nIV) Production version: A specific baseline version can be referenced as the production version, making it accessible to be used when calling the bot individually or via other scripts.\nSelect the option that presents all the correct alternatives.",
-        "options": [
-          "I e IV.",
-          "II e I.",
-          "II, III e IV.",
-          "I, III e IV.",
-          "All the above."
-        ],
-        "answers": [
-            4
-        ]
-      },
-      {
-        "id": 3,
-        "question": "In the WDG Automation Language (WAL), variables are a symbolic reference to the memory position that stores data at runtime. This data can be obtained by referencing the variable name using the syntax: ${<variable_name>}. ",
-        "options": [
-            "True",
-            "False"
-        ],
-        "answers": [
-            0
-        ]
-      },
-      {
-        "id": 4,
-        "question": "Which the command has as one of its functions to print an output message?\nSelect one:",
-        "options": [
-            "Replace Text",
-            "Concatenate Texts",
-            "Log Message",
-            "Write to File"
-        ],
-        "answers": [
-            2
-        ]
-      },
-      {
-        "id": 5,
-        "question": "By clicking on the left side of the command line in the Designer interface, it is defined:\nSelect one:",
-        "options": [
-            "Variables",
-            "Subroutines",
-            "Assets",
-            "Breakpoints",
-            "Commands"
-        ],
-        "answers": [
-            3
-        ]
-      },
-      {
-        "id": 6,
-        "question": "In the WDG Automation Studio tool, the construction of the script done by drag-and-drop functionality is done in which interface?\nSelect one:",
-        "options": [
-            "Variables.",
-            "Call Graph.",
-            "Script.",
-            "Designer.",
-            "Workflow. "
-        ],
-        "answers": [
-            3
-        ]
-      },
-      {
-        "id": 7,
-        "question": "Check the correct alternative. \nI. Routines are not executed at runtime. \nII. Routine is a piece of code that can be called repeatedly by the main script. \nIII. There are two ways to create a new routine: the first is using the “New Routine” button in the “Home” menu;  the other is by right-clicking on a command, and going to “Advanced” > “Extract Routine” \nIV. We can visualize the flow of the routines created by going to the Call Graph interface.\nSelect one: ",
-        "options": [
-            "Only I is correct.",
-            "Only I and III are correct.",
-            "Only I and IV are correct.",
-            "Only I, II and III are correct.",
-            "Only II, III and IV are correct.",
-            "All are correct."
-        ],
-        "answers": [
-            4
-        ]
-      },
-      {
-        "id": 8,
-        "question": "The LIFO concept, meaning Last-in-first-out, means “The last in is first out”, relates to which type of collection?\nSelect one:",
-        "options": [
-            "List",
-            "Stack",
-            "Queue",
-            "None of the alternatives."
-        ],
-        "answers": [
-            1
-        ]
-      },
-      {
-        "id": 9,
-        "question": "If there are two text variables “WDG Automation” and “IBM Robotic Process Automation”, if you use the Replace Text (replaceText) command to replace the first variable with the second variable, what is the expected result?\nSelect one:",
-        "options": [
-            "WDG Automation",
-            "IBM Robotic Process Automation",
-            "WDG Robotic Process Automation",
-            "WDG AutomationIBM Robotic Process Automation"
-        ],
-        "answers": [
-            1
-        ]
-      }
-    ]
+	"questions": [
+	  {
+		"id": 1,
+		"question": "In WDG Automation Studio, several commands for handling files have the parameter “File System”, which must be filled in for the correct handling of files. If the parameter is not entered, the script will run normally. basis is best encapsulated by which of the following cloud business enablers?",
+		"options": [
+		  "True",
+		  "False"
+		],
+		"answers": [
+			0
+		]
+	  },
+	  {
+		"id": 2,
+		"question": "WDG Studio is integrated with WDG Automation's built-in version control system, allowing scripts to be published to the client repository and WDG app. Wdg's version control system allows you to:\nI) Simple incremental versioning: Each published script increments the last version number;\nII) Modification History: The script’s modification history can be viewed in comments added during its publication;\nIII) Restoration: Earlier versions of a script can be restored to accommodate changes;\nIV) Production version: A specific baseline version can be referenced as the production version, making it accessible to be used when calling the bot individually or via other scripts.\nSelect the option that presents all the correct alternatives.",
+		"options": [
+		  "I e IV.",
+		  "II e I.",
+		  "II, III e IV.",
+		  "I, III e IV.",
+		  "All the above."
+		],
+		"answers": [
+			4
+		]
+	  },
+	  {
+		"id": 3,
+		"question": "In the WDG Automation Language (WAL), variables are a symbolic reference to the memory position that stores data at runtime. This data can be obtained by referencing the variable name using the syntax: ${<variable_name>}. ",
+		"options": [
+			"True",
+			"False"
+		],
+		"answers": [
+			0
+		]
+	  },
+	  {
+		"id": 4,
+		"question": "Which the command has as one of its functions to print an output message?\nSelect one:",
+		"options": [
+			"Replace Text",
+			"Concatenate Texts",
+			"Log Message",
+			"Write to File"
+		],
+		"answers": [
+			2
+		]
+	  },
+	  {
+		"id": 5,
+		"question": "By clicking on the left side of the command line in the Designer interface, it is defined:\nSelect one:",
+		"options": [
+			"Variables",
+			"Subroutines",
+			"Assets",
+			"Breakpoints",
+			"Commands"
+		],
+		"answers": [
+			3
+		]
+	  },
+	  {
+		"id": 6,
+		"question": "In the WDG Automation Studio tool, the construction of the script done by drag-and-drop functionality is done in which interface?\nSelect one:",
+		"options": [
+			"Variables.",
+			"Call Graph.",
+			"Script.",
+			"Designer.",
+			"Workflow. "
+		],
+		"answers": [
+			3
+		]
+	  },
+	  {
+		"id": 7,
+		"question": "Check the correct alternative. \nI. Routines are not executed at runtime. \nII. Routine is a piece of code that can be called repeatedly by the main script. \nIII. There are two ways to create a new routine: the first is using the “New Routine” button in the “Home” menu;  the other is by right-clicking on a command, and going to “Advanced” > “Extract Routine” \nIV. We can visualize the flow of the routines created by going to the Call Graph interface.\nSelect one: ",
+		"options": [
+			"Only I is correct.",
+			"Only I and III are correct.",
+			"Only I and IV are correct.",
+			"Only I, II and III are correct.",
+			"Only II, III and IV are correct.",
+			"All are correct."
+		],
+		"answers": [
+			4
+		]
+	  },
+	  {
+		"id": 8,
+		"question": "The LIFO concept, meaning Last-in-first-out, means “The last in is first out”, relates to which type of collection?\nSelect one:",
+		"options": [
+			"List",
+			"Stack",
+			"Queue",
+			"None of the alternatives."
+		],
+		"answers": [
+			1
+		]
+	  },
+	  {
+		"id": 9,
+		"question": "If there are two text variables “WDG Automation” and “IBM Robotic Process Automation”, if you use the Replace Text (replaceText) command to replace the first variable with the second variable, what is the expected result?\nSelect one:",
+		"options": [
+			"WDG Automation",
+			"IBM Robotic Process Automation",
+			"WDG Robotic Process Automation",
+			"WDG AutomationIBM Robotic Process Automation"
+		],
+		"answers": [
+			1
+		]
+	  }
+	]
   }

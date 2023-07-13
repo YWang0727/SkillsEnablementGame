@@ -1,115 +1,115 @@
 {
-    "questions": [
-      {
-        "id": 1,
-        "question": "Which of the following examples best illustrates a cyber threat?",
-        "options": [
-          "A friend uses your Netflix login information without your knowledge",
-          "You receive an email from an unknown account asking you to click on a link to claim a prize.",
-          "Hackers infiltrate a banking website and obtain customer account information",
-          "Options B and C Only",
-          "All of the Above"
-        ],
-        "answers": [
-            3
-        ]
-      },
-      {
-        "id": 2,
-        "question": "Based on the IBM X-Force report “The shifting panorama of global cybercrime”, what is the biggest motivation for cybercriminals to attack companies around the world?",
-        "options": [
-          "Terrorism",
-          "Hacktivism",
-          "Financial gain",
-          "Espionage"
-        ],
-        "answers": [
-            2
-        ]
-      },
-      {
-        "id": 3,
-        "question": "The use of a cyber-attack for research purposes, such as probing potential vulnerabilities within a company’s network or conducting penetration testing, is known as:",
-        "options": [
-          "Code Red Hacking",
-          "Hacktivism",
-          "White Hat Hacking",
-          "Benign Hacking"
-        ],
-        "answers": [
-            2
-        ]
-      },
-      {
-        "id": 4,
-        "question": "Which of the following motivators explain why cyber criminals carry out cyber-attacks?",
-        "options": [
-            "Financial Gain",
-            "Hacktivism",
-            "Espionage",
-            "Options A and C Only",
-            "All the above"
-        ],
-        "answers": [
-            4
-        ]
-      },
-      {
-        "id": 5,
-        "question": "What is true about misconfiguration as one of the most challenging types of cyber threats?",
-        "options": [
-            "Incidents where attackers gain access to vulnerable systems left exposed by inexperienced administrators or users \n(e.g., default factory settings)",
-            "Employees and insiders falling for phishing emails that resulted in account takeover or access to sensitive data.",
-            "Erroneous permission-level attribution on cloud services and networked backups exposed sensitive data through weak\n or non-existent authentication.",
-            "Options 'A' and 'C' Only",
-            "All the above"
-        ],
-        "answers": [
-            3
-        ]
-      },
-      {
-        "id": 6,
-        "question": "[Select Two] Why is it important to create an integrated security domain system?",
-        "options": [
-            "Until recently, organizations have responded to security concerns by deploying a new tool to address each new risk.\n We’ve observed one company was using 85 tools from 45 different software vendors! Now they have to install, \nconfigure, manage, patch, upgrade, and pay for dozens of non-integrated solutions with limited views of the landscape.",
-            "Costly and complex fragmented security capabilities provide the visibility and coordination needed to stop today’s\n sophisticated attacks.",
-            "The security portfolio structured around domains presents a less organized fashion to make sense of threats using \nlogs, data, threats, flows, packets, etc.",
-            "Because it involves the partner ecosystem that allows collaboration across companies and competitors, to understand\n global threats and data, and adapt to new threats.",
-            "Because the traditional defense strategy is not to layer on another point-product tool or technology to an already\n fragmented and disjointed IT environment."
-        ],
-        "answers": [
-            0,
-            3
-        ]
-      },
-      {
-        "id": 7,
-        "question": "What is the chief weapon of a cyber attacker?",
-        "options": [
-            "Malware",
-            "SQLi",
-            "Phishing",
-            "Brute Force",
-            "Physical Access"
-        ],
-        "answers": [
-            0
-        ]
-      },
-      {
-        "id": 8,
-        "question": "Why are cyber-attacks significant for established companies?",
-        "options": [
-            "The cost to businesses from cyber-attacks and their consequences, such as data breaches, are always affordable \nbut exposes the company to internal inefficiencies which causes delays.",
-            "Enhances the brand reputation and increases customer loyalty.",
-            "Invites regulatory penalties.",
-            "All the above"
-        ],
-        "answers": [
-            2
-        ]
-      }
-    ]
+	"questions": [
+	  {
+		"id": 1,
+		"question": "Which of the following examples best illustrates a cyber threat?",
+		"options": [
+		  "A friend uses your Netflix login information without your knowledge",
+		  "You receive an email from an unknown account asking you to click on a link to claim a prize.",
+		  "Hackers infiltrate a banking website and obtain customer account information",
+		  "Options B and C Only",
+		  "All of the Above"
+		],
+		"answers": [
+			3
+		]
+	  },
+	  {
+		"id": 2,
+		"question": "Based on the IBM X-Force report “The shifting panorama of global cybercrime”, what is the biggest motivation for cybercriminals to attack companies around the world?",
+		"options": [
+		  "Terrorism",
+		  "Hacktivism",
+		  "Financial gain",
+		  "Espionage"
+		],
+		"answers": [
+			2
+		]
+	  },
+	  {
+		"id": 3,
+		"question": "The use of a cyber-attack for research purposes, such as probing potential vulnerabilities within a company’s network or conducting penetration testing, is known as:",
+		"options": [
+		  "Code Red Hacking",
+		  "Hacktivism",
+		  "White Hat Hacking",
+		  "Benign Hacking"
+		],
+		"answers": [
+			2
+		]
+	  },
+	  {
+		"id": 4,
+		"question": "Which of the following motivators explain why cyber criminals carry out cyber-attacks?",
+		"options": [
+			"Financial Gain",
+			"Hacktivism",
+			"Espionage",
+			"Options A and C Only",
+			"All the above"
+		],
+		"answers": [
+			4
+		]
+	  },
+	  {
+		"id": 5,
+		"question": "What is true about misconfiguration as one of the most challenging types of cyber threats?",
+		"options": [
+			"Incidents where attackers gain access to vulnerable systems left exposed by inexperienced administrators or users \n(e.g., default factory settings)",
+			"Employees and insiders falling for phishing emails that resulted in account takeover or access to sensitive data.",
+			"Erroneous permission-level attribution on cloud services and networked backups exposed sensitive data through weak\n or non-existent authentication.",
+			"Options 'A' and 'C' Only",
+			"All the above"
+		],
+		"answers": [
+			3
+		]
+	  },
+	  {
+		"id": 6,
+		"question": "[Select Two] Why is it important to create an integrated security domain system?",
+		"options": [
+			"Until recently, organizations have responded to security concerns by deploying a new tool to address each new risk.\n We’ve observed one company was using 85 tools from 45 different software vendors! Now they have to install, \nconfigure, manage, patch, upgrade, and pay for dozens of non-integrated solutions with limited views of the landscape.",
+			"Costly and complex fragmented security capabilities provide the visibility and coordination needed to stop today’s\n sophisticated attacks.",
+			"The security portfolio structured around domains presents a less organized fashion to make sense of threats using \nlogs, data, threats, flows, packets, etc.",
+			"Because it involves the partner ecosystem that allows collaboration across companies and competitors, to understand\n global threats and data, and adapt to new threats.",
+			"Because the traditional defense strategy is not to layer on another point-product tool or technology to an already\n fragmented and disjointed IT environment."
+		],
+		"answers": [
+			0,
+			3
+		]
+	  },
+	  {
+		"id": 7,
+		"question": "What is the chief weapon of a cyber attacker?",
+		"options": [
+			"Malware",
+			"SQLi",
+			"Phishing",
+			"Brute Force",
+			"Physical Access"
+		],
+		"answers": [
+			0
+		]
+	  },
+	  {
+		"id": 8,
+		"question": "Why are cyber-attacks significant for established companies?",
+		"options": [
+			"The cost to businesses from cyber-attacks and their consequences, such as data breaches, are always affordable \nbut exposes the company to internal inefficiencies which causes delays.",
+			"Enhances the brand reputation and increases customer loyalty.",
+			"Invites regulatory penalties.",
+			"All the above"
+		],
+		"answers": [
+			2
+		]
+	  }
+	]
   }
   

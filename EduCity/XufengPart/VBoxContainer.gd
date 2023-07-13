@@ -4,15 +4,21 @@ extends VBoxContainer
 @onready var res_building_message_node := get_node("ResBuildingButton/Message")
 @onready var res_building_lable := res_building_message_node.get_node("Lable")
 @onready var supermarket_message_node := get_node("SupermarketButton/Message")
+@onready var supermarket_message2_node := get_node("SupermarketButton/Message2")
 @onready var supermarket_lable := supermarket_message_node.get_node("Lable")
 @onready var bank_message_node := get_node("BankButton/Message")
+@onready var bank_message2_node := get_node("BankButton/Message2")
 @onready var bank_lable := bank_message_node.get_node("Lable")
 @onready var farm_message_node := get_node("FarmButton/Message")
+@onready var farm_message2_node := get_node("FarmButton/Message2")
 @onready var farm_lable := farm_message_node.get_node("Lable")
 @onready var constrction_site_message_node := get_node("ConstructionSiteButton/Message")
+@onready var constrction_site_message2_node := get_node("ConstructionSiteButton/Message2")
 @onready var constrction_site_lable := constrction_site_message_node.get_node("Lable")
 @onready var hospital_message_node := get_node("HospitalButton/Message")
+@onready var hospital_message2_node := get_node("HospitalButton/Message2")
 @onready var hospital_lable := hospital_message_node.get_node("Lable")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +36,10 @@ func _ready():
 			var control = button.get_node("Message")  # 替换 "Control" 为 Control 节点的路径
 			if control:
 				control.hide()  # 隐藏 Control 节点
+			
+			control = button.get_node("Message2")  # 替换 "Control" 为 Control 节点的路径
+			if control:
+				control.hide()  # 隐藏 Control 节点
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,37 +55,68 @@ func _load_message(id: int) -> String:
 	return str
 
 func _on_res_building_button_mouse_entered():
-	res_building_message_node.show()
+		res_building_message_node.show()
 
 func _on_res_building_button_mouse_exited():
-	res_building_message_node.hide()
+		res_building_message_node.hide()
 
 func _on_supermarket_button_mouse_entered():
-	supermarket_message_node.show()
+	if IfLock.if_lock[1] == 1:
+		supermarket_message_node.show()
+	if IfLock.if_lock[1] == 0:
+		supermarket_message2_node.show()
 
 func _on_supermarket_button_mouse_exited():
-	supermarket_message_node.hide()
+	if IfLock.if_lock[1] == 1:
+		supermarket_message_node.hide()
+	if IfLock.if_lock[1] == 0:
+		supermarket_message2_node.hide()
 
 func _on_bank_button_mouse_entered():
-	bank_message_node.show()
+	if IfLock.if_lock[2] == 1:
+		bank_message_node.show()
+	if IfLock.if_lock[2] == 0:
+		bank_message2_node.show()
 
 func _on_bank_button_mouse_exited():
-	bank_message_node.hide()
+	if IfLock.if_lock[2] == 1:
+		bank_message_node.hide()
+	if IfLock.if_lock[2] == 0:
+		bank_message2_node.hide()
 
 func _on_farm_button_mouse_entered():
-	farm_message_node.show()
+	if IfLock.if_lock[3] == 1:
+		farm_message_node.show()
+	if IfLock.if_lock[3] == 0:
+		farm_message2_node.show()
 
 func _on_farm_button_mouse_exited():
-	farm_message_node.hide()
+	if IfLock.if_lock[3] == 1:
+		farm_message_node.hide()
+	if IfLock.if_lock[3] == 0:
+		farm_message2_node.hide()
 
 func _on_construction_site_button_mouse_entered():
-	constrction_site_message_node.show()
+	if IfLock.if_lock[4] == 1:
+		constrction_site_message_node.show()
+	if IfLock.if_lock[4] == 0:
+		constrction_site_message2_node.show()
 
 func _on_construction_site_button_mouse_exited():
-	constrction_site_message_node.hide()
+	if IfLock.if_lock[4] == 1:
+		constrction_site_message_node.hide()
+	if IfLock.if_lock[4] == 0:
+		constrction_site_message2_node.hide()
 
 func _on_hospital_button_mouse_entered():
-	hospital_message_node.show()
+	if IfLock.if_lock[5] == 1:
+		hospital_message_node.show()
+	if IfLock.if_lock[5] == 0:
+		hospital_message2_node.show()
 
 func _on_hospital_button_mouse_exited():
-	hospital_message_node.hide()
+	if IfLock.if_lock[5] == 1:
+		hospital_message_node.hide()
+	if IfLock.if_lock[5] == 0:
+		hospital_message2_node.hide()
+

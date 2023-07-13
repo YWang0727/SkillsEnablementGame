@@ -25,6 +25,7 @@ GameManager="*res://GameManager.gd"
 HttpLayer="*res://httpLayer.gd"
 Music="*res://setting/src/music/music.tscn"
 Num="*res://Components/num.gd"
+IfLock="*res://XufengPart/lock/IfLock.gd"
 
 [display]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bk0awdfht7gu7"]
+[gd_scene load_steps=22 format=3 uid="uid://bk0awdfht7gu7"]
 
 [ext_resource type="Texture2D" uid="uid://t05pe2odaxxh" path="res://LearningPage/Icon/horizontal-flip.png" id="1_jd812"]
 [ext_resource type="Script" path="res://build_panel.gd" id="1_mmosn"]
@@ -6,10 +6,16 @@
 [ext_resource type="Script" path="res://XufengPart/VBoxContainer.gd" id="4_pxrgc"]
 [ext_resource type="Texture2D" uid="uid://d048ec4o4d3fy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_2.png" id="5_c6hji"]
 [ext_resource type="Texture2D" uid="uid://bpkxb270wo4fk" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_2.png" id="6_7exuj"]
+[ext_resource type="Script" path="res://XufengPart/lock/ResBuildingButton.gd" id="6_vtate"]
 [ext_resource type="Texture2D" uid="uid://dwnd6ua2oci35" path="res://XufengPart/Icon_Buildings/Bank/bank_1.png" id="7_00kln"]
+[ext_resource type="Script" path="res://XufengPart/lock/SupermarketButton.gd" id="8_c88r5"]
 [ext_resource type="Texture2D" uid="uid://dahxnhd8cox47" path="res://XufengPart/Icon_Buildings/Farm/farm_2.png" id="8_jgumf"]
 [ext_resource type="Texture2D" uid="uid://cmanatnt1bkvm" path="res://XufengPart/Icon_Buildings/Construction Site_1.png" id="9_yymq1"]
+[ext_resource type="Script" path="res://XufengPart/lock/BankButton.gd" id="10_c6m3a"]
 [ext_resource type="Texture2D" uid="uid://dow1mcdsd0e3f" path="res://XufengPart/Icon_Buildings/Hospital/hospital_2.png" id="10_sdy6q"]
+[ext_resource type="Script" path="res://XufengPart/lock/FarmButton.gd" id="12_mxusx"]
+[ext_resource type="Script" path="res://XufengPart/lock/ConstructionSiteButton.gd" id="14_wcb36"]
+[ext_resource type="Script" path="res://XufengPart/lock/HospitalButton.gd" id="16_at601"]
 
 [sub_resource type="GDScript" id="GDScript_v4m6m"]
 script/source = "extends Container
@@ -98,6 +104,7 @@ custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 icon = ExtResource("5_c6hji")
 icon_alignment = 1
+script = ExtResource("6_vtate")
 
 [node name="Message" type="Control" parent="VBoxContainer/ResBuildingButton"]
 anchors_preset = 0
@@ -128,6 +135,7 @@ custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 icon = ExtResource("6_7exuj")
 icon_alignment = 1
+script = ExtResource("8_c88r5")
 
 [node name="Message" type="Control" parent="VBoxContainer/SupermarketButton"]
 layout_mode = 3
@@ -154,12 +162,39 @@ text = "1
 2
 3"
 
+[node name="Message2" type="Control" parent="VBoxContainer/SupermarketButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/SupermarketButton/Message2"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/SupermarketButton/Message2"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "You need Finish 
+learning module of 
+Security
+to unlock Supermarket"
+
 [node name="BankButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 icon = ExtResource("7_00kln")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("10_c6m3a")
 
 [node name="Message" type="Control" parent="VBoxContainer/BankButton"]
 layout_mode = 3
@@ -186,11 +221,38 @@ text = "1
 2
 3"
 
+[node name="Message2" type="Control" parent="VBoxContainer/BankButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/BankButton/Message2"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/BankButton/Message2"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "You need Finish 
+learning module of 
+Data Science 
+to unlock Bank"
+
 [node name="FarmButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 icon = ExtResource("8_jgumf")
 icon_alignment = 1
+script = ExtResource("12_mxusx")
 
 [node name="Message" type="Control" parent="VBoxContainer/FarmButton"]
 layout_mode = 3
@@ -217,11 +279,38 @@ text = "1
 2
 3"
 
+[node name="Message2" type="Control" parent="VBoxContainer/FarmButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/FarmButton/Message2"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/FarmButton/Message2"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "You need Finish 
+learning module of 
+AI
+to unlock Farm"
+
 [node name="ConstructionSiteButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 icon = ExtResource("9_yymq1")
 icon_alignment = 1
+script = ExtResource("14_wcb36")
 
 [node name="Message" type="Control" parent="VBoxContainer/ConstructionSiteButton"]
 layout_mode = 3
@@ -248,10 +337,37 @@ text = "1
 2
 3"
 
+[node name="Message2" type="Control" parent="VBoxContainer/ConstructionSiteButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ConstructionSiteButton/Message2"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/ConstructionSiteButton/Message2"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "You need Finish 
+learning module of 
+Engineering
+to unlock Construction Site"
+
 [node name="HospitalButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 icon = ExtResource("10_sdy6q")
 icon_alignment = 1
+script = ExtResource("16_at601")
 
 [node name="Message" type="Control" parent="VBoxContainer/HospitalButton"]
 layout_mode = 3
@@ -277,6 +393,32 @@ offset_bottom = 70.0
 text = "1
 2
 3"
+
+[node name="Message2" type="Control" parent="VBoxContainer/HospitalButton"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HospitalButton/Message2"]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -29.0
+offset_right = -92.0
+offset_bottom = 103.0
+color = Color(0.160784, 0.160784, 0.160784, 0.54902)
+
+[node name="Lable" type="Label" parent="VBoxContainer/HospitalButton/Message2"]
+layout_mode = 0
+offset_left = -339.0
+offset_top = -16.0
+offset_right = -182.0
+offset_bottom = 70.0
+text = "You need Finish 
+learning module of 
+???
+to unlock Hospital"
 
 [connection signal="mouse_entered" from="VBoxContainer/ResBuildingButton" to="VBoxContainer" method="_on_res_building_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/ResBuildingButton" to="VBoxContainer" method="_on_res_building_button_mouse_exited"]

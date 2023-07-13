@@ -276,6 +276,8 @@ func _show_score():
 	var goldLabel = get_node("ShowScore/Gold")
 	goldLabel.text = goldLabel.text + var_to_str(golds)
 	
+	#传到attributes
+	Num.gold += golds
 	# attempts remaining
 	var attemptsLabel = get_node("ShowScore/Attempts")
 	attemptsLabel.text = attemptsLabel.text + var_to_str((3 - attempts) as int)

@@ -33,6 +33,8 @@ func _input(event: InputEvent) -> void:
 			if cost < Num.gold:
 				Num.gold = Num.gold - cost
 				Num.prosperity += prosperity
+				if selectedBuildingType == 4:
+					Num.build_speed += 1
 				clear_layer(selectedLayer)
 				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
 				_updateMapDict(selectedBuildingType, cellPos)

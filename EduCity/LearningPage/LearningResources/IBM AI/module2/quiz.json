@@ -1,175 +1,175 @@
 {
-    "questions": [
-      {
-        "id": 1,
-        "question": "Natural language processing is needed when you wish to mine data and extract meaningful insight from text.",
-        "options": [
-          "Unstructured",
-          "Structured",
-          "Relational",
-          "Formatted"
-        ],
-        "answers": [
-          0
-        ]
-      },
-      
-      {
-        "id": 2,
-        "question": "[Select Two] In a digital marketing firm, which of the following is a crucial data set for you to analyze?",
-        "options": [
-          "Ensure your customers are fully aware of which algorithms you used for transparency sake.",
-          "Strive to adopt a personalized 'chat and listen' approach versus a 'yell and sell' approach.",
-          "Being always on and keeping it real becomes therefore much more important for a brand than being picture \nor pixel perfect (and thus only sporadically on/always late).",
-          "Do not throw away any data points, it all helps to predict a better outcome"
-        ],
-        "answers": [
-          1,
-          2
-        ]
-      },
-      
-      {
-        "id": 3,
-        "question": "For a natural language processing (NLP) system, which of the following poses the greatest challenge?",
-        "options": [
-          "Syntax",
-          "Semantics",
-          "Pragmatics",
-          "Grammatical"
-        ],
-        "answers": [
-          2
-        ]
-      },
-      
-      {
-        "id": 4,
-        "question": "When you purchase an item from Amazon, it also suggests to you other related items. What is the name of that AI engine that brings forth suggestions as such?",
-        "options": [
-          "Annotator engine",
-          "Recommender engine",
-          "Clustering engine",
-          "Discovery engine"
-        ],
-        "answers": [
-          1
-        ]
-      },
-      
-      {
-        "id": 5,
-        "question": "Digressions allow for the user to break away from a specific conversation in order to temporarily change the topic before returning to the original dialog flow. How do you set up digressions in Watson Assistant?",
-        "options": [
-          "From the Intent tab",
-          "From the Entity tab",
-          "From the Dialog tab",
-          "From the Content Catalog tab"
-        ],
-        "answers": [
-          2
-        ]
-      },
-      
-      {
-        "id": 6,
-        "question": "Which of the following is an example of an Intent used in the Watson Assistant service?",
-        "options": [
-          "#turn on",
-          "@turn ono",
-          "%turn on",
-          "$turn on"
-        ],
-        "answers": [
-          0
-        ]
-      },
-      
-      {
-        "id": 7,
-        "question": "Is it possible to use more than one service in a given application deployed on IBM Cloud?",
-        "options": [
-          "Absolutely yes. You can add a number of connections to the app, each connection being a separate API",
-          "You will need a new app for each service.",
-          "Yes, but only if you upgrade to Premium service plan.",
-          "It is possible, but you must limit it to a maximum of two services per deployed application."
-        ],
-        "answers": [
-          0
-        ]
-      },
-      
-      {
-        "id": 8,
-        "question": "To build a conversation agent or a virtual agent that can sense and respond accordingly to frustrated or joyful inflections in human voice, you would need the Conversation service plus a minimum of what other essential service?",
-        "options": [
-          "Discovery",
-          "Speech to Text",
-          "Tone Analyzer",
-          "Natural Language Classifier"
-        ],
-        "answers": [
-          2
-        ]
-      },
-      
-      {
-        "id": 9,
-        "question": "[Select all that apply] When you think of the syntax of a sentence, which of the following comes to mind?",
-        "options": [
-          "Concept",
-          "Sentiment",
-          "Annotate",
-          "Tokenize"
-        ],
-        "answers": [
-          2,
-          3
-        ]
-      },
-      
-      {
-        "id": 10,
-        "question": "[Select Two] Why would you want to have more than one Workspace in a single instance of your Watson Assistant?",
-        "options": [
-          "You could use one workspace for regular chit-chat and the second one \nfor the domain-specific business conversations.",
-          "Each workspace could act as a separate bot or application",
-          "You can only have one Workspace per Instance, unless you upgrade to Premium",
-          "None of the above is true."
-        ],
-        "answers": [
-          0,
-          1
-        ]
-      },
-      
-      {
-        "id": 11,
-        "question": "In a conversational world, marketers can no longer rely on the 'yell & sell' approach and hope for the best. They need to 'chat and listen.' Which of the following terms best describes the new challenges that marketing departments face?",
-        "options": [
-          "They need artificial general intelligence (AGI) to address this issue.",
-          "It's about personalization.",
-          "It's about advanced algorithms.",
-          "It's about having immense amounts of data."
-        ],
-        "answers": [
-          1
-        ]
-      },
-      
-      {
-        "id": 12,
-        "question": "How is the syntax of a sentence different from the semantics of the same sentence?",
-        "options": [
-          "Syntax refers to the grammar of the sentence, namely, object-subject-verb.",
-          "Semantics refers to the Agent and Patient relationship of words in a sentence.",
-          "Semantics refers to the meaning of the sentence.",
-          "All of the above"
-        ],
-        "answers": [
-          2
-        ]
-      }
-      
-    ]
+	"questions": [
+	  {
+		"id": 1,
+		"question": "Natural language processing is needed when you wish to mine data and extract meaningful insight from text.",
+		"options": [
+		  "Unstructured",
+		  "Structured",
+		  "Relational",
+		  "Formatted"
+		],
+		"answers": [
+		  0
+		]
+	  },
+	  
+	  {
+		"id": 2,
+		"question": "[Select Two] In a digital marketing firm, which of the following is a crucial data set for you to analyze?",
+		"options": [
+		  "Ensure your customers are fully aware of which algorithms you used for transparency sake.",
+		  "Strive to adopt a personalized 'chat and listen' approach versus a 'yell and sell' approach.",
+		  "Being always on and keeping it real becomes therefore much more important for a brand than being picture \nor pixel perfect (and thus only sporadically on/always late).",
+		  "Do not throw away any data points, it all helps to predict a better outcome"
+		],
+		"answers": [
+		  1,
+		  2
+		]
+	  },
+	  
+	  {
+		"id": 3,
+		"question": "For a natural language processing (NLP) system, which of the following poses the greatest challenge?",
+		"options": [
+		  "Syntax",
+		  "Semantics",
+		  "Pragmatics",
+		  "Grammatical"
+		],
+		"answers": [
+		  2
+		]
+	  },
+	  
+	  {
+		"id": 4,
+		"question": "When you purchase an item from Amazon, it also suggests to you other related items. What is the name of that AI engine that brings forth suggestions as such?",
+		"options": [
+		  "Annotator engine",
+		  "Recommender engine",
+		  "Clustering engine",
+		  "Discovery engine"
+		],
+		"answers": [
+		  1
+		]
+	  },
+	  
+	  {
+		"id": 5,
+		"question": "Digressions allow for the user to break away from a specific conversation in order to temporarily change the topic before returning to the original dialog flow. How do you set up digressions in Watson Assistant?",
+		"options": [
+		  "From the Intent tab",
+		  "From the Entity tab",
+		  "From the Dialog tab",
+		  "From the Content Catalog tab"
+		],
+		"answers": [
+		  2
+		]
+	  },
+	  
+	  {
+		"id": 6,
+		"question": "Which of the following is an example of an Intent used in the Watson Assistant service?",
+		"options": [
+		  "#turn on",
+		  "@turn ono",
+		  "%turn on",
+		  "$turn on"
+		],
+		"answers": [
+		  0
+		]
+	  },
+	  
+	  {
+		"id": 7,
+		"question": "Is it possible to use more than one service in a given application deployed on IBM Cloud?",
+		"options": [
+		  "Absolutely yes. You can add a number of connections to the app, each connection being a separate API",
+		  "You will need a new app for each service.",
+		  "Yes, but only if you upgrade to Premium service plan.",
+		  "It is possible, but you must limit it to a maximum of two services per deployed application."
+		],
+		"answers": [
+		  0
+		]
+	  },
+	  
+	  {
+		"id": 8,
+		"question": "To build a conversation agent or a virtual agent that can sense and respond accordingly to frustrated or joyful inflections in human voice, you would need the Conversation service plus a minimum of what other essential service?",
+		"options": [
+		  "Discovery",
+		  "Speech to Text",
+		  "Tone Analyzer",
+		  "Natural Language Classifier"
+		],
+		"answers": [
+		  2
+		]
+	  },
+	  
+	  {
+		"id": 9,
+		"question": "[Select all that apply] When you think of the syntax of a sentence, which of the following comes to mind?",
+		"options": [
+		  "Concept",
+		  "Sentiment",
+		  "Annotate",
+		  "Tokenize"
+		],
+		"answers": [
+		  2,
+		  3
+		]
+	  },
+	  
+	  {
+		"id": 10,
+		"question": "[Select Two] Why would you want to have more than one Workspace in a single instance of your Watson Assistant?",
+		"options": [
+		  "You could use one workspace for regular chit-chat and the second one \nfor the domain-specific business conversations.",
+		  "Each workspace could act as a separate bot or application",
+		  "You can only have one Workspace per Instance, unless you upgrade to Premium",
+		  "None of the above is true."
+		],
+		"answers": [
+		  0,
+		  1
+		]
+	  },
+	  
+	  {
+		"id": 11,
+		"question": "In a conversational world, marketers can no longer rely on the 'yell & sell' approach and hope for the best. They need to 'chat and listen.' Which of the following terms best describes the new challenges that marketing departments face?",
+		"options": [
+		  "They need artificial general intelligence (AGI) to address this issue.",
+		  "It's about personalization.",
+		  "It's about advanced algorithms.",
+		  "It's about having immense amounts of data."
+		],
+		"answers": [
+		  1
+		]
+	  },
+	  
+	  {
+		"id": 12,
+		"question": "How is the syntax of a sentence different from the semantics of the same sentence?",
+		"options": [
+		  "Syntax refers to the grammar of the sentence, namely, object-subject-verb.",
+		  "Semantics refers to the Agent and Patient relationship of words in a sentence.",
+		  "Semantics refers to the meaning of the sentence.",
+		  "All of the above"
+		],
+		"answers": [
+		  2
+		]
+	  }
+	  
+	]
   }
