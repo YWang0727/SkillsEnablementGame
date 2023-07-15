@@ -4,10 +4,14 @@ var selectedTile: int = 98
 var selectedLayer: int = 1
 var buildingLayer: int = 2
 var selectedBuildingType: int = -1  # 选择的图块索引
-var mapDict = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for key in GameManager.mapDict.keys():
+		var id = GameManager.mapDict[key]
+		if id != selectedTile:
+			set_cell(buildingLayer, key, id, Vector2i(0,0))
+		pass
 	pass # Replace with function body.
 
 func _input(event: InputEvent) -> void:
@@ -50,15 +54,15 @@ func _checkCellOverlap(selectedBuildingType, cellPos) -> bool:
 	match selectedBuildingType:
 		# a building occupying 1 cell
 		GameManager.BuildingType.residential_building_1:
-			if mapDict.has(cellPos):
+			if GameManager.mapDict.has(cellPos):
 				return false
 		# a building occupying 2 cells
 		GameManager.BuildingType.supermarket_1, GameManager.BuildingType.hospital_1, GameManager.BuildingType.farm_1, GameManager.BuildingType.constrction_site_1:
-			if mapDict.has(cellPos) or mapDict.has(cellPos+Vector2i(1, 0)):
+			if GameManager.mapDict.has(cellPos) or GameManager.mapDict.has(cellPos+Vector2i(1, 0)):
 				return false
 		# a building occupying 4 cells
 		GameManager.BuildingType.bank_1:
-			if mapDict.has(cellPos) or mapDict.has(cellPos+Vector2i(1, 0)) or mapDict.has(cellPos+Vector2i(0, 1)) or mapDict.has(cellPos+Vector2i(1, 1)):
+			if GameManager.mapDict.has(cellPos) or GameManager.mapDict.has(cellPos+Vector2i(1, 0)) or GameManager.mapDict.has(cellPos+Vector2i(0, 1)) or GameManager.mapDict.has(cellPos+Vector2i(1, 1)):
 				return false
 	return true
 	
@@ -82,17 +86,17 @@ func _updateMapDict(selectedBuildingType, cellPos) -> void:
 	match selectedBuildingType:
 		# a building occupying 1 cell
 		GameManager.BuildingType.residential_building_1:
-			mapDict[cellPos] = selectedBuildingType
+			GameManager.mapDict[cellPos] = selectedBuildingType
 		# a building occupying 2 cells
 		GameManager.BuildingType.supermarket_1, GameManager.BuildingType.hospital_1, GameManager.BuildingType.farm_1, GameManager.BuildingType.constrction_site_1:
-			mapDict[cellPos] = selectedBuildingType
-			mapDict[cellPos+Vector2i(1, 0)] = selectedTile
+			GameManager.mapDict[cellPos] = selectedBuildingType
+			GameManager.mapDict[cellPos+Vector2i(1, 0)] = selectedTile
 		# a building occupying 4 cells
 		GameManager.BuildingType.bank_1:
-			mapDict[cellPos] = selectedBuildingType
-			mapDict[cellPos+Vector2i(1, 0)] = selectedTile
-			mapDict[cellPos+Vector2i(0, 1)] = selectedTile
-			mapDict[cellPos+Vector2i(1, 1)] = selectedTile
+			GameManager.mapDict[cellPos] = selectedBuildingType
+			GameManager.mapDict[cellPos+Vector2i(1, 0)] = selectedTile
+			GameManager.apDict[cellPos+Vector2i(0, 1)] = selectedTile
+			GameManager.mapDict[cellPos+Vector2i(1, 1)] = selectedTile
 
 func _checkIfLock(selectedBuildingType) -> bool:
 	if IfLock.if_lock[selectedBuildingType] == 1:

@@ -22,6 +22,7 @@ var buildings_data = []
 var gold = 0
 var prosperity = 0
 var construction_speed = 0
+var mapDict = {} # 储存房子建在哪个cell上，需要读写后端
 
 #Setting
 var music_volume = 0.7
