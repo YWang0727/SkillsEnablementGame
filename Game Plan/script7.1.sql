@@ -43,11 +43,12 @@ create table user
 
 create table user_quiz
 (
-    id       bigint not null,
-    quizId   int    not null,
-    topScore int    null,
-    attempts int    null,
-    primary key (id, quizId)
+    id          bigint not null,
+    quizId      int    not null,
+    knowledgeId int    not null,
+    attempts    int    null,
+    topScore    int    null,
+    primary key (id, quizId, knowledgeId)
 );
 
 

@@ -3,21 +3,17 @@ package com.imyuewang.EduCity.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.enums.ResultCode;
 import com.imyuewang.EduCity.exception.ApiException;
-import com.imyuewang.EduCity.model.entity.User;
+import com.imyuewang.EduCity.mapper.UserQuizMapper;
 import com.imyuewang.EduCity.model.entity.UserQuiz;
 import com.imyuewang.EduCity.model.param.QuizParam;
 import com.imyuewang.EduCity.model.vo.QuizVO;
 import com.imyuewang.EduCity.service.UserQuizService;
-import com.imyuewang.EduCity.mapper.UserQuizMapper;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +33,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
         if (this.lambdaQuery()
                 .eq(UserQuiz::getId, param.getId())
                 .eq(UserQuiz::getQuizid, param.getQuizId())
+                .eq(UserQuiz::getKnowledgeid, param.getKnowledgeId())
                 .count() != 0) {
             return;
         }
@@ -45,6 +42,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
         UserQuiz userQuiz = new UserQuiz();
         userQuiz.setId(param.getId());
         userQuiz.setQuizid(param.getQuizId());
+        userQuiz.setKnowledgeid(param.getKnowledgeId());
         userQuiz.setTopscore(0);
         userQuiz.setAttempts(0);
 
@@ -54,7 +52,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
     @Override
     public QuizVO submitQuiz(QuizParam param){
 
-        UserQuiz userQuiz = this.lambdaQuery().eq(UserQuiz::getId, param.getId()).eq(UserQuiz::getQuizid, param.getQuizId()).one();
+        UserQuiz userQuiz = this.lambdaQuery().eq(UserQuiz::getId, param.getId()).eq(UserQuiz::getQuizid, param.getQuizId()).eq(UserQuiz::getKnowledgeid, param.getKnowledgeId()).one();
 
         if(userQuiz == null){
             throw new ApiException(ResultCode.FAILED,"This user_quiz record does not exist");
@@ -68,7 +66,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
 
         // update to database
         UpdateWrapper<UserQuiz> updateWrapper = Wrappers.update();
-        updateWrapper.lambda().eq(UserQuiz::getId, userQuiz.getId()).eq(UserQuiz::getQuizid, userQuiz.getQuizid()).
+        updateWrapper.lambda().eq(UserQuiz::getId, userQuiz.getId()).eq(UserQuiz::getQuizid, userQuiz.getQuizid()).eq(UserQuiz::getKnowledgeid, userQuiz.getKnowledgeid()).
                 set(UserQuiz::getAttempts, userQuiz.getAttempts()).set(UserQuiz::getTopscore, userQuiz.getTopscore());
         update(null, updateWrapper);
 
@@ -91,7 +89,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
         int[] kList = {0,0,0,0,0};
 
         for (UserQuiz each: records) {
-            int k = each.getQuizid() / 10;
+            int k = each.getKnowledgeid();
             switch (k) {
                 case 1 -> kList[0] ++;
                 case 2 -> kList[1] ++;

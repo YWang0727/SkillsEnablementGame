@@ -190,7 +190,7 @@ func _get_quizStatus(knowledge):
 	var quizStatus = []
 	# get current knowledge
 	for index in GameManager.quizStatus.size():
-		if(str_to_var(str(GameManager.quizStatus[index].quizid).substr(0,1)) == knowledge):
+		if(GameManager.quizStatus[index].knowledgeid == knowledge):
 			quizStatus.append(GameManager.quizStatus[index])
 	print(quizStatus)		
 	
@@ -198,12 +198,12 @@ func _get_quizStatus(knowledge):
 	for index in quizStatus.size():
 		# quiz with attempts - 1
 		if(quizStatus[index].attempts != 3):
-			buttonList[str(quizStatus[index].quizid).substr(1,1)] = 1
+			buttonList[str(quizStatus[index].quizid)] = 1
 		# quiz without attempts - 2
 		else:
-			buttonList[str(quizStatus[index].quizid).substr(1,1)] = 2
+			buttonList[str(quizStatus[index].quizid)] = 2
 	print(buttonList)
-	
+
 	for index in buttonList:
 		match index:
 			"1":

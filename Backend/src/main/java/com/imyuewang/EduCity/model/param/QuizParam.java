@@ -21,5 +21,5 @@ public class QuizParam {
 
     private int score;
 
-    private int knowledge;
+    private int knowledgeId;
 }

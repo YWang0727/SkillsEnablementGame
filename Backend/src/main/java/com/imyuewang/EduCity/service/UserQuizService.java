@@ -1,7 +1,7 @@
 package com.imyuewang.EduCity.service;
 
-import com.imyuewang.EduCity.model.entity.UserQuiz;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.imyuewang.EduCity.model.entity.UserQuiz;
 import com.imyuewang.EduCity.model.param.QuizParam;
 import com.imyuewang.EduCity.model.vo.QuizVO;
 import org.springframework.stereotype.Service;

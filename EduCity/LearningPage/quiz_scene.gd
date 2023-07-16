@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var quizId = null
+var knowledgeId = null
 var quizConfig = {}
 var currentQuestionIndex := 0
 var questionSize := 0
@@ -30,7 +31,7 @@ func _ready():
 	HttpLayer.connect("http_completed", http_completed)
 	
 	quizId = _get_quizId("res://Config/quizConfig.json")
-	print(quizId)
+
 	_load_questions_from_json(GameManager.question_path)
 	
 	# create question node
@@ -85,7 +86,7 @@ func _get_quizId(file_path: String):
 		file.close()
 		
 		if quizConfig.has(GameManager.question_path):
-			return quizConfig[GameManager.question_path]
+			return var_to_str(quizConfig[GameManager.question_path])
 		else:
 			print("Quiz ID not found for file:", file_path)
 			return -1
@@ -206,14 +207,18 @@ func _on_option_button_pressed(multi: bool, button:Button, questionIndex: int, o
 
 
 func _on_submit_button_pressed():
+	submitButton.disabled = true
 	print("submit success")
 	
 	# calculate final score
 	_calcu_score()
 	# submit quiz data to backend
+	knowledgeId = quizId.substr(0, 1)
+	quizId = quizId.substr(1, 1)
 	HttpLayer._submitQuiz({
 				"id": GameManager.user_id,
 				"quizId": quizId,
+				"knowledgeId": knowledgeId,
 				"score": finalScore
 			})
 	# get attempts and golds from backend

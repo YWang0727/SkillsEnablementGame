@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3usvyjxv3ei2" path="res://LearningPage/Icon/LearningScene/Cloud.png" id="6_gyhmw"]
 [ext_resource type="Texture2D" uid="uid://h143riuulra4" path="res://LearningPage/Icon/LearningScene/DS.png" id="7_2bdkh"]
 [ext_resource type="Texture2D" uid="uid://des76ywgp2n68" path="res://LearningPage/Icon/LearningScene/Automation.png" id="8_j6vq3"]
-[ext_resource type="Texture2D" uid="uid://bfksryoffkqfk" path="res://LearningPage/Icon/locked.png" id="9_it7lq"]
+[ext_resource type="Texture2D" uid="uid://bfksryoffkqfk" path="res://XufengPart/Icon_Buildings/locked.png" id="9_it7lq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu525"]
 bg_color = Color(0.215686, 0.47451, 0.905882, 1)

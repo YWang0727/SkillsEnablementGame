@@ -1,6 +1,7 @@
 extends Node2D
 
 var quizId = null
+var knowledgeId = null
 var quizConfig = {}
 
 var richTextLabel = RichTextLabel.new()
@@ -62,7 +63,7 @@ func _get_quizId(file_path: String):
 		file.close()
 		
 		if quizConfig.has(GameManager.reading_path):
-			return quizConfig[GameManager.reading_path]
+			return var_to_str(quizConfig[GameManager.reading_path])
 		else:
 			print("Quiz ID not found for file:", file_path)
 			return -1
@@ -71,11 +72,13 @@ func _get_quizId(file_path: String):
 
 
 func _on_completedButton_clicked():
-	quizId = _get_quizId("res://Config/quizConfig.json")
+	quizId = str_to_var(_get_quizId("res://Config/quizConfig.json").substr(1,1))
+	knowledgeId = str_to_var(_get_quizId("res://Config/quizConfig.json").substr(0,1))
 	
 	# store complete status to database
 	HttpLayer._completeLesson({
 				"id": GameManager.user_id,
+				"knowledgeId": knowledgeId,
 				"quizId": quizId,
 			})
 	

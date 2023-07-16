@@ -20,7 +20,9 @@ public class QuizVO {
 
     private int scoreDifference;
 
+    // each module's status
     private List<UserQuiz> completeList;
 
+    // each knowledge's status: 0-not started, 1-in progress, 2-completed
     private int[] statusList;
 }
