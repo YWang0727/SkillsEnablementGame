@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserQuizMapper extends BaseMapper<UserQuiz> {
 
+
 }
 
 

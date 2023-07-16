@@ -12,6 +12,7 @@
             <result property="topscore" column="topScore" jdbcType="INTEGER"/>
     </resultMap>
 
+
     <sql id="Base_Column_List">
         id,quizId,knowledgeId,
         attempts,topScore

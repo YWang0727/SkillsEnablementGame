@@ -31,6 +31,7 @@ public class UserQuiz implements Serializable {
     @TableField(value = "knowledgeId")
     private Integer knowledgeid;
 
+
     /**
      * 
      */
