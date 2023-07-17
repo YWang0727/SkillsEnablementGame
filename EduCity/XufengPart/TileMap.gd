@@ -18,13 +18,13 @@ func _input(event: InputEvent) -> void:
 	var cellPos
 	# After choosing a building type, show selected cells when mouse hover
 	if event is InputEventMouseMotion and selectedBuildingType != -1:
-		cellPos = local_to_map(get_global_mouse_position())  # 将全局位置转换为TileMap单元位置
+		cellPos = local_to_map(get_global_mouse_position() - position)  # 将全局位置转换为TileMap单元位置
 		clear_layer(selectedLayer)
 		if _checkCellOverlap(selectedBuildingType,cellPos):
 			_drawSelectedCells(selectedBuildingType,cellPos)
 	# After pressing mouse on a cell, place a new building
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectedBuildingType != -1 and IfLock.if_lock[selectedBuildingType] == 1:
-		cellPos = local_to_map(get_global_mouse_position())  # 将鼠标位置转换为TileMap单元位置
+		cellPos = local_to_map(get_global_mouse_position() - position)  # 将鼠标位置转换为TileMap单元位置
 		if _checkCellOverlap(selectedBuildingType,cellPos):
 			
 			# 读取所属building的属性，验证是否有钱可以建造，建造后属性加成
