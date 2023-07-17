@@ -20,7 +20,7 @@ public class UserVO {
 
     private String name;
 
-    private String avatar;
+    private byte[] avatar;
 
     private String token;
 

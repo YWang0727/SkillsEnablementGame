@@ -12,13 +12,13 @@ public class PropertyInfoVO {
 
     private Integer residentialBuildingAmount;
 
-    private Integer bankAmount;
-
     private Integer supermarketAmount;
 
-    private Integer hospitalAmount;
+    private Integer bankAmount;
 
     private Integer farmAmount;
 
-    private Integer policeStationAmount;
+    private Integer constructionSiteAmount;
+
+    private Integer hospitalAmount;
 }

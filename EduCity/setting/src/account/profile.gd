@@ -17,7 +17,7 @@ var bank: Label
 var supermarket: Label
 var hospital: Label
 var farm: Label
-var policeStation: Label
+var constructionSite: Label
 var avatar: TextureRect
 
 # Called when the node enters the scene tree for the first time.
@@ -49,7 +49,7 @@ func initiate_variables():
 	supermarket = get_node("MarginContainer/Profile/PropertyInfo/Supermarket/Data")
 	hospital = get_node("MarginContainer/Profile/PropertyInfo/Hospital/Data")
 	farm = get_node("MarginContainer/Profile/PropertyInfo/Farm/Data")
-	policeStation = get_node("MarginContainer/Profile/PropertyInfo/PoliceStation/Data")
+	constructionSite = get_node("MarginContainer/Profile/PropertyInfo/ConstructionSite/Data")
 
 	avatar = get_node("MarginContainer/Profile/Avatar")
 
@@ -111,4 +111,4 @@ func display_user_property_info(res):
 	supermarket.text = str(res.supermarketAmount)
 	hospital.text = str(res.hospitalAmount)
 	farm.text = str(res.farmAmount)
-	policeStation.text = str(res.policeStationAmount)
+	constructionSite.text = str(res.constructionSiteAmount)
