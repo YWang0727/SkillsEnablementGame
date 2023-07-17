@@ -26,6 +26,18 @@ func _process(delta):
 				tileMap.position.y -= 5
 	pass
 
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_RIGHT:
+			moveDirection = direction.right
+		elif  event.keycode == KEY_LEFT:
+			moveDirection = direction.left
+		elif  event.keycode == KEY_UP:
+			moveDirection = direction.up
+		elif  event.keycode == KEY_DOWN:
+			moveDirection = direction.down
+	else:
+		moveDirection = direction.default
 
 func _on_right_move_button_button_down():
 	moveDirection = direction.right
