@@ -1,13 +1,17 @@
 package com.imyuewang.EduCity.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.imyuewang.EduCity.config.PasswordEncoder;
 import com.imyuewang.EduCity.enums.HouseType;
+import com.imyuewang.EduCity.enums.ResultCode;
+import com.imyuewang.EduCity.exception.ApiException;
 import com.imyuewang.EduCity.mapper.CitymapMapper;
 import com.imyuewang.EduCity.mapper.TakenmapcellMapper;
 import com.imyuewang.EduCity.mapper.UserMapper;
 import com.imyuewang.EduCity.model.entity.Citymap;
 import com.imyuewang.EduCity.model.entity.Takenmapcell;
 import com.imyuewang.EduCity.model.entity.User;
+import com.imyuewang.EduCity.model.param.EditPasswordParam;
 import com.imyuewang.EduCity.model.param.EditUserParam;
 import com.imyuewang.EduCity.model.vo.PropertyInfoVO;
 import com.imyuewang.EduCity.model.vo.UserInfoVO;
@@ -101,7 +105,18 @@ public class SettingServiceImpl implements SettingService {
      * handle the condition of changing password
      */
     @Override
-    public void editPassword() {
+    public void editPassword(EditPasswordParam passwordParam) {
+        User user = userMapper.selectById(passwordParam.getId());
+        String oldPassword = passwordParam.getOldPassword();
+        String newPassword = passwordParam.getNewPassword();
 
+        // validate
+        System.out.println(PasswordEncoder.encode(newPassword));
+        if (!PasswordEncoder.matches(oldPassword, user.getPassword())) {
+            throw new ApiException(ResultCode.VALIDATE_FAILED, "Password is incorrect!");
+        }
+
+        user.setPassword(PasswordEncoder.encode(newPassword));
+        userMapper.updateById(user);
     }
 }

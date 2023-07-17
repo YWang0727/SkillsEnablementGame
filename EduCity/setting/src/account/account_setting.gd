@@ -96,6 +96,7 @@ func edit_user_profile():
 	
 	var url = "http://localhost:8080/setting/editUserInfo"
 	var headers = PackedStringArray(["Content-Type: multipart/form-data; boundary=MyBoundary"])
+	headers.append(str("Authorization: Bearer ", GameManager.user_token))
 	
 	# create the body of editing user info request
 	# use from to send request, first part is the json data, second is the picture byte data
@@ -132,7 +133,7 @@ func edit_user_profile_request_completed(result, response_code, headers, body, h
 # send editing password request to server
 func edit_user_password():
 	account_API.edit_user_password({
-		"userId": GameManager.user_id,
+		"id": GameManager.user_id,
 		"oldPassword": oldPassword.text,
 		"newPassword": newPassword.text
 	})
@@ -153,9 +154,12 @@ func http_completed(res, response_code, headers, route):
 		if (route == "getUserInfo"):
 			display_user_info(res)
 		elif (route == "editPassword"):
-			pass
+			print("Change password successfully")
 	else:
-		print("can't get user's data")
+		if (route == "getUserInfo"):
+			print("can't get user's data")
+		elif (route == "editPassword"):
+			print("fail to change password")
 		
 # diaplay user infomation as default text in line editor
 func display_user_info(res):

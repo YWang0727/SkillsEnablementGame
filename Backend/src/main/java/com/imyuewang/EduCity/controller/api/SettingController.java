@@ -1,5 +1,6 @@
 package com.imyuewang.EduCity.controller.api;
 
+import com.imyuewang.EduCity.model.param.EditPasswordParam;
 import com.imyuewang.EduCity.model.param.EditUserParam;
 import com.imyuewang.EduCity.model.vo.PropertyInfoVO;
 import com.imyuewang.EduCity.model.vo.UserInfoVO;
@@ -57,8 +58,8 @@ public class SettingController {
 
     @PutMapping("/editPassword")
     @ApiOperation("modify user's password")
-    public String editPassword() {
-        settingService.editPassword();
+    public String editPassword(@RequestBody() EditPasswordParam passwordParam) {
+        settingService.editPassword(passwordParam);
         return CommonUtil.ACTION_SUCCESSFUL;
     }
 
