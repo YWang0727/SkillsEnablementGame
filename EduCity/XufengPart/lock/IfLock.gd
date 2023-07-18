@@ -14,6 +14,6 @@ extends Node
 #4-->Construction_Site
 #5-->Hospital
 
-var if_lock:Array = [1,0,0,0,0,0]
+var if_lock:Array = [1,1,1,1,1,1]
 
 var mapDict = {}
