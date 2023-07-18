@@ -5,12 +5,12 @@ import lombok.Getter;
 @Getter
 public enum HouseType {
 
-    BANK(0, "Bank"),
-    FARM(1, "Farm"),
-    HOSPITAL(2, "Hospital"),
-    POLICE_STATION(3, "Police Station"),
-    RESIDENTIAL_BUILDING(4, "Residential Building"),
-    SUPERMARKET(5, "Supermarket")
+    RESIDENTIAL_BUILDING(0, "Residential Building"),
+    SUPERMARKET(1, "Supermarket"),
+    BANK(2, "Bank"),
+    FARM(3, "Farm"),
+    CONSTRUCTION_SITE(4, "Construction Site"),
+    HOSPITAL(5, "Hospital")
     ;
 
     private int code;

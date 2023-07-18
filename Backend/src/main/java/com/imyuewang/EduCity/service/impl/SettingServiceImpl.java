@@ -65,12 +65,12 @@ public class SettingServiceImpl implements SettingService {
 
         // get gold and prosperity
         PropertyInfoVO propertyInfoVO = new PropertyInfoVO();
+        propertyInfoVO.setResidentialBuildingAmount(getBuildingAmount(HouseType.RESIDENTIAL_BUILDING, cityMapId));
+        propertyInfoVO.setSupermarketAmount(getBuildingAmount(HouseType.SUPERMARKET, cityMapId));
         propertyInfoVO.setBankAmount(getBuildingAmount(HouseType.BANK, cityMapId));
         propertyInfoVO.setFarmAmount(getBuildingAmount(HouseType.FARM, cityMapId));
+        propertyInfoVO.setConstructionSiteAmount(getBuildingAmount(HouseType.CONSTRUCTION_SITE, cityMapId));
         propertyInfoVO.setHospitalAmount(getBuildingAmount(HouseType.HOSPITAL, cityMapId));
-        propertyInfoVO.setSupermarketAmount(getBuildingAmount(HouseType.SUPERMARKET, cityMapId));
-        propertyInfoVO.setResidentialBuildingAmount(getBuildingAmount(HouseType.RESIDENTIAL_BUILDING, cityMapId));
-        propertyInfoVO.setPoliceStationAmount(getBuildingAmount(HouseType.POLICE_STATION, cityMapId));
 
         return propertyInfoVO;
     }

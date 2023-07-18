@@ -7,48 +7,50 @@ var selectedBuildingType: int = -1  # 选择的图块索引
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for key in GameManager.mapDict.keys():
-		var id = GameManager.mapDict[key]
-		if id != selectedTile:
-			set_cell(buildingLayer, key, id, Vector2i(0,0))
-		pass
-	pass # Replace with function body.
+	_drawMap()
 
 func _input(event: InputEvent) -> void:
 	var cellPos
+	var cost = GameManager.buildings_data[selectedBuildingType].cost
+	var prosperity = GameManager.buildings_data[selectedBuildingType].prosperity
+	var money = GameManager.buildings_data[selectedBuildingType].money
+	
 	# After choosing a building type, show selected cells when mouse hover
 	if event is InputEventMouseMotion and selectedBuildingType != -1:
-		cellPos = local_to_map(get_global_mouse_position())  # 将全局位置转换为TileMap单元位置
-		clear_layer(selectedLayer)
-		if _checkCellOverlap(selectedBuildingType,cellPos):
-			_drawSelectedCells(selectedBuildingType,cellPos)
+		# Check if have enough gold to build a building
+		if cost <= Num.gold:
+			cellPos = local_to_map(get_global_mouse_position() - position)  # 将全局位置转换为TileMap单元位置
+			clear_layer(selectedLayer)
+			if _checkCellOverlap(selectedBuildingType,cellPos):
+				_drawSelectedCells(selectedBuildingType,cellPos)
+		else:
+			var error_pannel = get_node("/root/MainScene/ErrorPannel")
+			error_pannel.popup_centered()
+			selectedBuildingType = -1
+			
 	# After pressing mouse on a cell, place a new building
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectedBuildingType != -1 and IfLock.if_lock[selectedBuildingType] == 1:
-		cellPos = local_to_map(get_global_mouse_position())  # 将鼠标位置转换为TileMap单元位置
+		cellPos = local_to_map(get_global_mouse_position() - position)  # 将鼠标位置转换为TileMap单元位置
 		if _checkCellOverlap(selectedBuildingType,cellPos):
+			Num.gold = Num.gold - cost
+			Num.prosperity += prosperity
+			if selectedBuildingType == 4:
+				Num.build_speed += 1
+			clear_layer(selectedLayer)
+			set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
+			_updateMapDict(selectedBuildingType, cellPos)
+			selectedBuildingType = -1
 			
-			# 读取所属building的属性，验证是否有钱可以建造，建造后属性加成
-			print(GameManager.buildings_data[selectedBuildingType])
-	
-			var cost = GameManager.buildings_data[selectedBuildingType].cost
-			var prosperity = GameManager.buildings_data[selectedBuildingType].prosperity
-			var money = GameManager.buildings_data[selectedBuildingType].money
-		
-			if cost < Num.gold:
-				Num.gold = Num.gold - cost
-				Num.prosperity += prosperity
-				if selectedBuildingType == 4:
-					Num.build_speed += 1
-				clear_layer(selectedLayer)
-				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
-				_updateMapDict(selectedBuildingType, cellPos)
-				selectedBuildingType = -1
-			
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
+func _drawMap() -> void:
+	for key in GameManager.mapDict.keys():
+		var id = GameManager.mapDict[key]
+		if id != selectedTile:
+			set_cell(buildingLayer, key, id, Vector2i(0,0))
+
 # If a new building overlaps with an existing house, return false
 func _checkCellOverlap(selectedBuildingType, cellPos) -> bool:
 	match selectedBuildingType:
@@ -95,7 +97,7 @@ func _updateMapDict(selectedBuildingType, cellPos) -> void:
 		GameManager.BuildingType.bank_1:
 			GameManager.mapDict[cellPos] = selectedBuildingType
 			GameManager.mapDict[cellPos+Vector2i(1, 0)] = selectedTile
-			GameManager.apDict[cellPos+Vector2i(0, 1)] = selectedTile
+			GameManager.mapDict[cellPos+Vector2i(0, 1)] = selectedTile
 			GameManager.mapDict[cellPos+Vector2i(1, 1)] = selectedTile
 
 func _checkIfLock(selectedBuildingType) -> bool:
