@@ -6,14 +6,17 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.enums.ResultCode;
 import com.imyuewang.EduCity.exception.ApiException;
+import com.imyuewang.EduCity.mapper.UserMapper;
 import com.imyuewang.EduCity.mapper.UserQuizMapper;
 import com.imyuewang.EduCity.model.entity.UserQuiz;
 import com.imyuewang.EduCity.model.param.QuizParam;
 import com.imyuewang.EduCity.model.vo.QuizVO;
 import com.imyuewang.EduCity.service.UserQuizService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -25,6 +28,9 @@ import java.util.List;
 @Slf4j
 public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
     implements UserQuizService{
+
+    @Resource
+    private UserQuizMapper userQuizMapper;
 
     @Override
     public void completeLesson(QuizParam param){
@@ -81,7 +87,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
         LambdaQueryWrapper<UserQuiz> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserQuiz::getId, param.getId());
 
-        List<UserQuiz> records = baseMapper.selectList(queryWrapper);
+        List<UserQuiz> records = userQuizMapper.selectList(queryWrapper);
 
         QuizVO quizVO = new QuizVO();
         quizVO.setCompleteList(records);

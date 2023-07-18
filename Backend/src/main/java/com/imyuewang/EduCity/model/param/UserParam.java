@@ -20,11 +20,11 @@ public class UserParam {
     @NotBlank(message = "Email is required.", groups = CreateUser.class)
     private String email;
 
-    @NotBlank(message = "Password is required.", groups = CreateUser.class)
+    //@NotBlank(message = "Password is required.", groups = CreateUser.class)
     @Length(min = 8, max = 20, message = "Password must be between 8-20 characters in length.", groups = CreateUser.class)
     private String password;
 
-    @NotBlank(message = "Username is required.", groups = CreateUser.class)
+    //@NotBlank(message = "Username is required.", groups = CreateUser.class)
     @Length(min = 8, max = 20, message = "Username must be between 4-20 characters in length.", groups = CreateUser.class)
     private String name;
 

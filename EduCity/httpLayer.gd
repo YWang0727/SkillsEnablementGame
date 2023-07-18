@@ -63,12 +63,11 @@ func _destroyHttpObject(_object):
 
 # The core operations used to make HTTP requests:
 # _apiCore(Endpoint of the request (router), Data to be sent (request body), Whether authorisation is required, Methods of request (GET, POST, PUT, DELETE, etc.), Route info, Redirected info)
-func _apiCore(_endpoint, _data, _authorize = false, _method="GET", _route = "", _redirectTo = null):
+func _apiCore(_endpoint, _data, _authorize, _method, _route , _redirectTo = null ):
 	# Create a new instance of HTTPRequest and connect it to the signal request_completed to trigger the specified callback function _on_HTTPRequest_request_completed when the request completes.
 	var http = HTTPRequest.new()
 	add_child(http)
 	http.use_threads = use_threads
-	http.request_completed.connect(_on_HTTPRequest_request_completed.bind(_route, http, _redirectTo))
 	
 	# Create a list containing request headers
 	var headers = [
@@ -90,14 +89,19 @@ func _apiCore(_endpoint, _data, _authorize = false, _method="GET", _route = "", 
 		print(http_error)
 	#	Loader.prog = null
 	#	Loader.close()
+	
+	http.request_completed.connect(_on_HTTPRequest_request_completed.bind(_route, http, _redirectTo))
 
 
 # Call the _apiCore function to send the corresponding API request
-func _login(_credentials, _redirectTo):
-	_apiCore("auth/login", _credentials, false, "POST", "login", _redirectTo)
+func _login(_credentials):
+	_apiCore("auth/login", _credentials, false, "POST", "login")
 	
-func _register(_credentials, _redirectTo):
-	_apiCore("register", _credentials, false, "POST", "register", _redirectTo)
+func _register(_credentials):
+	_apiCore("auth/register", _credentials, false, "POST", "register")
+
+func _emailVerification(_credentials):
+	_apiCore("user/email", _credentials, false, "POST", "email")
 	
 # api for learning_related scene	
 func _completeLesson(_credentials):

@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class MailUtil {
-    @Value("${mail.user}")
+    @Value("EduCity2023@gmail.com")
     private String USER; // Sender's email address
     @Value("${mail.password}")
     private String PASSWORD; // If it is a qq mailbox you can make the authorization code on the client side

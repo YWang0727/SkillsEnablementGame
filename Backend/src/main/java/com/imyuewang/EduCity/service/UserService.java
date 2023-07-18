@@ -2,6 +2,7 @@ package com.imyuewang.EduCity.service;
 
 import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.LoginParam;
+import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.param.UserParam;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -26,9 +27,9 @@ public interface UserService extends IService<User> {
      **/
     UserVO login(LoginParam loginParam);
 
-    void emailVerification(UserParam param);
+    UserVO emailVerification(UserParam param);
 
-    void active(String activeCode);
+    void active(UserParam param);
 
     /**
      * Add new user
@@ -46,5 +47,6 @@ public interface UserService extends IService<User> {
 //     **/
     //void update(UserParam param);
 
+    UserVO register(User newUser);
 
 }
