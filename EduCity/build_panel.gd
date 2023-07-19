@@ -43,3 +43,8 @@ func _on_construction_site_button_pressed():
 func _on_hospital_button_pressed():
 	if GameManager.statusList[4] == 2:
 		tileMap.selectedBuildingType = GameManager.BuildingType.hospital_1
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://LearningPage/learning_scene.tscn")
+	pass # Replace with function body.
