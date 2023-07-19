@@ -30,7 +30,7 @@ func _input(event: InputEvent) -> void:
 			
 	# After pressing mouse on a cell, place a new building
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectedBuildingType != -1:
-		if  selectedBuildingType == 0 or (selectedBuildingType != 0 and GameManager.statusList[selectedBuildingType - 1] == 2):
+		if  selectedBuildingType == 0 or (selectedBuildingType > 0 and GameManager.statusList[selectedBuildingType - 1] == 2):
 			cellPos = local_to_map(get_global_mouse_position() - position)  # 将鼠标位置转换为TileMap单元位置
 			if _checkCellOverlap(selectedBuildingType,cellPos):
 				Num.gold = Num.gold - cost
