@@ -92,4 +92,6 @@ public class Citymap implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+
 }

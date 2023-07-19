@@ -109,3 +109,5 @@ func _submitQuiz(_credentials):
 func _getStatus(_credentials):
 	_apiCore("learn/status", _credentials, false, "POST", "status")
 	
+func _leaderBoard():
+	_apiCore("map/leaderBoard/" + str(GameManager.user_id), null, false, "GET", "leaderBoard")

@@ -16,4 +16,6 @@ extends Node
 
 var if_lock:Array = [1,0,0,0,0,0]
 
+
 var mapDict = {}
+
