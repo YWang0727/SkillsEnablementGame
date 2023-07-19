@@ -15,7 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if IfLock.if_lock[1] == 1:
+	if GameManager.statusList[0] == 2:
 		icon = supermarket
 	else:
 		icon = lock

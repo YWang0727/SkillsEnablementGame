@@ -61,62 +61,63 @@ func _on_res_building_button_mouse_exited():
 		res_building_message_node.hide()
 
 func _on_supermarket_button_mouse_entered():
-	if IfLock.if_lock[1] == 1:
+	if GameManager.statusList[0] == 2:
 		supermarket_message_node.show()
-	if IfLock.if_lock[1] == 0:
+	else:
 		supermarket_message2_node.show()
 
 func _on_supermarket_button_mouse_exited():
-	if IfLock.if_lock[1] == 1:
+	if GameManager.statusList[0] == 2:
 		supermarket_message_node.hide()
-	if IfLock.if_lock[1] == 0:
+	else:
 		supermarket_message2_node.hide()
 
 func _on_bank_button_mouse_entered():
-	if IfLock.if_lock[2] == 1:
+	if GameManager.statusList[1] == 2:
 		bank_message_node.show()
-	if IfLock.if_lock[2] == 0:
+	else:
 		bank_message2_node.show()
 
 func _on_bank_button_mouse_exited():
-	if IfLock.if_lock[2] == 1:
+	if GameManager.statusList[1] == 2:
 		bank_message_node.hide()
-	if IfLock.if_lock[2] == 0:
+	else:
 		bank_message2_node.hide()
 
 func _on_farm_button_mouse_entered():
-	if IfLock.if_lock[3] == 1:
+	if GameManager.statusList[2] == 2:
 		farm_message_node.show()
-	if IfLock.if_lock[3] == 0:
+	else:
 		farm_message2_node.show()
 
 func _on_farm_button_mouse_exited():
-	if IfLock.if_lock[3] == 1:
+	if GameManager.statusList[2] == 2:
 		farm_message_node.hide()
-	if IfLock.if_lock[3] == 0:
+	else:
 		farm_message2_node.hide()
 
 func _on_construction_site_button_mouse_entered():
-	if IfLock.if_lock[4] == 1:
+	if GameManager.statusList[3] == 2:
 		constrction_site_message_node.show()
-	if IfLock.if_lock[4] == 0:
+	else:
 		constrction_site_message2_node.show()
+	
 
 func _on_construction_site_button_mouse_exited():
-	if IfLock.if_lock[4] == 1:
+	if GameManager.statusList[3] == 2:
 		constrction_site_message_node.hide()
-	if IfLock.if_lock[4] == 0:
+	else:
 		constrction_site_message2_node.hide()
 
 func _on_hospital_button_mouse_entered():
-	if IfLock.if_lock[5] == 1:
+	if GameManager.statusList[3] == 2:
 		hospital_message_node.show()
-	if IfLock.if_lock[5] == 0:
+	else:
 		hospital_message2_node.show()
 
 func _on_hospital_button_mouse_exited():
-	if IfLock.if_lock[5] == 1:
+	if GameManager.statusList[3] == 2:
 		hospital_message_node.hide()
-	if IfLock.if_lock[5] == 0:
+	else:
 		hospital_message2_node.hide()
 

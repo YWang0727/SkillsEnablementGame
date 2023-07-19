@@ -29,17 +29,18 @@ func _input(event: InputEvent) -> void:
 			selectedBuildingType = -1
 			
 	# After pressing mouse on a cell, place a new building
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectedBuildingType != -1 and IfLock.if_lock[selectedBuildingType] == 1:
-		cellPos = local_to_map(get_global_mouse_position() - position)  # 将鼠标位置转换为TileMap单元位置
-		if _checkCellOverlap(selectedBuildingType,cellPos):
-			Num.gold = Num.gold - cost
-			Num.prosperity += prosperity
-			if selectedBuildingType == 4:
-				Num.build_speed += 1
-			clear_layer(selectedLayer)
-			set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
-			_updateMapDict(selectedBuildingType, cellPos)
-			selectedBuildingType = -1
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and selectedBuildingType != -1:
+		if  selectedBuildingType == 0 or (selectedBuildingType != 0 and GameManager.statusList[selectedBuildingType - 1] == 2):
+			cellPos = local_to_map(get_global_mouse_position() - position)  # 将鼠标位置转换为TileMap单元位置
+			if _checkCellOverlap(selectedBuildingType,cellPos):
+				Num.gold = Num.gold - cost
+				Num.prosperity += prosperity
+				if selectedBuildingType == 4:
+					Num.build_speed += 1
+				clear_layer(selectedLayer)
+				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
+				_updateMapDict(selectedBuildingType, cellPos)
+				selectedBuildingType = -1
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -100,7 +101,4 @@ func _updateMapDict(selectedBuildingType, cellPos) -> void:
 			GameManager.mapDict[cellPos+Vector2i(0, 1)] = selectedTile
 			GameManager.mapDict[cellPos+Vector2i(1, 1)] = selectedTile
 
-func _checkIfLock(selectedBuildingType) -> bool:
-	if IfLock.if_lock[selectedBuildingType] == 1:
-		return true
-	return false
+

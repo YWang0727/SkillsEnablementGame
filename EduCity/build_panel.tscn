@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bk0awdfht7gu7"]
+[gd_scene load_steps=21 format=3 uid="uid://bk0awdfht7gu7"]
 
 [ext_resource type="Texture2D" uid="uid://t05pe2odaxxh" path="res://LearningPage/Icon/horizontal-flip.png" id="1_jd812"]
 [ext_resource type="Script" path="res://build_panel.gd" id="1_mmosn"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://XufengPart/VBoxContainer.gd" id="4_pxrgc"]
 [ext_resource type="Texture2D" uid="uid://d048ec4o4d3fy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_2.png" id="5_c6hji"]
 [ext_resource type="Texture2D" uid="uid://bpkxb270wo4fk" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_2.png" id="6_7exuj"]
-[ext_resource type="Script" path="res://XufengPart/lock/ResBuildingButton.gd" id="6_vtate"]
 [ext_resource type="Texture2D" uid="uid://dwnd6ua2oci35" path="res://XufengPart/Icon_Buildings/Bank/bank_1.png" id="7_00kln"]
 [ext_resource type="Script" path="res://XufengPart/lock/SupermarketButton.gd" id="8_c88r5"]
 [ext_resource type="Texture2D" uid="uid://dahxnhd8cox47" path="res://XufengPart/Icon_Buildings/Farm/farm_2.png" id="8_jgumf"]
@@ -104,7 +103,6 @@ custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 icon = ExtResource("5_c6hji")
 icon_alignment = 1
-script = ExtResource("6_vtate")
 
 [node name="Message" type="Control" parent="VBoxContainer/ResBuildingButton"]
 anchors_preset = 0

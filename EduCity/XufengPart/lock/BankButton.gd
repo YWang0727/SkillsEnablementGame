@@ -15,7 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if IfLock.if_lock[2] == 1:
+	if GameManager.statusList[1] == 2:
 		icon = bank
 	else:
 		icon = lock
