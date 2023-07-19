@@ -5,42 +5,48 @@
 	  "tileID": 0,
 	  "cost": 300,
 	  "prosperity": 5,
-	  "money": 0
+	  "money": 0,
+	  "knowledge": "null"
 	},
 	{
 	  "name": "Supermarket",
 	  "tileID": 1,
 	  "cost": 300,
 	  "prosperity": 2,
-	  "money": 100
+	  "money": 100,
+	  "knowledge": "Artificial Intelligence"
 	},
 	{
 	  "name": "Bank",
 	  "tileID": 2,
 	  "cost": 800,
 	  "prosperity": 5,
-	  "money": 300
+	  "money": 300,
+	  "knowledge": "IBM Security"
 	},
 	{
 	  "name": "Farm",
 	  "tileID": 3,
 	  "cost": 200,
 	  "prosperity": 3,
-	  "money": 0
+	  "money": 0,
+	  "knowledge": "IBM Cloud"
 	},
 	{
 	  "name": "Construction Site",
 	  "tileID": 4,
 	  "cost": 300,
 	  "prosperity": 1,
-	  "money": 0
+	  "money": 0,
+	  "knowledge": "Data Science"
 	},
 	{
 	  "name": "Hospital",
 	  "tileID": 5,
 	  "cost": 200,
 	  "prosperity": 3,
-	  "money": 0
+	  "money": 0,
+	  "knowledge": "IBM Automation"
 	}
   ]
 }

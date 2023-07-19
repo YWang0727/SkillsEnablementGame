@@ -78,7 +78,7 @@ func _load_message(id: int) -> String:
 	var str: String
 	if id != 0 and GameManager.statusList[id-1] != 2:
 		str = "You need Finish" + "\n" + "learning module of"  + "\n"
-		str += "Security" + "\n"
+		str += GameManager.buildings_data[id]["knowledge"] + "\n"
 		str += "to unlock " + GameManager.buildings_data[id]["name"] + "\n"
 	else:
 		str = "Name: " + GameManager.buildings_data[id]["name"] + "\n"
