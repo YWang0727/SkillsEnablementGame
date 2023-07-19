@@ -36,7 +36,7 @@ func _input(event):
 			moveDirection = direction.up
 		elif  event.keycode == KEY_DOWN:
 			moveDirection = direction.down
-	else:
+	elif event is InputEventKey:
 		moveDirection = direction.default
 
 func _on_right_move_button_button_down():

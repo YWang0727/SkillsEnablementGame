@@ -23,6 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @PostMapping("/email")
     @ApiOperation(value = "Email verification")
     public String emailVerification(@RequestBody @Validated(UserParam.emailVerification.class) UserParam param) {
@@ -32,8 +33,8 @@ public class UserController {
 
     @PostMapping("/active")
     @ApiOperation(value = "Active code")
-    public String emailRegister(@RequestBody String activeCode) {
-        userService.active(activeCode);
+    public String emailRegister(@RequestBody UserParam param) {
+        userService. active(param);
         return CommonUtil.ACTION_SUCCESSFUL;
     }
 

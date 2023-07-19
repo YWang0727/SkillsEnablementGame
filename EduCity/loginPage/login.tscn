@@ -1,12 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=14 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://qow8cruc54nv" path="res://loginPage/cityPicture2.jpg" id="3_ohuu6"]
 [ext_resource type="Texture2D" uid="uid://o628e2s2tbmu" path="res://loginPage/eye-hiden.png" id="4_5feks"]
 [ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
 
-[sub_resource type="Theme" id="Theme_6rjng"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phk7t"]
+bg_color = Color(0.619608, 0.709804, 0.356863, 1)
+
+[sub_resource type="Theme" id="Theme_7pxma"]
+AcceptDialog/constants/buttons_separation = 26
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_phk7t")
 Button/font_sizes/font_size = 28
+
+[sub_resource type="Theme" id="Theme_x67v2"]
 
 [sub_resource type="Theme" id="Theme_noebi"]
 Label/colors/font_color = Color(1, 1, 1, 1)
@@ -44,8 +51,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_6rjng")
+theme = SubResource("Theme_7pxma")
 script = ExtResource("2_jj6vr")
+
+[node name="AlertPopup" type="AcceptDialog" parent="."]
+position = Vector2i(340, 400)
+size = Vector2i(400, 250)
+unresizable = true
+popup_window = true
+content_scale_size = Vector2i(400, 250)
+content_scale_mode = 2
+auto_translate = false
+theme = SubResource("Theme_x67v2")
+dialog_text = "
+                 
+                Email or password is incorrect!"
+dialog_autowrap = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -54,6 +75,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="background" type="TextureRect" parent="."]
 clip_contents = true
@@ -69,6 +91,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.808, 0.808)
 texture = ExtResource("3_ohuu6")
+metadata/_edit_lock_ = true
 
 [node name="Game name" type="Label" parent="."]
 layout_mode = 0
@@ -78,6 +101,7 @@ offset_right = 1633.0
 offset_bottom = 633.0
 theme = SubResource("Theme_noebi")
 text = "EduCity"
+metadata/_edit_lock_ = true
 
 [node name="Tabars" type="Panel" parent="."]
 custom_minimum_size = Vector2(100, 60)
@@ -124,8 +148,9 @@ offset_bottom = 777.0
 scale = Vector2(0.996063, 0.983238)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
+metadata/_edit_lock_ = true
 
-[node name="email_input_panel2" type="Panel" parent="sign_in1"]
+[node name="email_input_panel" type="Panel" parent="sign_in1"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -138,7 +163,7 @@ offset_bottom = -97.284
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LineEdit" type="LineEdit" parent="sign_in1/email_input_panel2"]
+[node name="LineEdit" type="LineEdit" parent="sign_in1/email_input_panel"]
 custom_minimum_size = Vector2(550, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -230,7 +255,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 text = "Next"
 
-[node name="get_verification_vode_button" type="Button" parent="sign_in1"]
+[node name="get_activecode_button" type="Button" parent="sign_in1"]
 layout_mode = 0
 offset_left = 486.917
 offset_top = 209.512
@@ -238,7 +263,7 @@ offset_right = 836.917
 offset_bottom = 274.512
 scale = Vector2(0.6, 0.6)
 theme = SubResource("Theme_5q2ag")
-text = "Get Verification Code"
+text = "Get Active Code"
 
 [node name="sign_in2" type="Panel" parent="."]
 visible = false
@@ -250,6 +275,7 @@ offset_right = 876.0
 offset_bottom = 807.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
+metadata/_edit_lock_ = true
 
 [node name="username_panel" type="Panel" parent="sign_in2"]
 layout_mode = 1
@@ -442,6 +468,7 @@ offset_bottom = 857.0
 scale = Vector2(1, 0.987)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
+metadata/_edit_lock_ = true
 
 [node name="email_input_panel" type="Panel" parent="log_in"]
 layout_mode = 1

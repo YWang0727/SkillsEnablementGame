@@ -18,19 +18,25 @@ import javax.validation.constraints.Pattern;
 public class RegisterParam {
 
 
-    @NotBlank(message = "Phone number is required.")
-    @Length(min = 8, max = 20, message = "Phone number must be between 8-20 digits in length.")
-    @ExceptionCode(value = 100004, message = "Invalid phone number.")
-    private String phone;
+    @NotBlank(message = "Email is required.")
+    @Length(min = 8, max = 20, message = "Email must be between 8-20 digits in length.")
+    @ExceptionCode(value = 100004, message = "Invalid Email.")
+    private String email;
+
+    @NotBlank(message = "Verification code is required.")
+    @Pattern(regexp = "\\d{4}", message = "Verification code must be 4 digits.")
+    @ExceptionCode(value = 100005, message = "Wrong code.")
+    private String code;
+
+    @NotBlank(message = "Verification code is required.")
+    @Length(min = 1, max = 20, message = "Name must be between 1-20 digits in length.")
+    private String name;
 
     @NotBlank(message = "Password is required.")
     @Length(min = 4, max = 20, message = "Password must be between 4-20 characters in length.")
     @ExceptionCode(value = 100003, message = "Invalid password.")
     private String password;
 
-    @NotBlank(message = "Verification code is required.")
-    @Pattern(regexp = "\\d{4}", message = "Verification code must be 4 digits.")
-    @ExceptionCode(value = 100005, message = "Wrong code.")
-    private String code;
+
 
 }
