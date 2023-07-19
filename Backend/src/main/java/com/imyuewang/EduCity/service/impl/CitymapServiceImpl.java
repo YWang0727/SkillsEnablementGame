@@ -4,7 +4,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.mapper.UserMapper;
 import com.imyuewang.EduCity.model.entity.Citymap;
 import com.imyuewang.EduCity.model.entity.User;
-import com.imyuewang.EduCity.model.vo.LeaderBoardVO;
+import com.imyuewang.EduCity.model.vo.LeaderboardVO;
+import com.imyuewang.EduCity.model.vo.LeaderboardVO;
 import com.imyuewang.EduCity.model.vo.UserInfoVO;
 import com.imyuewang.EduCity.service.CitymapService;
 import com.imyuewang.EduCity.mapper.CitymapMapper;
@@ -29,10 +30,10 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
     private CitymapMapper cityMapMapper;
 
     @Override
-    public LeaderBoardVO leaderBoard(Long id) {
+    public LeaderboardVO leaderBoard(Long id) {
         User user = userMapper.selectById(1);
         Citymap citymap = cityMapMapper.selectById(user.getCitymap());
-        LeaderBoardVO leaderBoardVO = new LeaderBoardVO();
+        LeaderboardVO leaderBoardVO = new LeaderboardVO();
         leaderBoardVO.setName(citymap.getName());
         leaderBoardVO.setProsperity(citymap.getProsperity());
         return leaderBoardVO;

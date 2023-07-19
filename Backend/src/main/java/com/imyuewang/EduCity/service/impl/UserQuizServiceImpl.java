@@ -119,7 +119,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
             }else{
                 if(kList[i] == 1){
                     kList[i] = 1;
-                }else if(kList[0] == 2){
+                }else if(kList[i] == 2){
                     kList[i] = 2;
                 }else{
                     kList[i] = 0;

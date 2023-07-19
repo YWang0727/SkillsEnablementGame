@@ -2,7 +2,7 @@ package com.imyuewang.EduCity.service;
 
 import com.imyuewang.EduCity.model.entity.Citymap;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.imyuewang.EduCity.model.vo.LeaderBoardVO;
+import com.imyuewang.EduCity.model.vo.LeaderboardVO;
 
 /**
 * @author Sarah Wang
@@ -16,6 +16,6 @@ public interface CitymapService extends IService<Citymap> {
      * @return city name
      * ???and prosperity
      */
-    LeaderBoardVO leaderBoard(Long id);
+    LeaderboardVO leaderBoard(Long id);
 
 }

@@ -7,14 +7,14 @@ import lombok.experimental.Accessors;
 import java.util.List;
 
 /**
- * @ClassName LeaderBoardVO
+ * @ClassName LeaderboardVO
  * @Description
  * @Author hanyu
  * @Date 2023/7/18
  **/
 @Data
 @Accessors(chain = true)
-public class LeaderBoardVO {
+public class LeaderboardVO {
 
     private long prosperity;
 

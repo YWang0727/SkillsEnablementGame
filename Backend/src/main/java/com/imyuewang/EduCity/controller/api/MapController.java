@@ -1,7 +1,7 @@
 package com.imyuewang.EduCity.controller.api;
 
 import com.imyuewang.EduCity.model.param.LeaderBoardParam;
-import com.imyuewang.EduCity.model.vo.LeaderBoardVO;
+import com.imyuewang.EduCity.model.vo.LeaderboardVO;
 import com.imyuewang.EduCity.model.vo.UserInfoVO;
 import com.imyuewang.EduCity.service.CitymapService;
 import com.imyuewang.EduCity.service.SettingService;
@@ -35,8 +35,8 @@ public class MapController {
 
     @GetMapping("/leaderBoard/{id}")
     @ApiOperation("return leaderboard information")
-    public LeaderBoardVO leaderBoard(@PathVariable Long id) {
-        LeaderBoardVO leaderBoardVO = citymapService.leaderBoard(id);
+    public LeaderboardVO leaderBoard(@PathVariable Long id) {
+        LeaderboardVO leaderBoardVO = citymapService.leaderBoard(id);
         return leaderBoardVO;
     }
 
