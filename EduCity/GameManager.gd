@@ -9,7 +9,7 @@ var save_data = null
 #Main Attributes: prosperity\coins\speed...etc
 
 #Reading
-var statusList = [0,0,0,0,0]
+var statusList = [2,2,2,2,2]
 var reading_path = ""
 
 #Quiz
@@ -17,7 +17,13 @@ var quizStatus = []
 var question_path = ""
 
 #TileMap
-enum BuildingType { residential_building_1, supermarket_1, bank_1, farm_1, constrction_site_1, hospital_1}
+enum BuildingType { 
+	residential_building_1, 
+	supermarket_1, 
+	bank_1, 
+	farm_1, 
+	constrction_site_1,
+	hospital_1}
 var buildings_data = []
 var gold = 0
 var prosperity = 0

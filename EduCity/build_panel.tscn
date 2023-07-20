@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://build_panel.gd" id="1_mmosn"]
 [ext_resource type="Script" path="res://InteractiveButton.gd" id="3_5var6"]
 [ext_resource type="Script" path="res://XufengPart/VBoxContainer.gd" id="4_pxrgc"]
-[ext_resource type="Texture2D" uid="uid://d048ec4o4d3fy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_2.png" id="5_c6hji"]
-[ext_resource type="Texture2D" uid="uid://bpkxb270wo4fk" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_2.png" id="6_7exuj"]
+[ext_resource type="Texture2D" uid="uid://cff3556jhqvd" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_1.png" id="5_df2ph"]
+[ext_resource type="Texture2D" uid="uid://bqs2ipf2ox1vu" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_1.png" id="6_l1o67"]
 [ext_resource type="Texture2D" uid="uid://dwnd6ua2oci35" path="res://XufengPart/Icon_Buildings/Bank/bank_1.png" id="7_00kln"]
-[ext_resource type="Texture2D" uid="uid://dahxnhd8cox47" path="res://XufengPart/Icon_Buildings/Farm/farm_2.png" id="8_jgumf"]
+[ext_resource type="Texture2D" uid="uid://cr06dakdr4o11" path="res://XufengPart/Icon_Buildings/Farm/farm_1.png" id="8_q8wtn"]
 [ext_resource type="Texture2D" uid="uid://cmanatnt1bkvm" path="res://XufengPart/Icon_Buildings/Construction Site_1.png" id="9_yymq1"]
-[ext_resource type="Texture2D" uid="uid://dow1mcdsd0e3f" path="res://XufengPart/Icon_Buildings/Hospital/hospital_2.png" id="10_sdy6q"]
+[ext_resource type="Texture2D" uid="uid://5yn4x2or13v7" path="res://XufengPart/Icon_Buildings/Hospital/hospital_1.png" id="10_p1igd"]
 
 [sub_resource type="GDScript" id="GDScript_v4m6m"]
 script/source = "extends Container
@@ -96,7 +96,7 @@ script = ExtResource("4_pxrgc")
 [node name="ResBuildingButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
-icon = ExtResource("5_c6hji")
+icon = ExtResource("5_df2ph")
 icon_alignment = 1
 
 [node name="Message" type="Control" parent="VBoxContainer/ResBuildingButton"]
@@ -126,7 +126,7 @@ text = "1
 [node name="SupermarketButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
-icon = ExtResource("6_7exuj")
+icon = ExtResource("6_l1o67")
 icon_alignment = 1
 
 [node name="Message" type="Control" parent="VBoxContainer/SupermarketButton"]
@@ -189,7 +189,7 @@ text = "1
 [node name="FarmButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
-icon = ExtResource("8_jgumf")
+icon = ExtResource("8_q8wtn")
 icon_alignment = 1
 
 [node name="Message" type="Control" parent="VBoxContainer/FarmButton"]
@@ -250,7 +250,7 @@ text = "1
 
 [node name="HospitalButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-icon = ExtResource("10_sdy6q")
+icon = ExtResource("10_p1igd")
 icon_alignment = 1
 
 [node name="Message" type="Control" parent="VBoxContainer/HospitalButton"]
