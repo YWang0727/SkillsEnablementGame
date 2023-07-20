@@ -84,7 +84,8 @@ func _apiCore(_endpoint, _data, _authorize, _method, _route , _redirectTo = null
 	# Loading progress scene
 	#Loader.prog = http
 	
-	var http_error = http.request(str(endpoint_api, _endpoint), headers, HTTPClient[str("METHOD_",_method)], JSON.new().stringify(_data))
+	var http_error = 1
+	http_error = http.request(str(endpoint_api, _endpoint), headers, HTTPClient[str("METHOD_",_method)], JSON.new().stringify(_data))
 	if http_error != OK:
 		print(http_error)
 	#	Loader.prog = null

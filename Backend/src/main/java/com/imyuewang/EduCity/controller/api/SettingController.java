@@ -36,19 +36,12 @@ public class SettingController {
         UserInfoVO userInfoVO = settingService.getUserInfo(id);
         // convert byte to string using base64 encoder
         // only using jpg, not png etc.
-<<<<<<< HEAD
         if(userInfoVO.getAvatar() != null){
             String strAvatar = Base64.getEncoder().encodeToString(userInfoVO.getAvatar());
             userInfoVO.setAvatarStr(strAvatar);
         }
         userInfoVO.setAvatar(null);
-=======
-        if (userInfoVO.getAvatar() != null) {
-            String strAvatar = Base64.getEncoder().encodeToString(userInfoVO.getAvatar());
-            userInfoVO.setAvatarStr(strAvatar);
-            userInfoVO.setAvatar(null);
-        }
->>>>>>> 546e8693f0364060e2280719faa124063f160592
+
         return userInfoVO;
     }
 

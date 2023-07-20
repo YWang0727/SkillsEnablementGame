@@ -145,6 +145,7 @@ toggle_mode = true
 text = "Sign In"
 
 [node name="sign_in1" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
@@ -465,7 +466,6 @@ size_flags_horizontal = 3
 text = "Reset"
 
 [node name="log_in" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
