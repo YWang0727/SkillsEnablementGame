@@ -137,33 +137,33 @@ func _process(delta):
 		completeButton.disabled = false;
 	
 	
-#func _input(event):
-#	if event is InputEventKey and event.pressed:
-#		if event.keycode == KEY_ENTER:
-#				if loginButton.disabled:
-#					passwordLog.grab_focus()
-#				else:
-#					loginButton.set_pressed(true)
-#					loginButton.grab_focus()
-#			if currentPanel == panels.sign1:
-#				if nextButton.disabled:
-#					activeCode.grab_focus()
-#				else:
-#					nextButton.set_pressed(true)
-#					nextButton.grab_focus()
-#			if currentPanel == panels.sign2:
-#				if completeButton.disabled:
-#					if password1Sign.has_focus():
-#						password2Sign.grab_focus()
-#					else:
-#						password1Sign.grab_focus()
-#				else:
-#					if resetButton.has_focus():
-#						resetButton.set_pressed
-#					else:
-#						completeButton.set_pressed(true)
-#						completeButton.grab_focus()
- #*/
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ENTER:
+			if currentPanel == panels.log:
+				if loginButton.disabled:
+					passwordLog.grab_focus()
+				else:
+					loginButton.set_pressed(true)
+					loginButton.grab_focus()
+			if currentPanel == panels.sign1:
+				if nextButton.disabled:
+					activeCode.grab_focus()
+				else:
+					nextButton.set_pressed(true)
+					nextButton.grab_focus()
+			if currentPanel == panels.sign2:
+				if completeButton.disabled:
+					if password1Sign.has_focus():
+						password2Sign.grab_focus()
+					else:
+						password1Sign.grab_focus()
+				else:
+					if resetButton.has_focus():
+						resetButton.set_pressed
+					else:
+						completeButton.set_pressed(true)
+						completeButton.grab_focus()
 
 func _on_log_in_pressed():
 	currentPanel = panels.log
