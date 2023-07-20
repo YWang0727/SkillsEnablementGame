@@ -28,6 +28,10 @@ var mapDict = {} # 储存房子建在哪个cell上，需要读写后端
 var music_volume = 0.7
 var sound_volume = 0.7
 
+#Components
+#var population:int = 1000
+#var rank:int = 12
+
 func _ready():
 	var file = FileAccess.open("res://XufengPart/BuildingType.json", FileAccess.READ)
 	var json_text = file.get_as_text()
