@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=18 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://qow8cruc54nv" path="res://loginPage/cityPicture2.jpg" id="3_ohuu6"]
 [ext_resource type="Texture2D" uid="uid://o628e2s2tbmu" path="res://loginPage/eye-hiden.png" id="4_5feks"]
 [ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
+[ext_resource type="Texture2D" uid="uid://xy26wddgonnn" path="res://loginPage/logo.png" id="5_wpds5"]
+[ext_resource type="Texture2D" uid="uid://camrvapbhdg25" path="res://loginPage/title.png" id="6_gxakd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phk7t"]
 bg_color = Color(0.619608, 0.709804, 0.356863, 1)
@@ -85,6 +87,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="background" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.760784)
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -101,14 +104,14 @@ texture = ExtResource("3_ohuu6")
 metadata/_edit_lock_ = true
 
 [node name="Game name" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 1165.0
-offset_top = 448.0
-offset_right = 1633.0
-offset_bottom = 633.0
+offset_left = 1167.0
+offset_top = 502.0
+offset_right = 1635.0
+offset_bottom = 687.0
 theme = SubResource("Theme_noebi")
 text = "EduCity"
-metadata/_edit_lock_ = true
 
 [node name="Tabars" type="Panel" parent="."]
 custom_minimum_size = Vector2(100, 60)
@@ -231,7 +234,7 @@ offset_bottom = 320.705
 theme = SubResource("Theme_55kvq")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "Already have an acount?  [color=yellow]Log in! [/color]"
+text = "Already have an account?  [color=yellow]Log in! [/color]"
 fit_content = true
 scroll_active = false
 
@@ -421,7 +424,7 @@ offset_bottom = 355.0
 theme = SubResource("Theme_55kvq")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "Already have an acount?  [color=yellow]Log in! [/color]"
+text = "Already have an account?  [color=yellow]Log in! [/color]"
 fit_content = true
 scroll_active = false
 
@@ -583,14 +586,14 @@ text = "Log In"
 [node name="RichTextLabel" type="RichTextLabel" parent="log_in"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
-offset_left = 125.0
+offset_left = 225.0
 offset_top = 299.899
-offset_right = 625.0
+offset_right = 725.0
 offset_bottom = 339.899
 theme = SubResource("Theme_55kvq")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "Don't have an acount?  [color=yellow]Sign in! [/color]"
+text = "No account?  [color=yellow]Sign in! [/color]"
 fit_content = true
 scroll_active = false
 
@@ -610,6 +613,22 @@ theme_override_colors/font_focus_color = Color(0.521569, 0.882353, 0.941176, 1)
 theme_override_constants/h_separation = 4
 theme_override_font_sizes/font_size = 16
 text = "Remember me"
+
+[node name="logo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1214.0
+offset_top = 278.0
+offset_right = 1514.0
+offset_bottom = 578.0
+texture = ExtResource("5_wpds5")
+
+[node name="title" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 970.0
+offset_top = 433.0
+offset_right = 1770.0
+offset_bottom = 933.0
+texture = ExtResource("6_gxakd")
 
 [connection signal="pressed" from="Tabars/HBoxContainer/Log in" to="." method="_on_log_in_pressed"]
 [connection signal="pressed" from="Tabars/HBoxContainer/Sign in" to="." method="_on_sign_in_pressed"]
