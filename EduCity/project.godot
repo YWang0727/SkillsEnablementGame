@@ -24,7 +24,6 @@ buses/default_bus_layout="res://setting/src/music/default_bus_layout.tres"
 GameManager="*res://GameManager.gd"
 HttpLayer="*res://httpLayer.gd"
 Music="*res://setting/src/music/music.tscn"
-Si="*res://Components/signal.gd"
 
 [display]
 
