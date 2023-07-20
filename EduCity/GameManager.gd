@@ -29,8 +29,8 @@ var music_volume = 0.7
 var sound_volume = 0.7
 
 #Components
-#var population:int = 1000
-#var rank:int = 12
+var population:int = 1000
+var rank = 33
 
 func _ready():
 	var file = FileAccess.open("res://XufengPart/BuildingType.json", FileAccess.READ)
@@ -42,6 +42,7 @@ func _ready():
 		#print("JSON Parse Error: ", json.get_error_message(), " in ", json_text, " at line ", json.get_error_line())
 	var BuildingJsonData = json.get_data()
 	buildings_data = BuildingJsonData["buildings"]
+
 	
 	set_volume()
 

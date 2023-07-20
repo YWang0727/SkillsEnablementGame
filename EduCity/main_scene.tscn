@@ -129,3 +129,5 @@ offset_top = 4.0
 offset_right = 396.0
 offset_bottom = 146.0
 text = "go to earn money"
+
+[connection signal="store_components" from="TileMap" to="components" method="_on_tile_map_store_components"]

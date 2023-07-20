@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnsn8jn5g4gmi"]
+[gd_scene load_steps=2 format=3 uid="uid://bnsn8jn5g4gmi"]
 
 [ext_resource type="Script" path="res://Components/components.gd" id="1_7j8by"]
-[ext_resource type="Script" path="res://Components/gd/Bt_Prosperity.gd" id="2_ymrsv"]
 
 [node name="components" type="Node"]
 script = ExtResource("1_7j8by")
@@ -17,7 +16,7 @@ text = "Prosperity    :    xxx (可对应城市规模)"
 layout_mode = 0
 offset_left = 200.0
 offset_top = -5.0
-offset_right = 277.0
+offset_right = 304.0
 offset_bottom = 26.0
 color = Color(0.529412, 0.807843, 0.980392, 1)
 
@@ -25,8 +24,7 @@ color = Color(0.529412, 0.807843, 0.980392, 1)
 layout_mode = 0
 offset_right = 77.0
 offset_bottom = 31.0
-text = "num"
-script = ExtResource("2_ymrsv")
+text = "leaderBoard"
 
 [node name="Population" type="Label" parent="."]
 offset_left = 200.0
@@ -35,7 +33,7 @@ offset_right = 531.0
 offset_bottom = 143.0
 text = "Population  :  xxx (计算得到 动态 规则待探讨)"
 
-[node name="Build_Speed" type="Label" parent="."]
+[node name="Construction_speed" type="Label" parent="."]
 offset_left = 200.0
 offset_top = 87.0
 offset_right = 509.0

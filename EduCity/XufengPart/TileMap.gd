@@ -1,5 +1,8 @@
 extends TileMap
 
+
+signal store_components
+
 var selectedTile: int = 98
 var selectedLayer: int = 1
 var buildingLayer: int = 2
@@ -18,7 +21,7 @@ func _input(event: InputEvent) -> void:
 	# After choosing a building type, show selected cells when mouse hover
 	if event is InputEventMouseMotion and selectedBuildingType != -1:
 		# Check if have enough gold to build a building
-		if cost <= Num.gold:
+		if cost <= GameManager.gold:
 			cellPos = local_to_map(get_global_mouse_position() - position)  # 将全局位置转换为TileMap单元位置
 			clear_layer(selectedLayer)
 			if _checkCellOverlap(selectedBuildingType,cellPos):
@@ -33,14 +36,15 @@ func _input(event: InputEvent) -> void:
 		if  selectedBuildingType == 0 or (selectedBuildingType > 0 and GameManager.statusList[selectedBuildingType - 1] == 2):
 			cellPos = local_to_map(get_global_mouse_position() - position)  # 将鼠标位置转换为TileMap单元位置
 			if _checkCellOverlap(selectedBuildingType,cellPos):
-				Num.gold = Num.gold - cost
-				Num.prosperity += prosperity
+				GameManager.gold = GameManager.gold - cost
+				GameManager.prosperity += prosperity
 				if selectedBuildingType == 4:
-					Num.build_speed += 1
+					GameManager.construction_speed += 1
 				clear_layer(selectedLayer)
 				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
 				_updateMapDict(selectedBuildingType, cellPos)
 				selectedBuildingType = -1
+				emit_signal("store_components")
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
