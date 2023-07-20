@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=16 format=3 uid="uid://ckpvbylmvtoo8"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
@@ -6,14 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://c18vwbwsjkur3" path="res://town_attributes.tscn" id="4_vkmqv"]
 [ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="6_45dsv"]
 [ext_resource type="PackedScene" uid="uid://bnsn8jn5g4gmi" path="res://Components/components.tscn" id="6_dvg2h"]
+[ext_resource type="Texture2D" uid="uid://cor70keg1r8am" path="res://LearningPage/Icon/learningButton.png" id="6_f143s"]
 [ext_resource type="Script" path="res://XufengPart/CameraButtons.gd" id="7_8dtfb"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmu37"]
-bg_color = Color(0, 0.443137, 0.294118, 0.917647)
-corner_radius_top_left = 100
-corner_radius_bottom_right = 500
-corner_radius_bottom_left = 50
-anti_aliasing_size = 10.0
+[ext_resource type="Texture2D" uid="uid://jrr8rvonj2mr" path="res://XufengPart/Icons/right.png" id="9_kivqx"]
+[ext_resource type="Texture2D" uid="uid://dhvnrff7amxo4" path="res://XufengPart/Icons/left.png" id="10_cjfk2"]
+[ext_resource type="Texture2D" uid="uid://cl4d5l41duaat" path="res://XufengPart/Icons/up.png" id="11_dsxgm"]
+[ext_resource type="Texture2D" uid="uid://br6ymomytlp8p" path="res://XufengPart/Icons/down.png" id="12_gqjck"]
+[ext_resource type="Texture2D" uid="uid://hf2403e1h33j" path="res://XufengPart/Icons/centre.png" id="13_505lg"]
 
 [sub_resource type="GDScript" id="GDScript_lw47u"]
 script/source = "extends Control
@@ -50,27 +49,18 @@ offset_right = 170.0
 offset_bottom = 720.0
 
 [node name="LearningEntryButton" type="Button" parent="."]
-offset_left = 35.0
-offset_top = 904.0
-offset_right = 235.0
-offset_bottom = 1054.0
-mouse_force_pass_scroll_events = false
+offset_left = 24.0
+offset_top = 911.0
+offset_right = 232.0
+offset_bottom = 1119.0
+scale = Vector2(0.7, 0.7)
+tooltip_text = "Learning Entry"
 theme_override_fonts/font = ExtResource("6_45dsv")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_gmu37")
+icon = ExtResource("6_f143s")
+flat = true
+icon_alignment = 1
 script = SubResource("GDScript_lw47u")
-
-[node name="Label" type="Label" parent="LearningEntryButton"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 43.0
-offset_right = 118.0
-offset_bottom = 87.0
-scale = Vector2(1.43302, 1.45022)
-theme_override_fonts/font = ExtResource("6_45dsv")
-text = "START
-LEARNING"
-horizontal_alignment = 1
 
 [node name="components" parent="." instance=ExtResource("6_dvg2h")]
 
@@ -82,40 +72,44 @@ offset_left = 174.0
 offset_top = 506.0
 offset_right = 219.0
 offset_bottom = 552.0
-text = "→"
+icon = ExtResource("9_kivqx")
+icon_alignment = 1
+expand_icon = true
 
 [node name="LeftMoveButton" type="Button" parent="CameraButtons"]
 offset_left = 61.0
 offset_top = 508.0
 offset_right = 104.0
 offset_bottom = 550.0
-text = "←"
+icon = ExtResource("10_cjfk2")
+expand_icon = true
 
 [node name="UpMoveButton" type="Button" parent="CameraButtons"]
 offset_left = 117.0
 offset_top = 449.0
 offset_right = 162.0
 offset_bottom = 495.0
-text = "↑"
+icon = ExtResource("11_dsxgm")
+expand_icon = true
 
 [node name="DownMoveButton" type="Button" parent="CameraButtons"]
 offset_left = 119.0
 offset_top = 565.0
 offset_right = 164.0
 offset_bottom = 611.0
-text = "↓"
+icon = ExtResource("12_gqjck")
+expand_icon = true
 
 [node name="CenterMoveButton" type="Button" parent="CameraButtons"]
 offset_left = 118.0
 offset_top = 506.0
 offset_right = 163.0
 offset_bottom = 552.0
-text = "+
-"
+icon = ExtResource("13_505lg")
+expand_icon = true
 
 [node name="ErrorPannel" type="PopupPanel" parent="."]
 size = Vector2i(400, 150)
-visible = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_xlvpp")
 
 [node name="Label" type="Label" parent="ErrorPannel"]

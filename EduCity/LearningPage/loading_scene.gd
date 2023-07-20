@@ -1,7 +1,6 @@
 extends Control
 
 @export var scene:String = "res://LearningPage/reading_scene.tscn"
-@onready var progressBar:ProgressBar = $ProgressBar
 
 var progress = []
 var scene_load_status = 0
@@ -15,8 +14,6 @@ func _ready():
 func _process(delta):
 	# get loading status
 	scene_load_status = ResourceLoader.load_threaded_get_status(scene, progress)
-	# set progressBar's value
-	progressBar.value = progress[0] + 100
 	# if loaded, change scene
 	if scene_load_status == ResourceLoader.THREAD_LOAD_LOADED:
 		_on_loaded()
