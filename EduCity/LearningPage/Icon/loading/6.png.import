@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://da0v8cp2ksdyg"
-=======
-uid="uid://cumrx71gybxiw"
->>>>>>> e3616547b2f9acad037437ee669226dda827d2ec
-path="res://.godot/imported/police_station_3.png-f4b601154cd7f656e2e538b2586bcb12.ctex"
+uid="uid://05no0ve1bhem"
+path="res://.godot/imported/6.png-b613ef06d523cd02239bd755d3be136b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://XufengPart/Icon_Buildings/Police Station/police_station_3.png"
-dest_files=["res://.godot/imported/police_station_3.png-f4b601154cd7f656e2e538b2586bcb12.ctex"]
+source_file="res://LearningPage/Icon/loading/6.png"
+dest_files=["res://.godot/imported/6.png-b613ef06d523cd02239bd755d3be136b.ctex"]
 
 [params]
 
