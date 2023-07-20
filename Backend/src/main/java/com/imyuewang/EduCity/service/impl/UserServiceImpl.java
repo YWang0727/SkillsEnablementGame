@@ -9,6 +9,7 @@ import com.imyuewang.EduCity.exception.ApiException;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.param.UserParam;
+import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.security.JwtManager;
 import com.imyuewang.EduCity.util.MailUtil;
@@ -62,33 +63,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         // Generate token
         //JwtManager.generate(user.getEmail());
-        return getUserVO(user);
+        return getUserVOFromUser(user);
     }
 
-    private UserVO getUserVO(User user) {
-        UserVO userVO = new UserVO();
-        BeanUtil.copyProperties(user, userVO);
-        //userVO.setToken(JwtManager.generate(user.getEmail()));
-
-        return userVO;
-    }
 
     @Override
-    public UserVO emailVerification(UserParam param) {
-        UserVO uservo = new UserVO();
-        // check email format
-        if(!mailUtil.isEmail(param.getEmail())){
-            uservo.setErroMsg("Incorrect email format.");
-            throw new ApiException(ResultCode.FAILED,"Incorrect email format.");
-        }
-
+    public ResultVO checkEmailIsExisted(UserParam param) {
+        System.out.println(param.getEmail());
         // check if email exists
-        if (lambdaQuery().eq(User::getEmail, param.getEmail()).one() != null) {
-            uservo.setErroMsg("Email already exists.");
-            throw new ApiException(ResultCode.FAILED,"Email already exists.");
+        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(User::getEmail, param.getEmail());
+        if (userMapper.selectOne(lqw) != null) {
+            return new ResultVO(ResultCode.EMAIL_FOUND,"Email already exists.");
+        }else{
+            return new ResultVO(ResultCode.EMAIL_NOT_FOUND,"Valid new Email");
         }
-        uservo.setEmail(param.getEmail());
-        return uservo;
     }
 
     @Override

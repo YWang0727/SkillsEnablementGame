@@ -38,36 +38,13 @@ public class SettingController {
     public ResultVO<UserInfoVO> getUserInfo(@PathVariable("id") Long id) {
         UserInfoVO userInfoVO = settingService.getUserInfo(id);
         // convert byte to string using base64 encoder
-<<<<<<< HEAD
-        // only using jpg, not png etc.
-<<<<<<< HEAD
-=======
-
->>>>>>> cc2a5e6b5093a214fa11401f4e2e78226a396f84
-        if(userInfoVO.getAvatar() != null){
-            String strAvatar = Base64.getEncoder().encodeToString(userInfoVO.getAvatar());
-            userInfoVO.setAvatarStr(strAvatar);
-        }
-        userInfoVO.setAvatar(null);
-
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> 5da369380a39fcee3c46f56e25457160f01f392e
         if (userInfoVO.getAvatar() != null) {
             String avatarStr = Base64.getEncoder().encodeToString(userInfoVO.getAvatar());
             userInfoVO.setAvatarStr(avatarStr);
             userInfoVO.setAvatar(null);
         }
 
-<<<<<<< HEAD
-
->>>>>>> cc2a5e6b5093a214fa11401f4e2e78226a396f84
-        return userInfoVO;
-=======
         return new ResultVO<>(ResultCode.SUCCESS, userInfoVO);
->>>>>>> 5da369380a39fcee3c46f56e25457160f01f392e
     }
 
     @GetMapping("/getPropertyInfo/{id}")

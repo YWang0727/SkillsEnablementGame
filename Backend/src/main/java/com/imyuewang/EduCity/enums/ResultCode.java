@@ -38,7 +38,12 @@ public enum ResultCode {
 
     // setting
     UPLOAD_ERROR(3001, "File for avatar is too large!"),
+
+    //email
+    EMAIL_FOUND(4000,"Email is existed！"),
+    EMAIL_NOT_FOUND(4001,"Email is not existed！")
     ;
+
 
     private int code;
     private String msg;

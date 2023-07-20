@@ -4,6 +4,7 @@ import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.param.UserParam;
+import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public interface UserService extends IService<User> {
      **/
     UserVO login(LoginParam loginParam);
 
-    UserVO emailVerification(UserParam param);
+    ResultVO checkEmailIsExisted(UserParam param);
 
     void active(UserParam param);
 

@@ -321,42 +321,49 @@ func http_completed(res, response_code, headers, route) -> void:
 	if response_code == 200 && route == "login":
 		#save id to user_id in GameManager
 		if !res.has("id"):
-			var errorMsg = res['data']
-			alertPopup.set_text(errorMsg)
-			alertPopup.visible = true;
+			setAlertWithError(res)
 		else:	
 			GameManager.user_id = res['id']
 			print("------------------------login success!")
-			print(str(res))
 			get_tree().change_scene_to_file("res://main_scene.tscn")
 		return
 	if response_code == 200 && route == "register":
-		#alertPopup->set_text("             resgister success! Pleace log in!");
 		alertPopup.set_text("             resgister success! Pleace log in!");
 		alertPopup.visible = true
 		print("------------------------resgister success!")
-		return
-		
+		return	
 	if response_code == 200 && route == "status":
 		# save data to knowledge status list in GameManager
 		for i in res['statusList'].size():
 			GameManager.statusList[i] = res['statusList'][i]	
-			
 		# save data to quiz status list in GameManager	
 		for i in res['completeList'].size():
 			GameManager.quizStatus.append(res['completeList'][i])	
-		
 		print("---------------------get status success!")
-		print(str(res))
-		print(str(response_code))
-		print(str(headers))
-		print(str(route))
-		print(GameManager.statusList)
-		print(GameManager.quizStatus)
-		
-		
 		return
+	if response_code == 200 && route == "email":
+		if res['code'] == 4000:
+			setAlertWithError(res)
+		if res['code'] == 4001:
+#			getActiveCode()
+			return
 
-	#if response_code == 400:
-	#	print
+func setAlertWithError(res):
+	var errorMsg = res['data']
+	alertPopup.set_text(errorMsg)
+	alertPopup.visible = true;
 	
+
+func _on_get_activecode_button_pressed():
+	var email = emailSign.text
+	var _credential = {
+			"email": email,
+	}
+	HttpLayer._checkEmailIsExisted(_credential)
+	
+#func getActiveCode():
+#	var email = emailSign
+#	var _credential = {
+#			"email": email,
+#	}
+#	HttpLayer._getActiveCode(_credential)

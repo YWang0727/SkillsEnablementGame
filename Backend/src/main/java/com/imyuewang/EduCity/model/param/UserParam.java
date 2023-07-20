@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 public class UserParam {
 
-    @NotBlank(message = "Email is required.", groups = CreateUser.class)
+    @NotBlank(message = "Email is required.", groups = {CreateUser.class, emailVerification.class})
     private String email;
 
     //@NotBlank(message = "Password is required.", groups = CreateUser.class)

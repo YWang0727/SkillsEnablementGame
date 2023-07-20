@@ -1,6 +1,7 @@
 package com.imyuewang.EduCity.controller.api;
 
 import com.imyuewang.EduCity.model.entity.User;
+import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.service.UserService;
 import com.imyuewang.EduCity.util.CommonUtil;
 import com.imyuewang.EduCity.annotation.Auth;
@@ -26,9 +27,8 @@ public class UserController {
 
     @PostMapping("/email")
     @ApiOperation(value = "Email verification")
-    public String emailVerification(@RequestBody @Validated(UserParam.emailVerification.class) UserParam param) {
-        userService.emailVerification(param);
-        return CommonUtil.ACTION_SUCCESSFUL;
+    public ResultVO checkEmailIsExisted(@RequestBody @Validated(UserParam.emailVerification.class) UserParam param) {
+        return userService.checkEmailIsExisted(param);
     }
 
     @PostMapping("/active")

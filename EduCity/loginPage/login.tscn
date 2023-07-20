@@ -633,6 +633,7 @@ texture = ExtResource("6_gxakd")
 [connection signal="pressed" from="Tabars/HBoxContainer/Log in" to="." method="_on_log_in_pressed"]
 [connection signal="pressed" from="Tabars/HBoxContainer/Sign in" to="." method="_on_sign_in_pressed"]
 [connection signal="pressed" from="sign_in1/next_button_panel/next_button" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="sign_in1/get_activecode_button" to="." method="_on_get_activecode_button_pressed"]
 [connection signal="toggled" from="sign_in2/pw_input1_panel/eyeHide" to="." method="_on_eye_hide_toggled"]
 [connection signal="toggled" from="sign_in2/pw_input2_panel/eyeHide2" to="." method="_on_eye_hide_2_toggled"]
 [connection signal="pressed" from="sign_in2/sign_in2_button_panel/complete_button" to="." method="_on_complete_button_pressed"]
