@@ -245,8 +245,7 @@ func checkEmailFormat(new_text):
 	return regex.search(new_text) != null  # 检查邮箱是否与模式匹配
 	
 	
-func createLabel(text: String, position:
-	 Vector2, fontSize: int, textColor: Color, parent: Node):
+func createLabel(text: String, position: Vector2, fontSize: int, textColor: Color, parent: Node):
 	print("create label")
 	var tagLabel = Label.new()
 	tagLabel.text = text

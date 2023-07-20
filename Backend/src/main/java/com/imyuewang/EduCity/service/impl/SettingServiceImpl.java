@@ -16,6 +16,7 @@ import com.imyuewang.EduCity.model.param.EditUserParam;
 import com.imyuewang.EduCity.model.vo.PropertyInfoVO;
 import com.imyuewang.EduCity.model.vo.UserInfoVO;
 import com.imyuewang.EduCity.service.SettingService;
+import com.imyuewang.EduCity.util.MailUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -94,8 +95,24 @@ public class SettingServiceImpl implements SettingService {
     @Override
     public void editUserInfo(byte[] avatar, EditUserParam editUserParam) {
         User user = userMapper.selectById(editUserParam.getId());
+        // check size of avatar
+        if (avatar.length > 65536) {
+            throw new ApiException(ResultCode.UPLOAD_ERROR);
+        }
+
+        // check email format
+        MailUtil mailUtil = new MailUtil();
+        String email = editUserParam.getEmail();
+        if(!mailUtil.isEmail(email)){
+            throw new ApiException(ResultCode.FAILED,"Incorrect email format.");
+        }
+        // check if email exists
+        if (userMapper.selectCount(new QueryWrapper<User>().eq("email", email)) != 0) {
+            throw new ApiException(ResultCode.FAILED,"Email already exists.");
+        }
+
         user.setName(editUserParam.getName());
-        user.setEmail(editUserParam.getEmail());
+        user.setEmail(email);
         user.setAvatar(avatar);
 
         userMapper.updateById(user);
@@ -110,8 +127,7 @@ public class SettingServiceImpl implements SettingService {
         String oldPassword = passwordParam.getOldPassword();
         String newPassword = passwordParam.getNewPassword();
 
-        // validate
-        System.out.println(PasswordEncoder.encode(newPassword));
+        // check if old password is correct
         if (!PasswordEncoder.matches(oldPassword, user.getPassword())) {
             throw new ApiException(ResultCode.VALIDATE_FAILED, "Password is incorrect!");
         }

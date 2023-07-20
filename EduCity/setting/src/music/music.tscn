@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcx3vhp6sqehe"]
+[gd_scene load_steps=3 format=3 uid="uid://bcx3vhp6sqehe"]
 
 [ext_resource type="AudioStream" uid="uid://dt3i5e1bo3d4n" path="res://setting/assets/music/Energetic town.wav" id="1_vemvn"]
+
+[sub_resource type="GDScript" id="GDScript_52t5l"]
+script/source = "extends AudioStreamPlayer2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var audioResource = AudioStream.new()
+	audioResource.instantiate_playback() 
+
+"
 
 [node name="music" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_vemvn")
 autoplay = true
 bus = &"Music"
+script = SubResource("GDScript_52t5l")
