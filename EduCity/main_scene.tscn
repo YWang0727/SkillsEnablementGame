@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=11 format=3 uid="uid://ckpvbylmvtoo8"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
@@ -31,6 +31,9 @@ func _on_Button_pressed():
 func _process(delta):
 	pass
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlvpp"]
+bg_color = Color(0.415686, 0.298039, 0.309804, 0.0627451)
 
 [node name="MainScene" type="Node2D"]
 
@@ -112,31 +115,18 @@ text = "+
 
 [node name="ErrorPannel" type="PopupPanel" parent="."]
 size = Vector2i(400, 150)
+visible = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_xlvpp")
 
 [node name="Label" type="Label" parent="ErrorPannel"]
 layout_direction = 1
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 396.0
-offset_bottom = 146.0
+offset_right = 400.0
+offset_bottom = 150.0
 text = "You don't have enough GOLDS to build"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="ErrorPannel"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 396.0
-offset_bottom = 146.0
+offset_right = 400.0
+offset_bottom = 150.0
 text = "go to earn money"
-
-[connection signal="button_down" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/UpMoveButton" to="CameraButtons" method="_on_up_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/UpMoveButton" to="CameraButtons" method="_on_up_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_up"]
-[connection signal="pressed" from="CameraButtons/CenterMoveButton" to="CameraButtons" method="_on_center_move_button_pressed"]
-[connection signal="pressed" from="ErrorPannel/Button" to="BuildPanel" method="_on_button_pressed"]

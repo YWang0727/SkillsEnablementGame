@@ -34,7 +34,11 @@ public enum ResultCode {
     ERROR(5000, "未知错误"),
 
     METHOD_NOT_ALLOWED(405, "Method not allowed!"),
-    BAD_REQUEST(400, "Bad Request");
+    BAD_REQUEST(400, "Bad Request"),
+
+    // setting
+    UPLOAD_ERROR(3001, "File for avatar is too large!"),
+    ;
 
     private int code;
     private String msg;

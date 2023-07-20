@@ -29,7 +29,8 @@ func _ready():
 	
 	HttpLayer.http_completed.connect(http_completed)
 	
-	fetch_user_info()
+	# fetched user basic infomation from server
+	account_API.fetch_user_info(GameManager.user_id)
 
 func initiate_variales():
 	account_API = HttpLayer_Account.new()
@@ -66,30 +67,41 @@ func _on_back_button_pressed():
 
 
 
-# fetched user basic infomation from server
-func fetch_user_info():
-	account_API.fetch_user_info(GameManager.user_id)
-
-
 # display the window for uploading file when pressing button upload
 func _on_fileupload_button_pressed():
-	fileUploadWindow.add_filter("*.jpg", "Images")
+	fileUploadWindow.add_filter("*.png, *.jpg", "Images");
 	fileUploadWindow.popup_centered()
 
-# process the uploaded file
+# process uploaded avatar image
 func _on_file_upload_window_file_selected(path: String):
+	var fileData = FileAccess.get_file_as_bytes(path)
+	# check if file size is valid (less than 64KB)
+	if (fileData.size() > 65536):
+		alert.set_message("Please keep avatar size in 64KB!")
+		alert.popup_centered()
+		return
+	
 	# show new avatar in game
 	var avatarImage = Image.new()
 	avatarImage.load(path)
 	var texture = ImageTexture.create_from_image(avatarImage)
 	avatar.texture = texture
-	
-	# get avatar's byte data and store in global variable file
-	uploadedFile = FileAccess.get_file_as_bytes(path)
+	# store file data in global variable
+	uploadedFile = fileData
 
 
+# connected with edit_profile button
 # send saving profile request to server
 func edit_user_profile():
+	if (!checkUsernameFormat(username.text)):
+		alert.set_message("Username is invalid")
+		alert.popup_centered()
+		return
+	if (!checkEmailFormat(email.text)):
+		alert.set_message("Email is invalid")
+		alert.popup_centered()
+		return
+			
 	var httpRequest = HTTPRequest.new()
 	add_child(httpRequest)
 	httpRequest.request_completed.connect(self.edit_user_profile_request_completed.bind(httpRequest))
@@ -124,57 +136,119 @@ func edit_user_profile():
 	httpRequest.request_raw(url, headers, HTTPClient.METHOD_PUT, body)
 
 func edit_user_profile_request_completed(result, response_code, headers, body, httpRequest: HTTPRequest):
+	# parse response json
+	var json = JSON.new()
+	json.parse(body.get_string_from_utf8())
+	var response = json.get_data()
+	
 	if (response_code == 200):
-		HttpLayer._destroyHttpObject(httpRequest)
-		print("success in editting user's profile")
+		print(response.msg)
+		# check if code in resultVO is 0000(SUCCESS)
+		if (response.code != 0):
+			alert.set_message(response.data)
+			alert.popup_centered()
+			return
+			
+		print(response.data)
 	else:
-		print("fail to edit user's profile")
+		print(response_code)
+		print("Unkown Error when editing profile")
+		
+	HttpLayer._destroyHttpObject(httpRequest)
+
 
 # send editing password request to server
 func edit_user_password():
+	if (!checkPasswordFormat(oldPassword.text) || !checkPasswordFormat(newPassword.text)):
+		alert.set_message("Password is invalid")
+		alert.popup_centered()
+		return
+		
 	account_API.edit_user_password({
 		"id": GameManager.user_id,
 		"oldPassword": oldPassword.text,
 		"newPassword": newPassword.text
 	})
 
+# return true if password format is valid
+func checkPasswordFormat(password: String) -> bool:
+	if (password == null):
+		return false
+	if (password.length() > 20 || password.length() < 4):
+		return false
+	return true
 
-# check the format of profile at the front end
-func check_profile_format():
-	alert.set_message("Wrong old password")
-	alert.popup_centered_ratio(0.3)
+# return true if username format is valid
+func checkUsernameFormat(str: String) -> bool:
+	if (str == null):
+		return false
+	if (str.length() > 20 || str.length() < 1):
+		return false
+	return true
 
-# check the format of password at the frond end
-func check_password_format():
-	alert.set_message("Wrong old password")
-	alert.popup_centered_ratio(0.3)
+# check if email format is valid
+func checkEmailFormat(str: String) -> bool:
+	if (str == null):
+		return false
+	if (str.length() > 20 || str.length() < 8):
+		return false
+		
+	var emailPattern = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"
+	var regex = RegEx.new()
+	regex.compile(emailPattern)
+	return regex.search(str) != null
 
+# callback function of http request
 func http_completed(res, response_code, headers, route):
 	if (response_code == 200):
+		print(res.msg)
+		# check if code in resultVO is 0000(SUCCESS)
+		if (res.code != 0):
+			if (route == "editPassword"):
+				alert.set_message(res.data)
+				alert.popup_centered()
+				return
+				
 		if (route == "getUserInfo"):
-			display_user_info(res)
+			display_user_info(res.data)
 		elif (route == "editPassword"):
-			print("Change password successfully")
+			print(res.data)
+			
 	else:
 		if (route == "getUserInfo"):
-			print("can't get user's data")
+			print("Fail to get user's data")
 		elif (route == "editPassword"):
-			print("fail to change password")
-		
+			print("Fail to change password")
+
+
 # diaplay user infomation as default text in line editor
-func display_user_info(res):
-	username.text = res.name
-	email.text = res.email
+func display_user_info(data):
+	username.text = data.name
+	email.text = data.email
 	
 	# display byte data of avatar
-	var avatarStr = res.avatarStr
+	var avatarStr = data.avatarStr
 	if (avatarStr != null && avatarStr != ""):
 		display_user_avatar(avatarStr)
 
 # decode avatar data stored in string and display it
 func display_user_avatar(avatarStr: String):
+	# decode string to byte
 	var avatarData = Marshalls.base64_to_raw(avatarStr)
+	
 	var image = Image.new()
-	image.load_jpg_from_buffer(avatarData)
+	var isJPG = check_image_format(avatarData)
+	if (isJPG):
+		image.load_jpg_from_buffer(avatarData)
+	else :
+		image.load_png_from_buffer(avatarData)
+		
 	var image_texture = ImageTexture.create_from_image(image)
 	avatar.texture = image_texture
+
+# return true if image is in jpg format, false if in png
+func check_image_format(imageData: PackedByteArray) -> bool:
+	var signature = imageData.slice(0, 4)
+	if (signature == PackedByteArray([0xFF, 0xD8, 0xFF, 0xE0])):
+		return true
+	return false

@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnsn8jn5g4gmi"]
+[gd_scene load_steps=3 format=3 uid="uid://bnsn8jn5g4gmi"]
 
 [ext_resource type="Script" path="res://Components/components.gd" id="1_7j8by"]
-[ext_resource type="Script" path="res://Components/Lb_Prosperity.gd" id="2_tcrol"]
-[ext_resource type="Script" path="res://Components/Bt_Prosperity.gd" id="3_lr3lp"]
-[ext_resource type="Script" path="res://Components/Lb_Population.gd" id="3_vx0kv"]
-[ext_resource type="Script" path="res://Components/Lb_Build_Speed.gd" id="4_osojb"]
-[ext_resource type="Script" path="res://Components/Lb_Gold.gd" id="5_iudpn"]
+[ext_resource type="Script" path="res://Components/gd/Bt_Prosperity.gd" id="2_ymrsv"]
 
 [node name="components" type="Node"]
 script = ExtResource("1_7j8by")
@@ -16,7 +12,6 @@ offset_top = 57.0
 offset_right = 471.0
 offset_bottom = 83.0
 text = "Prosperity    :    xxx (可对应城市规模)"
-script = ExtResource("2_tcrol")
 
 [node name="ColorRect" type="ColorRect" parent="Prosperity"]
 layout_mode = 0
@@ -31,7 +26,7 @@ layout_mode = 0
 offset_right = 77.0
 offset_bottom = 31.0
 text = "num"
-script = ExtResource("3_lr3lp")
+script = ExtResource("2_ymrsv")
 
 [node name="Population" type="Label" parent="."]
 offset_left = 200.0
@@ -39,7 +34,6 @@ offset_top = 117.0
 offset_right = 531.0
 offset_bottom = 143.0
 text = "Population  :  xxx (计算得到 动态 规则待探讨)"
-script = ExtResource("3_vx0kv")
 
 [node name="Build_Speed" type="Label" parent="."]
 offset_left = 200.0
@@ -47,7 +41,6 @@ offset_top = 87.0
 offset_right = 509.0
 offset_bottom = 113.0
 text = "Build Speed : xxx (根据房屋属性计算得到)"
-script = ExtResource("4_osojb")
 
 [node name="Gold" type="Label" parent="."]
 offset_left = 200.0
@@ -57,7 +50,6 @@ offset_bottom = 53.0
 text = "Gold              :    $xxx"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("5_iudpn")
 
 [node name="ColorRect" type="ColorRect" parent="Gold"]
 layout_mode = 0

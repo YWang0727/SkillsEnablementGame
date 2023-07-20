@@ -1,22 +1,17 @@
 package com.imyuewang.EduCity.service.impl;
 
-import cn.hutool.system.UserInfo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.mapper.UserMapper;
 import com.imyuewang.EduCity.model.entity.Citymap;
 import com.imyuewang.EduCity.model.entity.User;
+import com.imyuewang.EduCity.model.vo.ComponentsVO;
 import com.imyuewang.EduCity.model.vo.LeaderboardVO;
-import com.imyuewang.EduCity.model.vo.LeaderboardVO;
-import com.imyuewang.EduCity.model.vo.UserInfoVO;
 import com.imyuewang.EduCity.service.CitymapService;
 import com.imyuewang.EduCity.mapper.CitymapMapper;
-import org.apache.ibatis.javassist.compiler.ast.Expr;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -46,7 +41,6 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
         QueryWrapper queryWrapper = new QueryWrapper<>();
         queryWrapper.select();
         int total = cityMapMapper.selectCount(queryWrapper);
-
         leaderBoardVO.setTotal_num(total);
 
         //order
@@ -58,15 +52,23 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
             all_prosperity[i] = citymaps.get(i).getProsperity();
             all_name[i] = citymaps.get(i).getName();
         }
-        System.out.println(all_name[1]+all_name[2]);
-        System.out.println(all_prosperity[1]);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
         leaderBoardVO.setAll_name(all_name);
         leaderBoardVO.setAll_prosperity(all_prosperity);
-
         return leaderBoardVO;
     }
+
+
+    @Override
+    public ComponentsVO components(Long id){
+        User user = userMapper.selectById(1);
+        Citymap citymap = cityMapMapper.selectById(user.getCitymap());
+        ComponentsVO componentsVO = new ComponentsVO();
+        componentsVO.setGold(citymap.getGold());
+        componentsVO.setProsperity(citymap.getProsperity());
+        componentsVO.setConstruction_speed(citymap.getConstructionspeed());
+        return componentsVO;
+    }
+
 }
 
 
