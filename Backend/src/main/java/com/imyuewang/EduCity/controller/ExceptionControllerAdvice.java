@@ -74,4 +74,10 @@ public class ExceptionControllerAdvice {
         return new ResultVO<>(ResultCode.ERROR, "系统异常，请稍后重试");
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResultVO<String> otherExceptionHandler(Exception e) {
+        // 返回自定义异常提示信息
+        return new ResultVO<>(ResultCode.ERROR, "系统异常，请稍后重试");
+    }
+
 }

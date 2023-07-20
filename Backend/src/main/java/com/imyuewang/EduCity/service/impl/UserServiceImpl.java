@@ -141,6 +141,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public UserVO register(User newUser) {
         userMapper.insert(newUser);
+        //set citymap id == user id
+        setCityMapId(newUser);
         UserVO uservo = getUserVOFromUser(newUser);
         uservo.setFlag(true);
         return uservo;
@@ -152,6 +154,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //userVO.setToken(JwtManager.generate(user.getEmail()));
 
         return userVO;
+    }
+
+    private void setCityMapId(User newUser){
+        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(User::getEmail, newUser.getEmail());
+        User user = userMapper.selectOne(lqw);
+        newUser.setCitymap(user.getId());
+        userMapper.updateById(newUser);
     }
 
     public String generateRandomString() {

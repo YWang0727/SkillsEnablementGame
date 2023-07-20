@@ -1,5 +1,6 @@
 package com.imyuewang.EduCity;
 
+import org.mybatis.spring.MyBatisSystemException;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,9 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 public class EduCityApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(EduCityApplication.class, args);
+
     }
 
 }

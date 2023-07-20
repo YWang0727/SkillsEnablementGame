@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=16 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://qow8cruc54nv" path="res://loginPage/cityPicture2.jpg" id="3_ohuu6"]
@@ -40,6 +40,13 @@ bg_color = Color(0, 0.627451, 0.611765, 1)
 
 [sub_resource type="Theme" id="Theme_5q2ag"]
 Button/styles/normal = SubResource("StyleBoxFlat_ecg21")
+
+[sub_resource type="InputEventKey" id="InputEventKey_8pldv"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_jq452"]
+events = [SubResource("InputEventKey_8pldv")]
 
 [sub_resource type="Theme" id="Theme_i4oag"]
 
@@ -138,7 +145,6 @@ toggle_mode = true
 text = "Sign In"
 
 [node name="sign_in1" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
@@ -189,9 +195,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -1.00397
-offset_top = -78.704
+offset_top = -73.6188
 offset_right = -1.00397
-offset_bottom = -8.70401
+offset_bottom = -3.61877
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -258,9 +264,9 @@ text = "Next"
 [node name="get_activecode_button" type="Button" parent="sign_in1"]
 layout_mode = 0
 offset_left = 486.917
-offset_top = 209.512
+offset_top = 214.597
 offset_right = 836.917
-offset_bottom = 274.512
+offset_bottom = 279.597
 scale = Vector2(0.6, 0.6)
 theme = SubResource("Theme_5q2ag")
 text = "Get Active Code"
@@ -459,6 +465,7 @@ size_flags_horizontal = 3
 text = "Reset"
 
 [node name="log_in" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
@@ -570,6 +577,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+shortcut = SubResource("Shortcut_jq452")
 text = "Log In"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="log_in"]
