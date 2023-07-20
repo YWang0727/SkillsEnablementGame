@@ -2,6 +2,7 @@ package com.imyuewang.EduCity.service;
 
 import com.imyuewang.EduCity.model.entity.Citymap;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.imyuewang.EduCity.model.param.ComponentsParam;
 import com.imyuewang.EduCity.model.vo.ComponentsVO;
 import com.imyuewang.EduCity.model.vo.LeaderboardVO;
 
@@ -19,5 +20,7 @@ public interface CitymapService extends IService<Citymap> {
      */
     LeaderboardVO leaderBoard(Long id);
 
-    ComponentsVO components(Long id);
+    ComponentsVO getComponents(Long id);
+    void pushComponents(ComponentsParam param);
+
 }

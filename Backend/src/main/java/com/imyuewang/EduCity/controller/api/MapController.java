@@ -1,9 +1,10 @@
 package com.imyuewang.EduCity.controller.api;
 
-import com.imyuewang.EduCity.model.param.LeaderBoardParam;
+import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.vo.ComponentsVO;
 import com.imyuewang.EduCity.model.vo.LeaderboardVO;
 import com.imyuewang.EduCity.model.vo.UserInfoVO;
+import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.service.CitymapService;
 import com.imyuewang.EduCity.service.SettingService;
 import com.imyuewang.EduCity.service.UserService;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Base64;
 
 /**
@@ -41,11 +43,18 @@ public class MapController {
         return leaderBoardVO;
     }
 
-    @GetMapping("/components/{id}")
-    @ApiOperation("return leaderboard information")
-    public ComponentsVO components(@PathVariable Long id) {
-        ComponentsVO componentsVO = citymapService.components(id);
+    @GetMapping("/getComponents/{id}")
+    @ApiOperation("return components information")
+    public ComponentsVO getComponents(@PathVariable Long id) {
+        ComponentsVO componentsVO = citymapService.getComponents(id);
         return componentsVO;
+    }
+
+
+    @PostMapping("/pushComponents")
+    @ApiOperation("game manager to database")
+    public void pushComponents(@RequestBody  @Valid User newUser){
+
     }
 
 

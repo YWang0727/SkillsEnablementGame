@@ -101,7 +101,7 @@ offset_right = 32.0
 offset_bottom = 31.0
 size_flags_stretch_ratio = 0.0
 theme_type_variation = &"HeaderSmall"
-text = "1"
+text = "myrank"
 
 [node name="myCityName" type="Label" parent="ColorRect/my-info"]
 layout_mode = 2

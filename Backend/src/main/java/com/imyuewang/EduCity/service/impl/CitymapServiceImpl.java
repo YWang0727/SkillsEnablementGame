@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.mapper.UserMapper;
 import com.imyuewang.EduCity.model.entity.Citymap;
 import com.imyuewang.EduCity.model.entity.User;
+import com.imyuewang.EduCity.model.param.ComponentsParam;
 import com.imyuewang.EduCity.model.vo.ComponentsVO;
 import com.imyuewang.EduCity.model.vo.LeaderboardVO;
 import com.imyuewang.EduCity.service.CitymapService;
@@ -59,14 +60,24 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
 
 
     @Override
-    public ComponentsVO components(Long id){
-        User user = userMapper.selectById(1);
+    public ComponentsVO getComponents(Long id){
+        User user = userMapper.selectById(id);
         Citymap citymap = cityMapMapper.selectById(user.getCitymap());
         ComponentsVO componentsVO = new ComponentsVO();
         componentsVO.setGold(citymap.getGold());
         componentsVO.setProsperity(citymap.getProsperity());
         componentsVO.setConstruction_speed(citymap.getConstructionspeed());
         return componentsVO;
+    }
+
+
+    @Override
+    public void pushComponents(ComponentsParam param){
+        User user = userMapper.selectById(param.getId());
+        Citymap citymap = cityMapMapper.selectById(user.getCitymap());
+        citymap.setGold(param.getGold());
+        citymap.setProsperity(param.getProsperity());
+        citymap.setConstructionspeed(param.getConstruction_speed());
     }
 
 }

@@ -121,7 +121,10 @@ func _getStatus(_credentials):
 func _leaderBoard():
 	_apiCore("map/leaderBoard/" + str(GameManager.user_id), null, false, "GET", "leaderBoard")
 
-func _components():
-	_apiCore("map/components/" + str(GameManager.user_id), null, false, "GET", "components")
+func _getComponents():
+	_apiCore("map/getComponents/" + str(GameManager.user_id), null, false, "GET", "getComponents")
+	
+func _pushComponents(_credentials):
+	_apiCore("map/pushComponents", _credentials, false, "POST", "pushComponents")
 
 

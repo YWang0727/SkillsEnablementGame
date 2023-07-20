@@ -26,6 +26,8 @@ var scoreDifference = 0
 var attempts = null
 var golds = null
 
+#signal finishi_quiz
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	HttpLayer.connect("http_completed", http_completed)
@@ -282,7 +284,9 @@ func _show_score():
 	goldLabel.text = goldLabel.text + var_to_str(golds)
 	
 	#传到attributes
-	Num.gold += golds
+	GameManager.gold += golds
+	#emit_signal("finishi_quiz")
+	
 	# attempts remaining
 	var attemptsLabel = get_node("ShowScore/Attempts")
 	attemptsLabel.text = attemptsLabel.text + var_to_str((3 - attempts) as int)

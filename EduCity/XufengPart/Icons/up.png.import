@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by8r4ux2yra7e"
-path="res://.godot/imported/residential building_3.png-6137521c9dccd503aca81b70fcf0710f.ctex"
+uid="uid://cl4d5l41duaat"
+path="res://.godot/imported/up.png-d42c0b0f25a21123a489cb341a13468f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://XufengPart/Icon_Buildings/Residential Building/residential building_3.png"
-dest_files=["res://.godot/imported/residential building_3.png-6137521c9dccd503aca81b70fcf0710f.ctex"]
+source_file="res://XufengPart/Icons/up.png"
+dest_files=["res://.godot/imported/up.png-d42c0b0f25a21123a489cb341a13468f.ctex"]
 
 [params]
 
