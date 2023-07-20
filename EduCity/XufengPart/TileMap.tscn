@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cff3556jhqvd" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_1.png" id="1_ibpxp"]
 [ext_resource type="Texture2D" uid="uid://bqs2ipf2ox1vu" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_1.png" id="2_78db4"]
 [ext_resource type="Texture2D" uid="uid://bpkxb270wo4fk" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_2.png" id="2_yj1fg"]
-[ext_resource type="Texture2D" uid="uid://uth6jqrdv4kj" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_3.png" id="3_sk7c6"]
+[ext_resource type="Texture2D" uid="uid://dpf8cq1buijlx" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_3.png" id="3_sk7c6"]
 [ext_resource type="Texture2D" uid="uid://dwnd6ua2oci35" path="res://XufengPart/Icon_Buildings/Bank/bank_1.png" id="3_xg6cg"]
 [ext_resource type="Texture2D" uid="uid://djiv5248e3p8" path="res://XufengPart/Icon_Buildings/Bank/bank_2.png" id="4_efbd4"]
 [ext_resource type="Texture2D" uid="uid://dahxnhd8cox47" path="res://XufengPart/Icon_Buildings/Farm/farm_2.png" id="4_om1df"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://1idu7nj55puu" path="res://XufengPart/Icon_Buildings/ground_grass.png" id="8_ddpr7"]
 [ext_resource type="Script" path="res://XufengPart/TileMap.gd" id="9_i3sl2"]
 [ext_resource type="Texture2D" uid="uid://cr06dakdr4o11" path="res://XufengPart/Icon_Buildings/Farm/farm_1.png" id="10_s5nfb"]
-[ext_resource type="Texture2D" uid="uid://bd7lyf4ybawuy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_3.png" id="15_6mv87"]
+[ext_resource type="Texture2D" uid="uid://by8r4ux2yra7e" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_3.png" id="15_6mv87"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x7w2k"]
 texture = ExtResource("1_ibpxp")
