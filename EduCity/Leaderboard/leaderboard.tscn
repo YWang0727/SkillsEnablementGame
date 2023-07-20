@@ -4,34 +4,27 @@
 
 [node name="leader_board" type="Node"]
 script = ExtResource("1_hieti")
-metadata/_edit_vertical_guides_ = [994.0]
+metadata/_edit_vertical_guides_ = [960.0]
+metadata/_edit_horizontal_guides_ = [520.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 690.0
-offset_top = 106.0
-offset_right = 1301.0
-offset_bottom = 981.0
+offset_left = 650.0
+offset_top = 100.0
+offset_right = 1270.0
+offset_bottom = 980.0
 color = Color(1, 0.670588, 0.623529, 0.898039)
 
-[node name="Label2" type="Label" parent="ColorRect"]
+[node name="leaderBoard" type="Label" parent="ColorRect"]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 298.0
-offset_right = 227.0
-offset_bottom = 324.0
-scale = Vector2(1.6, 1.6)
+offset_left = 228.0
+offset_top = 28.0
+offset_right = 392.0
+offset_bottom = 70.0
 size_flags_stretch_ratio = 0.0
-text = "name"
-
-[node name="Label" type="Label" parent="ColorRect"]
-layout_mode = 0
-offset_left = 214.0
-offset_top = 2.0
-offset_right = 309.0
-offset_bottom = 28.0
-scale = Vector2(1.6, 1.6)
-size_flags_stretch_ratio = 0.0
+theme_type_variation = &"HeaderLarge"
 text = "leaderboard"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="ColorRect"]
 layout_mode = 0
@@ -41,24 +34,90 @@ offset_right = 583.0
 offset_bottom = 855.0
 text = "back to game"
 
-[node name="Label3" type="Label" parent="ColorRect"]
+[node name="ItemList" type="ItemList" parent="ColorRect"]
+layout_mode = 2
+offset_left = 60.0
+offset_top = 220.0
+offset_right = 560.0
+offset_bottom = 780.0
+select_mode = 1
+max_columns = 4
+fixed_column_width = 113
+
+[node name="title" type="MenuBar" parent="ColorRect"]
 layout_mode = 0
-offset_left = 99.0
-offset_top = 168.0
-offset_right = 194.0
-offset_bottom = 194.0
-scale = Vector2(1.6, 1.6)
+offset_left = 60.0
+offset_top = 100.0
+offset_right = 560.0
+offset_bottom = 138.0
+
+[node name="titleRank" type="Label" parent="ColorRect/title"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 65.0
+offset_bottom = 31.0
 size_flags_stretch_ratio = 0.0
+theme_type_variation = &"HeaderSmall"
+text = "rank"
+
+[node name="titleCityName" type="Label" parent="ColorRect/title"]
+layout_mode = 0
+offset_left = 110.0
+offset_right = 202.0
+offset_bottom = 31.0
+size_flags_stretch_ratio = 0.0
+theme_type_variation = &"HeaderSmall"
+text = "cityName"
+
+[node name="titleProsperity" type="Label" parent="ColorRect/title"]
+layout_mode = 0
+offset_left = 260.0
+offset_right = 360.0
+offset_bottom = 31.0
+size_flags_stretch_ratio = 0.0
+theme_type_variation = &"HeaderSmall"
+text = "prosperity"
+
+[node name="titleMap" type="Label" parent="ColorRect/title"]
+layout_mode = 0
+offset_left = 410.0
+offset_right = 454.0
+offset_bottom = 31.0
+size_flags_stretch_ratio = 0.0
+theme_type_variation = &"HeaderSmall"
+text = "map"
+
+[node name="my-info" type="MenuBar" parent="ColorRect"]
+offset_left = 60.0
+offset_top = 160.0
+offset_right = 560.0
+offset_bottom = 198.0
+
+[node name="myRank" type="Label" parent="ColorRect/my-info"]
+layout_mode = 2
+offset_left = 20.0
+offset_right = 32.0
+offset_bottom = 31.0
+size_flags_stretch_ratio = 0.0
+theme_type_variation = &"HeaderSmall"
 text = "1"
 
-[node name="Label4" type="Label" parent="ColorRect"]
-layout_mode = 0
-offset_left = 102.0
-offset_top = 352.0
-offset_right = 225.0
-offset_bottom = 378.0
-scale = Vector2(1.6, 1.6)
+[node name="myCityName" type="Label" parent="ColorRect/my-info"]
+layout_mode = 2
+offset_left = 110.0
+offset_right = 174.0
+offset_bottom = 31.0
 size_flags_stretch_ratio = 0.0
-text = "prosperity"
+theme_type_variation = &"HeaderSmall"
+text = "mycity"
+
+[node name="myProsperity" type="Label" parent="ColorRect/my-info"]
+layout_mode = 2
+offset_left = 260.0
+offset_right = 399.0
+offset_bottom = 31.0
+size_flags_stretch_ratio = 0.0
+theme_type_variation = &"HeaderSmall"
+text = "my_prosperity"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

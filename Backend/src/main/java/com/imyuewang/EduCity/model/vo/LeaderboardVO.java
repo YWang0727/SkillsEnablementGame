@@ -15,9 +15,16 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 public class LeaderboardVO {
-
+    /**
+     * user's info
+     * all info
+     */
     private long prosperity;
-
     private String name;
+
+    private int total_num;
+
+    private String[] all_name;
+    private long[] all_prosperity;
 
 }
