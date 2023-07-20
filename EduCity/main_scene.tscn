@@ -130,14 +130,3 @@ vertical_alignment = 1
 offset_right = 400.0
 offset_bottom = 150.0
 text = "go to earn money"
-
-[connection signal="button_down" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/UpMoveButton" to="CameraButtons" method="_on_up_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/UpMoveButton" to="CameraButtons" method="_on_up_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_up"]
-[connection signal="pressed" from="CameraButtons/CenterMoveButton" to="CameraButtons" method="_on_center_move_button_pressed"]
-[connection signal="pressed" from="ErrorPannel/Button" to="BuildPanel" method="_on_button_pressed"]
