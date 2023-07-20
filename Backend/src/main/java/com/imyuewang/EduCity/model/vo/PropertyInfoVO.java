@@ -21,4 +21,5 @@ public class PropertyInfoVO {
     private Integer constructionSiteAmount;
 
     private Integer hospitalAmount;
+
 }

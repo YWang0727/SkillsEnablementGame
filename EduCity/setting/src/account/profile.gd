@@ -90,6 +90,7 @@ func display_user_info(res):
 	prosperity.text = str(res.prosperity)
 	gold.text = str(res.gold)
 	
+	
 	# display byte data of avatar
 	var avatarStr = res.avatarStr
 	if (avatarStr != null && avatarStr != ""):

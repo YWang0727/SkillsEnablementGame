@@ -341,7 +341,7 @@ func http_completed(res, response_code, headers, route) -> void:
 	if response_code == 200 && route == "status":
 		# save data to knowledge status list in GameManager
 		for i in res['statusList'].size():
-			GameManager.statusList.append(res['statusList'][i])	
+			GameManager.statusList[i] = res['statusList'][i]	
 			
 		# save data to quiz status list in GameManager	
 		for i in res['completeList'].size():

@@ -20,6 +20,13 @@ extends VBoxContainer
 @onready var hospital_lable := hospital_message_node.get_node("Lable")
 
 
+var lock = load("res://XufengPart/Icon_Buildings/locked.png")
+var supermarket = load("res://XufengPart/Icon_Buildings/Supermarket/supermarket_1.png")
+var bank = load("res://XufengPart/Icon_Buildings/Bank/bank_1.png")
+var farm = load("res://XufengPart/Icon_Buildings/Farm/farm_1.png")
+var construction = load("res://XufengPart/Icon_Buildings/Construction Site_1.png")
+var hospital = load("res://XufengPart/Icon_Buildings/Hospital/hospital_1.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# 随着房屋升级这里的id参数也要变，但没想好怎么改
@@ -37,86 +44,82 @@ func _ready():
 			if control:
 				control.hide()  # 隐藏 Control 节点
 			
-			control = button.get_node("Message2")  # 替换 "Control" 为 Control 节点的路径
-			if control:
-				control.hide()  # 隐藏 Control 节点
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if GameManager.statusList[0] == 2:
+		get_node("SupermarketButton").icon = supermarket
+	if GameManager.statusList[0] != 2:
+		get_node("SupermarketButton").icon = lock
+	
+	if GameManager.statusList[1] == 2:
+		get_node("BankButton").icon = bank
+	if GameManager.statusList[1] != 2:
+		get_node("BankButton").icon = lock
+		
+	if GameManager.statusList[2] == 2:
+		get_node("FarmButton").icon = farm
+	if GameManager.statusList[2] != 2:
+		get_node("FarmButton").icon = lock
+		
+	if GameManager.statusList[3] == 2:
+		get_node("ConstructionSiteButton").icon = construction
+	if GameManager.statusList[3] != 2:
+		get_node("ConstructionSiteButton").icon = lock
+		
+	if GameManager.statusList[4] == 2:
+		get_node("HospitalButton").icon = hospital
+	if GameManager.statusList[4] != 2:
+		get_node("HospitalButton").icon = lock
+	
 
 func _load_message(id: int) -> String:
 	var str: String
-	str = "Name: " + GameManager.buildings_data[id]["name"] + "\n"
-	str += "Cost: " + str(GameManager.buildings_data[id]["cost"]) + " golds" + "\n"
-	str += "Prosperity: +" + str(GameManager.buildings_data[id]["prosperity"]) + "\n"
-	str += "Earn Gold: +" + str(GameManager.buildings_data[id]["money"]) + " golds per day" + "\n"
+	if id != 0 and GameManager.statusList[id-1] != 2:
+		str = "You need Finish" + "\n" + "learning module of"  + "\n"
+		str += GameManager.buildings_data[id]["knowledge"] + "\n"
+		str += "to unlock " + GameManager.buildings_data[id]["name"] + "\n"
+	else:
+		str = "Name: " + GameManager.buildings_data[id]["name"] + "\n"
+		str += "Cost: " + str(GameManager.buildings_data[id]["cost"]) + " golds" + "\n"
+		str += "Prosperity: +" + str(GameManager.buildings_data[id]["prosperity"]) + "\n"
+		str += "Earn Gold: +" + str(GameManager.buildings_data[id]["money"]) + " golds per day" + "\n"
 	return str
 
 func _on_res_building_button_mouse_entered():
-		res_building_message_node.show()
+	res_building_message_node.show()
 
 func _on_res_building_button_mouse_exited():
-		res_building_message_node.hide()
+	res_building_message_node.hide()
 
 func _on_supermarket_button_mouse_entered():
-	if IfLock.if_lock[1] == 1:
-		supermarket_message_node.show()
-	if IfLock.if_lock[1] == 0:
-		supermarket_message2_node.show()
+	supermarket_message_node.show()
 
 func _on_supermarket_button_mouse_exited():
-	if IfLock.if_lock[1] == 1:
-		supermarket_message_node.hide()
-	if IfLock.if_lock[1] == 0:
-		supermarket_message2_node.hide()
+	supermarket_message_node.hide()
 
 func _on_bank_button_mouse_entered():
-	if IfLock.if_lock[2] == 1:
-		bank_message_node.show()
-	if IfLock.if_lock[2] == 0:
-		bank_message2_node.show()
+	bank_message_node.show()
 
 func _on_bank_button_mouse_exited():
-	if IfLock.if_lock[2] == 1:
-		bank_message_node.hide()
-	if IfLock.if_lock[2] == 0:
-		bank_message2_node.hide()
-
+	bank_message_node.hide()
+	
 func _on_farm_button_mouse_entered():
-	if IfLock.if_lock[3] == 1:
-		farm_message_node.show()
-	if IfLock.if_lock[3] == 0:
-		farm_message2_node.show()
-
+	farm_message_node.show()
+	
 func _on_farm_button_mouse_exited():
-	if IfLock.if_lock[3] == 1:
-		farm_message_node.hide()
-	if IfLock.if_lock[3] == 0:
-		farm_message2_node.hide()
-
+	farm_message_node.hide()
+	
 func _on_construction_site_button_mouse_entered():
-	if IfLock.if_lock[4] == 1:
-		constrction_site_message_node.show()
-	if IfLock.if_lock[4] == 0:
-		constrction_site_message2_node.show()
+	constrction_site_message_node.show()
 
 func _on_construction_site_button_mouse_exited():
-	if IfLock.if_lock[4] == 1:
-		constrction_site_message_node.hide()
-	if IfLock.if_lock[4] == 0:
-		constrction_site_message2_node.hide()
+	constrction_site_message_node.hide()
 
 func _on_hospital_button_mouse_entered():
-	if IfLock.if_lock[5] == 1:
-		hospital_message_node.show()
-	if IfLock.if_lock[5] == 0:
-		hospital_message2_node.show()
-
+	hospital_message_node.show()
+	
 func _on_hospital_button_mouse_exited():
-	if IfLock.if_lock[5] == 1:
-		hospital_message_node.hide()
-	if IfLock.if_lock[5] == 0:
-		hospital_message2_node.hide()
-
+	hospital_message_node.hide()
+	

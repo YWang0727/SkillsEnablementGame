@@ -1,6 +1,6 @@
 extends Node
 
-var user_id = null
+var user_id = 1
 
 var user_token = null
 var user_data = null
@@ -9,7 +9,7 @@ var save_data = null
 #Main Attributes: prosperity\coins\speed...etc
 
 #Reading
-var statusList = []
+var statusList = [0,0,0,0,0]
 var reading_path = ""
 
 #Quiz
