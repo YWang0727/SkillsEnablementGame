@@ -4,21 +4,15 @@ extends VBoxContainer
 @onready var res_building_message_node := get_node("ResBuildingButton/Message")
 @onready var res_building_lable := res_building_message_node.get_node("Lable")
 @onready var supermarket_message_node := get_node("SupermarketButton/Message")
-
 @onready var supermarket_lable := supermarket_message_node.get_node("Lable")
 @onready var bank_message_node := get_node("BankButton/Message")
-
 @onready var bank_lable := bank_message_node.get_node("Lable")
 @onready var farm_message_node := get_node("FarmButton/Message")
-
 @onready var farm_lable := farm_message_node.get_node("Lable")
 @onready var constrction_site_message_node := get_node("ConstructionSiteButton/Message")
-
 @onready var constrction_site_lable := constrction_site_message_node.get_node("Lable")
 @onready var hospital_message_node := get_node("HospitalButton/Message")
-
 @onready var hospital_lable := hospital_message_node.get_node("Lable")
-
 
 var lock = load("res://XufengPart/Icon_Buildings/locked.png")
 var supermarket = load("res://XufengPart/Icon_Buildings/Supermarket/supermarket_1.png")

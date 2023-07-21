@@ -78,6 +78,7 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
         citymap.setGold(param.getGold());
         citymap.setProsperity(param.getProsperity());
         citymap.setConstructionspeed(param.getConstruction_speed());
+        cityMapMapper.updateById(citymap);
     }
 
 }

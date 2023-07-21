@@ -1,6 +1,5 @@
 extends TileMap
 
-
 signal store_components
 
 var selectedTile: int = 98
@@ -11,6 +10,8 @@ var selectedBuildingType: int = -1  # 选择的图块索引
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_drawMap()
+	HttpLayer.connect("http_completed", http_completed)
+	HttpLayer._readMap()
 
 func _input(event: InputEvent) -> void:
 	var cellPos
@@ -45,6 +46,13 @@ func _input(event: InputEvent) -> void:
 				_updateMapDict(selectedBuildingType, cellPos)
 				selectedBuildingType = -1
 				emit_signal("store_components")
+				var _credential = {
+					"x": cellPos.x,
+					"y": cellPos.y,
+					"houseType": selectedBuildingType,
+					"id": GameManager.user_id,
+				}
+				HttpLayer._buildHouse(_credential);
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -106,3 +114,14 @@ func _updateMapDict(selectedBuildingType, cellPos) -> void:
 			GameManager.mapDict[cellPos+Vector2i(1, 1)] = selectedTile
 
 
+
+func http_completed(res, response_code, headers, route):
+	if route == "readMap":
+		for i in range(0, res.num):
+			var cellPos_temp
+			cellPos_temp.x = res.x[i]
+			cellPos_temp.y = res.y[i]
+			GameManager.mapDict[cellPos_temp] = res.houseType
+
+		
+		

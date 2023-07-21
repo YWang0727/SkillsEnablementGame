@@ -1,6 +1,7 @@
 package com.imyuewang.EduCity.controller.api;
 
 import com.imyuewang.EduCity.model.entity.User;
+import com.imyuewang.EduCity.model.param.ComponentsParam;
 import com.imyuewang.EduCity.model.vo.ComponentsVO;
 import com.imyuewang.EduCity.model.vo.LeaderboardVO;
 import com.imyuewang.EduCity.model.vo.UserInfoVO;
@@ -53,8 +54,9 @@ public class MapController {
 
     @PostMapping("/pushComponents")
     @ApiOperation("game manager to database")
-    public void pushComponents(@RequestBody  @Valid User newUser){
-
+    public void pushComponents(@RequestBody  @Valid ComponentsParam param){
+        citymapService.pushComponents(param);
+        return;
     }
 
 

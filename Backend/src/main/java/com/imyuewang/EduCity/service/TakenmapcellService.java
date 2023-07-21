@@ -2,6 +2,8 @@ package com.imyuewang.EduCity.service;
 
 import com.imyuewang.EduCity.model.entity.Takenmapcell;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.imyuewang.EduCity.model.param.MapDictParam;
+import com.imyuewang.EduCity.model.vo.MapDictVO;
 
 /**
 * @author Sarah Wang
@@ -10,4 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface TakenmapcellService extends IService<Takenmapcell> {
 
+    MapDictVO readMap(Long id);
+
+    void buildHouse(MapDictParam param);
 }

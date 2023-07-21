@@ -126,5 +126,11 @@ func _getComponents():
 	
 func _pushComponents(_credentials):
 	_apiCore("map/pushComponents", _credentials, false, "POST", "pushComponents")
+	
+func _readMap():
+	_apiCore("map_cell/readMap/" + str(GameManager.user_id), null, false, "GET", "readMap")
+	
+func _buildHouse(_credentials):
+	_apiCore("map_cell/buildHouse", _credentials, false, "POST", "buildHouse")
 
 

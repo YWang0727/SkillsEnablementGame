@@ -26,7 +26,6 @@ var scoreDifference = 0
 var attempts = null
 var golds = null
 
-#signal finishi_quiz
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -285,7 +284,8 @@ func _show_score():
 	
 	#传到attributes
 	GameManager.gold += golds
-	#emit_signal("finishi_quiz")
+	
+
 	
 	# attempts remaining
 	var attemptsLabel = get_node("ShowScore/Attempts")
