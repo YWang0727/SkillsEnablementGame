@@ -32,7 +32,7 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
 
     @Override
     public LeaderboardVO leaderBoard(Long id) {
-        User user = userMapper.selectById(1);
+        User user = userMapper.selectById(id);
         Citymap citymap = cityMapMapper.selectById(user.getCitymap());
         LeaderboardVO leaderBoardVO = new LeaderboardVO();
         leaderBoardVO.setName(citymap.getName());

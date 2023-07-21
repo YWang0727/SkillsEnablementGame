@@ -6,12 +6,20 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.imyuewang.EduCity.config.PasswordEncoder;
 import com.imyuewang.EduCity.enums.ResultCode;
 import com.imyuewang.EduCity.exception.ApiException;
+import com.imyuewang.EduCity.mapper.CitymapMapper;
+import com.imyuewang.EduCity.mapper.TakenmapcellMapper;
+import com.imyuewang.EduCity.mapper.UserQuizMapper;
+import com.imyuewang.EduCity.model.entity.Citymap;
+import com.imyuewang.EduCity.model.entity.Takenmapcell;
+import com.imyuewang.EduCity.model.entity.UserQuiz;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.param.UserParam;
 import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.security.JwtManager;
+import com.imyuewang.EduCity.service.CitymapService;
+import com.imyuewang.EduCity.service.TakenmapcellService;
 import com.imyuewang.EduCity.util.MailUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.model.entity.User;
@@ -29,6 +37,7 @@ import java.util.UUID;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.Constants.CHARACTERS;
 
+
 /**
 * @author Sarah Wang
 * @description 针对表【user】的数据库操作Service实现
@@ -44,6 +53,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private CitymapMapper citymapMapper;
+    @Resource
+    private TakenmapcellMapper takenmapcellMapper;
+    @Resource
+    private UserQuizMapper userQuizMapper;
 
     private User registeringUser;
 
@@ -130,10 +145,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public UserVO register(User newUser) {
         userMapper.insert(newUser);
-        //set citymap id == user id
-        setCityMapId(newUser);
+        //initialize values in tables
+        initializeValuesInTable(newUser);
+
         UserVO uservo = getUserVOFromUser(newUser);
-        uservo.setFlag(true);
         return uservo;
     }
 
@@ -141,16 +156,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         UserVO userVO = new UserVO();
         BeanUtil.copyProperties(user, userVO);
         //userVO.setToken(JwtManager.generate(user.getEmail()));
-
         return userVO;
     }
 
-    private void setCityMapId(User newUser){
+    private void initializeValuesInTable(User newUser){
+        //set city map id == user id
+        newUser = setCityMapId(newUser);
+        //initialize citymap table
+        citymapMapper.insert(new Citymap(newUser.getId(), "My City", 0L,0L,0));
+        //initialize takenmapcell table
+        takenmapcellMapper.insert(new Takenmapcell(newUser.getCitymap()));
+        //initialize user_quiz table
+        userQuizMapper.insert(new UserQuiz(newUser.getId()));
+    }
+
+    private User setCityMapId(User newUser){
         LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
         lqw.eq(User::getEmail, newUser.getEmail());
         User user = userMapper.selectOne(lqw);
         newUser.setCitymap(user.getId());
         userMapper.updateById(newUser);
+        //return newuser with id and citymap id
+        return userMapper.selectOne(lqw);
     }
 
     public String generateRandomString() {

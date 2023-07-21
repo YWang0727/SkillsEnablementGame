@@ -47,6 +47,10 @@ public class UserQuiz implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
+    public UserQuiz(){}
+    public UserQuiz(Long id){
+        id = this.id;
+    }
     @Override
     public boolean equals(Object that) {
         if (this == that) {

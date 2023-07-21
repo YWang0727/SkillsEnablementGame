@@ -45,6 +45,11 @@ public class Takenmapcell implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
+    public Takenmapcell(){}
+    public Takenmapcell(Long mapid){
+        mapid = this.mapid;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
