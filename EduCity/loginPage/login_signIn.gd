@@ -282,10 +282,7 @@ func changePasswordHideState(passwordNode: Node):
 func _on_login_button_pressed():
 	#check the account is existed or not
 	login(emailLog.text, passwordLog.text);
-	# When login is !successful!, get the required data from the database to localStorage
-	# get current user's learning status and save in localStorage
-	if GameManager.user_id != null:
-		_get_localStorage()
+
 
 func _on_complete_button_pressed():
 	register(emailSign.text, activeCode.text, usernameSign.text, password1Sign.text);
@@ -297,7 +294,6 @@ func login(email:String, password:String):
 			"password": password,
 	}
 	HttpLayer._login(_credential);
-	print("check account " + str(GameManager.user_id))
 
 
 func register(email: String, activeCode:String, username:String, password:String):
@@ -325,7 +321,10 @@ func http_completed(res, response_code, headers, route) -> void:
 		else:	
 			GameManager.user_id = res['id']
 			print("------------------------login success!")
-			get_tree().change_scene_to_file("res://main_scene.tscn")
+			# When login is !successful!, get the required data from the database to localStorage
+			# get current user's learning status and save in localStorage
+			if GameManager.user_id != null:
+				_get_localStorage()
 		return
 	if response_code == 200 && route == "register":
 		alertPopup.set_text("             resgister success! Pleace log in!");
@@ -340,6 +339,7 @@ func http_completed(res, response_code, headers, route) -> void:
 		for i in res['completeList'].size():
 			GameManager.quizStatus.append(res['completeList'][i])	
 		print("---------------------get status success!")
+		get_tree().change_scene_to_file("res://main_scene.tscn")
 		return
 	if response_code == 200 && route == "email":
 		if res['code'] == 4000:

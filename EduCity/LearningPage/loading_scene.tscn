@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://btnes61b0avwx"]
+[gd_scene load_steps=13 format=3 uid="uid://btnes61b0avwx"]
 
 [ext_resource type="Script" path="res://LearningPage/loading_scene.gd" id="1_xbj0w"]
+[ext_resource type="Texture2D" uid="uid://cneqppry5tqy" path="res://LearningPage/Icon/background .png" id="2_2skhk"]
 [ext_resource type="FontFile" uid="uid://dcj1qjnprubc2" path="res://setting/assets/Font/Roboto/Roboto-Thin.ttf" id="2_u8alk"]
 [ext_resource type="Texture2D" uid="uid://bcv0rxjhjxqbe" path="res://LearningPage/Icon/loading/1.png" id="3_pn6eg"]
 [ext_resource type="Texture2D" uid="uid://b32slhm8haxmx" path="res://LearningPage/Icon/loading/2.png" id="4_f4y6t"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ckjyhij7hrhys" path="res://LearningPage/Icon/loading/5.png" id="7_7krvd"]
 [ext_resource type="Texture2D" uid="uid://05no0ve1bhem" path="res://LearningPage/Icon/loading/6.png" id="8_lcw56"]
 [ext_resource type="Texture2D" uid="uid://drsrx34dcn14r" path="res://LearningPage/Icon/loading/7.png" id="9_umee7"]
+[ext_resource type="Texture2D" uid="uid://xy26wddgonnn" path="res://loginPage/logo.png" id="11_ox7pq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ug7mr"]
 animations = [{
@@ -44,11 +46,11 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_xbj0w")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0, 0, 0, 1)
+texture = ExtResource("2_2skhk")
 
 [node name="LoadingLabel" type="Label" parent="."]
 layout_mode = 0
@@ -62,7 +64,18 @@ theme_override_font_sizes/font_size = 50
 text = "Loading......"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(956, 590)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ug7mr")
-frame_progress = 0.0979193
+autoplay = "default"
+frame_progress = 0.515209
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 908.0
+offset_top = 504.0
+offset_right = 1108.0
+offset_bottom = 704.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_ox7pq")
