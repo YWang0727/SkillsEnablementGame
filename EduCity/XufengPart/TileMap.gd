@@ -44,8 +44,8 @@ func _input(event: InputEvent) -> void:
 				clear_layer(selectedLayer)
 				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
 				_updateMapDict(selectedBuildingType, cellPos)
-				selectedBuildingType = -1
 				emit_signal("store_components")
+				
 				var _credential = {
 					"x": cellPos.x,
 					"y": cellPos.y,
@@ -53,6 +53,7 @@ func _input(event: InputEvent) -> void:
 					"id": GameManager.user_id,
 				}
 				HttpLayer._buildHouse(_credential);
+				selectedBuildingType = -1
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -119,9 +120,12 @@ func http_completed(res, response_code, headers, route):
 	if route == "readMap":
 		for i in range(0, res.num):
 			var cellPos_temp
+			cellPos_temp = local_to_map(position)
 			cellPos_temp.x = res.x[i]
 			cellPos_temp.y = res.y[i]
-			GameManager.mapDict[cellPos_temp] = res.houseType
+			GameManager.mapDict[cellPos_temp] = res.houseType[i]
+			set_cell(buildingLayer,cellPos_temp,res.houseType[i],Vector2i(0,0))
+			
 
 		
 		
