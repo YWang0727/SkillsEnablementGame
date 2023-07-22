@@ -63,7 +63,7 @@ func _destroyHttpObject(_object):
 
 # The core operations used to make HTTP requests:
 # _apiCore(Endpoint of the request (router), Data to be sent (request body), Whether authorisation is required, Methods of request (GET, POST, PUT, DELETE, etc.), Route info, Redirected info)
-func _apiCore(_endpoint, _data, _authorize, _method, _route , _redirectTo = null ):
+func _apiCore(_endpoint, _data, _authorize, _method: String, _route , _redirectTo = null ):
 	# Create a new instance of HTTPRequest and connect it to the signal request_completed to trigger the specified callback function _on_HTTPRequest_request_completed when the request completes.
 	var http = HTTPRequest.new()
 	add_child(http)
@@ -85,7 +85,11 @@ func _apiCore(_endpoint, _data, _authorize, _method, _route , _redirectTo = null
 	#Loader.prog = http
 	
 	var http_error = 1
-	http_error = http.request(str(endpoint_api, _endpoint), headers, HTTPClient[str("METHOD_",_method)], JSON.new().stringify(_data))
+	# don't send body if we are using get method
+	if (_method == "GET"):
+		http_error = http.request(str(endpoint_api, _endpoint), headers, HTTPClient.METHOD_GET)
+	else:
+		http_error = http.request(str(endpoint_api, _endpoint), headers, HTTPClient[str("METHOD_",_method)], JSON.new().stringify(_data))
 	if http_error != OK:
 		print(http_error)
 	#	Loader.prog = null

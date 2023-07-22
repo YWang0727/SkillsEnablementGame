@@ -33,6 +33,10 @@ window/size/mode=3
 window/stretch/mode="viewport"
 window/main_scene="res://main_scene.tscn"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/coi_serviceworker/plugin.cfg")
+
 [importer_defaults]
 
 wav={
