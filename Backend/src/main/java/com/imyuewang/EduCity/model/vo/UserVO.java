@@ -16,8 +16,6 @@ import java.util.Set;
 @Accessors(chain = true)
 public class UserVO {
 
-    private Boolean flag;
-
     private Long id;
 
     private String email;
@@ -26,13 +24,12 @@ public class UserVO {
 
     private byte[] avatar;
 
-    private String token;
+    private String activecode;
 
-    private String erroMsg;
 
     public UserVO(){}
-    public UserVO(Boolean flag){
-        this.flag = flag;
+    public UserVO(String activeCode){
+        activeCode = this.activecode;
     }
 
 }

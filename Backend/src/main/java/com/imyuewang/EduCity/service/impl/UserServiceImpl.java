@@ -6,12 +6,20 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.imyuewang.EduCity.config.PasswordEncoder;
 import com.imyuewang.EduCity.enums.ResultCode;
 import com.imyuewang.EduCity.exception.ApiException;
+import com.imyuewang.EduCity.mapper.CitymapMapper;
+import com.imyuewang.EduCity.mapper.TakenmapcellMapper;
+import com.imyuewang.EduCity.mapper.UserQuizMapper;
+import com.imyuewang.EduCity.model.entity.Citymap;
+import com.imyuewang.EduCity.model.entity.Takenmapcell;
+import com.imyuewang.EduCity.model.entity.UserQuiz;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.param.UserParam;
 import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.security.JwtManager;
+import com.imyuewang.EduCity.service.CitymapService;
+import com.imyuewang.EduCity.service.TakenmapcellService;
 import com.imyuewang.EduCity.util.MailUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.model.entity.User;
@@ -29,6 +37,7 @@ import java.util.UUID;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.Constants.CHARACTERS;
 
+
 /**
 * @author Sarah Wang
 * @description 针对表【user】的数据库操作Service实现
@@ -41,12 +50,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Autowired
     private MailUtil mailUtil;
-
+    /**********   ALL MAPPERS  ************/
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private CitymapMapper citymapMapper;
+    @Resource
+    private TakenmapcellMapper takenmapcellMapper;
+    @Resource
+    private UserQuizMapper userQuizMapper;
 
-    private User registeringUser;
-
+    /******************************************/
+    /**************    LOG IN    **************/
+    /******************************************/
     @Override
     public UserVO login(LoginParam loginParam) {
         // Verify user from database
@@ -66,74 +82,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return getUserVOFromUser(user);
     }
 
-
     @Override
-    public ResultVO checkEmailIsExisted(UserParam param) {
+    public ResultVO checkEmailIsExisted(RegisterParam param) {
         System.out.println(param.getEmail());
         // check if email exists
-        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
-        lqw.eq(User::getEmail, param.getEmail());
-        if (userMapper.selectOne(lqw) != null) {
+        if (getUserByEmail(param.getEmail()) != null) {
             return new ResultVO(ResultCode.EMAIL_FOUND,"Email already exists.");
         }else{
             return new ResultVO(ResultCode.EMAIL_NOT_FOUND,"Valid new Email");
         }
     }
 
-    @Override
-    public void active(UserParam param) {
-        registeringUser = new User();
-        registeringUser.setEmail(param.getEmail());
-        // set user status to false
-        registeringUser.setIsactive(0);
-
-        // send active code
-        String activeCode = UUID.randomUUID().toString();
-        // Send an email to the user's email address that contains an activation code
-        String text = "E-mail registration successful! Your activation code is: " + activeCode;
-        mailUtil.sendMail(registeringUser.getEmail(), text, "EduCity Activation Email");
-
-        // Save the activation code and compare it when activating
-        registeringUser.setActivecode(activeCode);
-
-        // Search for users by activation code
-        User user = lambdaQuery().eq(User::getActivecode, activeCode).one();
-
-        if (user != null) {
-            // Set user status to active
-            user.setIsactive(1);
-            lambdaUpdate().eq(User::getActivecode, activeCode).update(user);
-            // 'Next' button to activate and proceed to the next step of registration
-        } else {
-            // Delete the original record from the database
-            lambdaUpdate().eq(User::getActivecode, activeCode).remove();
-            registeringUser = null;
-            // ask the user to re-verify by filling in the email address again
-        }
-    }
-
-    @Override
-    public void createUser(UserParam param) {
-        // encode password
-        String password = param.getPassword();
-        registeringUser.setPassword(PasswordEncoder.encode(password));
-
-        // set username
-        String name = param.getName();
-        registeringUser.setName(name);
-
-        // save user
-        updateById(registeringUser);
-        registeringUser = null;
-    }
-
+    /********************************************/
+    /**************    REGISTER    **************/
+    /********************************************/
     @Override
     public UserVO register(User newUser) {
         userMapper.insert(newUser);
-        //set citymap id == user id
-        setCityMapId(newUser);
+        //initialize values in tables
+        initializeValuesInTable(newUser);
+
         UserVO uservo = getUserVOFromUser(newUser);
-        uservo.setFlag(true);
         return uservo;
     }
 
@@ -141,29 +110,61 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         UserVO userVO = new UserVO();
         BeanUtil.copyProperties(user, userVO);
         //userVO.setToken(JwtManager.generate(user.getEmail()));
-
         return userVO;
     }
 
-    private void setCityMapId(User newUser){
-        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
-        lqw.eq(User::getEmail, newUser.getEmail());
-        User user = userMapper.selectOne(lqw);
-        newUser.setCitymap(user.getId());
-        userMapper.updateById(newUser);
+    private void initializeValuesInTable(User newUser){
+        //set city map id == user id
+        newUser = setCityMapId(newUser);
+        //initialize citymap table
+        citymapMapper.insert(new Citymap(newUser.getId(), "My City", 0L,0L,0));
+        //initialize takenmapcell table
+        takenmapcellMapper.insert(new Takenmapcell(newUser.getCitymap()));
+        //initialize user_quiz table
+        userQuizMapper.insert(new UserQuiz(newUser.getId()));
     }
 
-    public String generateRandomString() {
-        SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder(4);
+    private User setCityMapId(User newUser){
+        User userWithId = getUserByEmail(newUser.getEmail());
+        //set citymap id of new user
+        newUser.setCitymap(userWithId.getId());
+        userMapper.updateById(newUser);
+        //return newuser with id and citymap id
+        return getUserByEmail(newUser.getEmail());
+    }
 
-        for (int i = 0; i < 4; i++) {
+    /************************************************/
+    /**************    ACTIVE EMAIL    **************/
+    /************************************************/
+    @Override
+    public UserVO getActiveCode(RegisterParam param) {
+        // send active code
+        int codeLength = 6;
+        String activeCode = generateActiveCode(codeLength);
+        // Send an email to the user's email address that contains an activation code
+        String emailText = "E-mail registration successful! Your activation code is: " + activeCode;
+        mailUtil.sendMail(param.getEmail(), emailText, "EduCity Activation Email");
+
+        return new UserVO(activeCode);
+    }
+
+    public String generateActiveCode(int codeLength) {
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(codeLength);
+
+        for (int i = 0; i < codeLength; i++) {
             int randomIndex = random.nextInt(CHARACTERS.length());
             char randomChar = CHARACTERS.charAt(randomIndex);
             sb.append(randomChar);
         }
 
         return sb.toString();
+    }
+
+    public User getUserByEmail(String email){
+        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(User::getEmail, email);
+        return userMapper.selectOne(lqw);
     }
 
 //    @Override

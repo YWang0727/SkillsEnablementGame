@@ -42,22 +42,25 @@ func _ready():
 	
 	#create navigation botton node
 	navigationButtonContainer = get_node("NavigationButtonContainer")
-	previousButton.text = "PREV"
+	previousButton.icon = ResourceLoader.load("res://XufengPart/Icons/left.png")
+	previousButton.expand_icon = true
 	previousButton.visible = true
 	previousButton.custom_minimum_size.x = 70
 	previousButton.custom_minimum_size.y = 70
 	previousButton.connect("pressed",_on_previous_button_pressed)
 	navigationButtonContainer.add_child(previousButton)
 	
-	nextButton.text = "NEXT"
+	nextButton.icon = ResourceLoader.load("res://XufengPart/Icons/right.png")
+	nextButton.expand_icon = true
 	nextButton.visible = true
 	nextButton.custom_minimum_size.x = 70
-	nextButton.custom_minimum_size.y = 70
+	nextButton.custom_minimum_size.y = 70	
 	nextButton.connect("pressed",_on_next_button_pressed)
 	navigationButtonContainer.add_child(nextButton)
 	
 	#create submit button node
-	submitButton.text = "SUBMIT"
+	submitButton.icon = ResourceLoader.load("res://LearningPage/Icon/submit.png")
+	submitButton.expand_icon = true
 	submitButton.visible = false
 	submitButton.custom_minimum_size.x = 70
 	submitButton.custom_minimum_size.y = 70
@@ -171,7 +174,7 @@ func _on_previous_button_pressed():
 
 func _on_option_button_pressed(multi: bool, button:Button, questionIndex: int, optionIndex: int):
 	var new_stylebox_normal = button.get_theme_stylebox("normal").duplicate()
-	new_stylebox_normal.bg_color = Color("4f00ed")
+	new_stylebox_normal.bg_color = Color("969696")
 	# if is not multi-answer
 	if multi == false:
 		# set other buttons color to default

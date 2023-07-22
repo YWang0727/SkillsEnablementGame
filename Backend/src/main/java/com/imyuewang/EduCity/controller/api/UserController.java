@@ -1,7 +1,9 @@
 package com.imyuewang.EduCity.controller.api;
 
 import com.imyuewang.EduCity.model.entity.User;
+import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.vo.ResultVO;
+import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.service.UserService;
 import com.imyuewang.EduCity.util.CommonUtil;
 import com.imyuewang.EduCity.annotation.Auth;
@@ -27,23 +29,17 @@ public class UserController {
 
     @PostMapping("/email")
     @ApiOperation(value = "Email verification")
-    public ResultVO checkEmailIsExisted(@RequestBody @Validated(UserParam.emailVerification.class) UserParam param) {
+    public ResultVO checkEmailIsExisted(@RequestBody @Validated(RegisterParam.emailVerification.class) RegisterParam param) {
         return userService.checkEmailIsExisted(param);
     }
 
     @PostMapping("/active")
     @ApiOperation(value = "Active code")
-    public String emailRegister(@RequestBody UserParam param) {
-        userService. active(param);
-        return CommonUtil.ACTION_SUCCESSFUL;
+    public UserVO getActiveCode(@RequestBody RegisterParam param) {
+        return userService. getActiveCode(param);
     }
 
-    @PostMapping("/add")
-    @ApiOperation(value = "Add user")
-    public String createUser(@RequestBody @Validated(UserParam.CreateUser.class) UserParam param) {
-        userService.createUser(param);
-        return CommonUtil.ACTION_SUCCESSFUL;
-    }
+
 
     @GetMapping("/get/{id}")
     @ApiOperation(value = "Get user info based on user ID")
