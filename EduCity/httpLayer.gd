@@ -95,9 +95,10 @@ func _apiCore(_endpoint, _data, _authorize, _method, _route , _redirectTo = null
 
 
 # Call the _apiCore function to send the corresponding API request
+
+#api for log in and sign up
 func _login(_credentials):
 	_apiCore("auth/login", _credentials, false, "POST", "login")
-	
 	
 func _register(_credentials):
 	_apiCore("auth/register", _credentials, false, "POST", "register")
@@ -105,8 +106,8 @@ func _register(_credentials):
 func _checkEmailIsExisted(_credentials):
 	_apiCore("user/email", _credentials, false, "POST", "email")
 
-#func _checkEmailIsExisted(_credentials):
-#	_apiCore("user/email", _credentials, false, "POST", "email")
+func _getActiveCode(_credentials):
+	_apiCore("user/email", _credentials, false, "POST", "email")
 	
 # api for learning_related scene	
 func _completeLesson(_credentials):

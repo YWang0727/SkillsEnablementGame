@@ -50,7 +50,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Autowired
     private MailUtil mailUtil;
-
+    /**********   ALL MAPPERS  ************/
     @Resource
     private UserMapper userMapper;
     @Resource
@@ -60,8 +60,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Resource
     private UserQuizMapper userQuizMapper;
 
-    private User registeringUser;
-
+    /******************************************/
+    /**************    LOG IN    **************/
+    /******************************************/
     @Override
     public UserVO login(LoginParam loginParam) {
         // Verify user from database
@@ -81,67 +82,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return getUserVOFromUser(user);
     }
 
-
     @Override
-    public ResultVO checkEmailIsExisted(UserParam param) {
+    public ResultVO checkEmailIsExisted(RegisterParam param) {
         System.out.println(param.getEmail());
         // check if email exists
-        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
-        lqw.eq(User::getEmail, param.getEmail());
-        if (userMapper.selectOne(lqw) != null) {
+        if (getUserByEmail(param.getEmail()) != null) {
             return new ResultVO(ResultCode.EMAIL_FOUND,"Email already exists.");
         }else{
             return new ResultVO(ResultCode.EMAIL_NOT_FOUND,"Valid new Email");
         }
     }
 
-    @Override
-    public void active(UserParam param) {
-        registeringUser = new User();
-        registeringUser.setEmail(param.getEmail());
-        // set user status to false
-        registeringUser.setIsactive(0);
-
-        // send active code
-        String activeCode = UUID.randomUUID().toString();
-        // Send an email to the user's email address that contains an activation code
-        String text = "E-mail registration successful! Your activation code is: " + activeCode;
-        mailUtil.sendMail(registeringUser.getEmail(), text, "EduCity Activation Email");
-
-        // Save the activation code and compare it when activating
-        registeringUser.setActivecode(activeCode);
-
-        // Search for users by activation code
-        User user = lambdaQuery().eq(User::getActivecode, activeCode).one();
-
-        if (user != null) {
-            // Set user status to active
-            user.setIsactive(1);
-            lambdaUpdate().eq(User::getActivecode, activeCode).update(user);
-            // 'Next' button to activate and proceed to the next step of registration
-        } else {
-            // Delete the original record from the database
-            lambdaUpdate().eq(User::getActivecode, activeCode).remove();
-            registeringUser = null;
-            // ask the user to re-verify by filling in the email address again
-        }
-    }
-
-    @Override
-    public void createUser(UserParam param) {
-        // encode password
-        String password = param.getPassword();
-        registeringUser.setPassword(PasswordEncoder.encode(password));
-
-        // set username
-        String name = param.getName();
-        registeringUser.setName(name);
-
-        // save user
-        updateById(registeringUser);
-        registeringUser = null;
-    }
-
+    /********************************************/
+    /**************    REGISTER    **************/
+    /********************************************/
     @Override
     public UserVO register(User newUser) {
         userMapper.insert(newUser);
@@ -171,26 +125,46 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     private User setCityMapId(User newUser){
-        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
-        lqw.eq(User::getEmail, newUser.getEmail());
-        User user = userMapper.selectOne(lqw);
-        newUser.setCitymap(user.getId());
+        User userWithId = getUserByEmail(newUser.getEmail());
+        //set citymap id of new user
+        newUser.setCitymap(userWithId.getId());
         userMapper.updateById(newUser);
         //return newuser with id and citymap id
-        return userMapper.selectOne(lqw);
+        return getUserByEmail(newUser.getEmail());
     }
 
-    public String generateRandomString() {
-        SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder(4);
+    /************************************************/
+    /**************    ACTIVE EMAIL    **************/
+    /************************************************/
+    @Override
+    public UserVO getActiveCode(RegisterParam param) {
+        // send active code
+        int codeLength = 6;
+        String activeCode = generateActiveCode(codeLength);
+        // Send an email to the user's email address that contains an activation code
+        String emailText = "E-mail registration successful! Your activation code is: " + activeCode;
+        mailUtil.sendMail(param.getEmail(), emailText, "EduCity Activation Email");
 
-        for (int i = 0; i < 4; i++) {
+        return new UserVO(activeCode);
+    }
+
+    public String generateActiveCode(int codeLength) {
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(codeLength);
+
+        for (int i = 0; i < codeLength; i++) {
             int randomIndex = random.nextInt(CHARACTERS.length());
             char randomChar = CHARACTERS.charAt(randomIndex);
             sb.append(randomChar);
         }
 
         return sb.toString();
+    }
+
+    public User getUserByEmail(String email){
+        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(User::getEmail, email);
+        return userMapper.selectOne(lqw);
     }
 
 //    @Override

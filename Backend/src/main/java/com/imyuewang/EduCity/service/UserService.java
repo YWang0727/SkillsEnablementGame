@@ -28,17 +28,10 @@ public interface UserService extends IService<User> {
      **/
     UserVO login(LoginParam loginParam);
 
-    ResultVO checkEmailIsExisted(UserParam param);
+    ResultVO checkEmailIsExisted(RegisterParam param);
 
-    void active(UserParam param);
+    UserVO getActiveCode(RegisterParam param);
 
-    /**
-     * Add new user
-     * @author Yue Wang
-     * @date 11:56 2023/5/7
-     * @param param user form parameters
-     **/
-    void createUser(UserParam param);
 
 //    /**
 //     * Update user information

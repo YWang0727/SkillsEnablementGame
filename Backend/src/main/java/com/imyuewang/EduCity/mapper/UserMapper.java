@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.EduCity.model.entity.User
 */
 public interface UserMapper extends BaseMapper<User> {
-
 }
 
 

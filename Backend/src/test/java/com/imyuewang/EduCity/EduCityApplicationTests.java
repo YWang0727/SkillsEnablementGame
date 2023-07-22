@@ -28,6 +28,9 @@ class EduCityApplicationTests {
     @Autowired
     private AuthController authController;
 
+    @Autowired
+    private UserController userController;
+
     @Test
     void testLogin(){
         LoginParam loginParam = new LoginParam();
@@ -43,7 +46,7 @@ class EduCityApplicationTests {
     void testRegister(){
         RegisterParam param = new RegisterParam();
         param.setEmail("kahty6@gmail.com");
-        param.setCode("3333");
+        param.setActivecode("3333");
         param.setName("kathy2");
         param.setPassword("2331");
 
@@ -56,6 +59,13 @@ class EduCityApplicationTests {
         UserVO RegisterV0 = authController.register(newUser);
         System.out.println();
 
+    }
+
+    @Test
+    void testSendEmail(){
+        RegisterParam param = new RegisterParam();
+        param.setEmail("zhangxinyue3667@gmail.com");
+        userController.getActiveCode(param);
     }
 
     @Test

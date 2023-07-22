@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class MailUtil {
-    @Value("EduCity2023@gmail.com")
+    @Value("${mail.user}")
     private String USER; // Sender's email address
     @Value("${mail.password}")
     private String PASSWORD; // If it is a qq mailbox you can make the authorization code on the client side
@@ -33,11 +33,11 @@ public class MailUtil {
 
     /**
      * send email
-     * @param to Recipient Email
+     * @param userEmail Recipient Email
      * @param text Mail body
      * @param title Mail title
      */
-    public boolean sendMail(String to, String text, String title){
+    public boolean sendMail(String userEmail, String text, String title){
         try {
             final Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
@@ -63,13 +63,13 @@ public class MailUtil {
             // Create an email message
             MimeMessage message = new MimeMessage(mailSession);
             // Setting the sender
-            String username = props.getProperty("mail.user");
-            InternetAddress form = new InternetAddress(username);
+            String gameEmail = props.getProperty("mail.user");
+            InternetAddress form = new InternetAddress(gameEmail);
             message.setFrom(form);
 
             // Setting the recipient
-            InternetAddress toAddress = new InternetAddress(to);
-            message.setRecipient(Message.RecipientType.TO, toAddress);
+            InternetAddress to = new InternetAddress(userEmail);
+            message.setRecipient(Message.RecipientType.TO, to);
 
             // Set the email title
             message.setSubject(title);
