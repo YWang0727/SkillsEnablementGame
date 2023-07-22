@@ -24,9 +24,12 @@ public class UserVO {
 
     private byte[] avatar;
 
-    private String token;
+    private String activecode;
 
 
     public UserVO(){}
+    public UserVO(String activeCode){
+        activeCode = this.activecode;
+    }
 
 }

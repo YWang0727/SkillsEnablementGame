@@ -15,7 +15,7 @@ public class Takenmapcell implements Serializable {
     /**
      * 
      */
-    @TableId(value = "mapId, positionX, positionY", type = IdType.INPUT)
+    @TableId(value = "mapId", type = IdType.INPUT)
     private Long mapid;
 
     /**

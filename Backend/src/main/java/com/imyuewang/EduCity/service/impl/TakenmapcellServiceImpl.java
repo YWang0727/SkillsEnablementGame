@@ -42,7 +42,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         User user = userMapper.selectById(id);
         MapDictVO mapDictVO = new MapDictVO();
         QueryWrapper queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("mapId",user.getId());//map id = user.id
+        queryWrapper.eq("mapId",user.getCitymap());//map id = user.id
         int num = takenmapcellMapper.selectCount(queryWrapper);
         List<Takenmapcell> takenmapcells = takenmapcellMapper.selectList(queryWrapper);
         int[] x = new int[num];
@@ -75,7 +75,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         takenmapcell.setPositiony(param.getY());
         takenmapcell.setHousetype(param.getHouseType());
         takenmapcell.setHouselevel(1);//新房子默认一级
-        //takenmapcellMapper.insert(takenmapcell);
+        takenmapcellMapper.insert(takenmapcell);
     }
 
 
