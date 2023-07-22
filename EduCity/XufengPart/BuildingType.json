@@ -47,6 +47,106 @@
 	  "prosperity": 3,
 	  "money": 0,
 	  "knowledge": "IBM Automation"
+	},
+
+
+	{
+	  "name": "Residential Building (Level 2)",
+	  "tileID": 10,
+	  "cost": 150,
+	  "prosperity": 10,
+	  "money": 0,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Supermarket (Level 2)",
+	  "tileID": 11,
+	  "cost": 150,
+	  "prosperity": 4,
+	  "money": 200,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Bank (Level 2)",
+	  "tileID": 12,
+	  "cost": 400,
+	  "prosperity": 10,
+	  "money": 600,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Farm (Level 2)",
+	  "tileID": 13,
+	  "cost": 100,
+	  "prosperity": 6,
+	  "money": 0,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Construction Site (Level 2)",
+	  "tileID": 4,
+	  "cost": 150,
+	  "prosperity": 2,
+	  "money": 0,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Hospital  (Level 2)",
+	  "tileID": 15,
+	  "cost": 100,
+	  "prosperity": 6,
+	  "money": 0,
+	  "knowledge": "null"
+	},
+
+
+	{
+	  "name": "Residential Building (Level 3)",
+	  "tileID": 20,
+	  "cost": 225,
+	  "prosperity": 20,
+	  "money": 0,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Supermarket (Level 3)",
+	  "tileID": 21,
+	  "cost": 225,
+	  "prosperity": 8,
+	  "money": 400,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Bank (Level 3)",
+	  "tileID": 22,
+	  "cost": 600,
+	  "prosperity": 20,
+	  "money": 1200,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Farm (Level 3)",
+	  "tileID": 23,
+	  "cost": 150,
+	  "prosperity": 12,
+	  "money": 0,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Construction Site (Level 3)",
+	  "tileID": 4,
+	  "cost": 225,
+	  "prosperity": 4,
+	  "money": 0,
+	  "knowledge": "null"
+	},
+	{
+	  "name": "Hospital  (Level 3)",
+	  "tileID": 25,
+	  "cost": 150,
+	  "prosperity": 12,
+	  "money": 0,
+	  "knowledge": "null"
 	}
   ]
 }

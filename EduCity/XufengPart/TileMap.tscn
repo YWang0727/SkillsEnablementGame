@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://nx1lsqdvmrv2"]
+[gd_scene load_steps=40 format=3 uid="uid://nx1lsqdvmrv2"]
 
 [ext_resource type="Texture2D" uid="uid://d048ec4o4d3fy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_2.png" id="1_btxbq"]
 [ext_resource type="Texture2D" uid="uid://cff3556jhqvd" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_1.png" id="1_ibpxp"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://XufengPart/TileMap.gd" id="9_i3sl2"]
 [ext_resource type="Texture2D" uid="uid://cr06dakdr4o11" path="res://XufengPart/Icon_Buildings/Farm/farm_1.png" id="10_s5nfb"]
 [ext_resource type="Texture2D" uid="uid://by8r4ux2yra7e" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_3.png" id="15_6mv87"]
+[ext_resource type="Script" path="res://XufengPart/UpdateButton.gd" id="21_khrd3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x7w2k"]
 texture = ExtResource("1_ibpxp")
@@ -66,7 +67,7 @@ texture_region_size = Vector2i(126, 120)
 texture = ExtResource("3_xg6cg")
 texture_region_size = Vector2i(168, 125)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(-10, -10)
+0:0/0/texture_origin = Vector2i(-20, -20)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yjlin"]
 texture = ExtResource("15_6mv87")
@@ -172,3 +173,22 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
 script = ExtResource("9_i3sl2")
+
+[node name="UpdateButton" type="Button" parent="."]
+offset_right = 50.0
+offset_bottom = 50.0
+text = "↑"
+icon_alignment = 1
+script = ExtResource("21_khrd3")
+
+[node name="UpdateLabel" type="Label" parent="UpdateButton"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = -12.0
+offset_right = 167.0
+offset_bottom = 65.0
+text = "升级文字说明
+2
+3"
+
+[connection signal="pressed" from="UpdateButton" to="UpdateButton" method="_on_pressed"]
