@@ -59,15 +59,19 @@ func _setLableText(buildingID) -> void:
 	
 
 func _on_pressed():
-	tileMap.set_cell(tileMap.buildingLayer,updateCellPos,buildingID+10,Vector2i(0,0))
-	GameManager.mapDict[updateCellPos] = buildingID+10
+	#+6---index
+	var cost = GameManager.buildings_data[buildingID+6].cost
+	var prosperity = GameManager.buildings_data[buildingID+6].prosperity
+	if GameManager.gold >= cost:
+		GameManager.gold -= cost
+		GameManager.prosperity += prosperity
+		#if buildingID == 建筑工地     speed+1
+		tileMap.set_cell(tileMap.buildingLayer,updateCellPos,buildingID+10,Vector2i(0,0))
+		GameManager.mapDict[updateCellPos] = buildingID+10
+	else :
+		var error_pannel = get_node("/root/MainScene/ErrorPannel")
+		error_pannel.popup_centered()
 	self.hide()
-	
-	for building_data in GameManager.buildings_data:
-		if building_data["tileID"] == buildingID+10:
-			GameManager.gold -= building_data["cost"]
-			GameManager.prosperity += building_data["prosperity"]
-			#if buildingID == 建筑工地     speed+1
 	pushComponents()
 	levelUp()
 	
