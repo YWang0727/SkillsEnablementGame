@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=19 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://qow8cruc54nv" path="res://loginPage/cityPicture2.jpg" id="3_ohuu6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
 [ext_resource type="Texture2D" uid="uid://xy26wddgonnn" path="res://loginPage/logo.png" id="5_wpds5"]
 [ext_resource type="Texture2D" uid="uid://camrvapbhdg25" path="res://loginPage/title.png" id="6_gxakd"]
+[ext_resource type="Script" path="res://loginPage/dir.gd" id="7_bgwq7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phk7t"]
 bg_color = Color(0.619608, 0.709804, 0.356863, 1)
@@ -629,6 +630,9 @@ offset_top = 433.0
 offset_right = 1770.0
 offset_bottom = 933.0
 texture = ExtResource("6_gxakd")
+
+[node name="dir" type="Node2D" parent="."]
+script = ExtResource("7_bgwq7")
 
 [connection signal="pressed" from="Tabars/HBoxContainer/Log in" to="." method="_on_log_in_pressed"]
 [connection signal="pressed" from="Tabars/HBoxContainer/Sign in" to="." method="_on_sign_in_pressed"]

@@ -1,0 +1,140 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "question": "What command is used to assign a value to a specific field in an editable PDF file?\nSelect one:",
+        "options": [
+          "Assign Value to PDF",
+          "Open PDF File",
+          "Merge PDFs",
+          "Set Variable",
+          "Close PDF"
+        ],
+        "answers": [
+            0
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Read the following data table sentence in WDG Automation: \n“The delete Column command allows you to delete a column as well as all its values and shifts the following columns to the left.”\nSelect one: ",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answers": [
+            0
+        ]
+      },
+      {
+        "id": 3,
+        "question": "What are the asset options available in WDG Automation Studio?\nSelect one: ",
+        "options": [
+            "Variables, Subroutines, and Commands.",
+            "File, Audio, Image, Web Service, and Grammar.",
+            "File, Variables, Subroutines, and Commands.",
+            "Subroutines, Audio, Image, and Variables.",
+            "Audio, Subroutines, and Commands."
+        ],
+        "answers": [
+            1
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Review the following information: \nI) WDG Automation enables mass data processing in the database, thus ensuring performance and consistency in interactions. \nII) All databases have the same syntax for connection string.\nIII) For connection to mySQL database it is necessary to make a manual configuration of the connector on the target machine. \nIV) To execute a stored procedure we use the sqlProcedure command and to have the result of a procedure we use the sqlReaderProcedure command.\nV) The sqlExecute and sqlExecuteReader commands allow SQL statements to be executed, the difference between them is that sqlExecute returns a data table and number of rows and columns, and  sqlExecuteReader  returns only the rows that have been affected. \nCheck the alternative that presents all the correct statements. \nSelect one:",
+        "options": [
+            "Only statement I.",
+            "I and V.",
+            "I, III and IV.",
+            "II, IV and V.",
+            "All statements are correct. "
+        ],
+        "answers": [
+            2
+        ]
+      },
+      {
+        "id": 5,
+        "question": "What are parameters within the WDG Automation context?\nSelect one:",
+        "options": [
+            "These are variables defined in WDG Automation Studio.",
+            "These are subroutines defined in WDG Automation Studio.",
+            "They are Text type variables defined in the Web Client.",
+            "These are assets imported into WDG Automation Studio.",
+            "They are numerical variables."
+        ],
+        "answers": [
+            2
+        ]
+      },
+      {
+        "id": 6,
+        "question": "What command is used to terminate the database connection?\nSelect one:",
+        "options": [
+            "Terminate SQL Connection",
+            "Connect to SQL Server",
+            "SQLite Connection",
+            "Run SQL Command"
+        ],
+        "answers": [
+            0
+        ]
+      },
+      {
+        "id": 7,
+        "question": "What the Add row (addRow) command does?\nSelect one: ",
+        "options": [
+            "Writes a table of data to a text file.",
+            "Copies the values of one or more specific rows from one table to another.",
+            "Allows you to add a new row of values to a Data Table, even if the table contains values.",
+            "Deletes a column from a data table.",
+            "Updates existing values in a specific row of the table."
+        ],
+        "answers": [
+            2
+        ]
+      },
+      {
+        "id": 8,
+        "question": "What is the command used to export an asset to use in the script?\nSelect one:",
+        "options": [
+            "Set Variable",
+            "Import file",
+            "Move File",
+            "Export Asset",
+            "Write to file"
+        ],
+        "answers": [
+            3
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Review the following statements:\nI) Parameters are numeric variables defined in WDG Automation Studio. \nII) Parameters are created on the Web Client, and can have values accessed by any Client script. \nIII) There is only one way to get parameter, which is through the getParameter command. \nIV) The getParameter command  gets the value of a single client  parameter,  and getParameters  allows the values of multiple parameters to be obtained at once. \nV) Parameters are a great resource for getting values for the script in scenarios where these values are not initially controlled by the robot. \nCheck the alternative that contains all the correct statements. \nSelect one:",
+        "options": [
+            "I, II, III and IV.",
+            "I, IV and V.",
+            "II and V.",
+            "II, IV and V.",
+            "IV and V."
+        ],
+        "answers": [
+            3
+        ]
+      },
+      {
+        "id": 10,
+        "question": "Review the following statements:\nI) To start pdf manipulation, we use the pdfClose command.\nII) pdfSetValues used to assign a value to a specific field in an editable PDF file. \nIII) The Field Mapper tool is used to map FIELDS of PDFs with mappable fields. \nIV) When using the Field Mapper tool, we abstract the manual use of the pdfGetValue command through the “Get” option and pdfSetValue through the “Set” option.\nV) With the region selector tool we can get a PDF region just like text. \nCheck the alternative that presents all the correct statements. \nSelect one:",
+        "options": [
+            "Only statement I.",
+            "I and V.",
+            "II, III and IV.",
+            "II, IV and V.",
+            "All statements are correct."
+        ],
+        "answers": [
+            2
+        ]
+      }
+    ]
+  }

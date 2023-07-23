@@ -1,0 +1,224 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "The Turing test is designed to:",
+      "options": [
+        "Determine machine's human ability.",
+        "Achieve artificial general intelligence.",
+        "Solve the master algorithm.",
+        "Build machines that are aware of themselves."
+      ],
+      "answers": [0]
+    },
+    {
+      "id": 2,
+      "question": "The key difference between narrow intelligence and broad intelligence is best described by which of the following phrases?",
+      "options": [
+        "Narrow and Broad intelligence is distinguished by complexity of algorithms.",
+        "Broad intelligence requires huge amounts of data, whereas narrow intelligence relies on minimum data.",
+        "Narrow AI can only do a certain task-and it can do it quite well, but narrow AI can't transfer its knowledge\n to different sorts of problems as with Broad AI.",
+        "Broad intelligence can extract meaning from images, whereas Narrow Intelligence is best suited for \nlanguage processing."
+      ],
+      "answers": [2]
+    },
+    {
+      "id": 3,
+      "question": "Which of the following best depict General AI?",
+      "options": [
+        "A chatbot that is also connected to Tone Analyzer.",
+        "Watson Machine Learning service.",
+        "The ability to use previous experiences to come up with new creative ideas.",
+        "A system that is self-aware."
+      ],
+      "answers": [2]
+    },
+    {
+      "id": 4,
+      "question": "In 1997, IBM's Deep Blue, a computer capable of analyzing 200 million moves per second defeatsworld champion",
+      "options": [
+        "Brad Rutter.",
+        "Ken Jennings.",
+        "Gary Kasparov.",
+        "Lee Sedol."
+      ],
+      "answers": [2]
+    },
+    {
+      "id": 5,
+      "question": "How does IBM view the impact of artificial intelligence?",
+      "options": [
+        "It is here to augment human intelligence.",
+        "It is how systems predict the future.",
+        "It is about automating mundane tasks that humans do.",
+        "It is about the quest for artificial general intelligence (AGI)."
+      ],
+      "answers": [0]
+    },
+    {
+      "id": 6,
+      "question": "Human experts could use AI expertise to address which of the following challenges?",
+      "options": [
+        "AI scales expertise to expand what is possible",
+        "AI systems have better vision",
+        "AI systems can predict our preferences",
+        "AI systems have world knowledge"
+      ],
+      "answers": [0]
+    },
+    {
+      "id": 7,
+      "question": "AI learning process entails human and machine activities; which of the following best depicts machine-related activities?",
+      "options": [
+        "Identify the data-analytics problem",
+        "Define hyperparameters",
+        "Analyze the data provided by the model",
+        "Learns by adjusting weights and biases"
+      ],
+      "answers": [3]
+    },
+    {
+      "id": 8,
+      "question": "Humans have superior data gathering and learning techniques to machines, but where or when can humans use some augmented help?",
+      "options": [
+        "When there is endless relevant newly published data, such that is impossible to know all of it at all times",
+        "When humans try to make in-depth if-then statements in minimum and optimized time",
+        "When there are many variables at play",
+        "All of the above"
+      ],
+      "answers": [3]
+    },
+    {
+      "id": 9,
+      "question": "Which of the following best describes the difference between AI, Machine Learning, and Deep Learning?",
+      "options": [
+        "Each level is differentiated by specific algorithms that power the system.",
+        "They are synonyms for the same approach for the field of artificial intelligence.",
+        "Deep Learning is a subset of Machine Learning, which in turn is a subset of artificial intelligence.",
+        "Machine Learning is a subset of Deep Learning, which in turn is a subset of artificial intelligence."
+      ],
+      "answers": [2]
+    },
+    {
+      "id": 10,
+      "question": "Which of the following learning methods is predominantly used with self-driving cars?",
+      "options": [
+        "Supervised learning",
+        "Unsupervised learning",
+        "Reinforcement learning",
+        "None of the above because self-driving cars use Broad AI"
+      ],
+      "answers": [2]
+    },
+    {
+      "id": 11,
+      "question": "There seems to be a common consensus as to when was AI born, which of the following matches that consensus?",
+      "options": [
+        "When Alan Turing published the paper Computing Machinery and Intelligence.",
+        "In 1943 when Warren McCulloch and Walter Pitts, researchers from the University of Chicago, propose the 'nerve net.'",
+        "In 1956 at Dartmouth College summer workshop with top scientists.",
+        "In 1957 when Frank Rosenblatt first demonstrated the Perceptron on an IBM 704 before building a custom machine."
+      ],
+      "answers": [2]
+    },
+    {
+      "id": 12,
+      "question": "Which of the following best depicts or exemplifies Broad AI?",
+      "options": [
+        "A self-driving car, which happens to be a collection of narrow AI technologies.",
+        "A system that supports engineers who work on complex maintenance tasks on a platform \nin the middle of the Atlantic Ocean.",
+        "A system within a bank that analyzes the balance sheet of corporate customers to recommend \nthe best currency hedging strategy.",
+        "All of the above"
+      ],
+      "answers": [3]
+    },
+    {
+      "id": 13,
+      "question": "In 1992, IBM researcher Gerald Tesauro creates a self-teaching neural net that learns to play",
+      "options": [
+        "Chess",
+        "Go game",
+        "Backgammon",
+        "Checkers"
+      ],
+      "answers": [2]
+    },
+    {
+      "id": 14,
+      "question": "In 2006, Hinton and colleagues demonstrate that networks with many layers can be effectively trained.",
+      "options": [
+        "A single perceptron",
+        "Deep learning",
+        "Support vector machines",
+        "Linear regression"
+      ],
+      "answers": [1]
+    },
+    {
+      "id": 15,
+      "question": "In 1950, Alan Turing publishes the paper 'Computing Machinery and Intelligence' introducing the",
+      "options": [
+        "Space X prize",
+        "Nobel Prize",
+        "Turing Test",
+        "First paper on artificial intelligence"
+      ],
+      "answers": [2]
+    },
+    {
+      "id": 16,
+      "question": "In 2011, IBM makes international headlines when their system appears on Jeopardy! and wins. What was the underlying architecture of the system?",
+      "options": [
+        "It was founded on Unstructured Information Management Architecture (UIMA).",
+        "It was powered by advanced neural networks.",
+        "It used a brute force search engine.",
+        "It had access to the Internet."
+      ],
+      "answers": [0]
+    },
+    {
+      "id": 17,
+      "question": "If you had to break down cognition and how it works in four words, what would they be?",
+      "options": [
+        "Observe, interpret, evaluate, and decide",
+        "Collect data, build models, test, deploy",
+        "Observe, measure, build, interpret",
+        "Gather data, build patterns, memorize patterns, recall"
+      ],
+      "answers": [0]
+    },
+    {
+      "id": 18,
+      "question": "AI enables a partnership between humans and technology. Which of the following is best performed by technology and machines rather than humans?",
+      "options": [
+        "Pattern identification",
+        "Imagination",
+        "Abstraction",
+        "Dilemmas"
+      ],
+      "answers": [0]
+    },
+    {
+      "id": 19,
+      "question": "Think of a question-answer scenario, in which of the following is easy for humans but difficult for machines?",
+      "options": [
+        "Humans understand the question but may not have all the answers.",
+        "Machines are aware of all possible questions but have a hard time retrieving the answer.",
+        "Both machines and humans have a hard time understanding questions and answers.",
+        "Humans have no shortcomings that machines can tackle easily."
+      ],
+      "answers": [0]
+    },
+    {
+      "id": 20,
+      "question": "[Select all that apply] Machine Learning tasks are typically classified into which of the following broad categories?",
+      "options": [
+        "Hybrid learning",
+        "Supervised learning",
+        "Unsupervised learning",
+        "Reinforcement learning"
+      ],
+      "answers": [1, 2, 3]
+    }
+  ]
+}
