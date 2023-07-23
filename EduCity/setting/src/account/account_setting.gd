@@ -2,8 +2,9 @@ extends Control
 
 var profile_scene: String = "res://setting/src/account/profile.tscn"
 var HttpLayer_Account = preload("res://setting/src/account/HttpLayer_Account.gd")
-
 var account_API
+
+var FileLoadCallback = JavaScriptBridge.create_callback(Callable(self, "js_file_uploaded"))
 
 var alert: Popup
 var uploadFileButton: Button
@@ -27,10 +28,12 @@ func _ready():
 	initiate_variales()
 	connect_signals()
 	
-	HttpLayer.http_completed.connect(http_completed)
-	
 	# fetched user basic infomation from server
 	account_API.fetch_user_info(GameManager.user_id)
+	
+	if OS.get_name() == "Web":
+		var window = JavaScriptBridge.get_interface("window")
+		window.getImage(FileLoadCallback)
 
 func initiate_variales():
 	account_API = HttpLayer_Account.new()
@@ -55,12 +58,13 @@ func connect_signals():
 	uploadFileButton.pressed.connect(_on_fileupload_button_pressed)
 	fileUploadWindow.file_selected.connect(_on_file_upload_window_file_selected)
 	backButton.pressed.connect(_on_back_button_pressed)
-	
 	# Confirm Buttons
 	profileSave.pressed.connect(edit_user_profile)
 	passwordSave.pressed.connect(edit_user_password)
 	profileCancel.pressed.connect(_on_back_button_pressed)
 	passwordCancel.pressed.connect(_on_back_button_pressed)
+	
+	HttpLayer.http_completed.connect(http_completed)
 
 func _on_back_button_pressed():
 	get_tree().change_scene_to_file(profile_scene)
@@ -69,8 +73,13 @@ func _on_back_button_pressed():
 
 # display the window for uploading file when pressing button upload
 func _on_fileupload_button_pressed():
-	fileUploadWindow.add_filter("*.png, *.jpg", "Images");
-	fileUploadWindow.popup_centered()
+	if OS.get_name() == "Web":
+		# javascript native window
+		var window = JavaScriptBridge.get_interface("window")
+		window.avatarInput.click()
+	else:
+		fileUploadWindow.add_filter("*.png, *.jpg", "Images");
+		fileUploadWindow.popup_centered()
 
 # process uploaded avatar image
 func _on_file_upload_window_file_selected(path: String):
@@ -88,6 +97,37 @@ func _on_file_upload_window_file_selected(path: String):
 	avatar.texture = texture
 	# store file data in global variable
 	uploadedFile = fileData
+
+
+# javascript callback
+func js_file_uploaded(args):
+	var imageBytes = imageURLToByte(args[0])
+	# check if image size is valid (less than 64KB)
+	if (imageBytes.size() > 65536):
+		alert.set_message("Please keep avatar size in 64KB!")
+		alert.popup_centered()
+		return
+	
+	# show new avatar in game
+	var isJPG = check_image_format(imageBytes)
+	var avatarImage = Image.new()
+	if (isJPG):
+		avatarImage.load_jpg_from_buffer(imageBytes)
+	else:
+		avatarImage.load_png_from_buffer(imageBytes)
+	var texture = ImageTexture.create_from_image(avatarImage)
+	avatar.texture = texture
+	# store file data in global variable
+	uploadedFile = imageBytes
+
+# decode BASE64 image String data
+func imageURLToByte(dataURL: String) -> PackedByteArray:
+	# Extract the Base64-encoded data part from the data URL
+	var base64Data = dataURL.get_slice(',', 1)
+	# Decode the Base64 data into raw bytes
+	var imageBytes = Marshalls.base64_to_raw(base64Data)
+	return imageBytes;
+
 
 
 # connected with edit_profile button
