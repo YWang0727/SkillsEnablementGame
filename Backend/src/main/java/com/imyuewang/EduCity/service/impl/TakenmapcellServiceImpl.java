@@ -80,12 +80,34 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
 
 
     public MapDictVO otherMap(Long mapId){
-        //通过mapId找到对应的user
+        /*通过mapId找到对应的user
         QueryWrapper queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("mapId",mapId);
         User user = userMapper.selectOne(queryWrapper);
         //d调用readmap返回地图房子信息
         MapDictVO mapDictVO = readMap(user.getId());
+        return mapDictVO;
+        */
+        MapDictVO mapDictVO = new MapDictVO();
+        QueryWrapper queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("mapId",mapId);
+        int num = takenmapcellMapper.selectCount(queryWrapper);
+        List<Takenmapcell> takenmapcells = takenmapcellMapper.selectList(queryWrapper);
+        int[] x = new int[num];
+        int[] y = new int[num];
+        int[] houseType = new int[num];
+        int[] houseLevel = new int[num];
+        for (int i = 0; i < takenmapcells.size(); i++) {
+            x[i] = takenmapcells.get(i).getPositionx();
+            y[i] = takenmapcells.get(i).getPositiony();
+            houseType[i] = takenmapcells.get(i).getHousetype();
+            houseLevel[i] = takenmapcells.get(i).getHouselevel();
+        }
+        mapDictVO.setX(x);
+        mapDictVO.setY(y);
+        mapDictVO.setHouseType(houseType);
+        mapDictVO.setHouseLevel(houseLevel);
+        mapDictVO.setNum(num);
         return mapDictVO;
     }
 
@@ -93,7 +115,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     //通过 mapid x y 找到对应的house level+1
     public void levelUp(MapDictParam param){
         User user = userMapper.selectById(param.getId());
-        QueryWrapper queryWrapper = new QueryWrapper<>();
+        QueryWrapper queryWrapper = new QueryWrapper<Citymap>();
         queryWrapper.eq("mapId",user.getCitymap());
         queryWrapper.eq("positionX",param.getX());
         queryWrapper.eq("positionY",param.getY());

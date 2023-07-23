@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyh2ebsnufook"]
+[gd_scene load_steps=4 format=3 uid="uid://cyh2ebsnufook"]
 
 [ext_resource type="Script" path="res://Leaderboard/OtherMap.gd" id="1_fr84i"]
+[ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_ig22v"]
+[ext_resource type="Script" path="res://Leaderboard/OtherTileMap.gd" id="3_rvkqt"]
 
 [node name="OtherMap" type="Node2D"]
 script = ExtResource("1_fr84i")
+
+[node name="TileMap" parent="." instance=ExtResource("2_ig22v")]
+script = ExtResource("3_rvkqt")
 
 [node name="back" type="Button" parent="."]
 offset_left = 1598.0

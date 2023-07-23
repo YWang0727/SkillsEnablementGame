@@ -139,7 +139,7 @@ func _buildHouse(_credentials):
 	_apiCore("map_cell/buildHouse", _credentials, false, "POST", "buildHouse")
 
 func _otherMap():
-	_apiCore("map_cell/otherMap/" + str(GameManager.user_id), null, false, "GET", "otherMap")
+	_apiCore("map_cell/otherMap/" + str(GameManager.other_id), null, false, "GET", "otherMap")
 	
 func _levelUp(_credentials):
 	_apiCore("map_cell/levelUp", _credentials, false, "POST", "levelUp")

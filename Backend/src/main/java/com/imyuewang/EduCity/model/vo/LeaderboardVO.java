@@ -26,6 +26,6 @@ public class LeaderboardVO {
 
     private String[] all_name;
     private long[] all_prosperity;
-    private long[] all_id;
+    private long[] all_id;//map id
 
 }

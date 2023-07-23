@@ -57,6 +57,7 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
         }
         leaderBoardVO.setAll_name(all_name);
         leaderBoardVO.setAll_prosperity(all_prosperity);
+        leaderBoardVO.setAll_id(all_id);
         return leaderBoardVO;
     }
 
