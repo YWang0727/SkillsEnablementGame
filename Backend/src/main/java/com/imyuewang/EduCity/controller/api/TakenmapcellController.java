@@ -47,5 +47,12 @@ public class TakenmapcellController {
         takenmapcellService.buildHouse(param);
     }
 
+    @GetMapping("/otherMap/{id}")
+    @ApiOperation("leaderBoard jump to other map")
+    public MapDictVO otherMap(@PathVariable Long id){
+        MapDictVO mapDictVO = takenmapcellService.otherMap(id);
+        return mapDictVO;
+    }
 
 }
+

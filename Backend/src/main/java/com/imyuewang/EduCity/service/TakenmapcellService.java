@@ -15,4 +15,8 @@ public interface TakenmapcellService extends IService<Takenmapcell> {
     MapDictVO readMap(Long id);
 
     void buildHouse(MapDictParam param);
+
+    //
+    MapDictVO otherMap(Long mapId);
+
 }

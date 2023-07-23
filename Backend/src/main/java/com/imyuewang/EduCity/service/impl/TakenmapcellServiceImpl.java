@@ -79,6 +79,17 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     }
 
 
+    public MapDictVO otherMap(Long mapId){
+        //通过mapId找到对应的user
+        QueryWrapper queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("mapId",mapId);
+        User user = userMapper.selectOne(queryWrapper);
+        //d调用readmap返回地图房子信息
+        MapDictVO mapDictVO = readMap(user.getId());
+        return mapDictVO;
+    }
+
+
 }
 
 

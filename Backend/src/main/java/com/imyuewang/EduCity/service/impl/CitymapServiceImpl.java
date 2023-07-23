@@ -48,10 +48,12 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
         queryWrapper.orderByDesc("prosperity");
         List<Citymap> citymaps = cityMapMapper.selectList(queryWrapper);
         long all_prosperity[] = new long[total];
+        long all_id[] = new long[total];
         String all_name[] = new String[total];
         for (int i = citymaps.size() - 1; i >= 0; i--) {
             all_prosperity[i] = citymaps.get(i).getProsperity();
             all_name[i] = citymaps.get(i).getName();
+            all_id[i] = citymaps.get(i).getId();
         }
         leaderBoardVO.setAll_name(all_name);
         leaderBoardVO.setAll_prosperity(all_prosperity);

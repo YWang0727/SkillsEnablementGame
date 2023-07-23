@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://beqn6owowvdjc"]
+
+[ext_resource type="Script" path="res://Leaderboard/OtherMap.gd" id="1_fr84i"]
+
+[node name="OtherMap" type="Node2D"]
+script = ExtResource("1_fr84i")
+
+[node name="back" type="Button" parent="."]
+offset_left = 1598.0
+offset_top = 965.0
+offset_right = 1906.0
+offset_bottom = 1063.0
+theme_override_font_sizes/font_size = 50
+text = "back"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 498.0
+offset_bottom = 269.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "infomation"
+horizontal_alignment = 1
+metadata/lable = false
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

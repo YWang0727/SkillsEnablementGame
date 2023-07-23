@@ -134,4 +134,6 @@ func _readMap():
 func _buildHouse(_credentials):
 	_apiCore("map_cell/buildHouse", _credentials, false, "POST", "buildHouse")
 
-
+func _otherMap():
+	_apiCore("map_cell/otherMap/" + str(GameManager.user_id), null, false, "GET", "otherMap")
+	

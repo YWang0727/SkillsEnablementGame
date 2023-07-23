@@ -63,5 +63,14 @@ offset_right = 30.0
 offset_bottom = 31.0
 text = "+"
 
+[node name="ItemList" type="ItemList" parent="."]
+visible = false
+offset_left = 199.0
+offset_top = 160.0
+offset_right = 484.0
+offset_bottom = 394.0
+item_count = 1
+item_0/text = "Gold"
+
 [connection signal="pressed" from="Prosperity/ColorRect/Bt_Prosperity" to="." method="_on_prosperity_pressed"]
 [connection signal="pressed" from="Gold/ColorRect/Bt_Gold" to="." method="_on_gold_pressed"]
