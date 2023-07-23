@@ -12,13 +12,23 @@ func _ready():
 	_drawMap()
 	HttpLayer.connect("http_completed", http_completed)
 	HttpLayer._readMap()
+	
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event) -> void:
 	var cellPos
 	var cost = GameManager.buildings_data[selectedBuildingType].cost
 	var prosperity = GameManager.buildings_data[selectedBuildingType].prosperity
 	var money = GameManager.buildings_data[selectedBuildingType].money
 	
+	# Show selected building when mouse hover if the building can be updated
+	if event is InputEventMouseMotion and selectedBuildingType == -1:
+			cellPos = local_to_map(get_global_mouse_position() - position)  # 将全局位置转换为TileMap单元位置
+			clear_layer(selectedLayer)
+			if GameManager.mapDict.has(cellPos):
+				var buildingID = GameManager.mapDict[cellPos]
+				if buildingID != GameManager.BuildingType.blank and buildingID < 20:
+					_drawSelectedCells(buildingID,cellPos)
+			
 	# After choosing a building type, show selected cells when mouse hover
 	if event is InputEventMouseMotion and selectedBuildingType != -1:
 		# Check if have enough gold to build a building
@@ -62,57 +72,60 @@ func _process(delta):
 func _drawMap() -> void:
 	for key in GameManager.mapDict.keys():
 		var id = GameManager.mapDict[key]
-		if id != selectedTile:
+		if id != GameManager.BuildingType.blank:
 			set_cell(buildingLayer, key, id, Vector2i(0,0))
 
 # If a new building overlaps with an existing house, return false
 func _checkCellOverlap(selectedBuildingType, cellPos) -> bool:
-	match selectedBuildingType:
+	var cellsCount = _getCellsCount(selectedBuildingType)
+	match cellsCount:
 		# a building occupying 1 cell
-		GameManager.BuildingType.residential_building_1:
+		1:
 			if GameManager.mapDict.has(cellPos):
 				return false
 		# a building occupying 2 cells
-		GameManager.BuildingType.supermarket_1, GameManager.BuildingType.hospital_1, GameManager.BuildingType.farm_1, GameManager.BuildingType.constrction_site_1:
+		2:
 			if GameManager.mapDict.has(cellPos) or GameManager.mapDict.has(cellPos+Vector2i(1, 0)):
 				return false
 		# a building occupying 4 cells
-		GameManager.BuildingType.bank_1:
+		4:
 			if GameManager.mapDict.has(cellPos) or GameManager.mapDict.has(cellPos+Vector2i(1, 0)) or GameManager.mapDict.has(cellPos+Vector2i(0, 1)) or GameManager.mapDict.has(cellPos+Vector2i(1, 1)):
 				return false
 	return true
 	
 func _drawSelectedCells(selectedBuildingType, cellPos) -> void:
-	match selectedBuildingType:
+	var cellsCount = _getCellsCount(selectedBuildingType)
+	match cellsCount:
 		# a building occupying 1 cell
-		GameManager.BuildingType.residential_building_1:
+		1:
 			set_cell(selectedLayer,cellPos,selectedTile,Vector2i(0,0))
 		# a building occupying 2 cells
-		GameManager.BuildingType.supermarket_1, GameManager.BuildingType.hospital_1, GameManager.BuildingType.farm_1, GameManager.BuildingType.constrction_site_1:
+		2:
 			set_cell(selectedLayer,cellPos,selectedTile,Vector2i(0,0))
 			set_cell(selectedLayer,cellPos+Vector2i(1, 0),98,Vector2i(0,0))
 		# a building occupying 4 cells
-		GameManager.BuildingType.bank_1:
+		4:
 			set_cell(selectedLayer,cellPos,selectedTile,Vector2i(0,0))
 			set_cell(selectedLayer,cellPos+Vector2i(1, 0),98,Vector2i(0,0))
 			set_cell(selectedLayer,cellPos+Vector2i(0, 1),98,Vector2i(0,0))
 			set_cell(selectedLayer,cellPos+Vector2i(1, 1),98,Vector2i(0,0))
 
 func _updateMapDict(selectedBuildingType, cellPos) -> void:
-	match selectedBuildingType:
+	var cellsCount = _getCellsCount(selectedBuildingType)
+	match cellsCount:
 		# a building occupying 1 cell
-		GameManager.BuildingType.residential_building_1:
+		1:
 			GameManager.mapDict[cellPos] = selectedBuildingType
 		# a building occupying 2 cells
-		GameManager.BuildingType.supermarket_1, GameManager.BuildingType.hospital_1, GameManager.BuildingType.farm_1, GameManager.BuildingType.constrction_site_1:
+		2:
 			GameManager.mapDict[cellPos] = selectedBuildingType
-			GameManager.mapDict[cellPos+Vector2i(1, 0)] = selectedTile
+			GameManager.mapDict[cellPos+Vector2i(1, 0)] = GameManager.BuildingType.blank
 		# a building occupying 4 cells
-		GameManager.BuildingType.bank_1:
+		4:
 			GameManager.mapDict[cellPos] = selectedBuildingType
-			GameManager.mapDict[cellPos+Vector2i(1, 0)] = selectedTile
-			GameManager.mapDict[cellPos+Vector2i(0, 1)] = selectedTile
-			GameManager.mapDict[cellPos+Vector2i(1, 1)] = selectedTile
+			GameManager.mapDict[cellPos+Vector2i(1, 0)] = GameManager.BuildingType.blank
+			GameManager.mapDict[cellPos+Vector2i(0, 1)] = GameManager.BuildingType.blank
+			GameManager.mapDict[cellPos+Vector2i(1, 1)] = GameManager.BuildingType.blank
 
 
 
@@ -127,5 +140,29 @@ func http_completed(res, response_code, headers, route):
 			set_cell(buildingLayer,cellPos_temp,res.houseType[i],Vector2i(0,0))
 			
 
-		
-		
+
+func _getCellsCount(selectedBuildingType) -> int:
+	match selectedBuildingType:
+		# a building occupying 1 cell
+		GameManager.BuildingType.residential_building_1, \
+		GameManager.BuildingType.residential_building_2, \
+		GameManager.BuildingType.residential_building_3:
+			return 1
+		# a building occupying 2 cells
+		GameManager.BuildingType.supermarket_1, \
+		GameManager.BuildingType.supermarket_2, \
+		GameManager.BuildingType.supermarket_3, \
+		GameManager.BuildingType.hospital_1, \
+		GameManager.BuildingType.hospital_2, \
+		GameManager.BuildingType.hospital_3, \
+		GameManager.BuildingType.farm_1, \
+		GameManager.BuildingType.farm_2, \
+		GameManager.BuildingType.farm_3,\
+		GameManager.BuildingType.constrction_site_1:
+			return 2
+		# a building occupying 4 cells
+		GameManager.BuildingType.bank_1, \
+		GameManager.BuildingType.bank_2, \
+		GameManager.BuildingType.bank_3:
+			return 4
+	return 0
