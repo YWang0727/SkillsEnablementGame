@@ -107,13 +107,19 @@ public class SettingServiceImpl implements SettingService {
             throw new ApiException(ResultCode.FAILED,"Incorrect email format.");
         }
         // check if email exists
-        if (userMapper.selectCount(new QueryWrapper<User>().eq("email", email)) != 0) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("email", email).
+                ne("id", user.getId());
+        if (userMapper.selectCount(queryWrapper) != 0) {
             throw new ApiException(ResultCode.FAILED,"Email already exists.");
         }
 
         user.setName(editUserParam.getName());
         user.setEmail(email);
-        user.setAvatar(avatar);
+        // don't update avatar if input is empty
+        if (avatar.length != 0) {
+            user.setAvatar(avatar);
+        }
 
         userMapper.updateById(user);
     }

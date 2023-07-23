@@ -30,7 +30,7 @@ public interface UserService extends IService<User> {
 
     ResultVO checkEmailIsExisted(RegisterParam param);
 
-    UserVO getActiveCode(RegisterParam param);
+    ResultVO getActiveCode(RegisterParam param);
 
 
 //    /**
