@@ -1,14 +1,62 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyh2ebsnufook"]
 
-[ext_resource type="Script" path="res://Leaderboard/OtherMap.gd" id="1_fr84i"]
 [ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_ig22v"]
 [ext_resource type="Script" path="res://Leaderboard/OtherTileMap.gd" id="3_rvkqt"]
 
+[sub_resource type="GDScript" id="GDScript_hru5c"]
+script/source = "extends Node2D
+
+
+#itemlist index
+#cityname 01
+#prosperity 23
+#rank 45
+
+@onready var attributes : Node = get_node(\"ItemList\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	attributes.set_item_text(1, GameManager.other_city_name)
+	attributes.set_item_text(3, GameManager.other_prosperity)
+	attributes.set_item_text(5, GameManager.other_rank)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file(\"res://main_scene.tscn\")
+	
+"
+
 [node name="OtherMap" type="Node2D"]
-script = ExtResource("1_fr84i")
+script = SubResource("GDScript_hru5c")
 
 [node name="TileMap" parent="." instance=ExtResource("2_ig22v")]
 script = ExtResource("3_rvkqt")
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 62.0
+offset_top = 67.0
+offset_right = 410.0
+offset_bottom = 275.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 16
+theme_override_constants/icon_margin = 0
+theme_override_constants/line_separation = 3
+theme_override_constants/outline_size = 19
+theme_override_font_sizes/font_size = 24
+item_count = 6
+max_columns = 2
+item_0/text = "    city name      :"
+item_1/text = "data1"
+item_2/text = "    prosperity     :"
+item_3/text = "data2"
+item_4/text = "    rank                :"
+item_5/text = "data3"
 
 [node name="back" type="Button" parent="."]
 offset_left = 1598.0
@@ -17,20 +65,5 @@ offset_right = 1906.0
 offset_bottom = 1063.0
 theme_override_font_sizes/font_size = 50
 text = "back"
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 498.0
-offset_bottom = 269.0
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer"]
-layout_mode = 2
-theme_type_variation = &"HeaderLarge"
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "infomation"
-horizontal_alignment = 1
-metadata/lable = false
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

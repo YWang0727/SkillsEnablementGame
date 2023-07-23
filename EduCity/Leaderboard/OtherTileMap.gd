@@ -3,10 +3,13 @@ extends TileMap
 var buildingLayer: int = 2
 
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	HttpLayer.connect("http_completed", http_completed)
 	HttpLayer._otherMap()
+	
 	
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
