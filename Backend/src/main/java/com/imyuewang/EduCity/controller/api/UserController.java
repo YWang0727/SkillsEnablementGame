@@ -35,7 +35,7 @@ public class UserController {
 
     @PostMapping("/active")
     @ApiOperation(value = "Active code")
-    public UserVO getActiveCode(@RequestBody RegisterParam param) {
+    public ResultVO getActiveCode(@RequestBody RegisterParam param) {
         return userService. getActiveCode(param);
     }
 

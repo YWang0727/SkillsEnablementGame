@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.security.SecureRandom;
 import java.util.Objects;
+import java.util.Random;
 import java.util.UUID;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.Constants.CHARACTERS;
@@ -87,9 +88,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         System.out.println(param.getEmail());
         // check if email exists
         if (getUserByEmail(param.getEmail()) != null) {
-            return new ResultVO(ResultCode.EMAIL_FOUND,"Email already exists.");
+            return new ResultVO(ResultCode.EMAIL_FOUND,null);
         }else{
-            return new ResultVO(ResultCode.EMAIL_NOT_FOUND,"Valid new Email");
+            return new ResultVO(ResultCode.EMAIL_NOT_FOUND,null);
         }
     }
 
@@ -118,8 +119,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         newUser = setCityMapId(newUser);
         //initialize citymap table
         citymapMapper.insert(new Citymap(newUser.getId(), "My City", 0L,0L,0));
-        //initialize takenmapcell table
-        takenmapcellMapper.insert(new Takenmapcell(newUser.getCitymap()));
         //initialize user_quiz table
         userQuizMapper.insert(new UserQuiz(newUser.getId()));
     }
@@ -137,7 +136,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /**************    ACTIVE EMAIL    **************/
     /************************************************/
     @Override
-    public UserVO getActiveCode(RegisterParam param) {
+    public ResultVO getActiveCode(RegisterParam param) {
         // send active code
         int codeLength = 6;
         String activeCode = generateActiveCode(codeLength);
@@ -145,17 +144,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String emailText = "E-mail registration successful! Your activation code is: " + activeCode;
         mailUtil.sendMail(param.getEmail(), emailText, "EduCity Activation Email");
 
-        return new UserVO(activeCode);
+        return new ResultVO(ResultCode.EMAIL_SENT, activeCode);
     }
 
     public String generateActiveCode(int codeLength) {
-        SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder(codeLength);
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
 
         for (int i = 0; i < codeLength; i++) {
-            int randomIndex = random.nextInt(CHARACTERS.length());
-            char randomChar = CHARACTERS.charAt(randomIndex);
-            sb.append(randomChar);
+            int digit = random.nextInt(10); // 0~9
+            sb.append(digit);
         }
 
         return sb.toString();

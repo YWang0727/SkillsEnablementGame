@@ -40,8 +40,9 @@ public enum ResultCode {
     UPLOAD_ERROR(3001, "File for avatar is too large!"),
 
     //email
-    EMAIL_FOUND(4000,"Email is existed！"),
-    EMAIL_NOT_FOUND(4001,"Email is not existed！")
+    EMAIL_FOUND(4000,"Email is already existed！Please Try another one！"),
+    EMAIL_NOT_FOUND(4001,"It is valid new email！"),
+    EMAIL_SENT(4002,"Email sent successfully！Please check your email！"),
     ;
 
 

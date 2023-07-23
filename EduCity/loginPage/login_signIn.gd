@@ -1,6 +1,8 @@
 extends Control
 enum panels {log, sign1, sign2}
 var currentPanel
+#user info
+var user_activeCode
 #tabars
 var logButton 
 var signButton
@@ -259,6 +261,9 @@ func createLabel(text: String, position: Vector2, fontSize: int, textColor: Colo
 
 
 func _on_next_button_pressed():
+	if activeCode.text != user_activeCode:
+		setAlert("Active code is not correct, please try again!")
+		return
 	currentPanel = panels.sign2
 	usernameSign.grab_focus()
 	signPanel1.visible = false
@@ -317,7 +322,7 @@ func http_completed(res, response_code, headers, route) -> void:
 	if response_code == 200 && route == "login":
 		#save id to user_id in GameManager
 		if !res.has("id"):
-			setAlertWithError(res)
+			setAlert(res['msg'])
 		else:	
 			GameManager.user_id = res['id']
 			print("------------------------login success!")
@@ -327,7 +332,7 @@ func http_completed(res, response_code, headers, route) -> void:
 				_get_localStorage()
 		return
 	if response_code == 200 && route == "register":
-		alertPopup.set_text("             resgister success! Pleace log in!");
+		alertPopup.set_text("             Resgister success! Pleace log in!");
 		alertPopup.visible = true
 		print("------------------------resgister success!")
 		return	
@@ -343,14 +348,20 @@ func http_completed(res, response_code, headers, route) -> void:
 		return
 	if response_code == 200 && route == "email":
 		if res['code'] == 4000:
-			setAlertWithError(res)
+			setAlert(res['msg'])
 		if res['code'] == 4001:
-#			getActiveCode()
+			getActiveCode()
 			return
+	if response_code == 200 && route == "active":
+		#email sent success
+		if res['code'] == 4002:
+			setAlert(res['msg'])
+			user_activeCode = res['data']
+		else:
+			setAlert("Failed to send email because of error unkwon./nPlease try again later!")
 
-func setAlertWithError(res):
-	var errorMsg = res['data']
-	alertPopup.set_text(errorMsg)
+func setAlert(msg:String):
+	alertPopup.set_text(msg)
 	alertPopup.visible = true;
 	
 
@@ -361,9 +372,9 @@ func _on_get_activecode_button_pressed():
 	}
 	HttpLayer._checkEmailIsExisted(_credential)
 	
-#func getActiveCode():
-#	var email = emailSign
-#	var _credential = {
-#			"email": email,
-#	}
-#	HttpLayer._getActiveCode(_credential)
+func getActiveCode():
+	var email = emailSign.text
+	var _credential = {
+			"email": email,
+	}
+	HttpLayer._getActiveCode(_credential)
