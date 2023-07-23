@@ -43,7 +43,7 @@ public class TakenmapcellController {
 
     @PostMapping("/buildHouse")
     @ApiOperation("build new house")
-    public void pushComponents(@RequestBody  @Valid MapDictParam param){
+    public void buildHouse(@RequestBody  @Valid MapDictParam param){
         takenmapcellService.buildHouse(param);
     }
 
@@ -53,6 +53,13 @@ public class TakenmapcellController {
         MapDictVO mapDictVO = takenmapcellService.otherMap(id);
         return mapDictVO;
     }
+
+    @PostMapping("/levelUp")
+    @ApiOperation("house level + 1")
+    public void levelUp(@RequestBody  @Valid MapDictParam param){
+        takenmapcellService.levelUp(param);
+    }
+
 
 }
 

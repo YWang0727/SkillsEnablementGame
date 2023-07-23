@@ -7,6 +7,7 @@ var updateCellPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#HttpLayer.http_completed.connect(http_completed)
 	self.hide()
 	pass # Replace with function body.
 
@@ -61,4 +62,37 @@ func _on_pressed():
 	tileMap.set_cell(tileMap.buildingLayer,updateCellPos,buildingID+10,Vector2i(0,0))
 	GameManager.mapDict[updateCellPos] = buildingID+10
 	self.hide()
+	
+	for building_data in GameManager.buildings_data:
+		if building_data["tileID"] == buildingID+10:
+			GameManager.gold -= building_data["cost"]
+			GameManager.prosperity += building_data["prosperity"]
+			#if buildingID == 建筑工地     speed+1
+	pushComponents()
+	levelUp()
+	
 	pass # Replace with function body.
+
+
+func pushComponents():
+	var _credential = {
+			"gold": GameManager.gold,
+			"prosperity": GameManager.prosperity,
+			"construction_speed": GameManager.construction_speed,
+			"id": GameManager.user_id,
+	}
+	HttpLayer._pushComponents(_credential);
+	#components_show
+
+func levelUp():
+	var buildingType = buildingID
+	if buildingID >= 10:
+		buildingType -= 10
+	var _credential = {
+			"x": updateCellPos.x,
+			"y": updateCellPos.y,
+			"houseType": buildingType,
+			"id": GameManager.user_id,
+	}
+	HttpLayer._levelUp(_credential);
+	

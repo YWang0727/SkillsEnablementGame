@@ -136,7 +136,7 @@ func http_completed(res, response_code, headers, route):
 			cellPos_temp = local_to_map(position)
 			cellPos_temp.x = res.x[i]
 			cellPos_temp.y = res.y[i]
-			GameManager.mapDict[cellPos_temp] = res.houseType[i]
+			GameManager.mapDict[cellPos_temp] = res.houseType[i] + (res.houseLevel[i] - 1) * 10
 			set_cell(buildingLayer,cellPos_temp,res.houseType[i],Vector2i(0,0))
 			
 

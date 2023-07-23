@@ -90,6 +90,19 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     }
 
 
+    //通过 mapid x y 找到对应的house level+1
+    public void levelUp(MapDictParam param){
+        User user = userMapper.selectById(param.getId());
+        QueryWrapper queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("mapId",user.getCitymap());
+        queryWrapper.eq("positionX",param.getX());
+        queryWrapper.eq("positionY",param.getY());
+        Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);
+        takenmapcell.setHouselevel(takenmapcell.getHouselevel() + 1);
+        takenmapcellMapper.update(takenmapcell,queryWrapper);
+    }
+
+
 }
 
 
