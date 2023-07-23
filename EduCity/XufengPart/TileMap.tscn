@@ -191,4 +191,5 @@ text = "升级文字说明
 2
 3"
 
+[connection signal="attributes_show" from="UpdateButton" to="." method="_on_update_button_attributes_show"]
 [connection signal="pressed" from="UpdateButton" to="UpdateButton" method="_on_pressed"]

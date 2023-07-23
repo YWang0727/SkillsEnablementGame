@@ -1,5 +1,7 @@
 extends Button
 
+signal attributes_show
+
 @onready var tileMap : Node = get_parent()
 @onready var tileSet: TileSet = tileMap.get_tileset()
 var buildingID
@@ -7,7 +9,6 @@ var updateCellPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#HttpLayer.http_completed.connect(http_completed)
 	self.hide()
 	pass # Replace with function body.
 
@@ -60,21 +61,25 @@ func _setLableText(buildingID) -> void:
 
 func _on_pressed():
 	#+6---index
-	var cost = GameManager.buildings_data[buildingID+6].cost
-	var prosperity = GameManager.buildings_data[buildingID+6].prosperity
+	var index
+	if buildingID < 10:
+		index = buildingID + 6
+	else:
+		index = buildingID + 2
+	var cost = GameManager.buildings_data[index].cost
+	var prosperity = GameManager.buildings_data[index].prosperity
 	if GameManager.gold >= cost:
 		GameManager.gold -= cost
 		GameManager.prosperity += prosperity
 		#if buildingID == 建筑工地     speed+1
 		tileMap.set_cell(tileMap.buildingLayer,updateCellPos,buildingID+10,Vector2i(0,0))
 		GameManager.mapDict[updateCellPos] = buildingID+10
+		pushComponents()
+		levelUp()
 	else :
 		var error_pannel = get_node("/root/MainScene/ErrorPannel")
 		error_pannel.popup_centered()
 	self.hide()
-	pushComponents()
-	levelUp()
-	
 	pass # Replace with function body.
 
 
@@ -86,7 +91,7 @@ func pushComponents():
 			"id": GameManager.user_id,
 	}
 	HttpLayer._pushComponents(_credential);
-	#components_show
+	emit_signal("attributes_show")
 
 func levelUp():
 	var buildingType = buildingID

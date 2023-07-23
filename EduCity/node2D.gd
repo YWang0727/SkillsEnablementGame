@@ -11,8 +11,3 @@ func _process(delta):
 	pass
 
 
-func _on_back_pressed():
-	#var s = preload("res://Leaderboard/leaderboard.tscn").instantiate()
-	#add_child(s)
-	get_tree().change_scene_to_file("res://main_scene.tscn")
-	

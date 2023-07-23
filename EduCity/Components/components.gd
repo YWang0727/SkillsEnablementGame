@@ -1,5 +1,11 @@
 extends Node
 
+@onready var attributes : Node = get_node("attributes")
+# index
+#gold 0 1 
+#prosperity  2 3 
+#speed  4 5
+#population  6 7 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,9 +18,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_prosperity_pressed():
-	var s = preload("res://Leaderboard/leaderboard.tscn").instantiate()
-	add_child(s)
 
 func _on_gold_pressed():
 	get_tree().change_scene_to_file("res://LearningPage/learning_scene.tscn")
@@ -26,15 +29,15 @@ func http_completed(res, response_code, headers, route):
 		GameManager.prosperity = res.prosperity
 		GameManager.construction_speed = res.construction_speed
 		GameManager.population = GameManager.gold + GameManager.prosperity + GameManager.construction_speed
-		_components_show()
+		_attributes_show()
 	
 
-func _components_show():
-	get_node("Gold").text = "Gold              :  $" + str(GameManager.gold)
-	get_node("Prosperity").text =  "Prosperity    :  " + str(GameManager.prosperity)
-	get_node("Construction_speed").text = "Constructionspeed  :  " + str(GameManager.construction_speed)
-	get_node("Population").text = "Population    :  " + str(GameManager.population)
-
+func _attributes_show():
+	attributes.set_item_text(1,str(GameManager.gold))
+	attributes.set_item_text(3,str(GameManager.prosperity))
+	attributes.set_item_text(5,str(GameManager.construction_speed))
+	attributes.set_item_text(7,str(GameManager.construction_speed))
+	
 
 func pushComponents():
 	var _credential = {
@@ -50,5 +53,20 @@ func pushComponents():
 #目前只有建房子
 func _on_tile_map_store_components():
 	pushComponents();
-	_components_show();
+	_attributes_show();
 	pass # Replace with function body.
+
+
+func _on_bt_leader_board_pressed():
+	var s = preload("res://Leaderboard/leaderboard.tscn").instantiate()
+	add_child(s)
+	pass # Replace with function body.
+
+
+func _on_tile_map_attributes_show_2():
+	_attributes_show();
+	pass # Replace with function body.
+
+
+
+

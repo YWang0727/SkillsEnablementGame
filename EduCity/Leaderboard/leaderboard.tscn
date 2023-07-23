@@ -122,3 +122,4 @@ theme_type_variation = &"HeaderSmall"
 text = "my_prosperity"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="item_activated" from="ColorRect/ItemList" to="." method="_on_item_list_item_activated"]

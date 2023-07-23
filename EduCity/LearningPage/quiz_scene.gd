@@ -26,6 +26,8 @@ var scoreDifference = 0
 var attempts = null
 var golds = null
 
+signal quiz_add_gold_show
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -287,8 +289,7 @@ func _show_score():
 	
 	#传到attributes
 	GameManager.gold += golds
-	
-
+	#pushComponents()
 	
 	# attempts remaining
 	var attemptsLabel = get_node("ShowScore/Attempts")
@@ -303,7 +304,18 @@ func _show_score():
 	# Exit
 	var ScoreExitButton = get_node("ShowScore/ExitButton")
 	ScoreExitButton.connect("pressed", _on_exit_pressed)
-	
+
+
+func pushComponents():
+	var _credential = {
+			"gold": GameManager.gold,
+			"prosperity": GameManager.prosperity,
+			"construction_speed": GameManager.construction_speed,
+			"id": GameManager.user_id,
+	}
+	HttpLayer._pushComponents(_credential);
+	var s = preload("res://Components/components.tscn").instantiate()
+	s._attributes_show()
 	
 func _on_tryAgain_pressed():
 		get_tree().reload_current_scene()

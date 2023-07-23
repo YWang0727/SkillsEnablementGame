@@ -1,6 +1,7 @@
 extends TileMap
 
 signal store_components
+signal attributes_show2
 
 var selectedTile: int = 98
 var selectedLayer: int = 1
@@ -64,6 +65,12 @@ func _unhandled_input(event) -> void:
 				}
 				HttpLayer._buildHouse(_credential);
 				selectedBuildingType = -1
+				#var aaa = get_node("/root/MainScene/Node2D/Lable")
+				#var bbb = get_node("/root/MainScene/Node2D/Gold+/Timer")
+				#aaa.show()
+				#bbb.start
+				
+				
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -166,3 +173,8 @@ func _getCellsCount(selectedBuildingType) -> int:
 		GameManager.BuildingType.bank_3:
 			return 4
 	return 0
+
+
+func _on_update_button_attributes_show():
+	emit_signal("attributes_show2")
+	pass # Replace with function body.

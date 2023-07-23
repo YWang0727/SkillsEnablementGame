@@ -34,3 +34,9 @@ func http_completed(res, response_code, headers, route):
 				get_node("ColorRect/ItemList").set_item_custom_bg_color((i - 1) * 4 + 2, Color(0, 0, 0, 1))
 				get_node("ColorRect/ItemList").set_item_custom_bg_color((i - 1) * 4 + 3, Color(0, 0, 0, 1))
 
+
+
+
+func _on_item_list_item_activated(index):
+	get_tree().change_scene_to_file("res://Leaderboard/OtherMap.tscn")
+	pass # Replace with function body.

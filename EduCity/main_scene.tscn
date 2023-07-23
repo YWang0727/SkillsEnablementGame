@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=17 format=3 uid="uid://ckpvbylmvtoo8"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cl4d5l41duaat" path="res://XufengPart/Icons/up.png" id="11_2k7ii"]
 [ext_resource type="Texture2D" uid="uid://br6ymomytlp8p" path="res://XufengPart/Icons/down.png" id="12_fpq80"]
 [ext_resource type="Texture2D" uid="uid://hf2403e1h33j" path="res://XufengPart/Icons/centre.png" id="13_8ybs5"]
+[ext_resource type="Script" path="res://node2D.gd" id="14_aod2g"]
 
 [sub_resource type="GDScript" id="GDScript_lw47u"]
 script/source = "extends Control
@@ -126,4 +127,36 @@ offset_right = 400.0
 offset_bottom = 150.0
 text = "go to earn money"
 
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+script = ExtResource("14_aod2g")
+
+[node name="Gold+" type="PopupPanel" parent="Node2D"]
+
+[node name="Label" type="Label" parent="Node2D/Gold+"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "gold+"
+
+[node name="Gold-" type="PopupPanel" parent="Node2D"]
+
+[node name="Label" type="Label" parent="Node2D/Gold-"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "gold--"
+
+[node name="Prosperity" type="PopupPanel" parent="Node2D"]
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 484.0
+offset_top = 24.0
+offset_right = 823.0
+offset_bottom = 108.0
+text = "lable!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+[connection signal="attributes_show2" from="TileMap" to="components" method="_on_tile_map_attributes_show_2"]
 [connection signal="store_components" from="TileMap" to="components" method="_on_tile_map_store_components"]
