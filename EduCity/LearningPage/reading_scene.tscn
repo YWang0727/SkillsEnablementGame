@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bju8b1u2ttqoa" path="res://setting/assets/Font/Roboto/Roboto-Italic.ttf" id="4_lrkt1"]
 [ext_resource type="FontFile" uid="uid://uue3yy1kgul5" path="res://setting/assets/Font/Roboto/Roboto-BoldItalic.ttf" id="5_jfay5"]
 [ext_resource type="Texture2D" uid="uid://ud7w6sykerp3" path="res://LearningPage/Icon/check-mark.png" id="6_450tj"]
-[ext_resource type="Texture2D" uid="uid://v25avekmfw0o" path="res://LearningPage/Icon/exit-door.png" id="7_ajdm3"]
+[ext_resource type="Texture2D" uid="uid://8rn55ubehde1" path="res://LearningPage/Icon/back2.png" id="7_ql8mm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h7ga"]
 bg_color = Color(0, 0, 0, 1)
@@ -75,6 +75,6 @@ offset_bottom = 60.0
 tooltip_text = "EXIT"
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_n47a7")
-icon = ExtResource("7_ajdm3")
+icon = ExtResource("7_ql8mm")
 icon_alignment = 1
 expand_icon = true

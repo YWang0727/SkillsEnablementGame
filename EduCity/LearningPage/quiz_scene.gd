@@ -9,6 +9,9 @@ var quizData := {}
 
 # init compons
 var questionLabel := Label.new()
+var noLabel := Label.new()
+var alertPopup := AcceptDialog.new()
+var cancelButton := Button.new()
 var optionsButtonContainer := VBoxContainer.new()
 var navigationButtonContainer := HBoxContainer.new()
 var previousButton := Button.new()
@@ -39,6 +42,10 @@ func _ready():
 	
 	# create question node
 	questionLabel  = get_node("QuestionLabel")
+	
+	noLabel = get_node("NoLabel")
+	alertPopup = get_node("AlertPopup")
+	cancelButton = alertPopup.add_button(" CANCEL ", true)
 	
 	optionsButtonContainer = get_node("OptionsButtonContainer")
 	
@@ -129,6 +136,9 @@ func _load_questions_from_json(file_path: String) -> void:
 		
 		
 func _show_question(index: int):
+	# show current question no.
+	noLabel.text = str(index + 1) + " / " + str(questionSize)
+	
 	# if is multi-answers or not
 	var multi = false
 	if answerArray[index].size() > 1:
@@ -140,7 +150,7 @@ func _show_question(index: int):
 	var question: Dictionary = quizData.questions[index]
 	# show current question
 	questionLabel = get_node("QuestionLabel") as Label
-	questionLabel.text = var_to_str(index + 1) + ". " + question["question"]
+	questionLabel.text = "  " + question["question"]
 
 	# clear previous options
 	_clear_container(optionsButtonContainer)
@@ -317,12 +327,23 @@ func pushComponents():
 	var s = preload("res://Components/components.tscn").instantiate()
 	s._attributes_show()
 	
+	
 func _on_tryAgain_pressed():
 		get_tree().reload_current_scene()
 		
 	
 func _on_exit_pressed():
+	alertPopup.visible = true;
+	alertPopup.get_ok_button().connect("pressed", _popup_exit)
+	cancelButton.connect("pressed", _popup_hide)
+	
+	
+func _popup_exit():
 	get_tree().change_scene_to_file("res://LearningPage/learning_scene.tscn")
+	
+
+func _popup_hide():
+	alertPopup.visible = false;
 
 	
 # calculate final score
