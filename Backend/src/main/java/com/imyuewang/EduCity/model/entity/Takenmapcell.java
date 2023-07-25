@@ -1,5 +1,8 @@
 package com.imyuewang.EduCity.model.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -31,6 +34,7 @@ public class Takenmapcell implements Serializable {
     /**
      * 
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date buildtime;
 
     private static final long serialVersionUID = 1L;
