@@ -32,15 +32,6 @@ public interface UserService extends IService<User> {
 
     ResultVO getActiveCode(RegisterParam param);
 
-
-//    /**
-//     * Update user information
-//     * @author Yue Wang
-//     * @date 11:56 2023/5/7
-//     * @param param user form parameters
-//     **/
-    //void update(UserParam param);
-
     UserVO register(User newUser);
 
 }

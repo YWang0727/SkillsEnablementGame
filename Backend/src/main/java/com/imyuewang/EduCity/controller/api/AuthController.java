@@ -32,9 +32,6 @@ public class AuthController {
     @PostMapping("/login")
     @ApiOperation(value = "Login by password")
     public UserVO login(@RequestBody  @Valid LoginParam param){
-
-        System.out.println(userService.login(param));
-
         return userService.login(param);
     }
 
@@ -46,10 +43,5 @@ public class AuthController {
         System.out.println(uservo);
         return uservo;
     }
-
-
-
-
-
 
 }
