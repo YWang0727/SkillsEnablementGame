@@ -1,50 +1,109 @@
 package com.imyuewang.EduCity.model.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
-
 import java.io.Serializable;
-import lombok.Data;
+import java.util.Date;
 
 /**
  * 
  * @TableName takenmapcell
  */
-@TableName(value ="takenmapcell")
-@Data
 public class Takenmapcell implements Serializable {
     /**
      * 
      */
-    @TableId(value = "mapId", type = IdType.INPUT)
     private Long mapid;
 
     /**
      * 
      */
-    @TableField(value = "positionX")
     private Integer positionx;
 
     /**
      * 
      */
-    @TableField(value = "positionY")
     private Integer positiony;
 
     /**
      * 
      */
-    @TableField(value = "houseType")
     private Integer housetype;
 
     /**
      * 
      */
-    @TableField(value = "houseLevel")
-    private Integer houselevel;
+    private Date buildtime;
 
-    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 
+     */
+    public Long getMapid() {
+        return mapid;
+    }
+
+    /**
+     * 
+     */
+    public void setMapid(Long mapid) {
+        this.mapid = mapid;
+    }
+
+    /**
+     * 
+     */
+    public Integer getPositionx() {
+        return positionx;
+    }
+
+    /**
+     * 
+     */
+    public void setPositionx(Integer positionx) {
+        this.positionx = positionx;
+    }
+
+    /**
+     * 
+     */
+    public Integer getPositiony() {
+        return positiony;
+    }
+
+    /**
+     * 
+     */
+    public void setPositiony(Integer positiony) {
+        this.positiony = positiony;
+    }
+
+    /**
+     * 
+     */
+    public Integer getHousetype() {
+        return housetype;
+    }
+
+    /**
+     * 
+     */
+    public void setHousetype(Integer housetype) {
+        this.housetype = housetype;
+    }
+
+    /**
+     * 
+     */
+    public Date getBuildtime() {
+        return buildtime;
+    }
+
+    /**
+     * 
+     */
+    public void setBuildtime(Date buildtime) {
+        this.buildtime = buildtime;
+    }
 
     @Override
     public boolean equals(Object that) {
@@ -62,7 +121,7 @@ public class Takenmapcell implements Serializable {
             && (this.getPositionx() == null ? other.getPositionx() == null : this.getPositionx().equals(other.getPositionx()))
             && (this.getPositiony() == null ? other.getPositiony() == null : this.getPositiony().equals(other.getPositiony()))
             && (this.getHousetype() == null ? other.getHousetype() == null : this.getHousetype().equals(other.getHousetype()))
-            && (this.getHouselevel() == null ? other.getHouselevel() == null : this.getHouselevel().equals(other.getHouselevel()));
+            && (this.getBuildtime() == null ? other.getBuildtime() == null : this.getBuildtime().equals(other.getBuildtime()));
     }
 
     @Override
@@ -73,7 +132,7 @@ public class Takenmapcell implements Serializable {
         result = prime * result + ((getPositionx() == null) ? 0 : getPositionx().hashCode());
         result = prime * result + ((getPositiony() == null) ? 0 : getPositiony().hashCode());
         result = prime * result + ((getHousetype() == null) ? 0 : getHousetype().hashCode());
-        result = prime * result + ((getHouselevel() == null) ? 0 : getHouselevel().hashCode());
+        result = prime * result + ((getBuildtime() == null) ? 0 : getBuildtime().hashCode());
         return result;
     }
 
@@ -87,7 +146,7 @@ public class Takenmapcell implements Serializable {
         sb.append(", positionx=").append(positionx);
         sb.append(", positiony=").append(positiony);
         sb.append(", housetype=").append(housetype);
-        sb.append(", houselevel=").append(houselevel);
+        sb.append(", buildtime=").append(buildtime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

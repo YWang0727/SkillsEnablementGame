@@ -9,11 +9,11 @@
             <id property="positionx" column="positionX" jdbcType="INTEGER"/>
             <id property="positiony" column="positionY" jdbcType="INTEGER"/>
             <result property="housetype" column="houseType" jdbcType="INTEGER"/>
-            <result property="houselevel" column="houseLevel" jdbcType="INTEGER"/>
+            <result property="buildtime" column="buildTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         mapId,positionX,positionY,
-        houseType,houseLevel
+        houseType,buildTime
     </sql>
 </mapper>

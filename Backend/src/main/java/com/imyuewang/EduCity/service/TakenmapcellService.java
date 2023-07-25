@@ -24,4 +24,5 @@ public interface TakenmapcellService extends IService<Takenmapcell> {
     void levelUp(MapDictParam param);
 
 
+
 }

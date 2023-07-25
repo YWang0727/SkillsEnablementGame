@@ -2,22 +2,22 @@ package com.imyuewang.EduCity.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.imyuewang.EduCity.mapper.CitymapMapper;
 import com.imyuewang.EduCity.mapper.UserMapper;
 import com.imyuewang.EduCity.model.entity.Citymap;
 import com.imyuewang.EduCity.model.entity.Takenmapcell;
 import com.imyuewang.EduCity.model.entity.User;
-import com.imyuewang.EduCity.model.param.ComponentsParam;
 import com.imyuewang.EduCity.model.param.MapDictParam;
-import com.imyuewang.EduCity.model.vo.ComponentsVO;
-import com.imyuewang.EduCity.model.vo.LeaderboardVO;
 import com.imyuewang.EduCity.model.vo.MapDictVO;
 import com.imyuewang.EduCity.service.TakenmapcellService;
 import com.imyuewang.EduCity.mapper.TakenmapcellMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
 * @author Sarah Wang
@@ -54,11 +54,12 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         takenmapcell.setPositionx(param.getX());
         takenmapcell.setPositiony(param.getY());
         takenmapcell.setHousetype(param.getHouseType());
-        takenmapcell.setHouselevel(1);//新房子默认一级
+        //takenmapcell.setBuildtime();
         takenmapcellMapper.insert(takenmapcell);
     }
 
 
+    @Override
     public MapDictVO otherMap(Long mapId){
         MapDictVO mapDictVO = new MapDictVO();
         QueryWrapper queryWrapper = new QueryWrapper<>();
@@ -68,23 +69,24 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         int[] x = new int[num];
         int[] y = new int[num];
         int[] houseType = new int[num];
-        int[] houseLevel = new int[num];
+        Date[] buildTime = new Date[num];
         for (int i = 0; i < takenmapcells.size(); i++) {
             x[i] = takenmapcells.get(i).getPositionx();
             y[i] = takenmapcells.get(i).getPositiony();
             houseType[i] = takenmapcells.get(i).getHousetype();
-            houseLevel[i] = takenmapcells.get(i).getHouselevel();
+            buildTime[i] = takenmapcells.get(i).getBuildtime();
         }
         mapDictVO.setX(x);
         mapDictVO.setY(y);
         mapDictVO.setHouseType(houseType);
-        mapDictVO.setHouseLevel(houseLevel);
         mapDictVO.setNum(num);
+        mapDictVO.setBuildTime(buildTime);
         return mapDictVO;
     }
 
 
     //通过 mapid x y 找到对应的house level+1
+    @Override
     public void levelUp(MapDictParam param){
         User user = userMapper.selectById(param.getId());
         QueryWrapper queryWrapper = new QueryWrapper<Citymap>();
@@ -92,9 +94,11 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         queryWrapper.eq("positionX",param.getX());
         queryWrapper.eq("positionY",param.getY());
         Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);
-        takenmapcell.setHouselevel(takenmapcell.getHouselevel() + 1);
+        takenmapcell.setHousetype(takenmapcell.getHousetype()+10);
         takenmapcellMapper.update(takenmapcell,queryWrapper);
     }
+
+
 
 
 }

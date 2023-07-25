@@ -9,6 +9,12 @@ func _ready():
 	HttpLayer.connect("http_completed", http_completed)
 	HttpLayer._leaderBoard()
 	
+	var a = Time.get_date_dict_from_system()
+	var b = Time.get_time_dict_from_system()
+	print(a)
+	print(b)
+	print(a.day)
+	print(b.hour)
 
 func _process(delta):
 	pass

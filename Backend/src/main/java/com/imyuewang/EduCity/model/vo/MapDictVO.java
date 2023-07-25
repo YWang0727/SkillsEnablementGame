@@ -3,6 +3,9 @@ package com.imyuewang.EduCity.model.vo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 /**
  * @ClassName LeaderboardVO
  * @Description
@@ -18,7 +21,7 @@ public class MapDictVO {
     private int[] x;
     private int[] y;
     private int[] houseType;
-    private int[] houseLevel;
+    private Date[] buildTime;
     private int num;
 
 }

@@ -65,10 +65,6 @@ func _unhandled_input(event) -> void:
 				}
 				HttpLayer._buildHouse(_credential);
 				selectedBuildingType = -1
-				#var aaa = get_node("/root/MainScene/Node2D/Lable")
-				#var bbb = get_node("/root/MainScene/Node2D/Gold+/Timer")
-				#aaa.show()
-				#bbb.start
 				
 				
 			
@@ -143,7 +139,7 @@ func http_completed(res, response_code, headers, route):
 			cellPos_temp = local_to_map(position)
 			cellPos_temp.x = res.x[i]
 			cellPos_temp.y = res.y[i]
-			GameManager.mapDict[cellPos_temp] = res.houseType[i] + (res.houseLevel[i] - 1) * 10
+			GameManager.mapDict[cellPos_temp] = res.houseType[i]
 			set_cell(buildingLayer,cellPos_temp,res.houseType[i],Vector2i(0,0))
 			
 
