@@ -122,8 +122,8 @@ func _on_backButton_pressed():
 	
 # generate module path
 func _on_aiButton_pressed():
-	GameManager.reading_path = "res://LearningPage/LearningResources/IBM AI"
-	GameManager.question_path = "res://LearningPage/LearningResources/IBM AI"
+	GameManager.reading_path = "user://LearningPage/LearningResources/IBM_AI"
+	GameManager.question_path = "user://LearningPage/LearningResources/IBM_AI"
 	
 	var popup = get_node("PopupMenu")
 	popup.visible = true
@@ -132,8 +132,8 @@ func _on_aiButton_pressed():
 
 
 func _on_securityButton_pressed():
-	GameManager.reading_path = "res://LearningPage/LearningResources/IBM Security"
-	GameManager.question_path = "res://LearningPage/LearningResources/IBM Security"
+	GameManager.reading_path = "user://LearningPage/LearningResources/IBM_Security"
+	GameManager.question_path = "user://LearningPage/LearningResources/IBM_Security"
 	
 	var popup = get_node("PopupMenu")
 	popup.visible = true
@@ -142,8 +142,8 @@ func _on_securityButton_pressed():
 	
 	
 func _on_cloudButton_pressed():
-	GameManager.reading_path = "res://LearningPage/LearningResources/IBM Cloud"
-	GameManager.question_path = "res://LearningPage/LearningResources/IBM Cloud"
+	GameManager.reading_path = "user://LearningPage/LearningResources/IBM_Cloud"
+	GameManager.question_path = "user://LearningPage/LearningResources/IBM_Cloud"
 	
 	var popup = get_node("PopupMenu")
 	popup.visible = true
@@ -152,8 +152,8 @@ func _on_cloudButton_pressed():
 	
 	
 func _on_dsButton_pressed():
-	GameManager.reading_path = "res://LearningPage/LearningResources/IBM DS"
-	GameManager.question_path = "res://LearningPage/LearningResources/IBM DS"
+	GameManager.reading_path = "user://LearningPage/LearningResources/IBM_DS"
+	GameManager.question_path = "user://LearningPage/LearningResources/IBM_DS"
 	
 	var popup = get_node("PopupMenu")
 	popup.visible = true
@@ -162,8 +162,8 @@ func _on_dsButton_pressed():
 	
 	
 func _on_automationButton_pressed():
-	GameManager.reading_path = "res://LearningPage/LearningResources/IBM Automation"
-	GameManager.question_path = "res://LearningPage/LearningResources/IBM Automation"
+	GameManager.reading_path = "user://LearningPage/LearningResources/IBM_Automation"
+	GameManager.question_path = "user://LearningPage/LearningResources/IBM_Automation"
 	
 	var popup = get_node("PopupMenu")
 	popup.visible = true

@@ -30,9 +30,6 @@ public class SettingController {
     @Autowired
     private SettingService settingService;
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping("/getUserInfo/{id}")
     @ApiOperation("return user information")
     public ResultVO<UserInfoVO> getUserInfo(@PathVariable("id") Long id) {
@@ -44,14 +41,14 @@ public class SettingController {
             userInfoVO.setAvatar(null);
         }
 
-        return new ResultVO<>(ResultCode.SUCCESS, userInfoVO);
+        return new ResultVO<>(userInfoVO);
     }
 
     @GetMapping("/getPropertyInfo/{id}")
     @ApiOperation("return user's property information")
     public ResultVO<PropertyInfoVO> getPropertyInfo(@PathVariable("id") Long id) {
         PropertyInfoVO propertyInfo = settingService.getPropertyInfo(id);
-        return new ResultVO<>(ResultCode.SUCCESS, propertyInfo);
+        return new ResultVO<>(propertyInfo);
     }
 
     @PutMapping("/editUserInfo")

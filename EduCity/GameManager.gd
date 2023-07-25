@@ -2,6 +2,12 @@ extends Node
 
 var user_id = null
 
+#city id
+var other_id = null
+var other_city_name = null
+var other_prosperity = null
+var other_rank = null
+
 var user_token = null
 var user_data = null
 var save_data = null

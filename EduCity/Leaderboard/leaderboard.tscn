@@ -17,9 +17,9 @@ color = Color(1, 0.670588, 0.623529, 0.898039)
 [node name="leaderBoard" type="Label" parent="ColorRect"]
 layout_mode = 0
 offset_left = 228.0
-offset_top = 28.0
+offset_top = 42.0
 offset_right = 392.0
-offset_bottom = 70.0
+offset_bottom = 84.0
 size_flags_stretch_ratio = 0.0
 theme_type_variation = &"HeaderLarge"
 text = "leaderboard"
@@ -37,9 +37,9 @@ text = "back to game"
 [node name="ItemList" type="ItemList" parent="ColorRect"]
 layout_mode = 2
 offset_left = 60.0
-offset_top = 220.0
+offset_top = 202.0
 offset_right = 560.0
-offset_bottom = 780.0
+offset_bottom = 762.0
 select_mode = 1
 max_columns = 4
 fixed_column_width = 113
@@ -47,9 +47,9 @@ fixed_column_width = 113
 [node name="title" type="MenuBar" parent="ColorRect"]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 100.0
+offset_top = 147.0
 offset_right = 560.0
-offset_bottom = 138.0
+offset_bottom = 185.0
 
 [node name="titleRank" type="Label" parent="ColorRect/title"]
 layout_mode = 0
@@ -88,6 +88,7 @@ theme_type_variation = &"HeaderSmall"
 text = "map"
 
 [node name="my-info" type="MenuBar" parent="ColorRect"]
+visible = false
 layout_mode = 0
 offset_left = 60.0
 offset_top = 160.0
@@ -121,5 +122,14 @@ size_flags_stretch_ratio = 0.0
 theme_type_variation = &"HeaderSmall"
 text = "my_prosperity"
 
+[node name="selfCheck" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 92.0
+offset_right = 557.0
+offset_bottom = 123.0
+text = "check your rank"
+
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
 [connection signal="item_activated" from="ColorRect/ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="pressed" from="ColorRect/selfCheck" to="." method="_on_self_check_pressed"]

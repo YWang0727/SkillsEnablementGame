@@ -40,9 +40,29 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     @Override
     public MapDictVO readMap(Long id){
         User user = userMapper.selectById(id);
+        MapDictVO mapDictVO = otherMap(user.getCitymap());
+        return mapDictVO;
+    }
+
+
+    //建新房子   插入一条新的 mapID = user.getCitymap()的数据
+    @Override
+    public void buildHouse(MapDictParam param){
+        User user = userMapper.selectById(param.getId());
+        Takenmapcell takenmapcell = new Takenmapcell();
+        takenmapcell.setMapid(user.getCitymap());
+        takenmapcell.setPositionx(param.getX());
+        takenmapcell.setPositiony(param.getY());
+        takenmapcell.setHousetype(param.getHouseType());
+        takenmapcell.setHouselevel(1);//新房子默认一级
+        takenmapcellMapper.insert(takenmapcell);
+    }
+
+
+    public MapDictVO otherMap(Long mapId){
         MapDictVO mapDictVO = new MapDictVO();
         QueryWrapper queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("mapId",user.getCitymap());//map id = user.id
+        queryWrapper.eq("mapId",mapId);
         int num = takenmapcellMapper.selectCount(queryWrapper);
         List<Takenmapcell> takenmapcells = takenmapcellMapper.selectList(queryWrapper);
         int[] x = new int[num];
@@ -64,36 +84,10 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     }
 
 
-
-    //建新房子   插入一条新的 mapID = user.getCitymap()的数据
-    @Override
-    public void buildHouse(MapDictParam param){
-        User user = userMapper.selectById(param.getId());
-        Takenmapcell takenmapcell = new Takenmapcell();
-        takenmapcell.setMapid(user.getCitymap());
-        takenmapcell.setPositionx(param.getX());
-        takenmapcell.setPositiony(param.getY());
-        takenmapcell.setHousetype(param.getHouseType());
-        takenmapcell.setHouselevel(1);//新房子默认一级
-        takenmapcellMapper.insert(takenmapcell);
-    }
-
-
-    public MapDictVO otherMap(Long mapId){
-        //通过mapId找到对应的user
-        QueryWrapper queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("mapId",mapId);
-        User user = userMapper.selectOne(queryWrapper);
-        //d调用readmap返回地图房子信息
-        MapDictVO mapDictVO = readMap(user.getId());
-        return mapDictVO;
-    }
-
-
     //通过 mapid x y 找到对应的house level+1
     public void levelUp(MapDictParam param){
         User user = userMapper.selectById(param.getId());
-        QueryWrapper queryWrapper = new QueryWrapper<>();
+        QueryWrapper queryWrapper = new QueryWrapper<Citymap>();
         queryWrapper.eq("mapId",user.getCitymap());
         queryWrapper.eq("positionX",param.getX());
         queryWrapper.eq("positionY",param.getY());
