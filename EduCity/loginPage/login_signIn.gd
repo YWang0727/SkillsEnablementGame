@@ -317,6 +317,9 @@ func _get_localStorage():
 		"id": GameManager.user_id
 	})
 	
+func read_map():
+	HttpLayer._readMap()
+	
 	
 func http_completed(res, response_code, headers, route) -> void:
 	if response_code == 200 && route == "login":
@@ -329,6 +332,7 @@ func http_completed(res, response_code, headers, route) -> void:
 			# When login is !successful!, get the required data from the database to localStorage
 			# get current user's learning status and save in localStorage
 			if GameManager.user_id != null:
+				read_map()
 				_get_localStorage()
 		return
 	if response_code == 200 && route == "register":
@@ -345,6 +349,15 @@ func http_completed(res, response_code, headers, route) -> void:
 			GameManager.quizStatus.append(res['completeList'][i])	
 		print("---------------------get status success!")
 		get_tree().change_scene_to_file("res://main_scene.tscn")
+		return
+	if response_code == 200 && route == "readMap":
+		for i in range(0, res.num):
+			var cellPos_temp
+			cellPos_temp = position
+			cellPos_temp.x = res.x[i]
+			cellPos_temp.y = res.y[i]
+			GameManager.mapDict[cellPos_temp] = res.houseType[i]
+		print("---------------------read map success!")
 		return
 	if response_code == 200 && route == "email":
 		if res['code'] == 4000:
