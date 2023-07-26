@@ -22,17 +22,16 @@ create table takenmapcell
 
 create table user
 (
-    id         bigint auto_increment
-        primary key,
+    id         bigint auto_increment     primary key,
     email      varchar(256) not null,
     password   varchar(256) not null,
     avatar     BLOB   null,
     name       varchar(50)  not null,
-    cityMap    bigint       not null,
+    cityMap    bigint  null,
     isActive   tinyint      not null comment '0-not actived 1-actived',
     activeCode varchar(50)  null,
-    constraint User_cityMap_uindex
-        unique (cityMap),
+    loginTime  datetime     null,
+    logoutTime datetime     null,
     constraint User_email_uindex
         unique (email),
     constraint User_id_uindex
@@ -48,5 +47,4 @@ create table user_quiz
     topScore    int    null,
     primary key (id, quizId, knowledgeId)
 );
-
 
