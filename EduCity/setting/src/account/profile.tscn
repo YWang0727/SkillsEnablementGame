@@ -46,7 +46,7 @@ scale = Vector2(1.00259, 1)
 
 [node name="Profile" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 50
+theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 50
 columns = 2
 
@@ -73,30 +73,16 @@ layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Data"
 
-[node name="Prosperity" type="HBoxContainer" parent="MarginContainer/Profile/BasicInfo"]
+[node name="Email" type="HBoxContainer" parent="MarginContainer/Profile/BasicInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/BasicInfo/Prosperity"]
+[node name="Label" type="Label" parent="MarginContainer/Profile/BasicInfo/Email"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
-text = "Prosperity:"
+text = "Email:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/BasicInfo/Prosperity"]
-layout_mode = 2
-theme = ExtResource("6_fy17c")
-text = "data"
-
-[node name="Gold" type="HBoxContainer" parent="MarginContainer/Profile/BasicInfo"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="Label" type="Label" parent="MarginContainer/Profile/BasicInfo/Gold"]
-layout_mode = 2
-theme = ExtResource("6_fy17c")
-text = "Gold:"
-
-[node name="Data" type="Label" parent="MarginContainer/Profile/BasicInfo/Gold"]
+[node name="Data" type="Label" parent="MarginContainer/Profile/BasicInfo/Email"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
@@ -114,7 +100,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_8krav")
 
 [node name="PlaceHolder" type="HBoxContainer" parent="MarginContainer/Profile"]
 layout_mode = 2
-theme_override_constants/separation = 100
 
 [node name="PropertyInfo" type="VBoxContainer" parent="MarginContainer/Profile"]
 layout_mode = 2

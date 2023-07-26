@@ -16,10 +16,8 @@ create table takenmapcell
     positionX  int    not null,
     positionY  int    not null,
     houseType  int    not null,
-    houseLevel int    not null,
-    primary key (mapId, positionX, positionY),
-    constraint TakenMapCell_mapId_uindex
-        unique (mapId)
+    buildTime  int    null,
+    primary key (mapId, positionX, positionY)
 );
 
 create table user

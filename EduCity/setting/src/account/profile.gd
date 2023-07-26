@@ -1,8 +1,5 @@
 extends Control
 
-# preload the HttpLayer_Account Node
-var HttpLayer_Account = preload("res://setting/src/account/HttpLayer_Account.gd")
-var account_API
 var account_setting_scene: String = "res://setting/src/account/account_setting.tscn"
 var main_scene: String = ("res://main_scene.tscn")
 
@@ -10,8 +7,7 @@ var main_scene: String = ("res://main_scene.tscn")
 var accountSettingButton: Button
 var backButton: Button
 var username: Label
-var prosperity: Label
-var gold: Label
+var email: Label
 var residentialBuilding: Label
 var bank: Label
 var supermarket: Label
@@ -24,28 +20,23 @@ var avatar: TextureRect
 func _ready():
 	initiate_variables()
 	connect_signals()
+	display_user_info(GameManager.user_data)
+	display_user_property_info(GameManager.property_data)
 	
-	# it turns out a signal can only be connected to one function...
 	HttpLayer.http_completed.connect(http_completed)
 	
-	# render profile
-	# fetch user basic infomation data from server
-	account_API.fetch_user_info(GameManager.user_id)
-	# fetch user's property infomation from server
-	account_API.fetch_user_property_info(GameManager.user_id)
-
+	# fetch user's property information from server
+	HttpLayer.fetch_user_property_info(GameManager.user_id)
 
 func initiate_variables():
-	account_API = HttpLayer_Account.new()
-
 	#buttons
 	accountSettingButton = get_node("MarginContainer/Profile/BasicInfo/AccountSetting")
 	backButton = get_node("BackButton")
 	
-	# labels: which are used to show data fetched from server
+	# they are used to show data fetched from server
+	avatar = get_node("MarginContainer/Profile/Avatar")
 	username = get_node("MarginContainer/Profile/BasicInfo/Username/Data")
-	prosperity = get_node("MarginContainer/Profile/BasicInfo/Prosperity/Data")
-	gold = get_node("MarginContainer/Profile/BasicInfo/Gold/Data")
+	email = get_node("MarginContainer/Profile/BasicInfo/Email/Data")
 	residentialBuilding = get_node("MarginContainer/Profile/PropertyInfo/ResidentialBuilding/Data")
 	bank = get_node("MarginContainer/Profile/PropertyInfo/Bank/Data")
 	supermarket = get_node("MarginContainer/Profile/PropertyInfo/Supermarket/Data")
@@ -53,7 +44,6 @@ func initiate_variables():
 	farm = get_node("MarginContainer/Profile/PropertyInfo/Farm/Data")
 	constructionSite = get_node("MarginContainer/Profile/PropertyInfo/ConstructionSite/Data")
 
-	avatar = get_node("MarginContainer/Profile/Avatar")
 
 func connect_signals():
 	accountSettingButton.pressed.connect(_on_account_setting_pressed)
@@ -75,33 +65,24 @@ func http_completed(res, response_code, headers, route):
 			print(res.data)
 			return
 		
-		if (route == "getUserInfo"):
-			display_user_info(res.data)
-		elif (route == "getPropertyInfo"):
-			display_user_property_info(res.data)
+		update_user_property(res.data)
+		display_user_property_info(GameManager.property_data)
 			
 	else:
-		if (route == "getUserInfo"):
-			print("Fail to get user's information")
-		elif (route == "getPropertyInfo"):
-			print("Fail to get user's property information")
+		print("Fail to get user's property information")
 
 # diaplay user basic infomation in labels
-func display_user_info(data):
-	username.text = data.name
-	prosperity.text = str(data.prosperity)
-	gold.text = str(data.gold)
+func display_user_info(user_data):
+	username.text = user_data.name
+	email.text = user_data.email
 	
 	# display byte data encoded as String of avatar
-	var avatarStr = data.avatarStr
+	var avatarStr = user_data.avatarStr
 	if (avatarStr != null && avatarStr != ""):
-		display_user_avatar(avatarStr)
+		display_user_avatar(Marshalls.base64_to_raw(avatarStr))
 
 # decode avatar data stored in string and display it
-func display_user_avatar(avatarStr: String):
-	# decode string to byte
-	var avatarData = Marshalls.base64_to_raw(avatarStr)
-	
+func display_user_avatar(avatarData: PackedByteArray):
 	var image = Image.new()
 	var isJPG = check_image_format(avatarData)
 	if (isJPG):
@@ -119,11 +100,19 @@ func check_image_format(imageData: PackedByteArray) -> bool:
 		return true
 	return false
 
+func update_user_property(data):
+	GameManager.property_data.residentialBuilding = str(data.residentialBuildingAmount)
+	GameManager.property_data.bank = str(data.bankAmount)
+	GameManager.property_data.supermarket = str(data.supermarketAmount)
+	GameManager.property_data.hospital = str(data.hospitalAmount)
+	GameManager.property_data.farm = str(data.farmAmount)
+	GameManager.property_data.constructionSite = str(data.constructionSiteAmount)
+
 # diaplay user property infomation in label
-func display_user_property_info(data):
-	residentialBuilding.text = str(data.residentialBuildingAmount)
-	bank.text = str(data.bankAmount)
-	supermarket.text = str(data.supermarketAmount)
-	hospital.text = str(data.hospitalAmount)
-	farm.text = str(data.farmAmount)
-	constructionSite.text = str(data.constructionSiteAmount)
+func display_user_property_info(property_data):
+	residentialBuilding.text = property_data.residentialBuilding
+	bank.text = property_data.bank
+	supermarket.text = property_data.supermarket
+	hospital.text = property_data.hospital
+	farm.text = property_data.farm
+	constructionSite.text = property_data.constructionSite

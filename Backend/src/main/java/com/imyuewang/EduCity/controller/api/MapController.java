@@ -4,7 +4,6 @@ import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.ComponentsParam;
 import com.imyuewang.EduCity.model.vo.ComponentsVO;
 import com.imyuewang.EduCity.model.vo.LeaderboardVO;
-import com.imyuewang.EduCity.model.vo.UserInfoVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.service.CitymapService;
 import com.imyuewang.EduCity.service.SettingService;

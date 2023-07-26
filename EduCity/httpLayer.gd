@@ -144,3 +144,19 @@ func _otherMap():
 func _levelUp(_credentials):
 	_apiCore("map_cell/levelUp", _credentials, false, "POST", "levelUp")
 
+
+# chatbot functions
+func send_message(data):
+	_apiCore("watson/assistant/message", data, true, "POST", "message")
+
+# setting
+# fetch user basic infomation from server
+func fetch_user_info(userId):
+	HttpLayer._apiCore("setting/getUserInfo/" + str(userId), null, true, "GET", "getUserInfo")
+
+func fetch_user_property_info(userId):
+	HttpLayer._apiCore("setting/getPropertyInfo/" + str(userId), null, true, "GET", "getPropertyInfo")
+
+# send editing password request to server
+func edit_user_password(_credentials):
+	HttpLayer._apiCore("setting/editPassword", _credentials, true, "PUT", "editPassword")

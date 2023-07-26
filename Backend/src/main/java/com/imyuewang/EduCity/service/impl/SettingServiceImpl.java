@@ -5,16 +5,14 @@ import com.imyuewang.EduCity.config.PasswordEncoder;
 import com.imyuewang.EduCity.enums.HouseType;
 import com.imyuewang.EduCity.enums.ResultCode;
 import com.imyuewang.EduCity.exception.ApiException;
-import com.imyuewang.EduCity.mapper.CitymapMapper;
 import com.imyuewang.EduCity.mapper.TakenmapcellMapper;
 import com.imyuewang.EduCity.mapper.UserMapper;
-import com.imyuewang.EduCity.model.entity.Citymap;
 import com.imyuewang.EduCity.model.entity.Takenmapcell;
 import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.EditPasswordParam;
 import com.imyuewang.EduCity.model.param.EditUserParam;
 import com.imyuewang.EduCity.model.vo.PropertyInfoVO;
-import com.imyuewang.EduCity.model.vo.UserInfoVO;
+import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.service.SettingService;
 import com.imyuewang.EduCity.util.MailUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +20,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Base64;
 
 @Slf4j
 @Service
@@ -31,28 +30,24 @@ public class SettingServiceImpl implements SettingService {
     private UserMapper userMapper;
 
     @Resource
-    private CitymapMapper cityMapMapper;
-
-    @Resource
     private TakenmapcellMapper takenMapCellMapper;
 
     /**
      * get userVO by user id
      */
     @Override
-    public UserInfoVO getUserInfo(Long userId) {
+    public UserVO getUserInfo(Long userId) {
         User user = userMapper.selectById(userId);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);
 
-        UserInfoVO userInfoVO = new UserInfoVO();
-        BeanUtils.copyProperties(user, userInfoVO);
+        // convert avatar byte to encoded string
+        if (user.getAvatar() != null) {
+            String avatarStr = Base64.getEncoder().encodeToString(user.getAvatar());
+            userVO.setAvatarStr(avatarStr);
+        }
 
-        // get cityMap according to map id
-        Long cityMapId = user.getCitymap();
-        Citymap cityMap = cityMapMapper.selectById(cityMapId);
-        userInfoVO.setGold(cityMap.getGold());
-        userInfoVO.setProsperity(cityMap.getProsperity());
-
-        return userInfoVO;
+        return userVO;
     }
 
     /**

@@ -111,7 +111,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             String avatarStr = Base64.getEncoder().encodeToString(user.getAvatar());
             userVO.setAvatarStr(avatarStr);
         }
-        userVO.setAvatarStr(null);
+        
         //userVO.setToken(JwtManager.generate(user.getEmail()));
         return userVO;
     }

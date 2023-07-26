@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpq2ypbtb2xb5"]
+
+[ext_resource type="Script" path="res://chatbot/testButton.gd" id="1_ga5qh"]
+
+[node name="testButton" type="Node2D"]
+script = ExtResource("1_ga5qh")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1742.0
+offset_top = 946.0
+offset_right = 1786.0
+offset_bottom = 977.0
+scale = Vector2(3.12014, 3.12014)
+text = "Chat"

@@ -5,10 +5,8 @@ import com.imyuewang.EduCity.model.param.EditPasswordParam;
 import com.imyuewang.EduCity.model.param.EditUserParam;
 import com.imyuewang.EduCity.model.vo.PropertyInfoVO;
 import com.imyuewang.EduCity.model.vo.ResultVO;
-import com.imyuewang.EduCity.model.vo.UserInfoVO;
+import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.service.SettingService;
-import com.imyuewang.EduCity.service.UserService;
-import com.imyuewang.EduCity.util.CommonUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Base64;
 
 
 @Slf4j
@@ -32,16 +29,9 @@ public class SettingController {
 
     @GetMapping("/getUserInfo/{id}")
     @ApiOperation("return user information")
-    public ResultVO<UserInfoVO> getUserInfo(@PathVariable("id") Long id) {
-        UserInfoVO userInfoVO = settingService.getUserInfo(id);
-        // convert byte to string using base64 encoder
-        if (userInfoVO.getAvatar() != null) {
-            String avatarStr = Base64.getEncoder().encodeToString(userInfoVO.getAvatar());
-            userInfoVO.setAvatarStr(avatarStr);
-            userInfoVO.setAvatar(null);
-        }
-
-        return new ResultVO<>(userInfoVO);
+    public ResultVO<UserVO> getUserInfo(@PathVariable("id") Long id) {
+        UserVO userVO = settingService.getUserInfo(id);
+        return new ResultVO<>(userVO);
     }
 
     @GetMapping("/getPropertyInfo/{id}")

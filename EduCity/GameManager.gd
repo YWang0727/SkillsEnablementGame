@@ -51,13 +51,17 @@ var prosperity = 0
 var construction_speed = 0
 var mapDict = {} # 储存房子建在哪个cell上，需要读写后端
 
-#Setting
+# Setting
 var music_volume = 0.7
 var sound_volume = 0.7
+var property_data = {}
 
 #Components
 var population:int = 1000
 var rank = 33
+
+# Chatbot
+var chat_history = {}
 
 func _ready():
 	var file = FileAccess.open("res://XufengPart/BuildingType.json", FileAccess.READ)
@@ -72,6 +76,8 @@ func _ready():
 
 	
 	set_volume()
+	initPropertyData()
+	initChatHistory()
 	
 	# 调试房屋升级，不想要就删掉，construction site目前还没做
 	mapDict[Vector2i(15,1)] = 0
@@ -92,3 +98,21 @@ func _ready():
 func set_volume():
 	AudioServer.set_bus_volume_db(0, linear_to_db(music_volume))
 	AudioServer.set_bus_volume_db(1, linear_to_db(sound_volume))
+
+func initPropertyData():
+	property_data = {
+		"residentialBuilding": "",
+		"bank": "",
+		"supermarket": "",
+		"hospital": "",
+		"farm": "",
+		"constructionSite": ""
+	}
+
+func initChatHistory():
+	chat_history= {
+		"sessionId": "",
+		"isNewSession": true,
+		"messages": []
+	}
+	

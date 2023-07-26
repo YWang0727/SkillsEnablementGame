@@ -1,8 +1,6 @@
 extends Control
 
 var profile_scene: String = "res://setting/src/account/profile.tscn"
-var HttpLayer_Account = preload("res://setting/src/account/HttpLayer_Account.gd")
-var account_API
 
 var FileLoadCallback = JavaScriptBridge.create_callback(Callable(self, "js_file_uploaded"))
 
@@ -27,17 +25,13 @@ var newPassword: LineEdit
 func _ready():
 	initiate_variales()
 	connect_signals()
-	
-	# fetched user basic infomation from server
-	account_API.fetch_user_info(GameManager.user_id)
+	display_user_info(GameManager.user_data)
 	
 	if OS.get_name() == "Web":
 		var window = JavaScriptBridge.get_interface("window")
 		window.getImage(FileLoadCallback)
 
 func initiate_variales():
-	account_API = HttpLayer_Account.new()
-	
 	alert = get_node("Alert")
 	uploadFileButton = get_node("Edit/VBoxContainer/Avatar/HBoxContainer/Upload/UploadButton")
 	fileUploadWindow = get_node("FileUploadWindow")
@@ -189,7 +183,10 @@ func edit_user_profile_request_completed(result, response_code, headers, body, h
 			alert.popup_centered()
 			return
 			
-		print(response.data)
+		# update user_data in GameManager
+		HttpLayer.fetch_user_info(GameManager.user_id)
+		alert.set_message(response.data)
+		alert.popup_centered()
 	else:
 		print(response_code)
 		print("Unkown Error when editing profile")
@@ -204,7 +201,7 @@ func edit_user_password():
 		alert.popup_centered()
 		return
 		
-	account_API.edit_user_password({
+	HttpLayer.edit_user_password({
 		"id": GameManager.user_id,
 		"oldPassword": oldPassword.text,
 		"newPassword": newPassword.text
@@ -250,32 +247,35 @@ func http_completed(res, response_code, headers, route):
 				return
 				
 		if (route == "getUserInfo"):
-			display_user_info(res.data)
+			update_user_data(res.data)
+			display_user_info(GameManager.user_data)
 		elif (route == "editPassword"):
-			print(res.data)
-			
+			alert.set_message(res.data)
+			alert.popup_centered()
 	else:
 		if (route == "getUserInfo"):
 			print("Fail to get user's data")
 		elif (route == "editPassword"):
 			print("Fail to change password")
 
+# update user_data in GameManager every time opening this scene
+func update_user_data(data):
+	GameManager.user_data.name = data.name
+	GameManager.user_data.email = data.email
+	GameManager.user_data.avatarStr = data.avatarStr
 
 # diaplay user infomation as default text in line editor
-func display_user_info(data):
-	username.text = data.name
-	email.text = data.email
+func display_user_info(user_data):
+	username.text = user_data.name
+	email.text = user_data.email
 	
 	# display byte data of avatar
-	var avatarStr = data.avatarStr
+	var avatarStr = user_data.avatarStr
 	if (avatarStr != null && avatarStr != ""):
-		display_user_avatar(avatarStr)
+		display_user_avatar(Marshalls.base64_to_raw(avatarStr))
 
 # decode avatar data stored in string and display it
-func display_user_avatar(avatarStr: String):
-	# decode string to byte
-	var avatarData = Marshalls.base64_to_raw(avatarStr)
-	
+func display_user_avatar(avatarData: PackedByteArray):
 	var image = Image.new()
 	var isJPG = check_image_format(avatarData)
 	if (isJPG):
