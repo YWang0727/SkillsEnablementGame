@@ -2,6 +2,7 @@ package com.imyuewang.EduCity.model.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
  * 
  * @TableName takenmapcell
  */
+@Data
 public class Takenmapcell implements Serializable {
     /**
      * 

@@ -113,6 +113,7 @@ func _checkEmailIsExisted(_credentials):
 func _getActiveCode(_credentials):
 	_apiCore("user/active", _credentials, false, "POST", "active")
 	
+	
 # api for learning_related scene	
 func _completeLesson(_credentials):
 	_apiCore("learn/complete", _credentials, false, "POST", "complete")
@@ -123,6 +124,8 @@ func _submitQuiz(_credentials):
 func _getStatus(_credentials):
 	_apiCore("learn/status", _credentials, false, "POST", "status")
 	
+	
+# api for Components_related scene	
 func _leaderBoard():
 	_apiCore("map/leaderBoard/" + str(GameManager.user_id), null, false, "GET", "leaderBoard")
 
@@ -160,3 +163,8 @@ func fetch_user_property_info(userId):
 # send editing password request to server
 func edit_user_password(_credentials):
 	HttpLayer._apiCore("setting/editPassword", _credentials, true, "PUT", "editPassword")
+
+
+# api for saving
+func _save(_credentials):
+	_apiCore("save/save", _credentials, false, "POST", "save")

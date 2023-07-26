@@ -49,8 +49,7 @@ func _on_resume_pressed():
 
 # save game data to server
 func _on_save_pressed():
-	# TODO
-	pass
+	Saving.save()
 
 # quit game
 func _on_quit_pressed():
