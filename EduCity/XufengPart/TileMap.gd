@@ -11,8 +11,8 @@ var selectedBuildingType: int = -1  # 选择的图块索引
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_drawMap()
-	HttpLayer.connect("http_completed", http_completed)
-	HttpLayer._readMap()
+	#HttpLayer.connect("http_completed", http_completed)
+	#HttpLayer._readMap()
 	
 
 func _unhandled_input(event) -> void:
