@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import lombok.Data;
 
@@ -62,6 +63,9 @@ public class User implements Serializable {
      */
     @TableField(value = "avatar")
     private byte[] avatar;
+
+    @TableField(value = "logoutTime")
+    private Timestamp logoutTime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

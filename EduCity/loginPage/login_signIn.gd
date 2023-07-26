@@ -319,12 +319,21 @@ func _get_localStorage():
 	
 	
 func http_completed(res, response_code, headers, route) -> void:
+	print(res)
 	if response_code == 200 && route == "login":
 		#save id to user_id in GameManager
 		if !res.has("id"):
 			setAlert(res['msg'])
 		else:	
 			GameManager.user_id = res['id']
+			GameManager.user_data = {
+				"email" : res['email'],
+				"name" : res['name'],
+				"avatarStr" : res['avatarStr'],
+				"citymap" : res['citymap'],
+				"logoutTime" : res['logoutTime']
+			}
+			print(GameManager.user_data)
 			print("------------------------login success!")
 			# When login is !successful!, get the required data from the database to localStorage
 			# get current user's learning status and save in localStorage

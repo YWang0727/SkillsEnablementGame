@@ -3,6 +3,7 @@ package com.imyuewang.EduCity.model.vo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.sql.Timestamp;
 import java.util.Set;
 
 /**
@@ -22,10 +23,13 @@ public class UserVO {
 
     private String name;
 
-    private byte[] avatar;
+    private String avatarStr;
+
+    private Long citymap;
+
+    private Timestamp logoutTime;
 
     private String activecode;
-
 
     public UserVO(){}
     public UserVO(String activeCode){

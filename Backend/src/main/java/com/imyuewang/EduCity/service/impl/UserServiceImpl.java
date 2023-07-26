@@ -19,7 +19,6 @@ import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.security.JwtManager;
 import com.imyuewang.EduCity.service.CitymapService;
-import com.imyuewang.EduCity.service.TakenmapcellService;
 import com.imyuewang.EduCity.util.MailUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.model.entity.User;
@@ -32,6 +31,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
@@ -66,20 +66,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /******************************************/
     @Override
     public UserVO login(LoginParam loginParam) {
-        // Verify user from database
-        LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<User>();
-        lqw.eq(StrUtil.isNotBlank(loginParam.getEmail()), User::getEmail, loginParam.getEmail());
-
-        User user = userMapper.selectOne(lqw);
-
+        //get user from database
+        User user = getUserByEmail(loginParam.getEmail());
         System.out.println(user);
 
         // Throw error if user or password is wrong
         if(user == null || !Objects.equals(loginParam.getPassword(), user.getPassword())){
-            throw new ApiException(ResultCode.VALIDATE_FAILED, "Email or password is incorrect！");
+            throw new ApiException(ResultCode.PASSWORD_ERROR, "Email or password is incorrect!");
         }
         // Generate token
         //JwtManager.generate(user.getEmail());
+
         return getUserVOFromUser(user);
     }
 
@@ -103,13 +100,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //initialize values in tables
         initializeValuesInTable(newUser);
 
-        UserVO uservo = getUserVOFromUser(newUser);
-        return uservo;
+        return getUserVOFromUser(newUser);
     }
 
     private UserVO getUserVOFromUser(User user) {
         UserVO userVO = new UserVO();
         BeanUtil.copyProperties(user, userVO);
+
+        if(user.getAvatar() != null){
+            String avatarStr = Base64.getEncoder().encodeToString(user.getAvatar());
+            userVO.setAvatarStr(avatarStr);
+        }
+        userVO.setAvatarStr(null);
         //userVO.setToken(JwtManager.generate(user.getEmail()));
         return userVO;
     }
