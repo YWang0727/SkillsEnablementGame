@@ -72,8 +72,8 @@ func _get_quizId(file_path: String):
 
 
 func _on_completedButton_clicked():
-	quizId = str_to_var(_get_quizId("res://Config/quizConfig.json").substr(1,1))
-	knowledgeId = str_to_var(_get_quizId("res://Config/quizConfig.json").substr(0,1))
+	quizId = str_to_var(_get_quizId("user://quizConfig.json").substr(1,1))
+	knowledgeId = str_to_var(_get_quizId("user://quizConfig.json").substr(0,1))
 	
 	# store complete status to database
 	HttpLayer._completeLesson({

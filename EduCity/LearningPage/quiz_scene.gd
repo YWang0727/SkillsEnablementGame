@@ -36,7 +36,7 @@ signal quiz_add_gold_show
 func _ready():
 	HttpLayer.connect("http_completed", http_completed)
 	
-	quizId = _get_quizId("res://Config/quizConfig.json")
+	quizId = _get_quizId("user://quizConfig.json")
 
 	_load_questions_from_json(GameManager.question_path)
 	
