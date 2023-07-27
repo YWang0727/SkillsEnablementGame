@@ -1,0 +1,128 @@
+[gd_scene load_steps=9 format=3 uid="uid://dusel5t35v3sc"]
+
+[ext_resource type="Script" path="res://chatbot/src/chatbot.gd" id="1_fkleo"]
+[ext_resource type="PackedScene" uid="uid://bi4u5266xev18" path="res://setting/src/common/popup/Alert.tscn" id="2_3eyp6"]
+[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://setting/src/common/themes/icon_button.tres" id="2_q6jt7"]
+[ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="3_6b4uw"]
+[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/Icon_X.png" id="4_73cbf"]
+[ext_resource type="Texture2D" uid="uid://bwxs1h0qb32wj" path="res://chatbot/assets/Icon_PaperPlane.png" id="4_i6h8i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh26k"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04ilw"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="ChatRoom" type="CanvasLayer"]
+script = ExtResource("1_fkleo")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(600, 800)
+layout_mode = 3
+anchor_left = 0.705
+anchor_top = 0.274
+anchor_right = 0.906
+anchor_bottom = 0.863
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Background" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.490196, 0.172549, 0.243137, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Head" type="ColorRect" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+color = Color(0.384314, 0.113725, 0.152941, 1)
+
+[node name="NewSession" type="Button" parent="Control/VBoxContainer/Head"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 21.0
+offset_right = 210.0
+offset_bottom = 67.0
+theme = ExtResource("2_q6jt7")
+text = "New Session"
+
+[node name="Exit" type="Button" parent="Control/VBoxContainer/Head"]
+layout_mode = 0
+offset_left = 486.48
+offset_top = 12.96
+offset_right = 696.48
+offset_bottom = 225.96
+scale = Vector2(0.498782, 0.370624)
+theme = ExtResource("3_6b4uw")
+text = "
+"
+icon = ExtResource("4_73cbf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Bubbles" type="Control" parent="Control/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Message" type="ColorRect" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+color = Color(0.38552, 0.114762, 0.152155, 1)
+
+[node name="Input" type="TextEdit" parent="Control/VBoxContainer/Message"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -150.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vh26k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_04ilw")
+placeholder_text = "Message"
+wrap_mode = 1
+caret_blink = true
+
+[node name="Send" type="Button" parent="Control/VBoxContainer/Message"]
+layout_mode = 0
+offset_left = 502.48
+offset_top = 14.96
+offset_right = 762.48
+offset_bottom = 216.96
+scale = Vector2(0.414487, 0.370053)
+theme = ExtResource("3_6b4uw")
+icon = ExtResource("4_i6h8i")
+
+[node name="Alert" parent="." instance=ExtResource("2_3eyp6")]
+visible = false

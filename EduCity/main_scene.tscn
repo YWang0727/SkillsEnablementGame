@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=21 format=3 uid="uid://ckpvbylmvtoo8"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://br6ymomytlp8p" path="res://XufengPart/Icons/down.png" id="12_fpq80"]
 [ext_resource type="Texture2D" uid="uid://hf2403e1h33j" path="res://XufengPart/Icons/centre.png" id="13_8ybs5"]
 [ext_resource type="Script" path="res://XufengPart/Timer.gd" id="14_psw8u"]
+[ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="16_bbdut"]
+[ext_resource type="Texture2D" uid="uid://kmy23n86ku17" path="res://chatbot/assets/Icon_SpeechBubble.png" id="17_y8not"]
+[ext_resource type="Script" path="res://chatbot/src/ChatBotButton.gd" id="18_oapmc"]
 
 [sub_resource type="GDScript" id="GDScript_lw47u"]
 script/source = "extends Control
@@ -175,5 +178,16 @@ wait_time = 300.0
 autostart = true
 script = ExtResource("14_psw8u")
 
+[node name="ChatBotButton" type="Button" parent="."]
+offset_left = 1720.0
+offset_top = 944.0
+offset_right = 1949.0
+offset_bottom = 1156.0
+scale = Vector2(0.471701, 0.471701)
+theme = ExtResource("16_bbdut")
+icon = ExtResource("17_y8not")
+script = ExtResource("18_oapmc")
+
 [connection signal="attributes_show2" from="TileMap" to="components" method="_on_tile_map_attributes_show_2"]
 [connection signal="store_components" from="TileMap" to="components" method="_on_tile_map_store_components"]
+[connection signal="pressed" from="ChatBotButton" to="ChatBotButton" method="_on_chat_bot_pressed"]

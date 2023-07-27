@@ -39,7 +39,8 @@ public class WatsonServiceImpl implements WatsonService {
                 .text(watsonVO.getMessage())
                 .build();
 
-        // send message using session id
+        // try to connect to session by sessionId
+        // create a new session if it's expired
         MessageOptions messageOptions = null;
         try{
             messageOptions = new MessageOptions
@@ -57,11 +58,11 @@ public class WatsonServiceImpl implements WatsonService {
             response.setIsNewSession(true);
         }
 
+        // send message to session
         MessageResponse messageResponse = assistant.message(messageOptions)
                 .execute().getResult();
 
         System.out.println(messageResponse);
-        System.out.println(messageResponse.getOutput().getGeneric().get(0).messageToUser());
 
         // process response to get response message
         List<RuntimeResponseGeneric> generic = messageResponse.getOutput().getGeneric();
