@@ -10,19 +10,19 @@ var updateCellPos
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.hide()
-	pass # Replace with function body.
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var mousePos = get_global_mouse_position() - Vector2(tileMap.position.x, tileMap.position.y)
 		updateCellPos = tileMap.local_to_map(mousePos)
-		if GameManager.mapDict.has(updateCellPos):
-			buildingID = GameManager.mapDict[updateCellPos]
-			if buildingID != GameManager.BuildingType.blank and buildingID < 20:
+		buildingID = _getBuildingID(updateCellPos)
+		if buildingID != -1 and buildingID < 20:
 				_setButtonPosition(updateCellPos, buildingID)
 				_setLableText(buildingID)
 				self.show()
@@ -56,8 +56,7 @@ func _setLableText(buildingID) -> void:
 	var updateLable = get_child(0)
 	updateLable.text = str
 	pass
-	
-	
+
 
 func _on_pressed():
 	#+6---index
@@ -93,6 +92,7 @@ func pushComponents():
 	HttpLayer._pushComponents(_credential);
 	emit_signal("attributes_show")
 
+
 func levelUp():
 	var buildingType = buildingID
 	if buildingID >= 10:
@@ -105,3 +105,21 @@ func levelUp():
 	}
 	HttpLayer._levelUp(_credential);
 	
+	
+func _getBuildingID(targetCellPos) -> int:
+	var targetRow
+	var found = false
+	for row in tileMap.cellPosArray2D:
+		if found:
+			break
+		for cellPos in row:
+			if cellPos == targetCellPos:
+				targetRow = row
+				found = true
+				break
+	if found:
+		updateCellPos = targetRow[0]
+		for cellPos in targetRow:
+			if GameManager.mapDict.has(cellPos):
+				return GameManager.mapDict[cellPos]
+	return -1

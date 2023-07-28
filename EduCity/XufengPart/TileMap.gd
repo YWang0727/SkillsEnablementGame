@@ -7,6 +7,7 @@ var selectedTile: int = 98
 var selectedLayer: int = 1
 var buildingLayer: int = 2
 var selectedBuildingType: int = -1  # 选择的图块索引
+var cellPosArray2D = [] # 储存每个房子的占地cell，防止overlap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,10 +26,11 @@ func _unhandled_input(event) -> void:
 	if event is InputEventMouseMotion and selectedBuildingType == -1:
 			cellPos = local_to_map(get_global_mouse_position() - position)  # 将全局位置转换为TileMap单元位置
 			clear_layer(selectedLayer)
-			if GameManager.mapDict.has(cellPos):
-				var buildingID = GameManager.mapDict[cellPos]
-				if buildingID != GameManager.BuildingType.blank and buildingID < 20:
-					_drawSelectedCells(buildingID,cellPos)
+			_drawSelectedUpdatedCells(cellPos)
+#			if GameManager.mapDict.has(cellPos):
+#				var buildingID = GameManager.mapDict[cellPos]
+#				if buildingID != GameManager.BuildingType.blank and buildingID < 20:
+#					_drawSelectedCells(buildingID,cellPos)
 			
 	# After choosing a building type, show selected cells when mouse hover
 	if event is InputEventMouseMotion and selectedBuildingType != -1:
@@ -84,15 +86,19 @@ func _checkCellOverlap(selectedBuildingType, cellPos) -> bool:
 	match cellsCount:
 		# a building occupying 1 cell
 		1:
-			if GameManager.mapDict.has(cellPos):
+			if _ifContainsCellPos(cellPosArray2D,cellPos):
 				return false
 		# a building occupying 2 cells
 		2:
-			if GameManager.mapDict.has(cellPos) or GameManager.mapDict.has(cellPos+Vector2i(1, 0)):
+			if _ifContainsCellPos(cellPosArray2D,cellPos) or\
+			_ifContainsCellPos(cellPosArray2D,cellPos+Vector2i(1, 0)):
 				return false
 		# a building occupying 4 cells
 		4:
-			if GameManager.mapDict.has(cellPos) or GameManager.mapDict.has(cellPos+Vector2i(1, 0)) or GameManager.mapDict.has(cellPos+Vector2i(0, 1)) or GameManager.mapDict.has(cellPos+Vector2i(1, 1)):
+			if _ifContainsCellPos(cellPosArray2D,cellPos) or\
+			_ifContainsCellPos(cellPosArray2D,cellPos+Vector2i(1, 0)) or\
+			_ifContainsCellPos(cellPosArray2D,cellPos+Vector2i(0, 1)) or\
+			_ifContainsCellPos(cellPosArray2D,cellPos+Vector2i(1, 1)):
 				return false
 	return true
 	
@@ -113,22 +119,20 @@ func _drawSelectedCells(selectedBuildingType, cellPos) -> void:
 			set_cell(selectedLayer,cellPos+Vector2i(0, 1),98,Vector2i(0,0))
 			set_cell(selectedLayer,cellPos+Vector2i(1, 1),98,Vector2i(0,0))
 
+
 func _updateMapDict(selectedBuildingType, cellPos) -> void:
 	var cellsCount = _getCellsCount(selectedBuildingType)
+	GameManager.mapDict[cellPos] = selectedBuildingType
 	match cellsCount:
 		# a building occupying 1 cell
 		1:
-			GameManager.mapDict[cellPos] = selectedBuildingType
+			cellPosArray2D.append([cellPos])
 		# a building occupying 2 cells
 		2:
-			GameManager.mapDict[cellPos] = selectedBuildingType
-			GameManager.mapDict[cellPos+Vector2i(1, 0)] = GameManager.BuildingType.blank
+			cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0)])
 		# a building occupying 4 cells
 		4:
-			GameManager.mapDict[cellPos] = selectedBuildingType
-			GameManager.mapDict[cellPos+Vector2i(1, 0)] = GameManager.BuildingType.blank
-			GameManager.mapDict[cellPos+Vector2i(0, 1)] = GameManager.BuildingType.blank
-			GameManager.mapDict[cellPos+Vector2i(1, 1)] = GameManager.BuildingType.blank
+			cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0), cellPos+Vector2i(0, 1), cellPos+Vector2i(1, 1)])
 
 
 
@@ -171,6 +175,32 @@ func _getCellsCount(selectedBuildingType) -> int:
 	return 0
 
 
+func _ifContainsCellPos(cellPosArray2D, targetCellPos):
+	for row in cellPosArray2D:
+		for cellPos in row:
+			if cellPos == targetCellPos:
+				return true
+	return false
+
+
 func _on_update_button_attributes_show():
 	emit_signal("attributes_show2")
 	pass # Replace with function body.
+	
+	
+func _drawSelectedUpdatedCells(cellPos):
+	var targetRow
+	var found = false
+	for row in cellPosArray2D:
+		if found:
+			break
+		for x in row:
+			if x == cellPos:
+				targetRow = row
+				found = true
+				break
+	if found:
+		# Level3 buildings can't be updated any more
+		if GameManager.mapDict[targetRow[0]] < 20:
+			for x in targetRow:
+				set_cell(selectedLayer,x,selectedTile,Vector2i(0,0))

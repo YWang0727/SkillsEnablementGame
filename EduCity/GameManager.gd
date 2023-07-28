@@ -74,24 +74,10 @@ func _ready():
 	var BuildingJsonData = json.get_data()
 	buildings_data = BuildingJsonData["buildings"]
 
-	
 	set_volume()
 	initPropertyData()
 	initChatHistory()
-	
-	# 调试房屋升级，不想要就删掉，construction site目前还没做
-#	mapDict[Vector2i(15,1)] = 0
-#	mapDict[Vector2i(15,5)] = 10
-#	mapDict[Vector2i(15,3)] = 1
-#	mapDict[Vector2i(16,3)] = -1
-#	mapDict[Vector2i(15,-2)] = 2
-#	mapDict[Vector2i(16,-2)] = -1
-#	mapDict[Vector2i(15,-1)] = -1
-#	mapDict[Vector2i(16,-1)] = -1
-#	mapDict[Vector2i(15,5)] = 3
-#	mapDict[Vector2i(16,5)] = -1
-#	mapDict[Vector2i(15,7)] = 5
-#	mapDict[Vector2i(16,7)] = -1
+
 
 
 # initialize the volume of music and sound effect
