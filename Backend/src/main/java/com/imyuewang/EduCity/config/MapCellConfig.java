@@ -19,8 +19,7 @@ import java.util.Date;
  * @Date 2023/6/21 14:27
  **/
 @Configuration
-@MapperScan("com.EduCity")
-
+//@MapperScan("com.EduCity")
 @Component
 public class MapCellConfig implements MetaObjectHandler {
     @Override

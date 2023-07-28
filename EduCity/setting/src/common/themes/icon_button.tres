@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://docmovl1psw5x"]
 
-[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://Font/Roboto/Roboto-Black.ttf" id="1_rp3hb"]
+[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://setting/assets/Font/Roboto/Roboto-Black.ttf" id="1_rp3hb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nj1nt"]
 content_margin_left = 5.0

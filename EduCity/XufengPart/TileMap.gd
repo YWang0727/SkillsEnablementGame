@@ -12,6 +12,7 @@ var cellPosArray2D = [] # 储存每个房子的占地cell，防止overlap
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_drawMap()
+	generateCellPosArray2D()
 	#HttpLayer.connect("http_completed", http_completed)
 	#HttpLayer._readMap()
 	
@@ -148,8 +149,8 @@ func http_completed(res, response_code, headers, route):
 			
 
 
-func _getCellsCount(selectedBuildingType) -> int:
-	match selectedBuildingType:
+func _getCellsCount(id:int) -> int:
+	match id:
 		# a building occupying 1 cell
 		GameManager.BuildingType.residential_building_1, \
 		GameManager.BuildingType.residential_building_2, \
@@ -204,3 +205,22 @@ func _drawSelectedUpdatedCells(cellPos):
 		if GameManager.mapDict[targetRow[0]] < 20:
 			for x in targetRow:
 				set_cell(selectedLayer,x,selectedTile,Vector2i(0,0))
+
+
+func generateCellPosArray2D():
+	for cellPos in GameManager.mapDict:
+		var value:int = GameManager.mapDict[cellPos]
+		var cellsCount = _getCellsCount(value)
+		print(cellsCount)
+		print(_getCellsCount(value))
+		match cellsCount:
+			# a building occupying 1 cell
+			1:
+				cellPosArray2D.append([cellPos])
+			# a building occupying 2 cells
+			2:
+				cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0)])
+			# a building occupying 4 cells
+			4:
+				cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0), cellPos+Vector2i(0, 1), cellPos+Vector2i(1, 1)])
+
