@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://da6grjhiqdcnw"]
+[gd_scene load_steps=21 format=3 uid="uid://da6grjhiqdcnw"]
 
 [ext_resource type="Script" path="res://LearningPage/learning_scene.gd" id="1_2vlb4"]
 [ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="2_ic5kt"]
+[ext_resource type="Texture2D" uid="uid://bn0w0sc13olcb" path="res://LearningPage/Icon/LearningScene/background.png" id="2_nulxt"]
 [ext_resource type="Texture2D" uid="uid://cljvkg1gh4ik6" path="res://LearningPage/Icon/LearningScene/AI.png" id="3_d6mea"]
+[ext_resource type="Texture2D" uid="uid://8rn55ubehde1" path="res://LearningPage/Icon/back2.png" id="3_hlp3i"]
 [ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://setting/assets/Font/Roboto/Roboto-Light.ttf" id="4_thi3p"]
 [ext_resource type="Texture2D" uid="uid://80fs6jct5m70" path="res://LearningPage/Icon/LearningScene/Security.png" id="5_vcy36"]
 [ext_resource type="Texture2D" uid="uid://3usvyjxv3ei2" path="res://LearningPage/Icon/LearningScene/Cloud.png" id="6_gyhmw"]
@@ -73,14 +75,26 @@ offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="bg" type="TextureRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.376471)
+offset_left = 962.0
+offset_top = 522.0
+offset_right = 1917.0
+offset_bottom = 1203.0
+texture = ExtResource("2_nulxt")
+
 [node name="BackButton" type="Button" parent="."]
-offset_left = 63.0
-offset_top = 971.0
-offset_right = 263.0
-offset_bottom = 1031.0
+offset_left = 42.0
+offset_top = 944.0
+offset_right = 142.0
+offset_bottom = 1044.0
+tooltip_text = "Back to Game"
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_mu525")
-text = "BACK"
+icon = ExtResource("3_hlp3i")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="AI" type="Node2D" parent="."]
 
