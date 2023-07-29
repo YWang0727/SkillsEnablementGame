@@ -2,6 +2,7 @@ package com.imyuewang.EduCity.model.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,21 +17,25 @@ public class Takenmapcell implements Serializable {
     /**
      * 
      */
+    @TableId(value = "mapid")
     private Long mapid;
 
     /**
      * 
      */
+    @TableField(value = "positionx")
     private Integer positionx;
 
     /**
      * 
      */
+    @TableField(value = "positiony")
     private Integer positiony;
 
     /**
      * 
      */
+    @TableField(value = "housetype")
     private Integer housetype;
 
     /**

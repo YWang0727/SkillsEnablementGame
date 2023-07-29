@@ -275,6 +275,7 @@ func http_completed(res, response_code, headers, route) -> void:
 		
 	
 func _show_score():
+	noLabel.visible = false
 	optionsButtonContainer.visible = false
 	questionLabel.visible = false
 	navigationButtonContainer.visible = false
@@ -297,9 +298,9 @@ func _show_score():
 	var goldLabel = get_node("ShowScore/Gold")
 	goldLabel.text = goldLabel.text + var_to_str(golds)
 	
-	#传到attributes
+	# communicate with attributes
 	GameManager.gold += golds
-	#pushComponents()
+	# pushComponents()
 	
 	# attempts remaining
 	var attemptsLabel = get_node("ShowScore/Attempts")
@@ -313,9 +314,9 @@ func _show_score():
 	
 	# Exit
 	var ScoreExitButton = get_node("ShowScore/ExitButton")
-	ScoreExitButton.connect("pressed", _on_exit_pressed)
-
-
+	ScoreExitButton.connect("pressed", _popup_exit)
+	
+	
 func pushComponents():
 	var _credential = {
 			"gold": GameManager.gold,

@@ -212,14 +212,16 @@ func _get_quizStatus(knowledge):
 					quiz1Button.text = "QUIZ 1"
 					quiz1Button.icon = null
 				else:
-					quiz1Button.icon = ResourceLoader.load("res://LearningPage/Icon/finish.png")
+					quiz1Button.icon = ResourceLoader.load("res://LearningPage/Icon/check-mark.png")
+					quiz1Button.expand_icon= true
 			"2":
 				if(buttonList[index] == 1):
 					quiz2Button.disabled = false
 					quiz2Button.text = "QUIZ 2"
 					quiz2Button.icon = null
 				else:
-					quiz2Button.icon = ResourceLoader.load("res://LearningPage/Icon/finish.png")
+					quiz2Button.icon = ResourceLoader.load("res://LearningPage/Icon/check-mark.png")
+					quiz2Button.expand_icon= true
 			"3":
 				if(buttonList[index] == 1):
 					quiz3Button.disabled = false

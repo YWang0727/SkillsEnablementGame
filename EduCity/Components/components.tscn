@@ -1,38 +1,83 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnsn8jn5g4gmi"]
+[gd_scene load_steps=12 format=3 uid="uid://bnsn8jn5g4gmi"]
 
 [ext_resource type="Script" path="res://Components/components.gd" id="1_7j8by"]
+[ext_resource type="Texture2D" uid="uid://cnpt54xa5uvcr" path="res://Components/gold.png" id="2_dvu66"]
+[ext_resource type="Texture2D" uid="uid://bgs1owmos1y7y" path="res://Leaderboard/rank.png" id="2_gsse6"]
+[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://Font/Roboto/Roboto-Black.ttf" id="2_npoxf"]
+[ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://Font/Roboto/Roboto-Light.ttf" id="2_rp827"]
+[ext_resource type="Texture2D" uid="uid://dsnoj3qqlypmn" path="res://Components/prosperity.png" id="3_qecg7"]
+[ext_resource type="Texture2D" uid="uid://0yiwgkrc75v8" path="res://Components/speed.png" id="4_mmtlh"]
+[ext_resource type="Texture2D" uid="uid://mwpc34oa712t" path="res://Components/population.png" id="5_1p8js"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahi74"]
+bg_color = Color(1, 1, 1, 0.760784)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.219608, 0.219608, 0.219608, 0.6)
+shadow_size = 20
+shadow_offset = Vector2(20, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37txq"]
+bg_color = Color(1, 0.701961, 0.505882, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.345098, 0.345098, 0.345098, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iamu7"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="components" type="Node"]
 script = ExtResource("1_7j8by")
 
 [node name="attributes" type="ItemList" parent="."]
-offset_left = 181.0
-offset_top = 20.0
-offset_right = 454.0
-offset_bottom = 137.0
+offset_left = 177.0
+offset_top = 45.0
+offset_right = 477.0
+offset_bottom = 185.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_rp827")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ahi74")
 item_count = 8
 max_columns = 2
-item_0/text = "Gold                            :   "
+same_column_width = true
+fixed_icon_size = Vector2i(30, 30)
+item_0/text = " Gold                               "
+item_0/icon = ExtResource("2_dvu66")
 item_1/text = "111"
-item_2/text = "Prosperity                  :   "
+item_2/text = " Prosperity                     "
+item_2/icon = ExtResource("3_qecg7")
 item_3/text = "111"
-item_4/text = "Constructionspeed  :   "
+item_4/text = " ConstructionSpeed     "
+item_4/icon = ExtResource("4_mmtlh")
 item_5/text = "111"
-item_6/text = "Population                 :   "
+item_6/text = " Population                    "
+item_6/icon = ExtResource("5_1p8js")
 item_7/text = "111"
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 182.0
-offset_top = 152.0
-offset_right = 286.0
-offset_bottom = 183.0
-color = Color(0.529412, 0.807843, 0.980392, 1)
-
-[node name="Bt_LeaderBoard" type="Button" parent="ColorRect"]
-layout_mode = 0
-offset_right = 77.0
-offset_bottom = 31.0
-text = "leaderBoard"
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
@@ -54,5 +99,19 @@ offset_top = 159.0
 offset_right = 393.0
 offset_bottom = 182.0
 
-[connection signal="pressed" from="ColorRect/Bt_LeaderBoard" to="." method="_on_bt_leader_board_pressed"]
+[node name="Bt_LeaderBoard" type="Button" parent="."]
+offset_left = 177.0
+offset_top = 200.0
+offset_right = 377.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_npoxf")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_37txq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iamu7")
+text = "LeaderBoard"
+icon = ExtResource("2_gsse6")
+expand_icon = true
+
 [connection signal="pressed" from="ColorRect2/Bt_Gold" to="." method="_on_gold_pressed"]
+[connection signal="pressed" from="Bt_LeaderBoard" to="." method="_on_bt_leader_board_pressed"]
