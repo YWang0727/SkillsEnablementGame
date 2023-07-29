@@ -62,14 +62,18 @@ layer_0/tile_data = PackedInt32Array(-65537, 99, 0, -1, 99, 0, 65535, 99, 0, 131
 [node name="BuildPanel" parent="." instance=ExtResource("2_oso2h")]
 
 [node name="TownAttributes" parent="." instance=ExtResource("4_vkmqv")]
-offset_right = 170.0
-offset_bottom = 720.0
+offset_left = 18.0
+offset_top = 25.0
+offset_right = 161.0
+offset_bottom = 709.0
+
+[node name="components" parent="." instance=ExtResource("6_dvg2h")]
 
 [node name="LearningEntryButton" type="Button" parent="."]
-offset_left = 24.0
-offset_top = 911.0
-offset_right = 232.0
-offset_bottom = 1119.0
+offset_left = 18.0
+offset_top = 915.0
+offset_right = 226.0
+offset_bottom = 1123.0
 scale = Vector2(0.7, 0.7)
 tooltip_text = "Learning Entry"
 theme_override_fonts/font = ExtResource("6_45dsv")
@@ -78,8 +82,6 @@ icon = ExtResource("6_4c6en")
 flat = true
 icon_alignment = 1
 script = SubResource("GDScript_lw47u")
-
-[node name="components" parent="." instance=ExtResource("6_dvg2h")]
 
 [node name="CameraButtons" type="Node2D" parent="."]
 script = ExtResource("7_8dtfb")
