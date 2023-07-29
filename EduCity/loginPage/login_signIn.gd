@@ -365,7 +365,7 @@ func http_completed(res, response_code, headers, route) -> void:
 			cellPos_temp = position
 			cellPos_temp.x = res.x[i]
 			cellPos_temp.y = res.y[i]
-			GameManager.mapDict[cellPos_temp] = res.houseType[i]
+			GameManager.mapDict[Vector2i(cellPos_temp)] = res.houseType[i]
 		print("---------------------read map success!")
 		return
 	if response_code == 200 && route == "email":
