@@ -10,22 +10,10 @@ import lombok.Getter;
 @Getter
 public enum ResultCode {
 
-<<<<<<< HEAD
-    //操作成功
-    SUCCESS(0000, "操作成功"),
-    // token相关
-    UNAUTHORIZED(1001, "Not logged in"),
-    TOKEN_EXPIRED(1003, "Expired token"),
-    // 权限相关
-    FORBIDDEN(1004, "没有相关权限"),
-    UNAUTHORIZED_OPERATION(1005, "未授权的操作"),
-    // 参数校验相关
-    VALIDATE_FAILED(1006, "参数校验失败"),
-=======
     // success
     SUCCESS(0000, "Success"),
     // token-related
-    UNAUTHORIZED(1001, "UNAUTHORIZED"),
+    UNAUTHORIZED(1001, "Unauthenticated"),
     INVALID_TOKEN(1002, "Invalid token"),
     TOKEN_EXPIRED(1003, "Expired token"),
     // Permission Related
@@ -33,7 +21,6 @@ public enum ResultCode {
     UNAUTHORIZED_OPERATION(1005, "Unauthorized operation"),
     // Parameter verification related
     VALIDATE_FAILED(1006, "Parameter validation failure"),
->>>>>>> 774130601bf3e6245532aaf4a05e4069071d0deb
 
     // No resources found
     RESOURCE_NOT_FOUND(1007, "No resources found"),

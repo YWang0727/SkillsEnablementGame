@@ -108,10 +108,10 @@ func _register(_credentials):
 	_apiCore("auth/register", _credentials, false, "POST", "register")
 
 func _checkEmailIsExisted(_credentials):
-	_apiCore("user/email", _credentials, false, "POST", "email")
+	_apiCore("auth/email", _credentials, false, "POST", "email")
 
 func _getActiveCode(_credentials):
-	_apiCore("user/active", _credentials, false, "POST", "active")
+	_apiCore("auth/active", _credentials, false, "POST", "active")
 	
 	
 # api for learning_related scene	
