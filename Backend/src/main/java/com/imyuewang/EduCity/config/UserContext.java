@@ -17,7 +17,7 @@ public final class UserContext {
         user.remove();
     }
     /**
-     * @return 当前登录用户的用户名
+     * @return current user id
      */
     public static String getCurrentUserName() {
         return user.get();

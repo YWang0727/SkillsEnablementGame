@@ -21,7 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // 配置拦截器应用于哪些路径，不应用于哪些路径
+        // config Interceptors' path
         registry.addInterceptor(loginInterceptor)
                 .excludePathPatterns("/auth/**");
 

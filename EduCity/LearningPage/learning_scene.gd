@@ -228,8 +228,9 @@ func _get_quizStatus(knowledge):
 					quiz3Button.text = "QUIZ 3"
 					quiz3Button.icon = null
 				else:
-					quiz3Button.icon = ResourceLoader.load("res://LearningPage/Icon/finish.png")
-	
+					quiz3Button.icon = ResourceLoader.load("res://LearningPage/Icon/check-mark.png")
+					quiz3Button.expand_icon= true
+					
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
