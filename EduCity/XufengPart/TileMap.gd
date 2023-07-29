@@ -25,13 +25,9 @@ func _unhandled_input(event) -> void:
 	
 	# Show selected building when mouse hover if the building can be updated
 	if event is InputEventMouseMotion and selectedBuildingType == -1:
-			cellPos = local_to_map(get_global_mouse_position() - position)  # 将全局位置转换为TileMap单元位置
-			clear_layer(selectedLayer)
-			_drawSelectedUpdatedCells(cellPos)
-#			if GameManager.mapDict.has(cellPos):
-#				var buildingID = GameManager.mapDict[cellPos]
-#				if buildingID != GameManager.BuildingType.blank and buildingID < 20:
-#					_drawSelectedCells(buildingID,cellPos)
+		cellPos = local_to_map(get_global_mouse_position() - position)  # 将全局位置转换为TileMap单元位置
+		clear_layer(selectedLayer)
+		_drawSelectedUpdatedCells(cellPos)
 			
 	# After choosing a building type, show selected cells when mouse hover
 	if event is InputEventMouseMotion and selectedBuildingType != -1:
@@ -53,7 +49,7 @@ func _unhandled_input(event) -> void:
 			if _checkCellOverlap(selectedBuildingType,cellPos):
 				GameManager.gold = GameManager.gold - cost
 				GameManager.prosperity += prosperity
-				if selectedBuildingType == 4:
+				if selectedBuildingType == 4 and GameManager.construction_speed < 6:
 					GameManager.construction_speed += 1
 				clear_layer(selectedLayer)
 				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
@@ -166,7 +162,9 @@ func _getCellsCount(id:int) -> int:
 		GameManager.BuildingType.farm_1, \
 		GameManager.BuildingType.farm_2, \
 		GameManager.BuildingType.farm_3,\
-		GameManager.BuildingType.constrction_site_1:
+		GameManager.BuildingType.constrction_site_1,\
+		GameManager.BuildingType.constrction_site_2,\
+		GameManager.BuildingType.constrction_site_3:
 			return 2
 		# a building occupying 4 cells
 		GameManager.BuildingType.bank_1, \
@@ -211,8 +209,6 @@ func generateCellPosArray2D():
 	for cellPos in GameManager.mapDict:
 		var value:int = GameManager.mapDict[cellPos]
 		var cellsCount = _getCellsCount(value)
-		print(cellsCount)
-		print(_getCellsCount(value))
 		match cellsCount:
 			# a building occupying 1 cell
 			1:
@@ -223,4 +219,4 @@ func generateCellPosArray2D():
 			# a building occupying 4 cells
 			4:
 				cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0), cellPos+Vector2i(0, 1), cellPos+Vector2i(1, 1)])
-
+			

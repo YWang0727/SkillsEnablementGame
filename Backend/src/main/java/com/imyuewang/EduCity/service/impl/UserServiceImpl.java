@@ -120,7 +120,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //set city map id == user id
         newUser = setCityMapId(newUser);
         //initialize citymap table
-        citymapMapper.insert(new Citymap(newUser.getId(), "My City", 0L,0L,0));
+        citymapMapper.insert(new Citymap(newUser.getId(), "My City", 0L,0L,1));
         //initialize user_quiz table
         userQuizMapper.insert(new UserQuiz(newUser.getId()));
     }

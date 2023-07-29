@@ -16,7 +16,7 @@ var user_loginTime = null
 #Main Attributes: prosperity\coins\speed...etc
 
 #Reading
-var statusList = [0,0,0,0,0]
+var statusList = [2,2,2,2,2]
 var reading_path = ""
 
 #Quiz
@@ -36,19 +36,19 @@ enum BuildingType {
 	supermarket_2 = 11, 
 	bank_2 = 12, 
 	farm_2 = 13, 
-	#constrction_site_2 = 14,
+	constrction_site_2 = 14,
 	hospital_2 = 15,
 	residential_building_3 = 20, 
 	supermarket_3 = 21, 
 	bank_3 = 22, 
 	farm_3 = 23, 
-	#constrction_site_3 = 24,
+	constrction_site_3 = 24,
 	hospital_3 = 25
 	}
 var buildings_data = []
-var gold = 0
+var gold = 9999
 var prosperity = 0
-var construction_speed = 0
+var construction_speed = 1
 var mapDict = {} # 储存房子建在哪个cell上，需要读写后端
 
 # Setting
@@ -69,8 +69,6 @@ func _ready():
 	file.close()
 	var json = JSON.new()
 	var parse_result = json.parse(json_text)
-	#if not parse_result == OK:
-		#print("JSON Parse Error: ", json.get_error_message(), " in ", json_text, " at line ", json.get_error_line())
 	var BuildingJsonData = json.get_data()
 	buildings_data = BuildingJsonData["buildings"]
 

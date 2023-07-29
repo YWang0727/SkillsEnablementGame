@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bqs2ipf2ox1vu" path="res://XufengPart/Icon_Buildings/Supermarket/supermarket_1.png" id="6_l1o67"]
 [ext_resource type="Texture2D" uid="uid://dwnd6ua2oci35" path="res://XufengPart/Icon_Buildings/Bank/bank_1.png" id="7_00kln"]
 [ext_resource type="Texture2D" uid="uid://cr06dakdr4o11" path="res://XufengPart/Icon_Buildings/Farm/farm_1.png" id="8_q8wtn"]
-[ext_resource type="Texture2D" uid="uid://cmanatnt1bkvm" path="res://XufengPart/Icon_Buildings/Construction Site_1.png" id="9_yymq1"]
+[ext_resource type="Texture2D" uid="uid://cmanatnt1bkvm" path="res://XufengPart/Icon_Buildings/Construction Site/Construction Site_1.png" id="9_4p44f"]
 [ext_resource type="Texture2D" uid="uid://5yn4x2or13v7" path="res://XufengPart/Icon_Buildings/Hospital/hospital_1.png" id="10_p1igd"]
 
 [sub_resource type="GDScript" id="GDScript_v4m6m"]
@@ -220,7 +220,7 @@ text = "1
 [node name="ConstructionSiteButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
-icon = ExtResource("9_yymq1")
+icon = ExtResource("9_4p44f")
 icon_alignment = 1
 
 [node name="Message" type="Control" parent="VBoxContainer/ConstructionSiteButton"]
