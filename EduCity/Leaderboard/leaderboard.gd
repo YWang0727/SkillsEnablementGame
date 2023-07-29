@@ -25,6 +25,10 @@ func _on_button_pressed():
 
 
 func http_completed(res, response_code, headers, route):
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(res):
+		return	
+		
 	if route == "leaderBoard":
 		var itemList = get_node("ColorRect/ItemList")
 		get_node("ColorRect/my-info/myCityName").text = res.name

@@ -17,6 +17,10 @@ func _process(delta):
 	pass
 	
 func http_completed(res, response_code, headers, route):
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(res):
+		return	
+		
 	if route == "otherMap":
 		for i in range(0, res.num):
 			var cellPos_temp

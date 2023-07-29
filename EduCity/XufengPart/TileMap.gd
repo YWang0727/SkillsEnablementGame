@@ -134,6 +134,9 @@ func _updateMapDict(selectedBuildingType, cellPos) -> void:
 
 
 func http_completed(res, response_code, headers, route):
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(res):
+		return	
 	if route == "readMap":
 		for i in range(0, res.num):
 			var cellPos_temp

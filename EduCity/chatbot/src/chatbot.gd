@@ -96,6 +96,10 @@ func store_chat_history(message: String, sender: String):
 
 
 func http_completed(res, response_code, headers, route):
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(res):
+		return	
+		
 	if (response_code == 200):
 		print(res.msg)
 		# check if code in resultVO is 0000(SUCCESS)

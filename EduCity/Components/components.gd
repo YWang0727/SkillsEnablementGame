@@ -24,6 +24,10 @@ func _on_gold_pressed():
 
 
 func http_completed(res, response_code, headers, route):
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(res):
+		return	
+		
 	if route == "getComponents":
 		GameManager.gold = res.gold
 		GameManager.prosperity = res.prosperity

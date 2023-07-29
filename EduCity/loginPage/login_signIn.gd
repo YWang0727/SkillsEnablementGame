@@ -343,6 +343,26 @@ func http_completed(res, response_code, headers, route) -> void:
 		alertPopup.visible = true
 		print("------------------------resgister success!")
 		return	
+	if response_code == 200 && route == "email":
+		if res['code'] == 4000:
+			AlertPopup.setPosition(0,0,'login')
+			AlertPopup.show_error_message(res['data'])
+		if res['code'] == 4001:
+			getActiveCode()
+			return
+	if response_code == 200 && route == "active":
+		#email sent success
+		if res['code'] == 4002:
+			AlertPopup.setPosition(0,0,'login')
+			AlertPopup.show_error_message(res['msg'])
+			user_activeCode = res['data']
+		else:
+			AlertPopup.setPosition(0,0,'login')
+			AlertPopup.show_error_message("       Failed to send email because of error unkwon./n      Please try again later!")
+		return
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(res):
+		return	
 	if response_code == 200 && route == "status":
 		# save data to knowledge status list in GameManager
 		for i in res['statusList'].size():
@@ -362,23 +382,7 @@ func http_completed(res, response_code, headers, route) -> void:
 			GameManager.mapDict[Vector2i(cellPos_temp)] = res.houseType[i]
 		print("---------------------read map success!")
 		return
-	if response_code == 200 && route == "email":
-		if res['code'] == 4000:
-			AlertPopup.setPosition(0,0,'login')
-			AlertPopup.show_error_message(res['data'])
-		if res['code'] == 4001:
-			getActiveCode()
-			return
-	if response_code == 200 && route == "active":
-		#email sent success
-		if res['code'] == 4002:
-			AlertPopup.setPosition(0,0,'login')
-			AlertPopup.show_error_message(res['msg'])
-			user_activeCode = res['data']
-		else:
-			AlertPopup.setPosition(0,0,'login')
-			AlertPopup.show_error_message("       Failed to send email because of error unkwon./n      Please try again later!")
-
+	
 
 func initializeGameManager(res) :
 	GameManager.user_data = {

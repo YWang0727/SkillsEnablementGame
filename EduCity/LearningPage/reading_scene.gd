@@ -90,6 +90,10 @@ func _update_status():
 	
 	
 func http_completed(res, response_code, headers, route) -> void:
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(res):
+		return	
+		
 	if response_code == 200 && route == "complete":
 		print("success")
 		# update local data
