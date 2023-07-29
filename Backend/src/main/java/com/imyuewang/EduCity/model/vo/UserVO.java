@@ -31,6 +31,8 @@ public class UserVO {
 
     private String activecode;
 
+    private String token;
+
     public UserVO(){}
     public UserVO(String activeCode){
         activeCode = this.activecode;

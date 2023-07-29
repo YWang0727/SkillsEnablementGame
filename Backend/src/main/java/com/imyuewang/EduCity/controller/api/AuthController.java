@@ -5,6 +5,7 @@ import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.param.UserParam;
+import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.service.UserService;
 import io.swagger.annotations.Api;
@@ -43,5 +44,18 @@ public class AuthController {
         System.out.println(uservo);
         return uservo;
     }
+
+    @PostMapping("/email")
+    @ApiOperation(value = "Email verification")
+    public ResultVO checkEmailIsExisted(@RequestBody @Validated(RegisterParam.emailVerification.class) RegisterParam param) {
+        return userService.checkEmailIsExisted(param);
+    }
+
+    @PostMapping("/active")
+    @ApiOperation(value = "Active code")
+    public ResultVO getActiveCode(@RequestBody RegisterParam param) {
+        return userService. getActiveCode(param);
+    }
+
 
 }

@@ -13,6 +13,7 @@ import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.vo.UserVO;
+import com.imyuewang.EduCity.security.JwtManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,8 +66,9 @@ class EduCityApplicationTests {
     void testSendEmail(){
         RegisterParam param = new RegisterParam();
         param.setEmail("zhangxinyue3667@gmail.com");
-        userController.getActiveCode(param);
+        authController.getActiveCode(param);
     }
+
 
     @Test
     void contextLoads() {

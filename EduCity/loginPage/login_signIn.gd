@@ -326,16 +326,10 @@ func http_completed(res, response_code, headers, route) -> void:
 	if response_code == 200 && route == "login":
 		#save id to user_id in GameManager
 		if !res.has("id"):
-			setAlert(res['msg'])
+			AlertPopup.setPosition(0,0,'login')
+			AlertPopup.show_error_message(res['data'])
 		else:	
-			GameManager.user_id = res['id']
-			GameManager.user_data = {
-				"email" : res['email'],
-				"name" : res['name'],
-				"avatarStr" : res['avatarStr'],
-				"citymap" : res['citymap'],
-				"logoutTime" : res['logoutTime']
-			}
+			initializeGameManager(res)
 			print(GameManager.user_data)
 			print("------------------------login success!")
 			# When login is !successful!, get the required data from the database to localStorage
@@ -370,17 +364,34 @@ func http_completed(res, response_code, headers, route) -> void:
 		return
 	if response_code == 200 && route == "email":
 		if res['code'] == 4000:
-			setAlert(res['msg'])
+			AlertPopup.setPosition(0,0,'login')
+			AlertPopup.show_error_message(res['data'])
 		if res['code'] == 4001:
 			getActiveCode()
 			return
 	if response_code == 200 && route == "active":
 		#email sent success
 		if res['code'] == 4002:
-			setAlert(res['msg'])
+			AlertPopup.setPosition(0,0,'login')
+			AlertPopup.show_error_message(res['msg'])
 			user_activeCode = res['data']
 		else:
-			setAlert("Failed to send email because of error unkwon./nPlease try again later!")
+			AlertPopup.setPosition(0,0,'login')
+			AlertPopup.show_error_message("       Failed to send email because of error unkwon./n      Please try again later!")
+
+
+func initializeGameManager(res) :
+	GameManager.user_data = {
+				"id" : res['id'],
+				"email" : res['email'],
+				"name" : res['name'],
+				"avatarStr" : res['avatarStr'],
+				"citymap" : res['citymap'],
+				"logoutTime" : res['logoutTime'],
+				"token" : res['token']
+			}
+	GameManager.user_id = GameManager.user_data['id']
+	GameManager.user_token = GameManager.user_data['token']
 
 func setAlert(msg:String):
 	alertPopup.set_text(msg)

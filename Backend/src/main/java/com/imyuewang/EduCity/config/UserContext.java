@@ -1,5 +1,7 @@
 package com.imyuewang.EduCity.config;
 
+import org.springframework.context.annotation.Configuration;
+
 /**
  * @ClassName UserContext
  * @Description

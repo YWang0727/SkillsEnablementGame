@@ -1,3 +1,4 @@
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/EduCity
@@ -23,5 +24,6 @@ ibm:
     url: https://api.eu-gb.assistant.watson.cloud.ibm.com/instances/6c862eac-854d-4a90-83b5-c4473466b96e
     api-key: VgQdEh3D9a2wzqS3dquoZh3I61QmKmGelguwADqcztjf
     environment-id: 81363fdd-95c6-4167-bbaa-3d95d80007fb
-
+server:
+  port: 8080
 

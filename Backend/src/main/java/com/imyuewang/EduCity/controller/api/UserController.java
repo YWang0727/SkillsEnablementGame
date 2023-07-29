@@ -27,20 +27,6 @@ public class UserController {
     private UserService userService;
 
 
-    @PostMapping("/email")
-    @ApiOperation(value = "Email verification")
-    public ResultVO checkEmailIsExisted(@RequestBody @Validated(RegisterParam.emailVerification.class) RegisterParam param) {
-        return userService.checkEmailIsExisted(param);
-    }
-
-    @PostMapping("/active")
-    @ApiOperation(value = "Active code")
-    public ResultVO getActiveCode(@RequestBody RegisterParam param) {
-        return userService. getActiveCode(param);
-    }
-
-
-
     @GetMapping("/get/{id}")
     @ApiOperation(value = "Get user info based on user ID")
     public User getUserById(@ApiParam(value = "User ID", required = true)

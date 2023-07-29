@@ -72,12 +72,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
         // Throw error if user or password is wrong
         if(user == null || !Objects.equals(loginParam.getPassword(), user.getPassword())){
-            throw new ApiException(ResultCode.PASSWORD_ERROR, "Email or password is incorrect!");
+            throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");
         }
         // Generate token
-        //JwtManager.generate(user.getEmail());
-
-        return getUserVOFromUser(user);
+        String token = JwtManager.generate(user.getEmail());
+        UserVO userVO = getUserVOFromUser(user);
+        userVO.setToken(token);
+        return userVO;
     }
 
     @Override
@@ -85,9 +86,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         System.out.println(param.getEmail());
         // check if email exists
         if (getUserByEmail(param.getEmail()) != null) {
-            return new ResultVO(ResultCode.EMAIL_FOUND,null);
+            return new ResultVO(ResultCode.EMAIL_FOUND,"Email is already existed!\nPlease Try another one!");
         }else{
-            return new ResultVO(ResultCode.EMAIL_NOT_FOUND,null);
+            return new ResultVO(ResultCode.EMAIL_NOT_FOUND,"Email is valid!\nPlease continue!");
         }
     }
 
@@ -143,7 +144,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         int codeLength = 6;
         String activeCode = generateActiveCode(codeLength);
         // Send an email to the user's email address that contains an activation code
-        String emailText = "E-mail registration successful! Your activation code is: " + activeCode;
+        String emailText = "E-mail registration successful! \nYour activation code is: " + activeCode;
         mailUtil.sendMail(param.getEmail(), emailText, "EduCity Activation Email");
 
         return new ResultVO(ResultCode.EMAIL_SENT, activeCode);

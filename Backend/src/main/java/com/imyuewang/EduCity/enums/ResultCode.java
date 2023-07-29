@@ -13,9 +13,8 @@ public enum ResultCode {
     //操作成功
     SUCCESS(0000, "操作成功"),
     // token相关
-    UNAUTHORIZED(1001, "没有登录"),
-    INVALID_TOKEN(1002, "无效的token"),
-    TOKEN_EXPIRED(1003, "token已过期"),
+    UNAUTHORIZED(1001, "Not logged in"),
+    TOKEN_EXPIRED(1003, "Expired token"),
     // 权限相关
     FORBIDDEN(1004, "没有相关权限"),
     UNAUTHORIZED_OPERATION(1005, "未授权的操作"),
@@ -40,10 +39,10 @@ public enum ResultCode {
     UPLOAD_ERROR(3001, "File for avatar is too large!"),
 
     //email and password
-    EMAIL_FOUND(4000,"Email is already existed!\nPlease Try another one!"),
-    EMAIL_NOT_FOUND(4001,"It is valid new email！"),
-    EMAIL_SENT(4002,"Email sent successfully!\nPlease check your email!"),
-    PASSWORD_ERROR(4003,"Password or email is incorrect!\nPlease try again!"),
+    EMAIL_FOUND(4000,"Email existed"),
+    EMAIL_NOT_FOUND(4001,"Valid new email"),
+    EMAIL_SENT(4002,"Email sent successfully"),
+    PASSWORD_ERROR(4003,"Incorrect password or email"),
     ;
 
 

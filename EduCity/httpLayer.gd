@@ -77,7 +77,7 @@ func _apiCore(_endpoint, _data, _authorize, _method: String, _route , _redirectT
 	
 	# If _authorize is true, add the "Authorization" header to the headers list and use Game.user_token for authorization
 	if _authorize:
-		headers.append(str("Authorization: Bearer ", GameManager.user_token))
+		headers.append(str("Authorization: ", GameManager.user_token))
 		
 	#print("api success")
 		
@@ -116,36 +116,36 @@ func _getActiveCode(_credentials):
 	
 # api for learning_related scene	
 func _completeLesson(_credentials):
-	_apiCore("learn/complete", _credentials, false, "POST", "complete")
+	_apiCore("learn/complete", _credentials, true, "POST", "complete")
 
 func _submitQuiz(_credentials):
-	_apiCore("learn/submit", _credentials, false, "POST", "submit")
+	_apiCore("learn/submit", _credentials, true, "POST", "submit")
 	
 func _getStatus(_credentials):
-	_apiCore("learn/status", _credentials, false, "POST", "status")
+	_apiCore("learn/status", _credentials, true, "POST", "status")
 	
 	
 # api for Components_related scene	
 func _leaderBoard():
-	_apiCore("map/leaderBoard/" + str(GameManager.user_id), null, false, "GET", "leaderBoard")
+	_apiCore("map/leaderBoard/" + str(GameManager.user_id), null, true, "GET", "leaderBoard")
 
 func _getComponents():
-	_apiCore("map/getComponents/" + str(GameManager.user_id), null, false, "GET", "getComponents")
+	_apiCore("map/getComponents/" + str(GameManager.user_id), null, true, "GET", "getComponents")
 	
 func _pushComponents(_credentials):
-	_apiCore("map/pushComponents", _credentials, false, "POST", "pushComponents")
+	_apiCore("map/pushComponents", _credentials, true, "POST", "pushComponents")
 	
 func _readMap():
-	_apiCore("map_cell/readMap/" + str(GameManager.user_id), null, false, "GET", "readMap")
+	_apiCore("map_cell/readMap/" + str(GameManager.user_id), null, true, "GET", "readMap")
 	
 func _buildHouse(_credentials):
-	_apiCore("map_cell/buildHouse", _credentials, false, "POST", "buildHouse")
+	_apiCore("map_cell/buildHouse", _credentials, true, "POST", "buildHouse")
 
 func _otherMap():
-	_apiCore("map_cell/otherMap/" + str(GameManager.other_id), null, false, "GET", "otherMap")
+	_apiCore("map_cell/otherMap/" + str(GameManager.other_id), null, true, "GET", "otherMap")
 	
 func _levelUp(_credentials):
-	_apiCore("map_cell/levelUp", _credentials, false, "POST", "levelUp")
+	_apiCore("map_cell/levelUp", _credentials, true, "POST", "levelUp")
 
 
 # chatbot functions
@@ -167,4 +167,4 @@ func edit_user_password(_credentials):
 
 # api for saving
 func _save(_credentials):
-	_apiCore("save/save", _credentials, false, "POST", "save")
+	_apiCore("save/save", _credentials, true, "POST", "save")
