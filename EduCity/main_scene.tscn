@@ -190,4 +190,13 @@ script = ExtResource("18_oapmc")
 
 [connection signal="attributes_show2" from="TileMap" to="components" method="_on_tile_map_attributes_show_2"]
 [connection signal="store_components" from="TileMap" to="components" method="_on_tile_map_store_components"]
+[connection signal="button_down" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_down"]
+[connection signal="button_up" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_up"]
+[connection signal="button_down" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_down"]
+[connection signal="button_up" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_up"]
+[connection signal="button_down" from="CameraButtons/UpMoveButton" to="CameraButtons" method="_on_up_move_button_button_down"]
+[connection signal="button_up" from="CameraButtons/UpMoveButton" to="CameraButtons" method="_on_up_move_button_button_up"]
+[connection signal="button_down" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_down"]
+[connection signal="button_up" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_up"]
+[connection signal="pressed" from="CameraButtons/CenterMoveButton" to="CameraButtons" method="_on_center_move_button_pressed"]
 [connection signal="pressed" from="ChatBotButton" to="ChatBotButton" method="_on_chat_bot_pressed"]

@@ -18,55 +18,48 @@ var lock = load("res://XufengPart/Icon_Buildings/locked.png")
 var supermarket = load("res://XufengPart/Icon_Buildings/Supermarket/supermarket_1.png")
 var bank = load("res://XufengPart/Icon_Buildings/Bank/bank_1.png")
 var farm = load("res://XufengPart/Icon_Buildings/Farm/farm_1.png")
-var construction = load("res://XufengPart/Icon_Buildings/Construction Site_1.png")
+var construction = load("res://XufengPart/Icon_Buildings/Construction Site/Construction Site_1.png")
 var hospital = load("res://XufengPart/Icon_Buildings/Hospital/hospital_1.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# 随着房屋升级这里的id参数也要变，但没想好怎么改
+	# load button pictures
+	if GameManager.statusList[0] == 2:
+		get_node("SupermarketButton").icon = supermarket
+	if GameManager.statusList[0] != 2:
+		get_node("SupermarketButton").icon = lock
+	if GameManager.statusList[1] == 2:
+		get_node("BankButton").icon = bank
+	if GameManager.statusList[1] != 2:
+		get_node("BankButton").icon = lock
+	if GameManager.statusList[2] == 2:
+		get_node("FarmButton").icon = farm
+	if GameManager.statusList[2] != 2:
+		get_node("FarmButton").icon = lock
+	if GameManager.statusList[3] == 2:
+		get_node("ConstructionSiteButton").icon = construction
+	if GameManager.statusList[3] != 2:
+		get_node("ConstructionSiteButton").icon = lock
+	if GameManager.statusList[4] == 2:
+		get_node("HospitalButton").icon = hospital
+	if GameManager.statusList[4] != 2:
+		get_node("HospitalButton").icon = lock
+	# load message texts
 	res_building_lable.text = _load_message(0)
 	supermarket_lable.text = _load_message(1)
 	bank_lable.text = _load_message(2)
 	farm_lable.text = _load_message(3)
 	constrction_site_lable.text = _load_message(4)
 	hospital_lable.text = _load_message(5)
-	# 隐藏所有的message节点
+	# hide all message nodes
 	var buttons = get_children()  # 获取所有子节点
 	for button in buttons:
 		if button is Button:  # 检查节点是否为Button类型
 			var control = button.get_node("Message")  # 替换 "Control" 为 Control 节点的路径
 			if control:
 				control.hide()  # 隐藏 Control 节点
-			
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if GameManager.statusList[0] == 2:
-		get_node("SupermarketButton").icon = supermarket
-	if GameManager.statusList[0] != 2:
-		get_node("SupermarketButton").icon = lock
-	
-	if GameManager.statusList[1] == 2:
-		get_node("BankButton").icon = bank
-	if GameManager.statusList[1] != 2:
-		get_node("BankButton").icon = lock
-		
-	if GameManager.statusList[2] == 2:
-		get_node("FarmButton").icon = farm
-	if GameManager.statusList[2] != 2:
-		get_node("FarmButton").icon = lock
-		
-	if GameManager.statusList[3] == 2:
-		get_node("ConstructionSiteButton").icon = construction
-	if GameManager.statusList[3] != 2:
-		get_node("ConstructionSiteButton").icon = lock
-		
-	if GameManager.statusList[4] == 2:
-		get_node("HospitalButton").icon = hospital
-	if GameManager.statusList[4] != 2:
-		get_node("HospitalButton").icon = lock
-	
 
 func _load_message(id: int) -> String:
 	var str: String

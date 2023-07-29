@@ -84,7 +84,7 @@
 	},
 	{
 	  "name": "Construction Site (Level 2)",
-	  "tileID": 4,
+	  "tileID": 14,
 	  "cost": 150,
 	  "prosperity": 2,
 	  "money": 0,
@@ -134,7 +134,7 @@
 	},
 	{
 	  "name": "Construction Site (Level 3)",
-	  "tileID": 4,
+	  "tileID": 24,
 	  "cost": 225,
 	  "prosperity": 4,
 	  "money": 0,
