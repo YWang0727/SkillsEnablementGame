@@ -41,7 +41,7 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
             try {
                 return objectMapper.writeValueAsString(new ResultVO<>(data));
             } catch (JsonProcessingException e) {
-                throw new ApiException(ResultCode.FAILED,"返回String类型错误");
+                throw new ApiException(ResultCode.FAILED,"Return String type error");
             }
         }
         return new ResultVO<>(data);

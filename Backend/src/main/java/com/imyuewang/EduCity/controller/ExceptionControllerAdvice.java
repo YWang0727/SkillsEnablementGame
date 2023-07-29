@@ -23,7 +23,6 @@ import java.lang.reflect.Field;
 public class ExceptionControllerAdvice {
 
     /**
-     * 处理自定义的ApiException异常
      * @author Yue Wang
      * @date 20:33 2023/5/6
      * @param e ApiException
@@ -31,7 +30,7 @@ public class ExceptionControllerAdvice {
      **/
     @ExceptionHandler(ApiException.class)
     public ResultVO<String> apiExceptionHandler(ApiException e) {
-        // 返回自定义异常提示信息
+        // return error msg
         return new ResultVO<>(e.getResultCode(), e.getMsg());
     }
 
@@ -62,7 +61,6 @@ public class ExceptionControllerAdvice {
     }
 
     /**
-     * 封装处理运行时发生的其他异常
      * @author Yue Wang
      * @date 20:32 2023/5/6
      * @param e RuntimeException
@@ -70,8 +68,7 @@ public class ExceptionControllerAdvice {
      **/
     @ExceptionHandler(RuntimeException.class)
     public ResultVO<String> runtimeExceptionHandler(RuntimeException e) {
-        // 返回自定义异常提示信息
-        return new ResultVO<>(ResultCode.ERROR, "系统异常，请稍后重试");
+        return new ResultVO<>(ResultCode.ERROR, "System error, pls try again later");
     }
 
 

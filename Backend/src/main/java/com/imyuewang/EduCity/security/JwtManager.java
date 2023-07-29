@@ -59,24 +59,23 @@ public final class JwtManager {
      * @throws RuntimeException Throw an exception if verification fails.
      **/
     public static JWT parse(String token) {
-        // 如果是空字符串直接返回null
         if(StrUtil.isBlank(token)){
             return null;
         }
         JWT jwt = null;
-        // 解析失败了会抛出异常，所以要捕捉一下。token过期、token非法都会导致解析失败
+        // If parsing fails, an exception is thrown, so catch it. expired tokens and illegal tokens can cause parsing to fail.
         try {
-            // 解析（包含验证签名）
+            // Parsing (including verification of signatures)
             jwt = JWTUtil.parseToken(token);
 
-            // 验证算法和时间
+            // Validation algorithms and timing
             JWTValidator validator = JWTValidator.of(jwt);
-            // 验证算法
+            // Validation Algorithms
             validator.validateAlgorithm(JWTSignerUtil.hs256(secretKeyBytes));
-            // 验证时间
+            // Verification time
             JWTValidator.of(jwt).validateDate();
         } catch (Exception e) {
-            log.error("token解析和验证失败");
+            log.error("Failed token parsing and validation");
             return null;
         }
         return jwt;
