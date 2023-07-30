@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://nx1lsqdvmrv2"]
+[gd_scene load_steps=47 format=3 uid="uid://nx1lsqdvmrv2"]
 
 [ext_resource type="Texture2D" uid="uid://d048ec4o4d3fy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_2.png" id="1_btxbq"]
 [ext_resource type="Texture2D" uid="uid://cff3556jhqvd" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_1.png" id="1_ibpxp"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://by8r4ux2yra7e" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_3.png" id="15_6mv87"]
 [ext_resource type="Texture2D" uid="uid://cmanatnt1bkvm" path="res://XufengPart/Icon_Buildings/Construction Site/Construction Site_1.png" id="17_fr8tr"]
 [ext_resource type="Script" path="res://XufengPart/UpdateButton.gd" id="21_khrd3"]
+[ext_resource type="Texture2D" uid="uid://d3es460vy2gdo" path="res://XufengPart/Icons/upgrade.png" id="22_grig7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x7w2k"]
 texture = ExtResource("1_ibpxp")
@@ -166,6 +167,18 @@ sources/14 = SubResource("TileSetAtlasSource_evs0q")
 sources/24 = SubResource("TileSetAtlasSource_eadae")
 sources/4 = SubResource("TileSetAtlasSource_2s1nn")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8c5ga"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpfpf"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.254902, 0.254902, 0.254902, 0.6)
+shadow_size = 1
+shadow_offset = Vector2(5, 5)
+
 [node name="TileMap" type="TileMap"]
 y_sort_enabled = true
 texture_filter = 1
@@ -193,8 +206,11 @@ script = ExtResource("9_i3sl2")
 [node name="UpdateButton" type="Button" parent="."]
 offset_right = 50.0
 offset_bottom = 50.0
-text = "↑"
+theme_override_styles/normal = SubResource("StyleBoxFlat_8c5ga")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mpfpf")
+icon = ExtResource("22_grig7")
 icon_alignment = 1
+expand_icon = true
 script = ExtResource("21_khrd3")
 
 [node name="UpdateLabel" type="Label" parent="UpdateButton"]

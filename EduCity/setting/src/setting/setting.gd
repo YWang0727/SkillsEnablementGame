@@ -50,7 +50,7 @@ func _on_resume_pressed():
 # save game data to server
 func _on_save_pressed():
 	Saving.save()
-
+	
 # quit game
 func _on_quit_pressed():
 	get_tree().quit()

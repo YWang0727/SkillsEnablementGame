@@ -168,3 +168,6 @@ func edit_user_password(_credentials):
 # api for saving
 func _save(_credentials):
 	_apiCore("save/save", _credentials, true, "POST", "save")
+	
+func _save_auto(_credentials):
+	_apiCore("save/save_auto", _credentials, true, "POST", "save_auto")

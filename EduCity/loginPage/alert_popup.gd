@@ -7,6 +7,7 @@ func _ready():
 	self.size.y = 250
 
 func show_error_message(message: String):
+	self.title = "Alert!"
 	self.set_text("\n" +message)
 	self.show()
 

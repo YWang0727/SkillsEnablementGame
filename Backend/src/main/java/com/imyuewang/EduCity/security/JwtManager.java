@@ -28,7 +28,7 @@ public final class JwtManager {
      * The expiration time is currently set to 30 minutes,
      * this configuration depends on business requirements.
      */
-    private final static Integer EXPIRATION = 1;
+    private final static Integer EXPIRATION = 5;
 
     /**
      * Generate jwt token

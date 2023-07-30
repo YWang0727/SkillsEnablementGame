@@ -38,4 +38,11 @@ public class SaveController {
         return CommonUtil.ACTION_SUCCESSFUL;
     }
 
+    @PostMapping("/save_auto")
+    @ApiOperation(value = "save all dynamic data")
+    public String save_auto(@RequestBody SaveParam param) {
+        saveService.save(param);
+        return CommonUtil.ACTION_SUCCESSFUL;
+    }
+
 }

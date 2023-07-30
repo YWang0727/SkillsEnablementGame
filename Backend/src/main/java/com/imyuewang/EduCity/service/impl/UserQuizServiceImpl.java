@@ -61,7 +61,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
         UserQuiz userQuiz = this.lambdaQuery().eq(UserQuiz::getId, param.getId()).eq(UserQuiz::getQuizid, param.getQuizId()).eq(UserQuiz::getKnowledgeid, param.getKnowledgeId()).one();
 
         if(userQuiz == null){
-            throw new ApiException(ResultCode.FAILED,"This user_quiz record does not exist");
+            throw new ApiException(ResultCode.DATABASE_ERROR,"This user_quiz record does not exist");
         }
 
         int scoreDifference = param.getScore() - userQuiz.getTopscore();
