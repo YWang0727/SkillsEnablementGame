@@ -1,8 +1,9 @@
 extends Button
 
-var chat_room = preload("res://chatbot/src/chatbot.tscn").instantiate()
+var chat_room_scene = preload("res://chatbot/src/chatbot.tscn")
 
 func _on_chat_bot_pressed():
+	var chat_room = chat_room_scene.instantiate()
 	if (!get_parent().has_node("chatbot")):
-		add_child(chat_room)
+		get_parent().add_child(chat_room)
 	chat_room.visible = true

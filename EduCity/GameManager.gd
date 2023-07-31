@@ -94,6 +94,7 @@ func initPropertyData():
 		"constructionSite": ""
 	}
 
+# messages array will contain arrow, contents and options
 func initChatHistory():
 	chat_history= {
 		"sessionId": "",

@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://clbvk1ssg55kk"]
+
+[ext_resource type="Texture2D" uid="uid://b12umhk0e617o" path="res://chatbot/assets/right_arrow.png" id="1_hn0yg"]
+
+[resource]
+texture = ExtResource("1_hn0yg")
+modulate_color = Color(0.247059, 0.670588, 0.682353, 1)

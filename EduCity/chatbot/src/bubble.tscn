@@ -1,28 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://qrk60eh8agla"]
+[gd_scene load_steps=5 format=3 uid="uid://qrk60eh8agla"]
 
 [ext_resource type="Script" path="res://chatbot/src/bubble.gd" id="1_toq0c"]
-[ext_resource type="Texture2D" uid="uid://bwv4y60bottlp" path="res://chatbot/assets/left_arrow.png" id="2_ipwtb"]
-[ext_resource type="Texture2D" uid="uid://b12umhk0e617o" path="res://chatbot/assets/right_arrow.png" id="3_84d24"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l7ixd"]
-texture = ExtResource("2_ipwtb")
-modulate_color = Color(0.247059, 0.670588, 0.682353, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xyh8d"]
-texture = ExtResource("3_84d24")
-modulate_color = Color(0.247059, 0.670588, 0.682353, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew5q4"]
-bg_color = Color(0.247059, 0.670588, 0.682353, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0.247059, 0.670588, 0.682353, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[ext_resource type="StyleBox" uid="uid://ds8hfpjiuilln" path="res://chatbot/src/themes/left_arrow.tres" id="2_hg15g"]
+[ext_resource type="StyleBox" uid="uid://clbvk1ssg55kk" path="res://chatbot/src/themes/right_arrow.tres" id="3_v1dlg"]
+[ext_resource type="StyleBox" uid="uid://c3rg5wj8xwkb4" path="res://chatbot/src/themes/bubble.tres" id="4_484k8"]
 
 [node name="Bubble" type="Control"]
 custom_minimum_size = Vector2(100, 100)
@@ -34,16 +15,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_toq0c")
 message = "namrsweresktgaydjgf vxahsdvxgkjgwasdasdsadsadsadasdasdasasdasdsadasdsade"
+arrow = "none"
+metadata/_edit_horizontal_guides_ = [93.0]
 
 [node name="LeftArrow" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 70.0
 offset_bottom = 70.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_l7ixd")
+theme_override_styles/panel = ExtResource("2_hg15g")
 
 [node name="RightArrow" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -52,7 +37,7 @@ offset_left = -60.0
 offset_top = 10.0
 offset_bottom = 70.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_xyh8d")
+theme_override_styles/panel = ExtResource("3_v1dlg")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -65,9 +50,10 @@ offset_right = -30.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ew5q4")
+theme_override_styles/panel = ExtResource("4_484k8")
 
 [node name="Message" type="Label" parent="PanelContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 autowrap_mode = 1

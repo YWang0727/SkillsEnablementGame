@@ -29,13 +29,12 @@ func setPosition(positionX: int, positionY: int, positionType: String):
 		self.position.x = positionX
 		self.position.y = positionY
 		
-func tokenCheck(res):
+func tokenCheck(res) -> bool:
 	if res != null && res.has("code"):
-		if res.code == 1001 ||res.code == 1003 :
+		if res.code == 1001 || res.code == 1003:
 			AlertPopup.setPosition(0,0,'center')
 			AlertPopup.show_error_message(res.data)
 			get_tree().change_scene_to_file("res://loginPage/login.tscn")
 			return false
-	else:
-		return true
 	
+	return true

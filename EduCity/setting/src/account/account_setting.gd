@@ -142,7 +142,7 @@ func edit_user_profile():
 	
 	var url = "http://localhost:8080/setting/editUserInfo"
 	var headers = PackedStringArray(["Content-Type: multipart/form-data; boundary=MyBoundary"])
-	headers.append(str("Authorization: Bearer ", GameManager.user_token))
+	headers.append(str("Authorization: ", GameManager.user_token))
 	
 	# create the body of editing user info request
 	# use from to send request, first part is the json data, second is the picture byte data
@@ -174,6 +174,10 @@ func edit_user_profile_request_completed(result, response_code, headers, body, h
 	var json = JSON.new()
 	json.parse(body.get_string_from_utf8())
 	var response = json.get_data()
+	
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(response):
+		return
 	
 	if (response_code == 200):
 		print(response.msg)
@@ -239,7 +243,8 @@ func checkEmailFormat(str: String) -> bool:
 func http_completed(res, response_code, headers, route):
 	#if token is checked and valid, return true
 	if !AlertPopup.tokenCheck(res):
-		return	
+		return
+		
 	if (response_code == 200):
 		print(res.msg)
 		# check if code in resultVO is 0000(SUCCESS)
