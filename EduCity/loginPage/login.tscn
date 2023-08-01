@@ -1,12 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=20 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
-[ext_resource type="Texture2D" uid="uid://qow8cruc54nv" path="res://loginPage/cityPicture2.jpg" id="3_ohuu6"]
+[ext_resource type="Texture2D" uid="uid://di0xaap3cyhvg" path="res://loginPage/img/bg (2).png" id="2_lbtmv"]
 [ext_resource type="Texture2D" uid="uid://o628e2s2tbmu" path="res://loginPage/eye-hiden.png" id="4_5feks"]
 [ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
-[ext_resource type="Texture2D" uid="uid://xy26wddgonnn" path="res://loginPage/logo.png" id="5_wpds5"]
-[ext_resource type="Texture2D" uid="uid://camrvapbhdg25" path="res://loginPage/title.png" id="6_gxakd"]
+[ext_resource type="Texture2D" uid="uid://dgau6ji45fx4j" path="res://loginPage/img/logo3.png" id="6_ko20s"]
 [ext_resource type="Script" path="res://loginPage/dir.gd" id="7_bgwq7"]
+[ext_resource type="FontFile" uid="uid://cuov0ur21mnm3" path="res://loginPage/theme/static/Tektur-Medium.ttf" id="9_hlw4a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phk7t"]
 bg_color = Color(0.619608, 0.709804, 0.356863, 1)
@@ -53,6 +53,10 @@ events = [SubResource("InputEventKey_8pldv")]
 
 [sub_resource type="Theme" id="Theme_i4oag"]
 
+[sub_resource type="Theme" id="Theme_n0smr"]
+RichTextLabel/colors/default_color = Color(0.121569, 0.121569, 0.121569, 0.996078)
+RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 0.729412)
+
 [node name="Control" type="Control"]
 clip_contents = true
 layout_mode = 3
@@ -88,21 +92,21 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="background" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.760784)
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.52588e-05
-offset_top = -60.0
-offset_right = 1280.0
-offset_bottom = 460.0
+offset_left = -255.0
+offset_top = -14.0
+offset_right = 943.0
+offset_bottom = 497.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.808, 0.808)
-texture = ExtResource("3_ohuu6")
-metadata/_edit_lock_ = true
+scale = Vector2(0.697191, 0.697191)
+texture = ExtResource("2_lbtmv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="background"]
 
 [node name="Game name" type="Label" parent="."]
 visible = false
@@ -615,21 +619,30 @@ theme_override_constants/h_separation = 4
 theme_override_font_sizes/font_size = 16
 text = "Remember me"
 
-[node name="logo" type="TextureRect" parent="."]
+[node name="logo2" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 1214.0
-offset_top = 278.0
-offset_right = 1514.0
-offset_bottom = 578.0
-texture = ExtResource("5_wpds5")
+offset_left = 1195.0
+offset_top = 274.0
+offset_right = 1547.0
+offset_bottom = 626.0
+texture = ExtResource("6_ko20s")
 
-[node name="title" type="TextureRect" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 970.0
-offset_top = 433.0
-offset_right = 1770.0
-offset_bottom = 933.0
-texture = ExtResource("6_gxakd")
+offset_left = 1197.0
+offset_top = 644.0
+offset_right = 1669.0
+offset_bottom = 781.0
+theme = SubResource("Theme_n0smr")
+theme_override_constants/shadow_offset_x = 13
+theme_override_constants/shadow_offset_y = 13
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/text_highlight_h_padding = 100
+theme_override_fonts/normal_font = ExtResource("9_hlw4a")
+theme_override_font_sizes/normal_font_size = 100
+text = "EduCity"
+fit_content = true
+scroll_active = false
 
 [node name="dir" type="Node2D" parent="."]
 script = ExtResource("7_bgwq7")
