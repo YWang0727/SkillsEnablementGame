@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -21,7 +22,7 @@ public class MapDictVO {
     private int[] x;
     private int[] y;
     private int[] houseType;
-    private Date[] buildTime;
+    private LocalDateTime[] buildTime;
     private int num;
 
 }

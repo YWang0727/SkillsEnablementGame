@@ -11,4 +11,5 @@ public class MapDictParam {
     private int houseType;
     //private Timestamp buildTime;
     private Long id;
+    private int buildHours;
 }
