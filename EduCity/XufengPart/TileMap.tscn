@@ -180,7 +180,6 @@ shadow_size = 1
 shadow_offset = Vector2(5, 5)
 
 [node name="TileMap" type="TileMap"]
-y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, -1)
 tile_set = SubResource("TileSet_ctriu")
