@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=25 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
-[ext_resource type="Texture2D" uid="uid://di0xaap3cyhvg" path="res://loginPage/img/bg (2).png" id="2_lbtmv"]
+[ext_resource type="Texture2D" uid="uid://cclg3j57gug3p" path="res://loginPage/img/bg (3).png" id="2_mqhxh"]
 [ext_resource type="Texture2D" uid="uid://o628e2s2tbmu" path="res://loginPage/eye-hiden.png" id="4_5feks"]
 [ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
 [ext_resource type="Texture2D" uid="uid://dgau6ji45fx4j" path="res://loginPage/img/logo3.png" id="6_ko20s"]
@@ -11,10 +11,44 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phk7t"]
 bg_color = Color(0.619608, 0.709804, 0.356863, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sya35"]
+bg_color = Color(0, 0, 0, 0.760784)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pbn6"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 0.843137)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlbou"]
+bg_color = Color(0.34902, 0.678431, 0.372549, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yr8f"]
+bg_color = Color(0.27451, 0.27451, 0.27451, 0.627451)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.333333)
+shadow_size = 10
+
 [sub_resource type="Theme" id="Theme_7pxma"]
 AcceptDialog/constants/buttons_separation = 26
 AcceptDialog/styles/panel = SubResource("StyleBoxFlat_phk7t")
 Button/font_sizes/font_size = 28
+Button/styles/hover = SubResource("StyleBoxFlat_sya35")
+Button/styles/normal = SubResource("StyleBoxFlat_1pbn6")
+Button/styles/pressed = SubResource("StyleBoxFlat_xlbou")
+Panel/styles/panel = SubResource("StyleBoxFlat_8yr8f")
 
 [sub_resource type="Theme" id="Theme_x67v2"]
 
@@ -29,20 +63,34 @@ Label/constants/shadow_offset_y = 0
 Label/constants/shadow_outline_size = 0
 Label/font_sizes/font_size = 110
 
-[sub_resource type="Theme" id="Theme_nv403"]
-Panel/styles/panel = null
-
 [sub_resource type="Theme" id="Theme_55kvq"]
 RichTextLabel/font_sizes/bold_font_size = 22
 RichTextLabel/font_sizes/bold_italics_font_size = 36
 RichTextLabel/font_sizes/italics_font_size = 27
 RichTextLabel/font_sizes/mono_font_size = 28
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j58bq"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecg21"]
-bg_color = Color(0, 0.627451, 0.611765, 1)
+bg_color = Color(0.392157, 0.741176, 0.368627, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f468"]
+bg_color = Color(0, 0, 0, 0.843137)
 
 [sub_resource type="Theme" id="Theme_5q2ag"]
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxFlat_j58bq")
 Button/styles/normal = SubResource("StyleBoxFlat_ecg21")
+Button/styles/pressed = SubResource("StyleBoxFlat_2f468")
 
 [sub_resource type="InputEventKey" id="InputEventKey_8pldv"]
 device = -1
@@ -104,7 +152,7 @@ offset_bottom = 497.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.697191, 0.697191)
-texture = ExtResource("2_lbtmv")
+texture = ExtResource("2_mqhxh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="background"]
 
@@ -117,40 +165,6 @@ offset_right = 1635.0
 offset_bottom = 687.0
 theme = SubResource("Theme_noebi")
 text = "EduCity"
-
-[node name="Tabars" type="Panel" parent="."]
-custom_minimum_size = Vector2(100, 60)
-layout_mode = 2
-offset_left = 175.0
-offset_top = 278.0
-offset_right = 875.0
-offset_bottom = 357.0
-size_flags_vertical = 3
-theme = SubResource("Theme_nv403")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Tabars"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.268982
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Log in" type="Button" parent="Tabars/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/icon_pressed_color = Color(0.290196, 0.603922, 0.462745, 1)
-theme_override_font_sizes/font_size = 0
-toggle_mode = true
-text = "Log In"
-
-[node name="Sign in" type="Button" parent="Tabars/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/icon_pressed_color = Color(0.289233, 0.60472, 0.462918, 1)
-toggle_mode = true
-text = "Sign In"
 
 [node name="sign_in1" type="Panel" parent="."]
 visible = false
@@ -477,13 +491,12 @@ text = "Reset"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
-offset_top = 357.0
+offset_top = 279.0
 offset_right = 876.0
-offset_bottom = 857.0
+offset_bottom = 858.0
 scale = Vector2(1, 0.987)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
-metadata/_edit_lock_ = true
 
 [node name="email_input_panel" type="Panel" parent="log_in"]
 layout_mode = 1
@@ -491,8 +504,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -180.0
-offset_bottom = -110.0
+offset_top = -142.59
+offset_bottom = -72.5902
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -521,8 +534,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -80.0
-offset_bottom = -10.0
+offset_top = -42.5902
+offset_bottom = 27.4098
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -571,9 +584,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 0.00793457
-offset_top = 156.837
+offset_top = 194.247
 offset_right = 0.00793457
-offset_bottom = 252.837
+offset_bottom = 290.247
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -592,9 +605,9 @@ text = "Log In"
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_left = 225.0
-offset_top = 299.899
+offset_top = 367.781
 offset_right = 725.0
-offset_bottom = 339.899
+offset_bottom = 407.781
 theme = SubResource("Theme_55kvq")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
@@ -603,6 +616,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Remember_me" type="CheckBox" parent="log_in"]
+visible = false
 layout_mode = 0
 offset_left = 466.0
 offset_top = 339.412
@@ -619,6 +633,37 @@ theme_override_constants/h_separation = 4
 theme_override_font_sizes/font_size = 16
 text = "Remember me"
 
+[node name="Tabars" type="Panel" parent="."]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+offset_left = 175.0
+offset_top = 278.0
+offset_right = 875.0
+offset_bottom = 357.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tabars"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.268982
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Log in" type="Button" parent="Tabars/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Log In"
+
+[node name="Sign in" type="Button" parent="Tabars/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/icon_pressed_color = Color(0.289233, 0.60472, 0.462918, 1)
+toggle_mode = true
+text = "Sign In"
+
 [node name="logo2" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 1195.0
@@ -627,7 +672,7 @@ offset_right = 1547.0
 offset_bottom = 626.0
 texture = ExtResource("6_ko20s")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Educity" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 1197.0
 offset_top = 644.0
@@ -647,8 +692,6 @@ scroll_active = false
 [node name="dir" type="Node2D" parent="."]
 script = ExtResource("7_bgwq7")
 
-[connection signal="pressed" from="Tabars/HBoxContainer/Log in" to="." method="_on_log_in_pressed"]
-[connection signal="pressed" from="Tabars/HBoxContainer/Sign in" to="." method="_on_sign_in_pressed"]
 [connection signal="pressed" from="sign_in1/next_button_panel/next_button" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="sign_in1/get_activecode_button" to="." method="_on_get_activecode_button_pressed"]
 [connection signal="toggled" from="sign_in2/pw_input1_panel/eyeHide" to="." method="_on_eye_hide_toggled"]
@@ -657,3 +700,5 @@ script = ExtResource("7_bgwq7")
 [connection signal="pressed" from="sign_in2/sign_in2_button_panel/reset_button" to="." method="_on_reset_button_pressed"]
 [connection signal="toggled" from="log_in/pw_input_panel/eyeHide3" to="." method="_on_eye_hide_3_toggled"]
 [connection signal="pressed" from="log_in/login_button_panel/Login_button" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="Tabars/HBoxContainer/Log in" to="." method="_on_log_in_pressed"]
+[connection signal="pressed" from="Tabars/HBoxContainer/Sign in" to="." method="_on_sign_in_pressed"]

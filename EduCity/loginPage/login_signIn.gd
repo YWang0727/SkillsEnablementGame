@@ -98,8 +98,8 @@ func set_focus():
 	
 func create_labels():
 	#creat valid verification labels
-	validEmailLabel_Log = createLabel("Valid format!", Vector2(70, 140), 20, Color(0.0, 0.67, 0.0),logPanel)
-	invalidEmailLabel_Log = createLabel("Invalid format!", Vector2(70, 140), 20, Color(0.78, 0.19, 0.24),logPanel)
+	validEmailLabel_Log = createLabel("Valid format!", Vector2(70, 220), 20, Color(0.0, 0.67, 0.0),logPanel)
+	invalidEmailLabel_Log = createLabel("Invalid format!", Vector2(70, 220), 20, Color(0.78, 0.19, 0.24),logPanel)
 	validEmailLabel_Log.visible = false
 	invalidEmailLabel_Log.visible = false
 	
@@ -169,6 +169,7 @@ func _input(event):
 
 func _on_log_in_pressed():
 	currentPanel = panels.log
+	emailLog.grab_focus()	
 	logButton.set_pressed(true)
 	signButton.set_pressed(false)
 	logPanel.visible = true
