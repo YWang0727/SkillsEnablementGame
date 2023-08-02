@@ -42,7 +42,7 @@ public enum ResultCode {
     //email and password
     EMAIL_FOUND(4000,"Email existed"),
     EMAIL_NOT_FOUND(4001,"Valid new email"),
-    EMAIL_SENT(4002,"Email sent successfully"),
+    EMAIL_SENT(4002,"Email sent successfully!\nPlease check your email for verification."),
     PASSWORD_ERROR(4003,"Incorrect password or email"),
     ;
 

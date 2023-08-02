@@ -307,7 +307,7 @@ func register(email: String, activeCode:String, username:String, password:String
 	var _credential = {
 			"email": email,
 			"activecode": activeCode,
-			"isactive":1,
+			"isFirst":1,
 			"name": username,
 			"password": password
 	}
@@ -340,12 +340,15 @@ func http_completed(res, response_code, headers, route) -> void:
 				_get_localStorage()
 		return
 	if response_code == 200 && route == "register":
-		alertPopup.set_text("             Resgister success! Pleace log in!");
-		alertPopup.visible = true
+		print(res)
+		#if(res.code == 0000):
+		AlertPopup.setPosition(0,0,'login')
+		AlertPopup.show_error_message(res['data'])
 		print("------------------------resgister success!")
+		
 		return	
 	if response_code == 200 && route == "email":
-		if res['code'] == 4000:
+		if !res['code'] == 4001:
 			AlertPopup.setPosition(0,0,'login')
 			AlertPopup.show_error_message(res['data'])
 		if res['code'] == 4001:

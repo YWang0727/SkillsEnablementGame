@@ -32,6 +32,6 @@ public interface UserService extends IService<User> {
 
     ResultVO getActiveCode(RegisterParam param);
 
-    UserVO register(User newUser);
+    ResultVO register(RegisterParam newUser);
 
 }

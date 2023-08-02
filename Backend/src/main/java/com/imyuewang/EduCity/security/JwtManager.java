@@ -34,10 +34,10 @@ public final class JwtManager {
      * Generate jwt token
      * @author Yue Wang
      * @date 14:54 2023/5/7
-     * @param userName username
+     * @param userId userid
      * @return jwt token
      **/
-    public static String generate(String userName) {
+    public static String generate(Long userId) {
         DateTime now = DateUtil.date();
         DateTime ddl = DateUtil.offsetMinute(now, EXPIRATION);
         Map<String, Object> map = new HashMap<String, Object>() {
@@ -45,7 +45,7 @@ public final class JwtManager {
                 put(JWTPayload.ISSUED_AT, now);
                 put(JWTPayload.EXPIRES_AT, ddl);
                 put(JWTPayload.NOT_BEFORE, now);
-                put(JWTPayload.SUBJECT, userName); //put username in 'sub'
+                put(JWTPayload.SUBJECT, userId); //put userId in 'sub'
             }
         };
         //return "Bearer " + JWTUtil.createToken(map, secretKeyBytes);

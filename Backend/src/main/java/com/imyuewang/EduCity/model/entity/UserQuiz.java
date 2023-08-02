@@ -48,8 +48,10 @@ public class UserQuiz implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public UserQuiz(){}
-    public UserQuiz(Long id){
+    public UserQuiz(Long id, Integer quizid, Integer knowledgeid){
         id = this.id;
+        quizid = this.quizid;
+        knowledgeid = this.knowledgeid;
     }
     @Override
     public boolean equals(Object that) {

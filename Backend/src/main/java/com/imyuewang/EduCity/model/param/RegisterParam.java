@@ -19,7 +19,7 @@ public class RegisterParam {
 
 
     @NotBlank(message = "Email is required.", groups = emailVerification.class)
-    @Length(min = 8, max = 20, message = "Email must be between 8-20 digits in length.")
+    @Length(min = 5, max = 50, message = "Email must be between 5-50 digits in length.", groups = emailVerification.class)
     @ExceptionCode(value = 100004, message = "Invalid Email.")
     private String email;
 
@@ -28,7 +28,7 @@ public class RegisterParam {
     @ExceptionCode(value = 100005, message = "Wrong code.")
     private String activecode;
 
-    @NotBlank(message = "Verification code is required.")
+    @NotBlank(message = "Name is required.")
     @Length(min = 1, max = 20, message = "Name must be between 1-20 digits in length.")
     private String name;
 

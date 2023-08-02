@@ -28,9 +28,8 @@ create table user
     avatar     BLOB   null,
     name       varchar(50)  not null,
     cityMap    bigint  null,
-    isActive   tinyint      not null comment '0-not actived 1-actived',
     activeCode varchar(50)  null,
-    loginTime  datetime     null,
+    isFirst   tinyint      not null comment '0-not actived 1-actived',
     logoutTime datetime     null,
     constraint User_email_uindex
         unique (email),

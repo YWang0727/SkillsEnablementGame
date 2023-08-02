@@ -75,9 +75,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");
         }
         // Generate token
-        String token = JwtManager.generate(user.getEmail());
+        String token = JwtManager.generate(user.getId());
         UserVO userVO = getUserVOFromUser(user);
         userVO.setToken(token);
+        //set isFirst to 0
+        user.setIsFirst(0);
+        userMapper.updateById(user);
+        //return userVO
         return userVO;
     }
 
@@ -96,12 +100,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /**************    REGISTER    **************/
     /********************************************/
     @Override
-    public UserVO register(User newUser) {
-        userMapper.insert(newUser);
+    public ResultVO<String> register(RegisterParam newUser) {
+        User user = new User();
+        BeanUtil.copyProperties(newUser, user);
+        user.setIsFirst(1);
+        userMapper.insert(user);
         //initialize values in tables
-        initializeValuesInTable(newUser);
+        initializeValuesInTable(user);
 
-        return getUserVOFromUser(newUser);
+        return new ResultVO<>("             Resgister success! Pleace log in!");
     }
 
     private UserVO getUserVOFromUser(User user) {
@@ -122,8 +129,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         newUser = setCityMapId(newUser);
         //initialize citymap table
         citymapMapper.insert(new Citymap(newUser.getId(), "My City", 0L,0L,1));
-        //initialize user_quiz table
-        userQuizMapper.insert(new UserQuiz(newUser.getId()));
     }
 
     private User setCityMapId(User newUser){

@@ -49,8 +49,8 @@ public class User implements Serializable {
     /**
      * 0-not actived 1-actived
      */
-    @TableField(value = "isActive")
-    private Integer isactive;
+    @TableField(value = "isFirst")
+    private Integer isFirst;
 
     /**
      * 
@@ -87,7 +87,7 @@ public class User implements Serializable {
             && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getCitymap() == null ? other.getCitymap() == null : this.getCitymap().equals(other.getCitymap()))
-            && (this.getIsactive() == null ? other.getIsactive() == null : this.getIsactive().equals(other.getIsactive()))
+            && (this.getIsFirst() == null ? other.getIsFirst() == null : this.getIsFirst().equals(other.getIsFirst()))
             && (this.getActivecode() == null ? other.getActivecode() == null : this.getActivecode().equals(other.getActivecode()))
             && (Arrays.equals(this.getAvatar(), other.getAvatar()));
     }
@@ -101,7 +101,7 @@ public class User implements Serializable {
         result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getCitymap() == null) ? 0 : getCitymap().hashCode());
-        result = prime * result + ((getIsactive() == null) ? 0 : getIsactive().hashCode());
+        result = prime * result + ((getIsFirst() == null) ? 0 : getIsFirst().hashCode());
         result = prime * result + ((getActivecode() == null) ? 0 : getActivecode().hashCode());
         result = prime * result + (Arrays.hashCode(getAvatar()));
         return result;
@@ -118,7 +118,7 @@ public class User implements Serializable {
         sb.append(", password=").append(password);
         sb.append(", name=").append(name);
         sb.append(", citymap=").append(citymap);
-        sb.append(", isactive=").append(isactive);
+        sb.append(", isFirst=").append(isFirst);
         sb.append(", activecode=").append(activecode);
         sb.append(", avatar=").append(avatar);
         sb.append(", serialVersionUID=").append(serialVersionUID);

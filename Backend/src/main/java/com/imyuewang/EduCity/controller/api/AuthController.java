@@ -38,11 +38,11 @@ public class AuthController {
 
     @PostMapping("/register")
     @ApiOperation(value = "Register new user")
-    public UserVO register(@RequestBody  @Valid User newUser){
+    public ResultVO register(@RequestBody @Valid RegisterParam newUser){
 
-        UserVO uservo = userService.register(newUser);
-        System.out.println(uservo);
-        return uservo;
+        ResultVO resultVO = userService.register(newUser);
+        System.out.println(resultVO);
+        return resultVO;
     }
 
     @PostMapping("/email")

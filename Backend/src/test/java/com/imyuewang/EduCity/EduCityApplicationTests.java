@@ -12,6 +12,7 @@ import com.imyuewang.EduCity.controller.api.UserController;
 import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
+import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.security.JwtManager;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import springfox.documentation.spring.web.json.Json;
 
+import javax.xml.transform.Result;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,18 +49,12 @@ class EduCityApplicationTests {
     void testRegister(){
         RegisterParam param = new RegisterParam();
         param.setEmail("kahty6@gmail.com");
-        param.setActivecode("3333");
+        param.setActivecode("333333");
         param.setName("kathy2");
         param.setPassword("2331");
 
-        User newUser = new User();
-        BeanUtil.copyProperties(param, newUser);
-        //newUser.setCitymap(2L);
-        newUser.setIsactive(1);
-        newUser.setAvatar(null);
-
-        UserVO RegisterV0 = authController.register(newUser);
-        System.out.println();
+        ResultVO resultVO  = authController.register(param);
+        System.out.println(resultVO);
 
     }
 
