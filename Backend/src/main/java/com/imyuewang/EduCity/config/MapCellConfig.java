@@ -24,7 +24,7 @@ import java.util.Date;
 public class MapCellConfig implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject){
-        this.setFieldValByName("buildtime",new Date(),metaObject);
+        //this.setFieldValByName("buildtime",new Date(),metaObject);
 
     }
 

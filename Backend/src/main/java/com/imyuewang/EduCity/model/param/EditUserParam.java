@@ -13,7 +13,6 @@ public class EditUserParam {
     private Long id;
 
     @NotBlank(message = "Email is required")
-    @Length(min = 8, max = 20, message = "Email must be between 8-20 digits in length.")
     private String email;
 
     @NotBlank(message = "Username is required")

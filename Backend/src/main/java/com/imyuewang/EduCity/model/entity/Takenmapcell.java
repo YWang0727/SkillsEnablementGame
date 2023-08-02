@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -42,7 +43,7 @@ public class Takenmapcell implements Serializable {
      * 
      */
     @TableField(fill = FieldFill.INSERT)
-    private Date buildtime;
+    private LocalDateTime buildtime;
 
     private static final long serialVersionUID = 1L;
 
@@ -105,14 +106,14 @@ public class Takenmapcell implements Serializable {
     /**
      * 
      */
-    public Date getBuildtime() {
+    public LocalDateTime getBuildtime() {
         return buildtime;
     }
 
     /**
      * 
      */
-    public void setBuildtime(Date buildtime) {
+    public void setBuildtime(LocalDateTime buildtime) {
         this.buildtime = buildtime;
     }
 

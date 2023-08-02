@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.xml.crypto.Data;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -54,7 +55,8 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         takenmapcell.setPositionx(param.getX());
         takenmapcell.setPositiony(param.getY());
         takenmapcell.setHousetype(param.getHouseType());
-        //takenmapcell.setBuildtime();
+        LocalDateTime currentTime = LocalDateTime.now();
+        takenmapcell.setBuildtime(currentTime.plusHours(param.getBuildHours()));
         takenmapcellMapper.insert(takenmapcell);
     }
 
@@ -69,7 +71,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         int[] x = new int[num];
         int[] y = new int[num];
         int[] houseType = new int[num];
-        Date[] buildTime = new Date[num];
+        LocalDateTime[] buildTime = new LocalDateTime[num];
         for (int i = 0; i < takenmapcells.size(); i++) {
             x[i] = takenmapcells.get(i).getPositionx();
             y[i] = takenmapcells.get(i).getPositiony();

@@ -55,12 +55,16 @@ func _unhandled_input(event) -> void:
 				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
 				_updateMapDict(selectedBuildingType, cellPos)
 				emit_signal("store_components")
-				
+				# 计算出建造所需时间
+				var buildHours = 24 - (GameManager.construction_speed - 1) * 4
+				if selectedBuildingType > 10:
+					buildHours = buildHours / 2				
 				var _credential = {
 					"x": cellPos.x,
 					"y": cellPos.y,
 					"houseType": selectedBuildingType,
 					"id": GameManager.user_id,
+					"buildHours": buildHours
 				}
 				HttpLayer._buildHouse(_credential);
 				selectedBuildingType = -1
