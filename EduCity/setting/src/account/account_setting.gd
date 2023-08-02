@@ -231,8 +231,6 @@ func checkUsernameFormat(str: String) -> bool:
 func checkEmailFormat(str: String) -> bool:
 	if (str == null):
 		return false
-	if (str.length() > 20 || str.length() < 8):
-		return false
 		
 	var emailPattern = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"
 	var regex = RegEx.new()
