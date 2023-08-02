@@ -58,19 +58,19 @@ public class SaveServiceImpl implements SaveService {
             queryWrapper.eq("positionY",mapDictParam.getY());
 
             Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);
-            if(takenmapcell == null){
-                takenmapcell = new Takenmapcell();
-                takenmapcell.setMapid(cityId);
-                takenmapcell.setPositionx(mapDictParam.getX());
-                takenmapcell.setPositiony(mapDictParam.getY());
-                takenmapcell.setHousetype(mapDictParam.getHouseType());
-                takenmapcellMapper.insert(takenmapcell);
-            }else{
+//            if(takenmapcell == null){
+//                takenmapcell = new Takenmapcell();
+//                takenmapcell.setMapid(cityId);
+//                takenmapcell.setPositionx(mapDictParam.getX());
+//                takenmapcell.setPositiony(mapDictParam.getY());
+//                takenmapcell.setHousetype(mapDictParam.getHouseType());
+//                takenmapcellMapper.insert(takenmapcell);
+//            }else{
                 takenmapcell.setPositionx(mapDictParam.getX());
                 takenmapcell.setPositiony(mapDictParam.getY());
                 takenmapcell.setHousetype(mapDictParam.getHouseType());
                 takenmapcellMapper.update(takenmapcell,queryWrapper);
-            }
+//            }
         }
     }
 }
