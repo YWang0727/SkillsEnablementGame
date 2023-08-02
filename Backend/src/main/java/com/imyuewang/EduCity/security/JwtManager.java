@@ -52,6 +52,16 @@ public final class JwtManager {
         return JWTUtil.createToken(map, secretKeyBytes);
     }
 
+    public static String generate(String userPw) {
+        Map<String, Object> map = new HashMap<String, Object>(){
+            {
+                put(JWTPayload.SUBJECT, userPw);
+            }
+        };
+        return JWTUtil.createToken(map, secretKeyBytes);
+    }
+
+
     /**
      * Verify token
      * @author Yue Wang
@@ -75,6 +85,26 @@ public final class JwtManager {
             validator.validateAlgorithm(JWTSignerUtil.hs256(secretKeyBytes));
             // Verification time
             JWTValidator.of(jwt).validateDate();
+        } catch (Exception e) {
+            log.error("Failed token parsing and validation");
+            return null;
+        }
+        return jwt;
+    }
+    public static JWT parsePwToken(String token) {
+        if(StrUtil.isBlank(token)){
+            return null;
+        }
+        JWT jwt = null;
+        // If parsing fails, an exception is thrown, so catch it. expired tokens and illegal tokens can cause parsing to fail.
+        try {
+            // Parsing (including verification of signatures)
+            jwt = JWTUtil.parseToken(token);
+
+            // Validation algorithms and timing
+            JWTValidator validator = JWTValidator.of(jwt);
+            // Validation Algorithms
+            validator.validateAlgorithm(JWTSignerUtil.hs256(secretKeyBytes));
         } catch (Exception e) {
             log.error("Failed token parsing and validation");
             return null;

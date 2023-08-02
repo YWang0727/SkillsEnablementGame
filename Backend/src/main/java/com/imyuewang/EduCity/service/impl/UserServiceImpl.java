@@ -2,6 +2,8 @@ package com.imyuewang.EduCity.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.jwt.JWT;
+import cn.hutool.jwt.JWTPayload;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.imyuewang.EduCity.config.PasswordEncoder;
 import com.imyuewang.EduCity.enums.ResultCode;
@@ -71,7 +73,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         System.out.println(user);
 
         // Throw error if user or password is wrong
-        if(user == null || !Objects.equals(loginParam.getPassword(), user.getPassword())){
+        String pwLogin = loginParam.getPassword();
+        String pwToken = user.getPassword();
+        //parser pwToken
+        JWT jwt = JwtManager.parsePwToken(pwToken);
+        String pw = jwt.getPayload(JWTPayload.SUBJECT).toString();
+        if(user == null || !Objects.equals(pw, pwLogin)){
             throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");
         }
         // Generate token
@@ -101,8 +108,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /********************************************/
     @Override
     public ResultVO<String> register(RegisterParam newUser) {
+        String tokenPassword = JwtManager.generate(newUser.getPassword());
         User user = new User();
         BeanUtil.copyProperties(newUser, user);
+        user.setPassword(tokenPassword);
         user.setIsFirst(1);
         userMapper.insert(user);
         //initialize values in tables
