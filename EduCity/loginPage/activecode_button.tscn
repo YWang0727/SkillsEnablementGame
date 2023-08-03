@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://3v8pvnju7bv6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j58bq"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecg21"]
+bg_color = Color(0.392157, 0.741176, 0.368627, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f468"]
+bg_color = Color(0, 0, 0, 0.843137)
+
+[sub_resource type="Theme" id="Theme_5q2ag"]
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxFlat_j58bq")
+Button/styles/normal = SubResource("StyleBoxFlat_ecg21")
+Button/styles/pressed = SubResource("StyleBoxFlat_2f468")
+
+[node name="get_activecode_button" type="Button"]
+offset_left = 486.917
+offset_top = 291.893
+offset_right = 836.917
+offset_bottom = 356.893
+scale = Vector2(0.6, 0.6)
+theme = SubResource("Theme_5q2ag")
+text = "Get Active Code"

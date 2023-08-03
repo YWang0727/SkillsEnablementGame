@@ -98,23 +98,23 @@ func set_focus():
 	
 func create_labels():
 	#creat valid verification labels
-	validEmailLabel_Log = createLabel("Valid format!", Vector2(70, 220), 20, Color(0.0, 0.67, 0.0),logPanel)
-	invalidEmailLabel_Log = createLabel("Invalid format!", Vector2(70, 220), 20, Color(0.78, 0.19, 0.24),logPanel)
+	validEmailLabel_Log = createLabel("Valid format!", Vector2(70, 205), 20, Color(0.0, 0.67, 0.0),logPanel)
+	invalidEmailLabel_Log = createLabel("Invalid format!", Vector2(70, 205), 20, Color(0.78, 0.19, 0.24),logPanel)
 	validEmailLabel_Log.visible = false
 	invalidEmailLabel_Log.visible = false
 	
-	validEmailLabel_Sign = createLabel("Valid format!", Vector2(70, 110), 20, Color(0.0, 0.67, 0.0),signPanel1)
-	invalidEmailLabel_Sign = createLabel("Invalid format!", Vector2(70, 110), 20, Color(0.78, 0.19, 0.24),signPanel1)
+	validEmailLabel_Sign = createLabel("Valid format!", Vector2(70, 193), 20, Color(0.0, 0.67, 0.0),signPanel1)
+	invalidEmailLabel_Sign = createLabel("Invalid format!", Vector2(70, 193), 20, Color(0.78, 0.19, 0.24),signPanel1)
 	validEmailLabel_Sign.visible = false
 	invalidEmailLabel_Sign.visible = false
 	
-	validPw1Label = createLabel("Passwords match!", Vector2(70, 175), 20, Color(0.0, 0.67, 0.0),signPanel2)
-	invalidPw1Label = createLabel("Passwords do not match!", Vector2(70, 175), 20, Color(0.78, 0.19, 0.24),signPanel2)
+	validPw1Label = createLabel("Passwords match!", Vector2(70, 255), 20, Color(0.0, 0.67, 0.0),signPanel2)
+	invalidPw1Label = createLabel("Passwords do not match!", Vector2(70, 255), 20, Color(0.78, 0.19, 0.24),signPanel2)
 	validPw1Label.visible = false
 	invalidPw1Label.visible = false
 	
-	validPw2Label = createLabel("Passwords match!", Vector2(70, 265), 20, Color(0.0, 0.67, 0.0),signPanel2)
-	invalidPw2Label = createLabel("Passwords do not match!", Vector2(70, 265), 20, Color(0.78, 0.19, 0.24),signPanel2)
+	validPw2Label = createLabel("Passwords match!", Vector2(70, 350), 20, Color(0.0, 0.67, 0.0),signPanel2)
+	invalidPw2Label = createLabel("Passwords do not match!", Vector2(70, 350), 20, Color(0.78, 0.19, 0.24),signPanel2)
 	validPw2Label.visible = false
 	invalidPw2Label.visible = false
 	
