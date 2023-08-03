@@ -49,7 +49,7 @@ var buildings_data = []
 var gold = 9999
 var prosperity = 0
 var construction_speed = 1
-var mapDict = {} # 储存房子建在哪个cell上，需要读写后端
+var mapDict = {} # key: cell position, value: {"house_type":int, "finish_time":string}
 
 # Setting
 var music_volume = 0.7

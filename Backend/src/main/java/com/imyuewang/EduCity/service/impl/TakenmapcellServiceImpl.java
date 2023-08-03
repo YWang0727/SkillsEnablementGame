@@ -96,7 +96,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         queryWrapper.eq("positionX",param.getX());
         queryWrapper.eq("positionY",param.getY());
         Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);
-        takenmapcell.setHousetype(takenmapcell.getHousetype()+10);
+        takenmapcell.setHousetype(takenmapcell.getHousetype());
         takenmapcellMapper.update(takenmapcell,queryWrapper);
     }
 

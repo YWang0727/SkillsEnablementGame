@@ -9,7 +9,7 @@ var updateCellPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.show()
+	self.hide()
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -115,13 +115,10 @@ func pushComponents():
 
 
 func levelUp():
-	var buildingType = buildingID
-	if buildingID >= 10:
-		buildingType -= 10
 	var _credential = {
 			"x": updateCellPos.x,
 			"y": updateCellPos.y,
-			"houseType": buildingType,
+			"houseType": buildingID,
 			"id": GameManager.user_id,
 	}
 	HttpLayer._levelUp(_credential);

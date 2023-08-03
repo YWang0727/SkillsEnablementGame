@@ -3,6 +3,7 @@ extends TileMap
 signal store_components
 signal attributes_show2
 
+var inBuildingTile: int = 96
 var selectedTile: int = 98
 var selectedLayer: int = 1
 var buildingLayer: int = 2
@@ -11,10 +12,9 @@ var cellPosArray2D = [] # 储存每个房子的占地cell，防止overlap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	HttpLayer.connect("http_completed", http_completed)
 	_drawMap()
 	generateCellPosArray2D()
-	#HttpLayer.connect("http_completed", http_completed)
-	#HttpLayer._readMap()
 	
 
 func _unhandled_input(event) -> void:
@@ -52,13 +52,12 @@ func _unhandled_input(event) -> void:
 				if selectedBuildingType == 4 and GameManager.construction_speed < 6:
 					GameManager.construction_speed += 1
 				clear_layer(selectedLayer)
-				set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
-				_updateMapDict(selectedBuildingType, cellPos)
+				
 				emit_signal("store_components")
 				# 计算出建造所需时间
 				var buildHours = 24 - (GameManager.construction_speed - 1) * 4
 				if selectedBuildingType > 10:
-					buildHours = buildHours / 2				
+					buildHours = buildHours / 2
 				var _credential = {
 					"x": cellPos.x,
 					"y": cellPos.y,
@@ -66,20 +65,43 @@ func _unhandled_input(event) -> void:
 					"id": GameManager.user_id,
 					"buildHours": buildHours
 				}
-				HttpLayer._buildHouse(_credential);
+				HttpLayer._buildHouse(_credential)
+				_drawInBuildingCells(selectedBuildingType,cellPos)
+				
+				#set_cell(buildingLayer,cellPos,selectedBuildingType,Vector2i(0,0))  # 在指定单元位置上放置选定的图块索引
 				selectedBuildingType = -1
 				
 				
 			
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+#Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	for key in GameManager.mapDict.keys():
+		var buildFinishTimestamp = Time.get_unix_time_from_datetime_string(GameManager.mapDict[key]["finish_time"])
+		var nowTimeString = Time.get_datetime_string_from_system()
+		var nowTimestamp = Time.get_unix_time_from_datetime_string(nowTimeString)
+		if buildFinishTimestamp >= nowTimestamp:
+			var timeDifference = buildFinishTimestamp - nowTimestamp
+			var hours = timeDifference / 3600
+			var minutes = (timeDifference % 3600) / 60
+			var seconds = timeDifference % 60
+			var label = get_node("Label" + str(key))
+			if label:
+				label.text = "Time remaining for building: \n" + str(hours) + ":" + str(minutes) + ":" + str(seconds)
+		else:
+			_eraseInBuildingCells(GameManager.mapDict[key]["house_type"],key)
+			set_cell(buildingLayer,key,GameManager.mapDict[key]["house_type"],Vector2i(0,0))
+			pass
 	pass
-	
+
+
+
 func _drawMap() -> void:
 	for key in GameManager.mapDict.keys():
-		var id = GameManager.mapDict[key]
-		if id != GameManager.BuildingType.blank:
+		var id = GameManager.mapDict[key]["house_type"]
+		if id != GameManager.BuildingType.blank and GameManager.mapDict[key]["finish_time"] == "-1":
 			set_cell(buildingLayer, key, id, Vector2i(0,0))
+
+
 
 # If a new building overlaps with an existing house, return false
 func _checkCellOverlap(selectedBuildingType, cellPos) -> bool:
@@ -102,7 +124,50 @@ func _checkCellOverlap(selectedBuildingType, cellPos) -> bool:
 			_ifContainsCellPos(cellPosArray2D,cellPos+Vector2i(1, 1)):
 				return false
 	return true
-	
+
+
+
+func _drawInBuildingCells(selectedBuildingType, cellPos) -> void:
+	var cellsCount = _getCellsCount(selectedBuildingType)
+	match cellsCount:
+		# a building occupying 1 cell
+		1:
+			set_cell(buildingLayer,cellPos,inBuildingTile,Vector2i(0,0))
+		# a building occupying 2 cells
+		2:
+			set_cell(buildingLayer,cellPos,inBuildingTile,Vector2i(0,0))
+			set_cell(buildingLayer,cellPos+Vector2i(1, 0),inBuildingTile,Vector2i(0,0))
+		# a building occupying 4 cells
+		4:
+			set_cell(buildingLayer,cellPos,inBuildingTile,Vector2i(0,0))
+			set_cell(buildingLayer,cellPos+Vector2i(1, 0),inBuildingTile,Vector2i(0,0))
+			set_cell(buildingLayer,cellPos+Vector2i(0, 1),inBuildingTile,Vector2i(0,0))
+			set_cell(buildingLayer,cellPos+Vector2i(1, 1),inBuildingTile,Vector2i(0,0))
+	var label = Label.new()
+	label.name = "Label" + str(cellPos)
+	label.text = "Time remaining for building: "
+	label.size = Vector2(100, 30)
+	label.position = map_to_local(cellPos)
+	add_child(label)
+
+func _eraseInBuildingCells(selectedBuildingType,cellPos) -> void:
+	var cellsCount = _getCellsCount(selectedBuildingType)
+	match cellsCount:
+		# a building occupying 1 cell
+		1:
+			erase_cell(buildingLayer,cellPos)
+		# a building occupying 2 cells
+		2:
+			erase_cell(buildingLayer,cellPos)
+			erase_cell(buildingLayer,cellPos+Vector2i(1, 0))
+		# a building occupying 4 cells
+		4:
+			erase_cell(buildingLayer,cellPos)
+			erase_cell(buildingLayer,cellPos+Vector2i(1, 0))
+			erase_cell(buildingLayer,cellPos+Vector2i(0, 1))
+			erase_cell(buildingLayer,cellPos+Vector2i(1, 1))
+	pass
+
 func _drawSelectedCells(selectedBuildingType, cellPos) -> void:
 	var cellsCount = _getCellsCount(selectedBuildingType)
 	match cellsCount:
@@ -121,35 +186,20 @@ func _drawSelectedCells(selectedBuildingType, cellPos) -> void:
 			set_cell(selectedLayer,cellPos+Vector2i(1, 1),98,Vector2i(0,0))
 
 
-func _updateMapDict(selectedBuildingType, cellPos) -> void:
-	var cellsCount = _getCellsCount(selectedBuildingType)
-	GameManager.mapDict[cellPos] = selectedBuildingType
-	match cellsCount:
-		# a building occupying 1 cell
-		1:
-			cellPosArray2D.append([cellPos])
-		# a building occupying 2 cells
-		2:
-			cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0)])
-		# a building occupying 4 cells
-		4:
-			cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0), cellPos+Vector2i(0, 1), cellPos+Vector2i(1, 1)])
+#func _updateMapDict(selectedBuildingType, cellPos) -> void:
+#	var cellsCount = _getCellsCount(selectedBuildingType)
+#	GameManager.mapDict[cellPos]["house_type"] = selectedBuildingType
+#	match cellsCount:
+#		# a building occupying 1 cell
+#		1:
+#			cellPosArray2D.append([cellPos])
+#		# a building occupying 2 cells
+#		2:
+#			cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0)])
+#		# a building occupying 4 cells
+#		4:
+#			cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0), cellPos+Vector2i(0, 1), cellPos+Vector2i(1, 1)])
 
-
-
-func http_completed(res, response_code, headers, route):
-	#if token is checked and valid, return true
-	if !AlertPopup.tokenCheck(res):
-		return	
-	if route == "readMap":
-		for i in range(0, res.num):
-			var cellPos_temp
-			cellPos_temp = local_to_map(position)
-			cellPos_temp.x = res.x[i]
-			cellPos_temp.y = res.y[i]
-			GameManager.mapDict[cellPos_temp] = res.houseType[i]
-			set_cell(buildingLayer,cellPos_temp,res.houseType[i],Vector2i(0,0))
-			
 
 
 func _getCellsCount(id:int) -> int:
@@ -207,14 +257,14 @@ func _drawSelectedUpdatedCells(cellPos):
 				break
 	if found:
 		# Level3 buildings can't be updated any more
-		if GameManager.mapDict[targetRow[0]] < 20:
+		if GameManager.mapDict[targetRow[0]]["house_type"] < 20:
 			for x in targetRow:
 				set_cell(selectedLayer,x,selectedTile,Vector2i(0,0))
 
 
 func generateCellPosArray2D():
 	for cellPos in GameManager.mapDict:
-		var value:int = GameManager.mapDict[cellPos]
+		var value:int = GameManager.mapDict[cellPos]["house_type"]
 		var cellsCount = _getCellsCount(value)
 		match cellsCount:
 			# a building occupying 1 cell
@@ -226,4 +276,21 @@ func generateCellPosArray2D():
 			# a building occupying 4 cells
 			4:
 				cellPosArray2D.append([cellPos, cellPos+Vector2i(1, 0), cellPos+Vector2i(0, 1), cellPos+Vector2i(1, 1)])
-			
+
+
+func http_completed(res, response_code, headers, route):
+	#if token is checked and valid, return true
+	if !AlertPopup.tokenCheck(res):
+		return	
+	if route == "buildHouse":
+		HttpLayer._readMap()
+		return
+	if route == "readMap":
+		for i in range(0, res.num):
+			var cellPos_temp
+			cellPos_temp = position
+			cellPos_temp.x = res.x[i]
+			cellPos_temp.y = res.y[i]
+			GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.buildTime[i]}
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://nx1lsqdvmrv2"]
+[gd_scene load_steps=51 format=3 uid="uid://nx1lsqdvmrv2"]
 
 [ext_resource type="Texture2D" uid="uid://d048ec4o4d3fy" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_2.png" id="1_btxbq"]
 [ext_resource type="Texture2D" uid="uid://cff3556jhqvd" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_1.png" id="1_ibpxp"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://bxwl70e7cqquo" path="res://XufengPart/Icon_Buildings/Construction Site/Construction Site_3.png" id="14_doji0"]
 [ext_resource type="Texture2D" uid="uid://by8r4ux2yra7e" path="res://XufengPart/Icon_Buildings/Residential Building/residential building_3.png" id="15_6mv87"]
 [ext_resource type="Texture2D" uid="uid://cmanatnt1bkvm" path="res://XufengPart/Icon_Buildings/Construction Site/Construction Site_1.png" id="17_fr8tr"]
+[ext_resource type="Texture2D" uid="uid://timquq2ik58" path="res://XufengPart/Icon_Buildings/crops.png" id="19_4qf6d"]
+[ext_resource type="Texture2D" uid="uid://c5jiloxbtwogk" path="res://XufengPart/Icon_Buildings/ground_dirt.png" id="19_7i64q"]
 [ext_resource type="Script" path="res://XufengPart/UpdateButton.gd" id="21_khrd3"]
 [ext_resource type="Texture2D" uid="uid://d3es460vy2gdo" path="res://XufengPart/Icons/upgrade.png" id="22_grig7"]
 
@@ -132,6 +134,16 @@ texture_region_size = Vector2i(126, 84)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(-42, -8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2d1yx"]
+texture = ExtResource("19_7i64q")
+texture_region_size = Vector2i(132, 68)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mu040"]
+texture = ExtResource("19_4qf6d")
+texture_region_size = Vector2i(132, 68)
+0:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3jkh"]
 texture = ExtResource("7_w6ss6")
 texture_region_size = Vector2i(132, 68)
@@ -166,6 +178,8 @@ sources/21 = SubResource("TileSetAtlasSource_mqt4r")
 sources/14 = SubResource("TileSetAtlasSource_evs0q")
 sources/24 = SubResource("TileSetAtlasSource_eadae")
 sources/4 = SubResource("TileSetAtlasSource_2s1nn")
+sources/97 = SubResource("TileSetAtlasSource_mu040")
+sources/96 = SubResource("TileSetAtlasSource_2d1yx")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8c5ga"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
