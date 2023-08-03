@@ -11,13 +11,14 @@
             <result property="avatar" column="avatar" jdbcType="BLOB"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="citymap" column="cityMap" jdbcType="BIGINT"/>
-            <result property="isactive" column="isActive" jdbcType="TINYINT"/>
+            <result property="isFirst" column="isFirst" jdbcType="TINYINT"/>
             <result property="activecode" column="activeCode" jdbcType="INTEGER"/>
+            <result property="logOutTime" column="logOutTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,email,password,
-        name,cityMap,isActive,
-        activeCode,avatar
+        name,cityMap,isFirst,
+        activeCode,avatar,logOutTime
     </sql>
 </mapper>

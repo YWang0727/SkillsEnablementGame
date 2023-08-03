@@ -42,6 +42,9 @@ public class MailUtil {
             final Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.host", "smtp.qq.com");
+            props.put("mail.smtp.port", "465");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
             // sender's account
             props.put("mail.user", USER);

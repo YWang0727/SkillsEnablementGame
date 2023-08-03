@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=22 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://cclg3j57gug3p" path="res://loginPage/img/bg (3).png" id="2_mqhxh"]
+[ext_resource type="PackedScene" uid="uid://3v8pvnju7bv6" path="res://loginPage/activecode_button.tscn" id="3_dd83c"]
 [ext_resource type="Texture2D" uid="uid://o628e2s2tbmu" path="res://loginPage/eye-hiden.png" id="4_5feks"]
 [ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
 [ext_resource type="Texture2D" uid="uid://dgau6ji45fx4j" path="res://loginPage/img/logo3.png" id="6_ko20s"]
@@ -68,29 +69,6 @@ RichTextLabel/font_sizes/bold_font_size = 22
 RichTextLabel/font_sizes/bold_italics_font_size = 36
 RichTextLabel/font_sizes/italics_font_size = 27
 RichTextLabel/font_sizes/mono_font_size = 28
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j58bq"]
-bg_color = Color(0.443137, 0.443137, 0.443137, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecg21"]
-bg_color = Color(0.392157, 0.741176, 0.368627, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f468"]
-bg_color = Color(0, 0, 0, 0.843137)
-
-[sub_resource type="Theme" id="Theme_5q2ag"]
-Button/styles/focus = null
-Button/styles/hover = SubResource("StyleBoxFlat_j58bq")
-Button/styles/normal = SubResource("StyleBoxFlat_ecg21")
-Button/styles/pressed = SubResource("StyleBoxFlat_2f468")
 
 [sub_resource type="InputEventKey" id="InputEventKey_8pldv"]
 device = -1
@@ -171,9 +149,9 @@ visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
-offset_top = 357.0
+offset_top = 277.0
 offset_right = 876.0
-offset_bottom = 777.0
+offset_bottom = 778.0
 scale = Vector2(0.996063, 0.983238)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
@@ -186,9 +164,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -1.00389
-offset_top = -167.284
+offset_top = -127.619
 offset_right = -1.00397
-offset_bottom = -97.284
+offset_bottom = -57.6191
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -218,9 +196,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -1.00397
-offset_top = -73.6188
+offset_top = -33.9539
 offset_right = -1.00397
-offset_bottom = -3.61877
+offset_bottom = 36.0461
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -248,9 +226,9 @@ caret_blink = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_left = 127.502
-offset_top = 280.705
+offset_top = 342.745
 offset_right = 627.502
-offset_bottom = 320.705
+offset_bottom = 382.745
 theme = SubResource("Theme_55kvq")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
@@ -265,9 +243,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -1.00397
-offset_top = 130.711
+offset_top = 170.376
 offset_right = -1.00397
-offset_bottom = 210.711
+offset_bottom = 250.376
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -284,22 +262,19 @@ grow_vertical = 2
 size_flags_horizontal = 3
 text = "Next"
 
-[node name="get_activecode_button" type="Button" parent="sign_in1"]
+[node name="get_activecode_button" parent="sign_in1" instance=ExtResource("3_dd83c")]
 layout_mode = 0
-offset_left = 486.917
-offset_top = 214.597
-offset_right = 836.917
-offset_bottom = 279.597
-scale = Vector2(0.6, 0.6)
-theme = SubResource("Theme_5q2ag")
-text = "Get Active Code"
+offset_left = 488.925
+offset_top = 292.91
+offset_right = 838.925
+offset_bottom = 357.91
 
 [node name="sign_in2" type="Panel" parent="."]
 visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 offset_left = 176.0
-offset_top = 357.0
+offset_top = 280.0
 offset_right = 876.0
 offset_bottom = 807.0
 size_flags_vertical = 3
@@ -312,8 +287,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -206.0
-offset_bottom = -136.0
+offset_top = -167.0
+offset_bottom = -97.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -342,8 +317,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -114.0
-offset_bottom = -44.0
+offset_top = -75.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -391,8 +366,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -22.4432
-offset_bottom = 47.5568
+offset_top = 16.5568
+offset_bottom = 86.5568
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -437,10 +412,10 @@ texture_pressed = ExtResource("5_e7cc7")
 [node name="RichTextLabel2" type="RichTextLabel" parent="sign_in2"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
-offset_left = 127.502
-offset_top = 315.0
-offset_right = 627.502
-offset_bottom = 355.0
+offset_left = 137.0
+offset_top = 378.0
+offset_right = 637.0
+offset_bottom = 418.0
 theme = SubResource("Theme_55kvq")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
@@ -454,8 +429,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 143.0
-offset_bottom = 223.0
+offset_top = 182.0
+offset_bottom = 262.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -493,10 +468,11 @@ layout_mode = 2
 offset_left = 176.0
 offset_top = 279.0
 offset_right = 876.0
-offset_bottom = 858.0
+offset_bottom = 777.0
 scale = Vector2(1, 0.987)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.61
+metadata/_edit_lock_ = true
 
 [node name="email_input_panel" type="Panel" parent="log_in"]
 layout_mode = 1
@@ -504,8 +480,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -142.59
-offset_bottom = -72.5902
+offset_top = -117.261
+offset_bottom = -47.261
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -534,8 +510,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -42.5902
-offset_bottom = 27.4098
+offset_top = -17.2609
+offset_bottom = 52.7391
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -584,9 +560,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 0.00793457
-offset_top = 194.247
+offset_top = 153.72
 offset_right = 0.00793457
-offset_bottom = 290.247
+offset_bottom = 249.72
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -605,9 +581,9 @@ text = "Log In"
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_left = 225.0
-offset_top = 367.781
+offset_top = 334.346
 offset_right = 725.0
-offset_bottom = 407.781
+offset_bottom = 374.346
 theme = SubResource("Theme_55kvq")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
@@ -655,6 +631,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
+button_pressed = true
 text = "Log In"
 
 [node name="Sign in" type="Button" parent="Tabars/HBoxContainer"]
