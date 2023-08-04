@@ -383,7 +383,20 @@ func http_completed(res, response_code, headers, route) -> void:
 			cellPos_temp = position
 			cellPos_temp.x = res.x[i]
 			cellPos_temp.y = res.y[i]
-			GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
+			# If build is finish, change finish_time to 0 in mapDict
+			var nowTimestamp:int = Time.get_unix_time_from_system()
+			if res.finishTime[i] != 0 and res.finishTime[i] <= nowTimestamp:
+				GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":0}
+				# save new finish_time:0 in backend
+				var _credential = {
+					"x": res.x[i],
+					"y": res.y[i],
+					"houseType": res.houseType[i],
+					"id": GameManager.user_id,
+				}
+				HttpLayer._clearMapTime(_credential)
+			else:
+				GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
 		print("---------------------read map success!")
 		return
 	

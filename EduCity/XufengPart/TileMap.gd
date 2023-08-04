@@ -51,54 +51,27 @@ func _unhandled_input(event) -> void:
 				GameManager.prosperity += prosperity
 				if selectedBuildingType == 4 and GameManager.construction_speed < 6:
 					GameManager.construction_speed += 1
-				clear_layer(selectedLayer)
 				emit_signal("store_components")
-				# 计算出建造所需时间
-				var buildHours = 24 - (GameManager.construction_speed - 1) * 4
-				if selectedBuildingType > 10:
-					buildHours = buildHours / 2
-				var _credential = {
-					"x": cellPos.x,
-					"y": cellPos.y,
-					"houseType": selectedBuildingType,
-					"id": GameManager.user_id,
-					"buildHours": buildHours
-				}
-				HttpLayer._buildHouse(_credential)
+				_http_buildHouse(cellPos,selectedBuildingType)
+				clear_layer(selectedLayer)
 				_drawInBuildingCellsLabel(selectedBuildingType,cellPos)
 				selectedBuildingType = -1
 
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for key in GameManager.mapDict.keys():
-		if GameManager.mapDict[key]["finish_time"] != 0:
-			var buildFinishTimestamp:int = GameManager.mapDict[key]["finish_time"]
+	for cellPos in GameManager.mapDict.keys():
+		if GameManager.mapDict[cellPos]["finish_time"] != 0:
+			var buildFinishTimestamp:int = GameManager.mapDict[cellPos]["finish_time"]
 			var nowTimestamp:int = Time.get_unix_time_from_system()
 			if buildFinishTimestamp >= nowTimestamp:
-				var timeDifference = buildFinishTimestamp - nowTimestamp
-				var hours = timeDifference / 3600
-				var minutes = (timeDifference % 3600) / 60
-				var seconds = timeDifference % 60
-				var label = get_node("Label" + str(key))
-				if label:
-					label.text = "Time Remaining \n For Building: \n" + str(hours) + ":" + str(minutes) + ":" + str(seconds)
+				_setLabelText(cellPos,buildFinishTimestamp - nowTimestamp)
 			else:
-				_eraseInBuildingCells(GameManager.mapDict[key]["house_type"],key)
-				set_cell(buildingLayer,key,GameManager.mapDict[key]["house_type"],Vector2i(0,0))
-				addCellPosArray2D(key,GameManager.mapDict[key]["house_type"])
-				var label = get_node("Label" + str(key))
-				if label:
-					label.queue_free()
-				GameManager.mapDict[key]["finish_time"] = 0
-				var _credential = {
-					"x": key.x,
-					"y": key.y,
-					"houseType": GameManager.mapDict[key]["house_type"],
-					"id": GameManager.user_id,
-				}
-				HttpLayer._clearMapTime(_credential)
-	pass
+				_eraseInBuildingCells(GameManager.mapDict[cellPos]["house_type"],cellPos)
+				set_cell(buildingLayer,cellPos,GameManager.mapDict[cellPos]["house_type"],Vector2i(0,0))
+				addCellPosArray2D(cellPos,GameManager.mapDict[cellPos]["house_type"])
+				_freeLabel(cellPos)
+				_http_ClearMapTime(cellPos)
 
 
 #---------------------------------------------------------------------------
@@ -279,6 +252,19 @@ func _checkCellOverlap(selectedBuildingType, cellPos) -> bool:
 				return false
 	return true
 
+func _setLabelText(cellPos, timeDifference):
+	var hours = timeDifference / 3600
+	var minutes = (timeDifference % 3600) / 60
+	var seconds = timeDifference % 60
+	var label = get_node("Label" + str(cellPos))
+	if label:
+		label.text = "Time Remaining \n For Building: \n" + str(hours) + ":" + str(minutes) + ":" + str(seconds)
+
+func _freeLabel(cellPos):
+	var label = get_node("Label" + str(cellPos))
+	if label:
+		label.queue_free()
+
 #---------------------------------------------------------------------------
 #---------------------------------Signals-----------------------------------
 #---------------------------------------------------------------------------
@@ -307,4 +293,24 @@ func http_completed(res, response_code, headers, route):
 			cellPos_temp.x = res.x[i]
 			cellPos_temp.y = res.y[i]
 			GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
-			
+
+func _http_ClearMapTime(cellPos):
+	GameManager.mapDict[cellPos]["finish_time"] = 0
+	var _credential = {
+		"x": cellPos.x,
+		"y": cellPos.y,
+		"houseType": GameManager.mapDict[cellPos]["house_type"],
+		"id": GameManager.user_id,
+	}
+	HttpLayer._clearMapTime(_credential)
+
+func _http_buildHouse(cellPos,selectedBuildingType):
+	var buildHours = 24 - (GameManager.construction_speed - 1) * 4
+	var _credential = {
+		"x": cellPos.x,
+		"y": cellPos.y,
+		"houseType": selectedBuildingType,
+		"id": GameManager.user_id,
+		"buildHours": buildHours
+	}
+	HttpLayer._buildHouse(_credential)
