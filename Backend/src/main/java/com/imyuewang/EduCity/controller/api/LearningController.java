@@ -44,18 +44,6 @@ public class LearningController {
         return userQuizService.submitQuiz(param);
     }
 
-//    @PostMapping("/localStorage")
-//    @ApiOperation(value = "get local storage")
-//    public QuizVO localStorage(@RequestBody QuizParam param) {
-//        return userQuizService.localStorage(param);
-//    }
-
-//    @PostMapping("/check")
-//    @ApiOperation(value = "Check quiz status")
-//    public QuizVO checkQuiz(@RequestBody QuizParam param) {
-//        return userQuizService.checkQuiz(param);
-//    }
-//
     @PostMapping("/status")
     @ApiOperation(value = "get user's learning status")
     public QuizVO getStatus(@RequestBody QuizParam param) {

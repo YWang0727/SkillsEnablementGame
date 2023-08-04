@@ -48,7 +48,7 @@ class EduCityApplicationTests {
     @Test
     void testRegister(){
         RegisterParam param = new RegisterParam();
-        param.setEmail("kahty6@gmail.com");
+        param.setEmail("kathy6@gmail.com");
         param.setActivecode("333333");
         param.setName("kathy2");
         param.setPassword("2331");
@@ -105,7 +105,7 @@ class EduCityApplicationTests {
         System.out.println(role);
 
 
-        // 验证签名
+        // Verify Signature
         boolean verify = JWTUtil.verify(token, secretKeyBytes);
         System.out.println(verify);
 
@@ -113,10 +113,10 @@ class EduCityApplicationTests {
 
             JWTValidator validator = JWTValidator.of(jwt);
 
-            // 验证算法
+            // Validation Algorithms
             validator.validateAlgorithm(JWTSignerUtil.hs256(secretKeyBytes));
 
-            // 验证时间
+            // Verification time
             JWTValidator.of(jwt).validateDate();
 
         } catch (ValidateException e) {
