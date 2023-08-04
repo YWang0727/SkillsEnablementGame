@@ -9,6 +9,7 @@ var updateCellPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	HttpLayer.connect("http_completed", http_completed)
 	self.hide()
 
 
@@ -64,10 +65,10 @@ func _on_pressed():
 		buildingID == GameManager.BuildingType.constrction_site_3:
 			if GameManager.construction_speed < 6:
 				GameManager.construction_speed += 1
-		tileMap.set_cell(tileMap.buildingLayer,updateCellPos,buildingID,Vector2i(0,0))
-		GameManager.mapDict[updateCellPos]["house_type"] = buildingID
-		pushComponents()
+		
+		tileMap._drawInBuildingCellsLabel(buildingID,updateCellPos)
 		levelUp(buildingID)
+		pushComponents()
 	else :
 		var error_pannel = get_node("/root/MainScene/ErrorPannel")
 		error_pannel.popup_centered()
@@ -103,6 +104,19 @@ func getBuildingDataByID(id:int) -> Dictionary:
 #---------------------------------------------------------------------------
 #---------------------------------HTTPLAYER---------------------------------
 #---------------------------------------------------------------------------
+func http_completed(res, response_code, headers, route):
+	if route == "levelUp(":
+		HttpLayer._readMap()
+		return
+	if route == "readMap":
+		for i in range(0, res.num):
+			var cellPos_temp
+			cellPos_temp = position
+			cellPos_temp.x = res.x[i]
+			cellPos_temp.y = res.y[i]
+			GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
+
+
 func pushComponents():
 	var _credential = {
 			"gold": GameManager.gold,
@@ -115,10 +129,17 @@ func pushComponents():
 
 
 func levelUp(buildingID):
+	var buildHours = (24 - (GameManager.construction_speed - 1) * 4) / 2
+	var nowTimestamp:int = Time.get_unix_time_from_system()
+	#var finishTime = nowTimestamp + buildHours * 3600
+	var finishTime = nowTimestamp + buildHours*20 # 用于测试，单位为秒
 	var _credential = {
 			"x": updateCellPos.x,
 			"y": updateCellPos.y,
 			"houseType": buildingID,
 			"id": GameManager.user_id,
+			"finishTime": finishTime
 	}
-	HttpLayer._levelUp(_credential);
+	HttpLayer._levelUp(_credential)
+	GameManager.mapDict[updateCellPos]["finish_time"] = finishTime
+	GameManager.mapDict[updateCellPos]["house_type"] = buildingID

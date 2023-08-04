@@ -42,9 +42,7 @@ func _ready():
 func _on_Button_pressed():
 	get_tree().change_scene_to_file(\"res://LearningPage/learning_scene.tscn\")
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlvpp"]

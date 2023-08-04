@@ -72,8 +72,4 @@ func http_completed(res, response_code, headers, route) -> void:
 			AlertPopup.setPosition(0,0,'center')
 			AlertPopup.show_error_message("Failed to save, please try again later")
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	

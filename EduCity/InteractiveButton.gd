@@ -15,6 +15,3 @@ func _onPressed():
 		set_position(Vector2(1600, 510))
 		isExpanded = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

@@ -16,10 +16,6 @@ func _onToggleButtonPressed():
 		set_position(Vector2(1620, 0))
 		isExpanded = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func _on_res_building_button_pressed():
 	tileMap.selectedBuildingType = GameManager.BuildingType.residential_building_1

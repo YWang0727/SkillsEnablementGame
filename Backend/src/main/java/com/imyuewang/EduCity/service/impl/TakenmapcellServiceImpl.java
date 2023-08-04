@@ -47,23 +47,6 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     }
 
 
-    //建新房子   插入一条新的 mapID = user.getCitymap()的数据
-    @Override
-    public void buildHouse(MapDictParam param){
-        User user = userMapper.selectById(param.getId());
-        Takenmapcell takenmapcell = new Takenmapcell();
-        takenmapcell.setMapid(user.getCitymap());
-        takenmapcell.setPositionx(param.getX());
-        takenmapcell.setPositiony(param.getY());
-        takenmapcell.setHousetype(param.getHouseType());
-        long unixTimestamp = System.currentTimeMillis() / 1000;
-        //unixTimestamp += param.getBuildHours() * 60 * 60;
-        unixTimestamp += param.getBuildHours() * 2; // 为了方便测试，建造时间现在以秒为单位，范围[8,48]
-        takenmapcell.setFinishtime(unixTimestamp);
-        takenmapcellMapper.insert(takenmapcell);
-    }
-
-
     @Override
     public MapDictVO otherMap(Long mapId){
         MapDictVO mapDictVO = new MapDictVO();
@@ -89,6 +72,18 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         return mapDictVO;
     }
 
+    //建新房子   插入一条新的 mapID = user.getCitymap()的数据
+    @Override
+    public void buildHouse(MapDictParam param){
+        User user = userMapper.selectById(param.getId());
+        Takenmapcell takenmapcell = new Takenmapcell();
+        takenmapcell.setMapid(user.getCitymap());
+        takenmapcell.setPositionx(param.getX());
+        takenmapcell.setPositiony(param.getY());
+        takenmapcell.setHousetype(param.getHouseType());
+        takenmapcell.setFinishtime(param.getFinishTime());
+        takenmapcellMapper.insert(takenmapcell);
+    }
 
     //通过 mapid x y 更新对应的house type
     @Override
@@ -99,7 +94,8 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         queryWrapper.eq("positionX",param.getX());
         queryWrapper.eq("positionY",param.getY());
         Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);
-        takenmapcell.setHousetype(param.getHouseType());
+        takenmapcell.setHousetype(param.getHouseType());// update house type
+        takenmapcell.setFinishtime(param.getFinishTime());// update finish time
         takenmapcellMapper.update(takenmapcell,queryWrapper);
     }
 

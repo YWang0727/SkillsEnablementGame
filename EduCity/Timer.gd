@@ -13,6 +13,4 @@ func _on_Timer_timeout():
 		print("timeout, go autosave")
 		Saving.save_auto()
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
