@@ -147,6 +147,9 @@ func _otherMap():
 func _levelUp(_credentials):
 	_apiCore("map_cell/levelUp", _credentials, true, "POST", "levelUp")
 
+func _clearMapTime(_credentials):
+	_apiCore("map_cell/clearMapTime", _credentials, true, "POST", "clearMapTime")
+
 
 # chatbot functions
 func send_message(data):

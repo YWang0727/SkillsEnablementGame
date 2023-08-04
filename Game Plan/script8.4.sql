@@ -16,7 +16,7 @@ create table takenmapcell
     positionX  int    not null,
     positionY  int    not null,
     houseType  int    not null,
-    buildTime  datetime    null,
+    finishTime  bigint    null,
     primary key (mapId, positionX, positionY)
 );
 

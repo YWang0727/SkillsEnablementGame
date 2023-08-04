@@ -16,12 +16,11 @@ public interface TakenmapcellService extends IService<Takenmapcell> {
 
     void buildHouse(MapDictParam param);
 
-
     MapDictVO otherMap(Long mapId);
 
-
-    //update   house level + 1
     void levelUp(MapDictParam param);
+
+    void clearMapTime(MapDictParam param);
 
 
 

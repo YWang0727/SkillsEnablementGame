@@ -10,7 +10,7 @@ var updateCellPos
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.hide()
-	
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -65,9 +65,9 @@ func _on_pressed():
 			if GameManager.construction_speed < 6:
 				GameManager.construction_speed += 1
 		tileMap.set_cell(tileMap.buildingLayer,updateCellPos,buildingID,Vector2i(0,0))
-		GameManager.mapDict[updateCellPos] = buildingID
+		GameManager.mapDict[updateCellPos]["house_type"] = buildingID
 		pushComponents()
-		levelUp()
+		levelUp(buildingID)
 	else :
 		var error_pannel = get_node("/root/MainScene/ErrorPannel")
 		error_pannel.popup_centered()
@@ -89,7 +89,7 @@ func _getBuildingID(targetCellPos) -> int:
 		updateCellPos = targetRow[0]
 		for cellPos in targetRow:
 			if GameManager.mapDict.has(cellPos):
-				return GameManager.mapDict[cellPos]
+				return GameManager.mapDict[cellPos]["house_type"]
 	return -1
 
 
@@ -114,7 +114,7 @@ func pushComponents():
 	emit_signal("attributes_show")
 
 
-func levelUp():
+func levelUp(buildingID):
 	var _credential = {
 			"x": updateCellPos.x,
 			"y": updateCellPos.y,

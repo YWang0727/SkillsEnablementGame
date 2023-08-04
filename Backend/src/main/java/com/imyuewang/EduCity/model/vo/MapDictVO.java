@@ -22,7 +22,7 @@ public class MapDictVO {
     private int[] x;
     private int[] y;
     private int[] houseType;
-    private LocalDateTime[] buildTime;
+    private long[] finishTime;
     private int num;
 
 }

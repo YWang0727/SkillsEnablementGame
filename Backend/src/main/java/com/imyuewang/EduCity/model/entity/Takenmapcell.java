@@ -42,8 +42,8 @@ public class Takenmapcell implements Serializable {
     /**
      * 
      */
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime buildtime;
+    @TableField(value = "finishtime")
+    private Long finishtime;
 
     private static final long serialVersionUID = 1L;
 
@@ -106,15 +106,15 @@ public class Takenmapcell implements Serializable {
     /**
      * 
      */
-    public LocalDateTime getBuildtime() {
-        return buildtime;
+    public Long getFinishtime() {
+        return finishtime;
     }
 
     /**
      * 
      */
-    public void setBuildtime(LocalDateTime buildtime) {
-        this.buildtime = buildtime;
+    public void setFinishtime(Long finishtime) {
+        this.finishtime = finishtime;
     }
 
     @Override
@@ -133,7 +133,7 @@ public class Takenmapcell implements Serializable {
             && (this.getPositionx() == null ? other.getPositionx() == null : this.getPositionx().equals(other.getPositionx()))
             && (this.getPositiony() == null ? other.getPositiony() == null : this.getPositiony().equals(other.getPositiony()))
             && (this.getHousetype() == null ? other.getHousetype() == null : this.getHousetype().equals(other.getHousetype()))
-            && (this.getBuildtime() == null ? other.getBuildtime() == null : this.getBuildtime().equals(other.getBuildtime()));
+            && (this.getFinishtime() == null ? other.getFinishtime() == null : this.getFinishtime().equals(other.getFinishtime()));
     }
 
     @Override
@@ -144,7 +144,7 @@ public class Takenmapcell implements Serializable {
         result = prime * result + ((getPositionx() == null) ? 0 : getPositionx().hashCode());
         result = prime * result + ((getPositiony() == null) ? 0 : getPositiony().hashCode());
         result = prime * result + ((getHousetype() == null) ? 0 : getHousetype().hashCode());
-        result = prime * result + ((getBuildtime() == null) ? 0 : getBuildtime().hashCode());
+        result = prime * result + ((getFinishtime() == null) ? 0 : getFinishtime().hashCode());
         return result;
     }
 
@@ -158,9 +158,11 @@ public class Takenmapcell implements Serializable {
         sb.append(", positionx=").append(positionx);
         sb.append(", positiony=").append(positiony);
         sb.append(", housetype=").append(housetype);
-        sb.append(", buildtime=").append(buildtime);
+        sb.append(", finishtime=").append(finishtime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }
+
+
 }

@@ -61,6 +61,12 @@ public class TakenmapcellController {
         takenmapcellService.levelUp(param);
     }
 
+    @PostMapping("/clearMapTime")
+    @ApiOperation("reset finishTime to 0")
+    public void clearMapTime(@RequestBody  @Valid MapDictParam param){
+        takenmapcellService.clearMapTime(param);
+    }
+
 
 }
 

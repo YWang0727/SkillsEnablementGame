@@ -1,5 +1,6 @@
 package com.imyuewang.EduCity.service.impl;
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.mapper.UserMapper;
@@ -55,8 +56,10 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         takenmapcell.setPositionx(param.getX());
         takenmapcell.setPositiony(param.getY());
         takenmapcell.setHousetype(param.getHouseType());
-        LocalDateTime currentTime = LocalDateTime.now();
-        takenmapcell.setBuildtime(currentTime.plusHours(param.getBuildHours()));
+        long unixTimestamp = System.currentTimeMillis() / 1000;
+        //unixTimestamp += param.getBuildHours() * 60 * 60;
+        unixTimestamp += param.getBuildHours() * 2; // 为了方便测试，建造时间现在以秒为单位，范围[8,48]
+        takenmapcell.setFinishtime(unixTimestamp);
         takenmapcellMapper.insert(takenmapcell);
     }
 
@@ -71,23 +74,23 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         int[] x = new int[num];
         int[] y = new int[num];
         int[] houseType = new int[num];
-        LocalDateTime[] buildTime = new LocalDateTime[num];
+        long[] finishTime = new long[num];
         for (int i = 0; i < takenmapcells.size(); i++) {
             x[i] = takenmapcells.get(i).getPositionx();
             y[i] = takenmapcells.get(i).getPositiony();
             houseType[i] = takenmapcells.get(i).getHousetype();
-            buildTime[i] = takenmapcells.get(i).getBuildtime();
+            finishTime[i] = takenmapcells.get(i).getFinishtime();
         }
         mapDictVO.setX(x);
         mapDictVO.setY(y);
         mapDictVO.setHouseType(houseType);
         mapDictVO.setNum(num);
-        mapDictVO.setBuildTime(buildTime);
+        mapDictVO.setFinishTime(finishTime);
         return mapDictVO;
     }
 
 
-    //通过 mapid x y 找到对应的house level+1
+    //通过 mapid x y 更新对应的house type
     @Override
     public void levelUp(MapDictParam param){
         User user = userMapper.selectById(param.getId());
@@ -96,11 +99,21 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
         queryWrapper.eq("positionX",param.getX());
         queryWrapper.eq("positionY",param.getY());
         Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);
-        takenmapcell.setHousetype(takenmapcell.getHousetype());
+        takenmapcell.setHousetype(param.getHouseType());
         takenmapcellMapper.update(takenmapcell,queryWrapper);
     }
 
-
+    @Override
+    public void clearMapTime(MapDictParam param) {
+        User user = userMapper.selectById(param.getId());
+        QueryWrapper queryWrapper = new QueryWrapper<Citymap>();
+        queryWrapper.eq("mapId",user.getCitymap());
+        queryWrapper.eq("positionX",param.getX());
+        queryWrapper.eq("positionY",param.getY());
+        Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);
+        takenmapcell.setFinishtime(Long.valueOf(0));
+        takenmapcellMapper.update(takenmapcell,queryWrapper);
+    }
 
 
 }
