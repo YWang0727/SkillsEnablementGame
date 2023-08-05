@@ -32,7 +32,7 @@ public class AuthController {
 
     @PostMapping("/login")
     @ApiOperation(value = "Login by password")
-    public UserVO login(@RequestBody  @Valid LoginParam param){
+    public ResultVO login(@RequestBody  @Valid LoginParam param){
         return userService.login(param);
     }
 

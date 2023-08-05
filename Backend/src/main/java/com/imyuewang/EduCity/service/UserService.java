@@ -26,7 +26,7 @@ public interface UserService extends IService<User> {
      * @param loginParam Login form parameters
      * @return If the login is successful, the VO object is returned, and an exception is thrown if it fails
      **/
-    UserVO login(LoginParam loginParam);
+    ResultVO login(LoginParam loginParam);
 
     ResultVO checkEmailIsExisted(RegisterParam param);
 

@@ -326,7 +326,7 @@ func http_completed(res, response_code, headers, route) -> void:
 	print(res)
 	if response_code == 200 && route == "login":
 		#save id to user_id in GameManager
-		if !res.has("id"):
+		if !res.code == 0000:
 			AlertPopup.setPosition(0,0,'login')
 			AlertPopup.show_error_message(res['data'])
 		else:	
@@ -403,13 +403,13 @@ func http_completed(res, response_code, headers, route) -> void:
 
 func initializeGameManager(res) :
 	GameManager.user_data = {
-				"id" : res['id'],
-				"email" : res['email'],
-				"name" : res['name'],
-				"avatarStr" : res['avatarStr'],
-				"citymap" : res['citymap'],
-				"logoutTime" : res['logoutTime'],
-				"token" : res['token']
+				"id" : res.data.id,
+				"email" : res.data.email,
+				"name" : res.data.name,
+				"avatarStr" : res.data.avatarStr,
+				"citymap" : res.data.citymap,
+				"logoutTime" : res.data.logoutTime,
+				"token" : res.data.token
 			}
 	GameManager.user_id = GameManager.user_data['id']
 	GameManager.user_token = GameManager.user_data['token']

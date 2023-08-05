@@ -67,7 +67,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /**************    LOG IN    **************/
     /******************************************/
     @Override
-    public UserVO login(LoginParam loginParam) {
+    public ResultVO login(LoginParam loginParam) {
         //get user from database
         User user = getUserByEmail(loginParam.getEmail());
         System.out.println(user);
@@ -89,7 +89,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         user.setIsFirst(0);
         userMapper.updateById(user);
         //return userVO
-        return userVO;
+        return new ResultVO(userVO);
     }
 
     @Override
@@ -181,32 +181,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         lqw.eq(User::getEmail, email);
         return userMapper.selectOne(lqw);
     }
-
-//    @Override
-//    public void update(UserParam param) {
-//        updateRoles(param);
-//    }
-//
-//    @Override
-//    public User getUserByUsername(String username) {
-//        if(StrUtil.isBlank(username)){
-//            throw new ApiException(ResultCode.VALIDATE_FAILED);
-//        }
-//        return this.lambdaQuery().eq(User::getUsername, username).one();
-//    }
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        // Get user by username
-//        User user = this.getUserByUsername(username);
-//        // Get permissionIds and tranfer them to `SimpleGrantedAuthority` Object
-//        Set<SimpleGrantedAuthority> authorities = permissionService.getIdsByUserId(user.getId())
-//                .stream()
-//                .map(String::valueOf)
-//                .map(SimpleGrantedAuthority::new)
-//                .collect(Collectors.toSet());
-//        return new UserDetailsVO(user, authorities);
-//    }
 
 
 }

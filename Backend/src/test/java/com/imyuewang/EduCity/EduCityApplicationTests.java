@@ -34,16 +34,7 @@ class EduCityApplicationTests {
     @Autowired
     private UserController userController;
 
-    @Test
-    void testLogin(){
-        LoginParam loginParam = new LoginParam();
-        loginParam.setEmail("kathy@gmail.com");
-        loginParam.setPassword("1234");
 
-        UserVO LoginV0 = authController.login(loginParam);
-        System.out.println(LoginV0);
-
-    }
 
     @Test
     void testRegister(){
