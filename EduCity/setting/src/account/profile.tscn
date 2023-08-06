@@ -1,190 +1,240 @@
-[gd_scene load_steps=9 format=3 uid="uid://qfoimsigg4dq"]
+[gd_scene load_steps=12 format=3 uid="uid://qfoimsigg4dq"]
 
 [ext_resource type="Script" path="res://setting/src/account/profile.gd" id="1_tb1v1"]
-[ext_resource type="Texture2D" uid="uid://crxum4iobj7ep" path="res://setting/assets/setting/background.png" id="2_fxqit"]
+[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://setting/assets/Font/Roboto/Roboto-Black.ttf" id="2_rdpdf"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="3_e5l8u"]
-[ext_resource type="Texture2D" uid="uid://dafsqaa82r6o2" path="res://setting/assets/account/ArrowLeft.png" id="4_1ys64"]
+[ext_resource type="Texture2D" uid="uid://dif1jqlltv07x" path="res://setting/assets/setting/header.png" id="3_nxdxn"]
+[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/Icon_X.png" id="5_k5ji4"]
 [ext_resource type="Texture2D" uid="uid://cvryfjg2nirqg" path="res://setting/assets/setting/avatar.jpg" id="5_lta0g"]
 [ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://setting/src/common/themes/text_button.tres" id="6_fy17c"]
-[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://setting/src/common/themes/icon_button.tres" id="7_ia5w4"]
+[ext_resource type="StyleBox" uid="uid://7umj2dibprd1" path="res://setting/src/common/themes/panelcontainer.tres" id="6_o8gdy"]
+[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://setting/src/common/themes/text_icon.tres" id="8_ru3pk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hd1n4"]
+content_margin_top = 10.0
+texture = ExtResource("3_nxdxn")
+texture_margin_left = 29.0
+texture_margin_top = 16.0
+texture_margin_right = 31.0
+texture_margin_bottom = 13.0
+modulate_color = Color(0.968627, 0.607843, 0.32549, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8krav"]
 
-[node name="Profile" type="Control"]
+[node name="Profile" type="CanvasLayer"]
+script = ExtResource("1_tb1v1")
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_tb1v1")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_fxqit")
+color = Color(0, 0, 0, 0.45098)
 
-[node name="BackButton" type="Button" parent="."]
-layout_mode = 0
-offset_right = 125.0
-offset_bottom = 99.0
-theme = ExtResource("3_e5l8u")
-icon = ExtResource("4_1ys64")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Header" type="Label" parent="Control"]
+top_level = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
+anchor_left = 0.23
 anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-scale = Vector2(1.00259, 1)
+anchor_right = 0.77
+anchor_bottom = 0.1
+theme_override_colors/font_shadow_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_fonts/font = ExtResource("2_rdpdf")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxTexture_hd1n4")
+text = "Profile"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Profile" type="GridContainer" parent="MarginContainer"]
+[node name="Close" type="Button" parent="Control/Header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.27
+anchor_right = 0.9
+anchor_bottom = 0.27
+scale = Vector2(0.250005, 0.250042)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("3_e5l8u")
+icon = ExtResource("5_k5ji4")
+
+[node name="Back" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.2
+anchor_right = 0.75
+anchor_bottom = 0.75
+offset_left = 50.0
+offset_right = 50.0
+rotation = -0.132645
+scale = Vector2(0.95, 0.95)
+pivot_offset = Vector2(960, 540)
+theme_override_styles/panel = ExtResource("6_o8gdy")
+
+[node name="Body" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.2
+anchor_right = 0.75
+anchor_bottom = 0.75
+theme_override_styles/panel = ExtResource("6_o8gdy")
+
+[node name="Profile" type="GridContainer" parent="Control/Body"]
 layout_mode = 2
 theme_override_constants/h_separation = 100
-theme_override_constants/v_separation = 50
+theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="Avatar" type="TextureRect" parent="MarginContainer/Profile"]
+[node name="Avatar" type="TextureRect" parent="Control/Body/Profile"]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture = ExtResource("5_lta0g")
-expand_mode = 3
+expand_mode = 2
 
-[node name="BasicInfo" type="VBoxContainer" parent="MarginContainer/Profile"]
+[node name="BasicInfo" type="VBoxContainer" parent="Control/Body/Profile"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 15
 
-[node name="Username" type="HBoxContainer" parent="MarginContainer/Profile/BasicInfo"]
+[node name="Username" type="HBoxContainer" parent="Control/Body/Profile/BasicInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/BasicInfo/Username"]
+[node name="Label" type="Label" parent="Control/Body/Profile/BasicInfo/Username"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
-text = "username:"
+text = "Username:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/BasicInfo/Username"]
+[node name="Data" type="Label" parent="Control/Body/Profile/BasicInfo/Username"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Data"
 
-[node name="Email" type="HBoxContainer" parent="MarginContainer/Profile/BasicInfo"]
+[node name="Email" type="HBoxContainer" parent="Control/Body/Profile/BasicInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/BasicInfo/Email"]
+[node name="Label" type="Label" parent="Control/Body/Profile/BasicInfo/Email"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Email:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/BasicInfo/Email"]
+[node name="Data" type="Label" parent="Control/Body/Profile/BasicInfo/Email"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
 
-[node name="AccountSetting" type="Button" parent="MarginContainer/Profile/BasicInfo"]
+[node name="AccountSetting" type="Button" parent="Control/Body/Profile/BasicInfo"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme = ExtResource("7_ia5w4")
+theme = ExtResource("8_ru3pk")
 text = "Account Setting"
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/Profile/BasicInfo"]
+[node name="HSeparator" type="HSeparator" parent="Control/Body/Profile/BasicInfo"]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_8krav")
 
-[node name="PlaceHolder" type="HBoxContainer" parent="MarginContainer/Profile"]
+[node name="PlaceHolder" type="HBoxContainer" parent="Control/Body/Profile"]
 layout_mode = 2
 
-[node name="PropertyInfo" type="VBoxContainer" parent="MarginContainer/Profile"]
+[node name="PropertyInfo" type="VBoxContainer" parent="Control/Body/Profile"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 15
 
-[node name="ResidentialBuilding" type="HBoxContainer" parent="MarginContainer/Profile/PropertyInfo"]
+[node name="ResidentialBuilding" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/PropertyInfo/ResidentialBuilding"]
+[node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/ResidentialBuilding"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Residential Building:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/PropertyInfo/ResidentialBuilding"]
+[node name="Data" type="Label" parent="Control/Body/Profile/PropertyInfo/ResidentialBuilding"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
 
-[node name="Bank" type="HBoxContainer" parent="MarginContainer/Profile/PropertyInfo"]
+[node name="Bank" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/PropertyInfo/Bank"]
+[node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/Bank"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Bank:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/PropertyInfo/Bank"]
+[node name="Data" type="Label" parent="Control/Body/Profile/PropertyInfo/Bank"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
 
-[node name="Supermarket" type="HBoxContainer" parent="MarginContainer/Profile/PropertyInfo"]
+[node name="Supermarket" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/PropertyInfo/Supermarket"]
+[node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/Supermarket"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Supermarket:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/PropertyInfo/Supermarket"]
+[node name="Data" type="Label" parent="Control/Body/Profile/PropertyInfo/Supermarket"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
 
-[node name="Hospital" type="HBoxContainer" parent="MarginContainer/Profile/PropertyInfo"]
+[node name="Hospital" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/PropertyInfo/Hospital"]
+[node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/Hospital"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Hospital:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/PropertyInfo/Hospital"]
+[node name="Data" type="Label" parent="Control/Body/Profile/PropertyInfo/Hospital"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
 
-[node name="Farm" type="HBoxContainer" parent="MarginContainer/Profile/PropertyInfo"]
+[node name="Farm" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/PropertyInfo/Farm"]
+[node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/Farm"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Farm:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/PropertyInfo/Farm"]
+[node name="Data" type="Label" parent="Control/Body/Profile/PropertyInfo/Farm"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
 
-[node name="ConstructionSite" type="HBoxContainer" parent="MarginContainer/Profile/PropertyInfo"]
+[node name="ConstructionSite" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Profile/PropertyInfo/ConstructionSite"]
+[node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/ConstructionSite"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "Construction Site:"
 
-[node name="Data" type="Label" parent="MarginContainer/Profile/PropertyInfo/ConstructionSite"]
+[node name="Data" type="Label" parent="Control/Body/Profile/PropertyInfo/ConstructionSite"]
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"

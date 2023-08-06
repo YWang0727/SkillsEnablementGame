@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bedbolm8xb325"
-path="res://.godot/imported/StartButtonTextless.png-2312b537741d3086c02cd04a75869fe8.ctex"
+uid="uid://dq015gcnpcpqq"
+path="res://.godot/imported/Icon_Trash.png-a6d8cd9e11386cce9b7ea4fcde301740.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://setting/assets/account/StartButtonTextless.png"
-dest_files=["res://.godot/imported/StartButtonTextless.png-2312b537741d3086c02cd04a75869fe8.ctex"]
+source_file="res://chatbot/assets/Icon_Trash.png"
+dest_files=["res://.godot/imported/Icon_Trash.png-a6d8cd9e11386cce9b7ea4fcde301740.ctex"]
 
 [params]
 

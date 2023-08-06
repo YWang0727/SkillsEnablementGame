@@ -1,12 +1,11 @@
-extends Control
-
-var profile_scene: String = "res://setting/src/account/profile.tscn"
+extends CanvasLayer
 
 var FileLoadCallback = JavaScriptBridge.create_callback(Callable(self, "js_file_uploaded"))
 
 var alert: Popup
 var uploadFileButton: Button
 var fileUploadWindow: FileDialog
+var closeButton: Button
 var backButton: Button
 var profileSave: Button
 var passwordSave: Button
@@ -31,26 +30,38 @@ func _ready():
 		var window = JavaScriptBridge.get_interface("window")
 		window.getImage(FileLoadCallback)
 
+func _on_visibility_changed():
+	if (visible):
+		display_user_info(GameManager.user_data)
+
 func initiate_variales():
-	alert = get_node("Alert")
-	uploadFileButton = get_node("Edit/VBoxContainer/Avatar/HBoxContainer/Upload/UploadButton")
-	fileUploadWindow = get_node("FileUploadWindow")
-	backButton = get_node("BackButton")
-	profileSave = get_node("Edit/VBoxContainer/ProfileButtons/Save")
-	passwordSave = get_node("Edit/VBoxContainer/PasswordButtons/Save")
-	profileCancel = get_node("Edit/VBoxContainer/ProfileButtons/Cancel")
-	passwordCancel = get_node("Edit/VBoxContainer/PasswordButtons/Cancel")
+	alert = get_node("Control/Alert")
+	uploadFileButton = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/HBoxContainer/Upload/UploadButton")
+	fileUploadWindow = get_node("Control/FileUploadWindow")
+	closeButton = get_node("Control/Header/Close")
+	backButton = get_node("Control/Header/BackButton")
+	profileSave = get_node("Control/Body/VBoxContainer/ProfileButtons/Save")
+	passwordSave = get_node("Control/Body/VBoxContainer/PasswordButtons/Save")
+	profileCancel = get_node("Control/Body/VBoxContainer/ProfileButtons/Cancel")
+	passwordCancel = get_node("Control/Body/VBoxContainer/PasswordButtons/Cancel")
 	
-	username = get_node("Edit/VBoxContainer/Username/LineEdit")
-	email = get_node("Edit/VBoxContainer/Email/LineEdit")
-	avatar = get_node("Edit/VBoxContainer/Avatar/HBoxContainer/DisplayAvatar")
-	oldPassword = get_node("Edit/VBoxContainer/OldPassword/LineEdit")
-	newPassword = get_node("Edit/VBoxContainer/NewPassword/LineEdit")
+	username = get_node("Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Username/LineEdit")
+	email = get_node("Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Email/LineEdit")
+	avatar = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/HBoxContainer/DisplayAvatar")
+	oldPassword = get_node("Control/Body/VBoxContainer/OldPassword/LineEdit")
+	newPassword = get_node("Control/Body/VBoxContainer/NewPassword/LineEdit")
+
+	profileSave.focus_mode = Control.FOCUS_NONE
+	passwordSave.focus_mode = Control.FOCUS_NONE
+	uploadFileButton.focus_mode = Control.FOCUS_NONE
+	profileCancel.focus_mode = Control.FOCUS_NONE
+	passwordCancel.focus_mode = Control.FOCUS_NONE
 
 # connect signals and functions
 func connect_signals():
 	uploadFileButton.pressed.connect(_on_fileupload_button_pressed)
 	fileUploadWindow.file_selected.connect(_on_file_upload_window_file_selected)
+	closeButton.pressed.connect(_on_close_button_pressed)
 	backButton.pressed.connect(_on_back_button_pressed)
 	# Confirm Buttons
 	profileSave.pressed.connect(edit_user_profile)
@@ -59,10 +70,14 @@ func connect_signals():
 	passwordCancel.pressed.connect(_on_back_button_pressed)
 	
 	HttpLayer.http_completed.connect(http_completed)
+	self.visibility_changed.connect(_on_visibility_changed)
+
+func _on_close_button_pressed():
+	self.hide()
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file(profile_scene)
-
+	self.hide()
+	get_parent().get_child(1).show()
 
 
 # display the window for uploading file when pressing button upload
@@ -242,7 +257,10 @@ func http_completed(res, response_code, headers, route):
 	#if token is checked and valid, return true
 	if !AlertPopup.tokenCheck(res):
 		return
-		
+	
+	if (route != 'getUserInfo' && route != 'editPassword'):
+		return
+	
 	if (response_code == 200):
 		print(res.msg)
 		# check if code in resultVO is 0000(SUCCESS)

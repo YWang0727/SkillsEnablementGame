@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi4u5266xev18"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://setting/src/common/popup/Alert.gd" id="1_hce1m"]
 [ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="2_lhrv5"]
-[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://setting/src/common/themes/icon_button.tres" id="3_v76yb"]
+[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://setting/src/common/themes/text_icon.tres" id="3_v76yb"]
 
 [node name="Alert" type="Popup"]
 size = Vector2i(600, 461)

@@ -1,9 +1,9 @@
-extends Popup
+extends CanvasLayer
 
 var musicSlider: HSlider
 var soundSlider: HSlider
-var resumeButton: Button
-var quitButton: Button
+var closeButton: Button
+var exitButton: Button
 var saveButton: Button
 
 # Called when the node enters the scene tree for the first time.
@@ -16,15 +16,19 @@ func _ready():
 	soundSlider.value = GameManager.sound_volume
 
 func initiate_variables():
-	musicSlider = get_node("Settings/VBoxContainer/Music/HSlider")
-	soundSlider = get_node("Settings/VBoxContainer/Sound/HSlider")
-	resumeButton = get_node("Settings/VBoxContainer/Resume")
-	quitButton = get_node("Settings/VBoxContainer/Quit")
-	saveButton = get_node("Settings/VBoxContainer/Save")
+	musicSlider = get_node("Control/Body/VBoxContainer/Music/HSlider")
+	soundSlider = get_node("Control/Body/VBoxContainer/Sound/HSlider")
+	closeButton = get_node("Control/Header/Close")
+	exitButton = get_node("Control/Body/VBoxContainer/Exit")
+	saveButton = get_node("Control/Body/VBoxContainer/Save")
 	
+	saveButton.focus_mode = Control.FOCUS_NONE
+	exitButton.focus_mode = Control.FOCUS_NONE
+	closeButton.focus_mode = Control.FOCUS_NONE
+
 func connect_signals():
-	resumeButton.pressed.connect(_on_resume_pressed)
-	quitButton.pressed.connect(_on_quit_pressed)
+	closeButton.pressed.connect(_on_close_pressed)
+	exitButton.pressed.connect(_on_exit_pressed)
 	saveButton.pressed.connect(_on_save_pressed)
 	# volume setting
 	musicSlider.value_changed.connect(_on_music_volume_changed)
@@ -44,7 +48,7 @@ func _on_sound_volume_changed(value: float):
 
 
 # go back to world window
-func _on_resume_pressed():
+func _on_close_pressed():
 	self.hide()
 
 # save game data to server
@@ -52,6 +56,6 @@ func _on_save_pressed():
 	Saving.save()
 	
 # quit game
-func _on_quit_pressed():
+func _on_exit_pressed():
 	get_tree().quit()
 

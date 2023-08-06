@@ -1,89 +1,170 @@
-[gd_scene load_steps=5 format=3 uid="uid://caynyc7x0vneo"]
+[gd_scene load_steps=11 format=3 uid="uid://caynyc7x0vneo"]
 
 [ext_resource type="Script" path="res://setting/src/setting/setting.gd" id="1_meeda"]
-[ext_resource type="Texture2D" uid="uid://crxum4iobj7ep" path="res://setting/assets/setting/background.png" id="2_ycdv5"]
-[ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://setting/src/common/themes/text_button.tres" id="3_hucki"]
+[ext_resource type="Texture2D" uid="uid://dif1jqlltv07x" path="res://setting/assets/setting/header.png" id="3_pttta"]
+[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://setting/assets/Font/Roboto/Roboto-Black.ttf" id="3_u2yeq"]
+[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/Icon_X.png" id="4_0na3q"]
+[ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="4_75pvi"]
+[ext_resource type="Theme" uid="uid://dwabosiif4d76" path="res://setting/src/common/themes/slider.tres" id="6_4yyop"]
+[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://setting/src/common/themes/text_icon.tres" id="6_ntytt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pfgqc"]
+content_margin_top = 10.0
+texture = ExtResource("3_pttta")
+texture_margin_left = 29.0
+texture_margin_top = 16.0
+texture_margin_right = 31.0
+texture_margin_bottom = 13.0
+modulate_color = Color(0.968627, 0.607843, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pd687"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.905882, 0.866667, 0.803922, 1)
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 12
+shadow_size = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4lot"]
 
-[node name="SettingPopup" type="Popup"]
-size = Vector2i(1158, 650)
-mode = 3
-visible = true
+[node name="Setting" type="CanvasLayer"]
 script = ExtResource("1_meeda")
-metadata/_edit_vertical_guides_ = [514.0]
 
-[node name="Background" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_ycdv5")
-expand_mode = 1
-
-[node name="Settings" type="MarginContainer" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.607843)
+
+[node name="Header" type="Label" parent="Control"]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22
+anchor_top = 0.2
+anchor_right = 0.78
+anchor_bottom = 0.3
+theme_override_colors/font_shadow_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_fonts/font = ExtResource("3_u2yeq")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxTexture_pfgqc")
+text = "Setting"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Control/Header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.27
+anchor_right = 0.9
+anchor_bottom = 0.27
+scale = Vector2(0.252707, 0.252744)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("4_75pvi")
+icon = ExtResource("4_0na3q")
+
+[node name="Back" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24
+anchor_top = 0.3
+anchor_right = 0.76
+anchor_bottom = 0.8
+offset_left = 39.2
+offset_top = -74.0
+offset_right = 39.2
+offset_bottom = -64.0
+rotation = -0.132645
+scale = Vector2(0.95, 0.95)
+pivot_offset = Vector2(960, 540)
+theme_override_styles/panel = SubResource("StyleBoxFlat_pd687")
+
+[node name="Body" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24
+anchor_top = 0.3
+anchor_right = 0.76
+anchor_bottom = 0.8
+offset_top = -10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pd687")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Body"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Music" type="HBoxContainer" parent="Settings/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 300
-alignment = 1
-
-[node name="Label" type="Label" parent="Settings/VBoxContainer/Music"]
-layout_mode = 2
-theme = ExtResource("3_hucki")
-text = "Music Volume"
-
-[node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/Music"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.001
-
-[node name="Sound" type="HBoxContainer" parent="Settings/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 300
-alignment = 1
-
-[node name="Label" type="Label" parent="Settings/VBoxContainer/Sound"]
-layout_mode = 2
-theme = ExtResource("3_hucki")
-text = "Sound Volume"
-
-[node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/Sound"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.001
-
-[node name="HSeparator" type="HSeparator" parent="Settings/VBoxContainer"]
+[node name="Music" type="HBoxContainer" parent="Control/Body/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Body/VBoxContainer/Music"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_u2yeq")
+theme_override_font_sizes/font_size = 45
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="Control/Body/VBoxContainer/Music"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_4yyop")
+max_value = 1.0
+step = 0.001
+
+[node name="Sound" type="HBoxContainer" parent="Control/Body/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Body/VBoxContainer/Sound"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_u2yeq")
+theme_override_font_sizes/font_size = 45
+text = "Sound Volume"
+
+[node name="HSlider" type="HSlider" parent="Control/Body/VBoxContainer/Sound"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_4yyop")
+max_value = 1.0
+step = 0.001
+
+[node name="HSeparator" type="HSeparator" parent="Control/Body/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
 theme_override_styles/separator = SubResource("StyleBoxEmpty_w4lot")
 
-[node name="Resume" type="Button" parent="Settings/VBoxContainer"]
+[node name="Save" type="Button" parent="Control/Body/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_hucki")
-text = "Resume"
-
-[node name="Save" type="Button" parent="Settings/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_hucki")
+size_flags_horizontal = 4
+theme = ExtResource("6_ntytt")
+theme_override_font_sizes/font_size = 40
 text = "Save"
 
-[node name="Quit" type="Button" parent="Settings/VBoxContainer"]
+[node name="Exit" type="Button" parent="Control/Body/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_hucki")
-text = "Quit"
+size_flags_horizontal = 4
+theme = ExtResource("6_ntytt")
+theme_override_font_sizes/font_size = 40
+text = "Exit"
