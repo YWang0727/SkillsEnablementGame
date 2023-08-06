@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://bprrpqv2m3u0m"]
+
+[ext_resource type="Script" path="res://setting_buttons.gd" id="1_4sij2"]
+[ext_resource type="Texture2D" uid="uid://bbevn63gd8s8c" path="res://setting/assets/setting/setting.png" id="2_i2yfq"]
+[ext_resource type="Texture2D" uid="uid://bph7an4vvtvv7" path="res://setting/assets/account/home.png" id="3_7b1hy"]
+[ext_resource type="PackedScene" uid="uid://caynyc7x0vneo" path="res://setting/src/setting/setting.tscn" id="4_86h04"]
+[ext_resource type="PackedScene" uid="uid://btpkjxk3vm0gy" path="res://setting/src/account/account_setting.tscn" id="5_lc5mt"]
+[ext_resource type="PackedScene" uid="uid://qfoimsigg4dq" path="res://setting/src/account/profile.tscn" id="6_ugapw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_teath"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.168627, 0.168627, 0.168627, 0.6)
+shadow_size = 8
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdq3e"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5p3ha"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.168627, 0.168627, 0.168627, 0.6)
+shadow_size = 8
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_engsf"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="SettingButtons" type="Control"]
+custom_minimum_size = Vector2(130, 500)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1790.0
+offset_bottom = -580.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4sij2")
+
+[node name="Setting" parent="." instance=ExtResource("4_86h04")]
+visible = false
+
+[node name="Profile" parent="." instance=ExtResource("6_ugapw")]
+visible = false
+
+[node name="AccountSetting" parent="." instance=ExtResource("5_lc5mt")]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="accountButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+tooltip_text = "ACCOUNT"
+theme_override_styles/normal = SubResource("StyleBoxFlat_teath")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rdq3e")
+icon = ExtResource("3_7b1hy")
+icon_alignment = 1
+expand_icon = true
+
+[node name="settingButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+tooltip_text = "SETTING"
+theme_override_styles/normal = SubResource("StyleBoxFlat_5p3ha")
+theme_override_styles/hover = SubResource("StyleBoxFlat_engsf")
+icon = ExtResource("2_i2yfq")
+icon_alignment = 1
+expand_icon = true

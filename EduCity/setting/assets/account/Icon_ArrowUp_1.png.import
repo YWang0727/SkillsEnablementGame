@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crxum4iobj7ep"
-path="res://.godot/imported/background.png-56536fd3aa2f2903ae22622bbce57584.ctex"
+uid="uid://r323w42m1bwm"
+path="res://.godot/imported/Icon_ArrowUp_1.png-91f20714e4eb9ed25bbfe130a60c88c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://setting/assets/setting/background.png"
-dest_files=["res://.godot/imported/background.png-56536fd3aa2f2903ae22622bbce57584.ctex"]
+source_file="res://setting/assets/account/Icon_ArrowUp_1.png"
+dest_files=["res://.godot/imported/Icon_ArrowUp_1.png-91f20714e4eb9ed25bbfe130a60c88c6.ctex"]
 
 [params]
 

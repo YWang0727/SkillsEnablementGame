@@ -5,11 +5,14 @@ var bubbleScene = preload("res://chatbot/src/bubble.tscn")
 var alert: Popup
 var messageInput: TextEdit
 var bubbles: Control
+var scrollContainer: ScrollContainer
 var sendButton: Button
 var exitButton: Button
 var newSession: Button
 
 var optionNum: int = 0
+var scroll_vertical_size = 0
+var pre_scroll_vertical_size = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,14 +44,25 @@ func _process(delta):
 	# ser size of content in scrollContainer
 	if (count != 0):
 		bubbles.custom_minimum_size.y = bubbles.get_child(count - 1).position.y + bubbles.get_child(count - 1).size.y
+		scroll_vertical_size = bubbles.custom_minimum_size.y - scrollContainer.size.y
+		
+	# show the latest message
+	# sometimes it's not working
+	if (scroll_vertical_size > pre_scroll_vertical_size):
+		pre_scroll_vertical_size = scroll_vertical_size
+		scrollContainer.scroll_vertical = pre_scroll_vertical_size
+		
 
 func initiate_variales():
 	alert = get_node("Alert")
-	messageInput = get_node("Control/VBoxContainer/Message/Input")
-	sendButton = get_node("Control/VBoxContainer/Message/Send")
-	bubbles = get_node("Control/VBoxContainer/ScrollContainer/Bubbles")
-	exitButton = get_node("Control/VBoxContainer/Head/Exit")
-	newSession = get_node("Control/VBoxContainer/Head/NewSession")
+	messageInput = get_node("Panel/VBoxContainer/Message/HBoxContainer/Input")
+	sendButton = get_node("Panel/VBoxContainer/Message/HBoxContainer/Send")
+	bubbles = get_node("Panel/VBoxContainer/ScrollContainer/Bubbles")
+	scrollContainer = get_node("Panel/VBoxContainer/ScrollContainer")
+	exitButton = get_node("Panel/VBoxContainer/Head/HBoxContainer/Exit")
+	newSession = get_node("Panel/VBoxContainer/Head/HBoxContainer/NewSession")
+	
+	newSession.focus_mode = Control.FOCUS_NONE
 
 func connect_signals():
 	HttpLayer.http_completed.connect(http_completed)
@@ -66,6 +80,8 @@ func exit_button_presssed():
 
 # create a new session window
 func new_session_button_presssed():
+	# disable new session button
+	newSession.disabled = true
 	# clear chat history
 	GameManager.chat_history.messages = [] 
 	GameManager.chat_history.isNewSession = true
@@ -83,7 +99,7 @@ func new_session_button_presssed():
 # process the messages sent by user
 func send_button_pressed():
 	add_bubble(messageInput.text, "right")
-	store_chat_history(messageInput.text, "right")
+	store_chat_history([messageInput.text], "right")
 	send_message(messageInput.text)
 	messageInput.text = ""
 
@@ -100,6 +116,8 @@ func add_bubble(message: String, arrow: String, clickable: bool = false):
 	if (bubble.arrow == "right"):
 		bubble.position.x = bubble.get_parent().position.x + bubble.get_parent().size.x - bubble.size.x
 
+
+# when user select one option, send it to server
 func option_selected(bubble):
 	# disable all the options
 	var bubbleNum = bubbles.get_child_count()
@@ -108,7 +126,7 @@ func option_selected(bubble):
 	
 	# send the text in selected option
 	add_bubble(bubble.message, "right")
-	store_chat_history(bubble.message, "right")
+	store_chat_history([bubble.message], "right")
 	send_message(bubble.message)
 
 # send message to server
@@ -120,7 +138,7 @@ func send_message(message: String):
 	})
 
 # store messages in GameManager
-func store_chat_history(contents, arrow, options = []):
+func store_chat_history(contents: Array, arrow, options = []):
 	GameManager.chat_history.messages.append({
 		"arrow": arrow,
 		"contents": contents,
@@ -131,6 +149,9 @@ func store_chat_history(contents, arrow, options = []):
 func http_completed(res, response_code, headers, route):
 	#if token is checked and valid, return true
 	if !AlertPopup.tokenCheck(res):
+		return
+	
+	if (route != 'message'):
 		return
 		
 	if (response_code == 200):
@@ -147,9 +168,12 @@ func http_completed(res, response_code, headers, route):
 		for option in res.data.options:
 			add_bubble(option, "none", true)
 		optionNum = res.data.options.size()
-		store_chat_history(res.data.messages, "left", res.data.options)
 		# update chat history in GameManager
+		store_chat_history(res.data.messages, "left", res.data.options)
 		GameManager.chat_history.sessionId = res.data.sessionId
 		GameManager.chat_history.isNewSession = res.data.isNewSession
+		
+		newSession.disabled = false
+	
 	else:
 		print("Fail to send message to Watson assistant")

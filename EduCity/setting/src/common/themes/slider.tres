@@ -1,0 +1,39 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dwabosiif4d76"]
+
+[ext_resource type="Texture2D" uid="uid://d2031xco86c4l" path="res://setting/assets/setting/grabber.png" id="1_w8vfe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emrfd"]
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0.345098, 0.156863, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvhi4"]
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1ps5"]
+content_margin_top = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0.643137, 0.313726, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 12
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_w8vfe")
+HSlider/icons/grabber_highlight = ExtResource("1_w8vfe")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_emrfd")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_vvhi4")
+HSlider/styles/slider = SubResource("StyleBoxFlat_s1ps5")

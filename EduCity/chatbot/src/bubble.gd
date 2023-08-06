@@ -16,12 +16,16 @@ func _ready():
 	adjust_bubble_size()
 	# set the position of right arrow according to bubble size
 	$RightArrow.position.x = self.size.x - 70
-	# set the ui of options
+	# set the color of bubble
 	if (arrow == "none"):
 		var new_stylebox = get_node("PanelContainer").get_theme_stylebox("panel").duplicate()
-		new_stylebox.bg_color = Color(255, 255, 255)
+		new_stylebox.bg_color = Color(0.6, 0.6, 0.6)
 		get_node("PanelContainer").add_theme_stylebox_override("panel",new_stylebox)
-		
+	elif (arrow == "right"):
+		var new_stylebox = get_node("PanelContainer").get_theme_stylebox("panel").duplicate()
+		new_stylebox.bg_color = Color(0.25, 0.67, 0.68)
+		get_node("PanelContainer").add_theme_stylebox_override("panel",new_stylebox)
+	
 	$PanelContainer.gui_input.connect(option_container_pressed)
 	
 func _process(delta):

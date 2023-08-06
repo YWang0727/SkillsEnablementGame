@@ -1,11 +1,11 @@
-extends Control
+extends CanvasLayer
 
-var account_setting_scene: String = "res://setting/src/account/account_setting.tscn"
+var account_setting_scene = preload("res://setting/src/account/account_setting.tscn")
 var main_scene: String = ("res://main_scene.tscn")
 
 # global variables
 var accountSettingButton: Button
-var backButton: Button
+var closeButton: Button
 var username: Label
 var email: Label
 var residentialBuilding: Label
@@ -20,47 +20,59 @@ var avatar: TextureRect
 func _ready():
 	initiate_variables()
 	connect_signals()
+	
 	display_user_info(GameManager.user_data)
 	display_user_property_info(GameManager.property_data)
-	
-	HttpLayer.http_completed.connect(http_completed)
-	
 	# fetch user's property information from server
 	HttpLayer.fetch_user_property_info(GameManager.user_id)
 
+func _visibility_changes():
+	if (visible):
+		display_user_info(GameManager.user_data)
+		display_user_property_info(GameManager.property_data)
+		HttpLayer.fetch_user_property_info(GameManager.user_id)
+
 func initiate_variables():
 	#buttons
-	accountSettingButton = get_node("MarginContainer/Profile/BasicInfo/AccountSetting")
-	backButton = get_node("BackButton")
+	accountSettingButton = get_node("Control/Body/Profile/BasicInfo/AccountSetting")
+	closeButton = get_node("Control/Header/Close")
 	
 	# they are used to show data fetched from server
-	avatar = get_node("MarginContainer/Profile/Avatar")
-	username = get_node("MarginContainer/Profile/BasicInfo/Username/Data")
-	email = get_node("MarginContainer/Profile/BasicInfo/Email/Data")
-	residentialBuilding = get_node("MarginContainer/Profile/PropertyInfo/ResidentialBuilding/Data")
-	bank = get_node("MarginContainer/Profile/PropertyInfo/Bank/Data")
-	supermarket = get_node("MarginContainer/Profile/PropertyInfo/Supermarket/Data")
-	hospital = get_node("MarginContainer/Profile/PropertyInfo/Hospital/Data")
-	farm = get_node("MarginContainer/Profile/PropertyInfo/Farm/Data")
-	constructionSite = get_node("MarginContainer/Profile/PropertyInfo/ConstructionSite/Data")
-
+	avatar = get_node("Control/Body/Profile/Avatar")
+	username = get_node("Control/Body/Profile/BasicInfo/Username/Data")
+	email = get_node("Control/Body/Profile/BasicInfo/Email/Data")
+	residentialBuilding = get_node("Control/Body/Profile/PropertyInfo/ResidentialBuilding/Data")
+	bank = get_node("Control/Body/Profile/PropertyInfo/Bank/Data")
+	supermarket = get_node("Control/Body/Profile/PropertyInfo/Supermarket/Data")
+	hospital = get_node("Control/Body/Profile/PropertyInfo/Hospital/Data")
+	farm = get_node("Control/Body/Profile/PropertyInfo/Farm/Data")
+	constructionSite = get_node("Control/Body/Profile/PropertyInfo/ConstructionSite/Data")
 
 func connect_signals():
+	HttpLayer.http_completed.connect(http_completed)
+	self.visibility_changed.connect(_visibility_changes)
+	
 	accountSettingButton.pressed.connect(_on_account_setting_pressed)
-	backButton.pressed.connect(_on_back_button_pressed)
+	closeButton.pressed.connect(_on_close_button_pressed)
 
 # jump to account setting interface
 func _on_account_setting_pressed():
-	get_tree().change_scene_to_file(account_setting_scene)
+	self.hide()
+	get_parent().get_child(2).show()
 
-func _on_back_button_pressed():
-	get_tree().change_scene_to_file(main_scene)
+func _on_close_button_pressed():
+	self.hide()
+
 
 # process response got from server
 func http_completed(res, response_code, headers, route):
 	#if token is checked and valid, return true
 	if !AlertPopup.tokenCheck(res):
-		return	
+		return
+	
+	if (route != 'getPropertyInfo'):
+		return
+	
 	if (response_code == 200):
 		print(res.msg)
 		# check if code in resultVO is 0000(SUCCESS)
@@ -68,9 +80,9 @@ func http_completed(res, response_code, headers, route):
 			print(res.data)
 			return
 		
+		# store and display new property info 
 		update_user_property(res.data)
 		display_user_property_info(GameManager.property_data)
-			
 	else:
 		print("Fail to get user's property information")
 
