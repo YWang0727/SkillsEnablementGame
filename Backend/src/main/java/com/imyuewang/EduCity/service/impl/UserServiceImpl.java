@@ -68,6 +68,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String pwToken = user.getPassword();
         //parser pwToken
         JWT jwt = JwtManager.parsePwToken(pwToken);
+        if(jwt == null){
+            throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");
+        }
         String pw = jwt.getPayload(JWTPayload.SUBJECT).toString();
         if(user == null || !Objects.equals(pw, pwLogin)){
             throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");

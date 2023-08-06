@@ -1,10 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dvsoi2p1le8ty"]
+[gd_scene load_steps=22 format=3 uid="uid://ckpvbylmvtoo8"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
 [ext_resource type="Texture2D" uid="uid://cor70keg1r8am" path="res://LearningPage/Icon/learningButton.png" id="6_4c6en"]
-[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://Font/Roboto/Roboto-Bold.ttf" id="6_45dsv"]
+[ext_resource type="FontFile" uid="uid://cppwgcygfbwta" path="res://setting/assets/Font/Roboto/Roboto-Bold.ttf" id="6_45dsv"]
 [ext_resource type="PackedScene" uid="uid://bnsn8jn5g4gmi" path="res://Components/components.tscn" id="6_dvg2h"]
 [ext_resource type="Script" path="res://XufengPart/CameraButtons.gd" id="7_8dtfb"]
 [ext_resource type="Texture2D" uid="uid://jrr8rvonj2mr" path="res://XufengPart/Icons/right.png" id="9_yc4t2"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://br6ymomytlp8p" path="res://XufengPart/Icons/down.png" id="12_fpq80"]
 [ext_resource type="Texture2D" uid="uid://hf2403e1h33j" path="res://XufengPart/Icons/centre.png" id="13_8ybs5"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="16_bbdut"]
-[ext_resource type="PackedScene" uid="uid://bprrpqv2m3u0m" path="res://setting_buttons.tscn" id="16_kpiqd"]
+[ext_resource type="PackedScene" path="res://setting_buttons.tscn" id="16_kpiqd"]
 [ext_resource type="Texture2D" uid="uid://c3cd3jtnngqlc" path="res://chatbot/assets/chatbot.png" id="17_sfjsg"]
 [ext_resource type="Script" path="res://chatbot/src/ChatBotButton.gd" id="18_oapmc"]
 
