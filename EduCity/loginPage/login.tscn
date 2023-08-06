@@ -1,12 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=21 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://cclg3j57gug3p" path="res://loginPage/img/bg (3).png" id="2_mqhxh"]
 [ext_resource type="PackedScene" uid="uid://3v8pvnju7bv6" path="res://loginPage/activecode_button.tscn" id="3_dd83c"]
 [ext_resource type="Texture2D" uid="uid://o628e2s2tbmu" path="res://loginPage/eye-hiden.png" id="4_5feks"]
 [ext_resource type="Texture2D" uid="uid://ccyh1fbmhy84q" path="res://loginPage/eyes.png" id="5_e7cc7"]
-[ext_resource type="Texture2D" uid="uid://dgau6ji45fx4j" path="res://loginPage/img/logo3.png" id="6_ko20s"]
-[ext_resource type="Script" path="res://loginPage/dir.gd" id="7_bgwq7"]
+[ext_resource type="Texture2D" uid="uid://dgau6ji45fx4j" path="res://loginPage/logo3.png" id="6_ko20s"]
 [ext_resource type="FontFile" uid="uid://cuov0ur21mnm3" path="res://loginPage/theme/static/Tektur-Medium.ttf" id="9_hlw4a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phk7t"]
@@ -666,8 +665,7 @@ text = "EduCity"
 fit_content = true
 scroll_active = false
 
-[node name="dir" type="Node2D" parent="."]
-script = ExtResource("7_bgwq7")
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="pressed" from="sign_in1/next_button_panel/next_button" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="sign_in1/get_activecode_button" to="." method="_on_get_activecode_button_pressed"]

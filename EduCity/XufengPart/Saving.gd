@@ -26,7 +26,7 @@ func save_auto():
 	
 	var _credential = {
 			"id": GameManager.user_id,
-			"cityid": GameManager.user_data["citymap"],
+			"cityid": GameManager.user_data["cityMap"],
 			
 			"gold": GameManager.gold,
 			"prosperity": GameManager.prosperity,
@@ -42,7 +42,7 @@ func save():
 	
 	var _credential = {
 			"id": GameManager.user_id,
-			"cityid": GameManager.user_data["citymap"],
+			"cityid": GameManager.user_data["cityMap"],
 			
 			"gold": GameManager.gold,
 			"prosperity": GameManager.prosperity,

@@ -25,17 +25,15 @@ public class UserVO {
 
     private String avatarStr;
 
-    private Long citymap;
+    private Long cityMap;
 
     private Timestamp logoutTime;
 
-    private String activecode;
+    private String activeCode;
 
-    private String token;
+    private String accessToken;
 
-    public UserVO(){}
-    public UserVO(String activeCode){
-        activeCode = this.activecode;
-    }
+    private String refreshToken;
+
 
 }

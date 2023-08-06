@@ -8,7 +8,10 @@ var other_city_name = null
 var other_prosperity = null
 var other_rank = null
 
-var user_token = null
+var user_accessToken = null
+var user_refreshToken = null
+var user_lastActiveTime = null
+
 var user_data = null
 var save_data = null
 var user_loginTime = null

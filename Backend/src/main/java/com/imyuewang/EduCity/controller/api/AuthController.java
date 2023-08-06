@@ -57,5 +57,10 @@ public class AuthController {
         return userService. getActiveCode(param);
     }
 
+    @PostMapping("/refresh-access-token")
+    @ApiOperation(value = "Refresh access token")
+    public ResultVO refreshAccessToken(@RequestBody String refreshToken) {
+        return userService.refreshAccessToken(refreshToken);
+    }
 
 }

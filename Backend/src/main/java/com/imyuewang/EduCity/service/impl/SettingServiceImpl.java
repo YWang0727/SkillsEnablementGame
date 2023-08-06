@@ -1,5 +1,7 @@
 package com.imyuewang.EduCity.service.impl;
 
+import cn.hutool.jwt.JWT;
+import cn.hutool.jwt.JWTPayload;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.imyuewang.EduCity.config.PasswordEncoder;
 import com.imyuewang.EduCity.enums.HouseType;
@@ -13,6 +15,7 @@ import com.imyuewang.EduCity.model.param.EditPasswordParam;
 import com.imyuewang.EduCity.model.param.EditUserParam;
 import com.imyuewang.EduCity.model.vo.PropertyInfoVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
+import com.imyuewang.EduCity.security.JwtManager;
 import com.imyuewang.EduCity.service.SettingService;
 import com.imyuewang.EduCity.util.MailUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Base64;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -57,7 +61,7 @@ public class SettingServiceImpl implements SettingService {
     public PropertyInfoVO getPropertyInfo(Long userId) {
         // get cityMap according to map id
         User user = userMapper.selectById(userId);
-        Long cityMapId = user.getCitymap();
+        Long cityMapId = user.getCityMap();
 
         // get gold and prosperity
         PropertyInfoVO propertyInfoVO = new PropertyInfoVO();
@@ -124,12 +128,17 @@ public class SettingServiceImpl implements SettingService {
      */
     @Override
     public void editPassword(EditPasswordParam passwordParam) {
-        User user = userMapper.selectById(passwordParam.getId());
         String oldPassword = passwordParam.getOldPassword();
         String newPassword = passwordParam.getNewPassword();
+        User user = userMapper.selectById(passwordParam.getId());
+        String pwToken = user.getPassword();
+        JWT jwt = JwtManager.parsePwToken(pwToken);
+        String userPassword = jwt.getPayload(JWTPayload.SUBJECT).toString();
 
         // check if old password is correct
-        if (!PasswordEncoder.matches(oldPassword, user.getPassword())) {
+        if (!Objects.equals(oldPassword, userPassword)) {
+            System.out.println("old password: " + oldPassword);
+            System.out.println("user password: " + userPassword);
             throw new ApiException(ResultCode.VALIDATE_FAILED, "Password is incorrect!");
         }
 

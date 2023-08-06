@@ -44,7 +44,7 @@ public class User implements Serializable {
      * 
      */
     @TableField(value = "cityMap")
-    private Long citymap;
+    private Long cityMap;
 
     /**
      * 0-not actived 1-actived
@@ -56,7 +56,7 @@ public class User implements Serializable {
      * 
      */
     @TableField(value = "activeCode")
-    private String activecode;
+    private String activeCode;
 
     /**
      * 
@@ -86,9 +86,9 @@ public class User implements Serializable {
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
             && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getCitymap() == null ? other.getCitymap() == null : this.getCitymap().equals(other.getCitymap()))
+            && (this.getCityMap() == null ? other.getCityMap() == null : this.getCityMap().equals(other.getCityMap()))
             && (this.getIsFirst() == null ? other.getIsFirst() == null : this.getIsFirst().equals(other.getIsFirst()))
-            && (this.getActivecode() == null ? other.getActivecode() == null : this.getActivecode().equals(other.getActivecode()))
+            && (this.getActiveCode() == null ? other.getActiveCode() == null : this.getActiveCode().equals(other.getActiveCode()))
             && (Arrays.equals(this.getAvatar(), other.getAvatar()));
     }
 
@@ -100,9 +100,9 @@ public class User implements Serializable {
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getCitymap() == null) ? 0 : getCitymap().hashCode());
+        result = prime * result + ((getCityMap() == null) ? 0 : getCityMap().hashCode());
         result = prime * result + ((getIsFirst() == null) ? 0 : getIsFirst().hashCode());
-        result = prime * result + ((getActivecode() == null) ? 0 : getActivecode().hashCode());
+        result = prime * result + ((getActiveCode() == null) ? 0 : getActiveCode().hashCode());
         result = prime * result + (Arrays.hashCode(getAvatar()));
         return result;
     }
@@ -117,9 +117,9 @@ public class User implements Serializable {
         sb.append(", email=").append(email);
         sb.append(", password=").append(password);
         sb.append(", name=").append(name);
-        sb.append(", citymap=").append(citymap);
+        sb.append(", citymap=").append(cityMap);
         sb.append(", isFirst=").append(isFirst);
-        sb.append(", activecode=").append(activecode);
+        sb.append(", activecode=").append(activeCode);
         sb.append(", avatar=").append(avatar);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

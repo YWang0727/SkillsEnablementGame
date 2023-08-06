@@ -142,7 +142,7 @@ func edit_user_profile():
 	
 	var url = "http://localhost:8080/setting/editUserInfo"
 	var headers = PackedStringArray(["Content-Type: multipart/form-data; boundary=MyBoundary"])
-	headers.append(str("Authorization: ", GameManager.user_token))
+	headers.append(str("Authorization: ", GameManager.user_accessToken))
 	
 	# create the body of editing user info request
 	# use from to send request, first part is the json data, second is the picture byte data

@@ -34,4 +34,6 @@ public interface UserService extends IService<User> {
 
     ResultVO register(RegisterParam newUser);
 
+    ResultVO refreshAccessToken(String refreshToken);
+
 }

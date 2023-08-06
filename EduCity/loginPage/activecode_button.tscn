@@ -31,3 +31,5 @@ offset_bottom = 356.893
 scale = Vector2(0.6, 0.6)
 theme = SubResource("Theme_5q2ag")
 text = "Get Active Code"
+
+[node name="Timer" type="Timer" parent="."]

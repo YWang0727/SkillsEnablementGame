@@ -23,13 +23,6 @@ public final class JwtManager {
      */
     private final static byte[] secretKeyBytes = "my_secret_key".getBytes();
 
-
-    /**
-     * The expiration time is currently set to 30 minutes,
-     * this configuration depends on business requirements.
-     */
-    private final static Integer EXPIRATION = 5;
-
     /**
      * Generate jwt token
      * @author Yue Wang
@@ -37,9 +30,9 @@ public final class JwtManager {
      * @param userId userid
      * @return jwt token
      **/
-    public static String generate(Long userId) {
+    public static String generate(Long userId, Integer expiration){
         DateTime now = DateUtil.date();
-        DateTime ddl = DateUtil.offsetMinute(now, EXPIRATION);
+        DateTime ddl = DateUtil.offsetMinute(now, expiration);
         Map<String, Object> map = new HashMap<String, Object>() {
             {
                 put(JWTPayload.ISSUED_AT, now);
@@ -70,6 +63,10 @@ public final class JwtManager {
      * @throws RuntimeException Throw an exception if verification fails.
      **/
     public static JWT parse(String token) {
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
+
         if(StrUtil.isBlank(token)){
             return null;
         }
@@ -92,6 +89,9 @@ public final class JwtManager {
         return jwt;
     }
     public static JWT parsePwToken(String token) {
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
         if(StrUtil.isBlank(token)){
             return null;
         }

@@ -42,7 +42,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     @Override
     public MapDictVO readMap(Long id){
         User user = userMapper.selectById(id);
-        MapDictVO mapDictVO = otherMap(user.getCitymap());
+        MapDictVO mapDictVO = otherMap(user.getCityMap());
         return mapDictVO;
     }
 
@@ -77,7 +77,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     public void buildHouse(MapDictParam param){
         User user = userMapper.selectById(param.getId());
         Takenmapcell takenmapcell = new Takenmapcell();
-        takenmapcell.setMapid(user.getCitymap());
+        takenmapcell.setMapid(user.getCityMap());
         takenmapcell.setPositionx(param.getX());
         takenmapcell.setPositiony(param.getY());
         takenmapcell.setHousetype(param.getHouseType());
@@ -90,7 +90,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     public void levelUp(MapDictParam param){
         User user = userMapper.selectById(param.getId());
         QueryWrapper queryWrapper = new QueryWrapper<Citymap>();
-        queryWrapper.eq("mapId",user.getCitymap());
+        queryWrapper.eq("mapId",user.getCityMap());
         queryWrapper.eq("positionX",param.getX());
         queryWrapper.eq("positionY",param.getY());
         Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);
@@ -103,7 +103,7 @@ public class TakenmapcellServiceImpl extends ServiceImpl<TakenmapcellMapper, Tak
     public void clearMapTime(MapDictParam param) {
         User user = userMapper.selectById(param.getId());
         QueryWrapper queryWrapper = new QueryWrapper<Citymap>();
-        queryWrapper.eq("mapId",user.getCitymap());
+        queryWrapper.eq("mapId",user.getCityMap());
         queryWrapper.eq("positionX",param.getX());
         queryWrapper.eq("positionY",param.getY());
         Takenmapcell takenmapcell = takenmapcellMapper.selectOne(queryWrapper);

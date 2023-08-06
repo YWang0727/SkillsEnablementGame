@@ -23,7 +23,7 @@ func setPosition(positionX: int, positionY: int, positionType: String):
 		self.position.x = 760
 		self.position.y = 400
 	elif positionType == 'login':
-		self.position.x = 400
+		self.position.x = 350
 		self.position.y = 400
 	else:
 		self.position.x = positionX

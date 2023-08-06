@@ -37,9 +37,10 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body, rou
 				match route:
 					
 					"login":
-						GameManager.user_token = res['data']['token']
-						print("token" + GameManager.user_token)
+						GameManager.user_accessToken = res['data']['accessToken']
+						print("token" + GameManager.user_accessToken)
 						GameManager.user_data = res['data']['user']
+						print("GameManager.user_data!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + GameManager.user_data)
 						GameManager.save_data = GameManager.user_data['save_data']
 
 					"register":
@@ -63,7 +64,7 @@ func _destroyHttpObject(_object):
 
 # The core operations used to make HTTP requests:
 # _apiCore(Endpoint of the request (router), Data to be sent (request body), Whether authorisation is required, Methods of request (GET, POST, PUT, DELETE, etc.), Route info, Redirected info)
-func _apiCore(_endpoint, _data, _authorize, _method: String, _route , _redirectTo = null ):
+func _apiCore(_endpoint, _data, _authorize,  _method: String, _route , _token = null, _redirectTo = null ):
 	# Create a new instance of HTTPRequest and connect it to the signal request_completed to trigger the specified callback function _on_HTTPRequest_request_completed when the request completes.
 	var http = HTTPRequest.new()
 	add_child(http)
@@ -77,7 +78,7 @@ func _apiCore(_endpoint, _data, _authorize, _method: String, _route , _redirectT
 	
 	# If _authorize is true, add the "Authorization" header to the headers list and use Game.user_token for authorization
 	if _authorize:
-		headers.append(str("Authorization: ", GameManager.user_token))
+		headers.append(str("Authorization: Bearer ", _token))
 		
 	#print("api success")
 		
@@ -113,64 +114,66 @@ func _checkEmailIsExisted(_credentials):
 func _getActiveCode(_credentials):
 	_apiCore("auth/active", _credentials, false, "POST", "active")
 	
-	
+func _getNewAccessToken(_credentials):
+	_apiCore("auth/refresh-access-token", _credentials, true,"POST", "refresh-access-token", GameManager.user_refreshToken)
+		
 # api for learning_related scene	
 func _completeLesson(_credentials):
-	_apiCore("learn/complete", _credentials, true, "POST", "complete")
+	_apiCore("learn/complete", _credentials, true, "POST", "complete", GameManager.user_accessToken)
 
 func _submitQuiz(_credentials):
-	_apiCore("learn/submit", _credentials, true, "POST", "submit")
+	_apiCore("learn/submit", _credentials, true, "POST", "submit", GameManager.user_accessToken)
 	
 func _getStatus(_credentials):
-	_apiCore("learn/status", _credentials, true, "POST", "status")
+	_apiCore("learn/status", _credentials, true, "POST", "status", GameManager.user_accessToken)
 	
 	
 # api for Components_related scene	
 func _leaderBoard():
-	_apiCore("map/leaderBoard/" + str(GameManager.user_id), null, true, "GET", "leaderBoard")
+	_apiCore("map/leaderBoard/" + str(GameManager.user_id), null, true, "GET", "leaderBoard", GameManager.user_accessToken)
 
 func _getComponents():
-	_apiCore("map/getComponents/" + str(GameManager.user_id), null, true, "GET", "getComponents")
+	_apiCore("map/getComponents/" + str(GameManager.user_id), null, true, "GET", "getComponents", GameManager.user_accessToken)
 	
 func _pushComponents(_credentials):
-	_apiCore("map/pushComponents", _credentials, true, "POST", "pushComponents")
+	_apiCore("map/pushComponents", _credentials, true, "POST", "pushComponents", GameManager.user_accessToken)
 	
 func _readMap():
-	_apiCore("map_cell/readMap/" + str(GameManager.user_id), null, true, "GET", "readMap")
+	_apiCore("map_cell/readMap/" + str(GameManager.user_id), null, true, "GET", "readMap", GameManager.user_accessToken)
 	
 func _buildHouse(_credentials):
-	_apiCore("map_cell/buildHouse", _credentials, true, "POST", "buildHouse")
+	_apiCore("map_cell/buildHouse", _credentials, true, "POST", "buildHouse", GameManager.user_accessToken)
 
 func _otherMap():
-	_apiCore("map_cell/otherMap/" + str(GameManager.other_id), null, true, "GET", "otherMap")
+	_apiCore("map_cell/otherMap/" + str(GameManager.other_id), null, true, "GET", "otherMap", GameManager.user_accessToken)
 	
 func _levelUp(_credentials):
-	_apiCore("map_cell/levelUp", _credentials, true, "POST", "levelUp")
+	_apiCore("map_cell/levelUp", _credentials, true, "POST", "levelUp", GameManager.user_accessToken)
 
 func _clearMapTime(_credentials):
-	_apiCore("map_cell/clearMapTime", _credentials, true, "POST", "clearMapTime")
+	_apiCore("map_cell/clearMapTime", _credentials, true, "POST", "clearMapTime", GameManager.user_accessToken)
 
 
 # chatbot functions
 func send_message(data):
-	_apiCore("watson/assistant/message", data, true, "POST", "message")
+	_apiCore("watson/assistant/message", data, true, "POST", "message", GameManager.user_accessToken)
 
 # setting
 # fetch user basic infomation from server
 func fetch_user_info(userId):
-	HttpLayer._apiCore("setting/getUserInfo/" + str(userId), null, true, "GET", "getUserInfo")
+	HttpLayer._apiCore("setting/getUserInfo/" + str(userId), null, true, "GET", "getUserInfo", GameManager.user_accessToken)
 
 func fetch_user_property_info(userId):
-	HttpLayer._apiCore("setting/getPropertyInfo/" + str(userId), null, true, "GET", "getPropertyInfo")
+	HttpLayer._apiCore("setting/getPropertyInfo/" + str(userId), null, true, "GET", "getPropertyInfo", GameManager.user_accessToken)
 
 # send editing password request to server
 func edit_user_password(_credentials):
-	HttpLayer._apiCore("setting/editPassword", _credentials, true, "PUT", "editPassword")
+	HttpLayer._apiCore("setting/editPassword", _credentials, true, "PUT", "editPassword", GameManager.user_accessToken)
 
 
 # api for saving
 func _save(_credentials):
-	_apiCore("save/save", _credentials, true, "POST", "save")
+	_apiCore("save/save", _credentials, true, "POST", "save", GameManager.user_accessToken)
 	
 func _save_auto(_credentials):
-	_apiCore("save/save_auto", _credentials, true, "POST", "save_auto")
+	_apiCore("save/save_auto", _credentials, true, "POST", "save_auto", GameManager.user_accessToken)

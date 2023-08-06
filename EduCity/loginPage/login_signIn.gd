@@ -41,6 +41,10 @@ var loginButton
 #others
 var alertPopup
 
+#timer
+var countdown_sec = 60
+var timer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,6 +85,9 @@ func initiate_variables():
 	#get node from other items
 	alertPopup = get_node("AlertPopup")
 	
+	#timer
+	timer = get_node("Timer")
+	timer.connect("timeout", _on_timer_timeout)
 	
 func connect_signals():
 	#sign signals
@@ -117,7 +124,19 @@ func create_labels():
 	invalidPw2Label = createLabel("Passwords do not match!", Vector2(70, 350), 20, Color(0.78, 0.19, 0.24),signPanel2)
 	validPw2Label.visible = false
 	invalidPw2Label.visible = false
+
+func _on_eye_hide_toggled(button_pressed):
+	changePasswordHideState(password1Sign)
+
+func _on_eye_hide_2_toggled(button_pressed):
+	changePasswordHideState(password2Sign)
+
+func _on_eye_hide_3_toggled(button_pressed):
+	changePasswordHideState(passwordLog)
 	
+func changePasswordHideState(passwordNode: Node):
+	print(passwordNode.secret)
+	passwordNode.set_secret(!passwordNode.secret)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -129,10 +148,6 @@ func _process(delta):
 		nextButton.disabled = true;
 	else:
 		nextButton.disabled = false;
-	if !checkEmailFormat(emailSign.text) || emailSign.text == "":
-		getActiveCodeButton.disabled = true;
-	else:
-		getActiveCodeButton.disabled = false;
 	if usernameSign.text == "" || password1Sign.text == "" || password2Sign.text == "" || password1Sign.text != password2Sign.text:
 		completeButton.disabled = true;
 	else:
@@ -167,6 +182,7 @@ func _input(event):
 						completeButton.set_pressed(true)
 						completeButton.grab_focus()
 
+#******************************   User  Operations  ********************************#
 func _on_log_in_pressed():
 	currentPanel = panels.log
 	emailLog.grab_focus()	
@@ -239,12 +255,10 @@ func _on_password_line_edit_text_changed(new_text):
 		invalidPw2Label.visible = false
 		
 		
-
 func checkEmailFormat(new_text):
 	var emailPattern = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"  # 定义电子邮件的正则表达式模式
 	var regex = RegEx.new()
 	regex.compile(emailPattern)  # 编译正则表达式
-
 	return regex.search(new_text) != null  # 检查邮箱是否与模式匹配
 	
 	
@@ -271,20 +285,6 @@ func _on_next_button_pressed():
 	signPanel2.visible = true
 	
 
-func _on_eye_hide_toggled(button_pressed):
-	changePasswordHideState(password1Sign)
-
-func _on_eye_hide_2_toggled(button_pressed):
-	changePasswordHideState(password2Sign)
-
-func _on_eye_hide_3_toggled(button_pressed):
-	changePasswordHideState(passwordLog)
-	
-func changePasswordHideState(passwordNode: Node):
-	print(passwordNode.secret)
-	passwordNode.set_secret(!passwordNode.secret)
-
-
 func _on_login_button_pressed():
 	#check the account is existed or not
 	login(emailLog.text, passwordLog.text);
@@ -292,8 +292,30 @@ func _on_login_button_pressed():
 
 func _on_complete_button_pressed():
 	register(emailSign.text, activeCode.text, usernameSign.text, password1Sign.text);
+
+func _on_get_activecode_button_pressed():
+	if !checkEmailFormat(emailSign.text) || emailSign.text == "":
+		AlertPopup.setPosition(0,0,'login')
+		AlertPopup.show_error_message("   Invalid email format. \n   Please check again!")
+	else:
+		getActiveCodeButton.disabled = true
+		start_countdown()
+		checkEmailIsExisted(emailSign.text)
 	
+
+#******************************   Send Request to Back End  ********************************#
+func checkEmailIsExisted(email:String):
+	var _credential = {
+			"email": email,
+	}
+	HttpLayer._checkEmailIsExisted(_credential)
 	
+func getActiveCode():
+	var email = emailSign.text
+	var _credential = {
+			"email": email,
+	}
+	HttpLayer._getActiveCode(_credential)
 func login(email:String, password:String):
 	var _credential = {
 			"email": email,
@@ -303,7 +325,6 @@ func login(email:String, password:String):
 
 
 func register(email: String, activeCode:String, username:String, password:String):
-	print("register")
 	var _credential = {
 			"email": email,
 			"activecode": activeCode,
@@ -322,6 +343,7 @@ func read_map():
 	HttpLayer._readMap()
 	
 	
+#******************************   Handle The Response Data From The Backend  ********************************#
 func http_completed(res, response_code, headers, route) -> void:
 	print(res)
 	if response_code == 200 && route == "login":
@@ -348,12 +370,12 @@ func http_completed(res, response_code, headers, route) -> void:
 		
 		return	
 	if response_code == 200 && route == "email":
-		if !res['code'] == 4001:
-			AlertPopup.setPosition(0,0,'login')
-			AlertPopup.show_error_message(res['data'])
 		if res['code'] == 4001:
 			getActiveCode()
-			return
+		else:
+			AlertPopup.setPosition(0,0,'login')
+			AlertPopup.show_error_message(res['data'])
+		return
 	if response_code == 200 && route == "active":
 		#email sent success
 		if res['code'] == 4002:
@@ -367,6 +389,9 @@ func http_completed(res, response_code, headers, route) -> void:
 	#if token is checked and valid, return true
 	if !AlertPopup.tokenCheck(res):
 		return	
+	if response_code == 200 && route == "refresh-access-token":
+		GameManager.user_accessToken = res.data
+		return
 	if response_code == 200 && route == "status":
 		# save data to knowledge status list in GameManager
 		for i in res['statusList'].size():
@@ -407,29 +432,45 @@ func initializeGameManager(res) :
 				"email" : res.data.email,
 				"name" : res.data.name,
 				"avatarStr" : res.data.avatarStr,
-				"citymap" : res.data.citymap,
+				"cityMap" : res.data.cityMap,
 				"logoutTime" : res.data.logoutTime,
-				"token" : res.data.token
+				"accessToken" : res.data.accessToken,
+				"refreshToken" : res.data.refreshToken
 			}
 	GameManager.user_id = GameManager.user_data['id']
-	GameManager.user_token = GameManager.user_data['token']
+	GameManager.user_accessToken = GameManager.user_data['accessToken']
+	GameManager.user_refreshToken = GameManager.user_data['refreshToken']
+	GameManager.user_lastActiveTime = Time.get_unix_time_from_system()
+	
 
 func setAlert(msg:String):
 	alertPopup.set_text(msg)
 	alertPopup.visible = true;
 	
 
-func _on_get_activecode_button_pressed():
-	var email = emailSign.text
-	var _credential = {
-			"email": email,
-	}
-	HttpLayer._checkEmailIsExisted(_credential)
+#******************************   Timer Set  ********************************#
+func start_countdown():
 	
-func getActiveCode():
-	var email = emailSign.text
-	var _credential = {
-			"email": email,
-	}
-	HttpLayer._getActiveCode(_credential)
+	# 启动定时器，每秒更新按钮上的文本
+	timer.start(1.0)
+	countdown_sec = 60
+	update_button_text()
+	
+
+func _on_timer_timeout():
+	# 定时器时间到，每秒更新按钮上的文本
+	countdown_sec -= 1
+	update_button_text()
+
+	# 如果倒计时完成，停止定时器并启用按钮
+	if countdown_sec <= 0:
+		timer.stop()
+		getActiveCodeButton.disabled = false
+
+func update_button_text():
+	# 更新按钮上的文本，显示倒计时秒数
+	if countdown_sec > 0:
+		getActiveCodeButton.text = "Get new after " + str(countdown_sec) + " sec"
+	else:
+		getActiveCodeButton.text = "Get Active Code"
 

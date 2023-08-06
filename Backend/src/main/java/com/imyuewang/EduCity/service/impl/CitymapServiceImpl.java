@@ -33,7 +33,7 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
     @Override
     public LeaderboardVO leaderBoard(Long id) {
         User user = userMapper.selectById(id);
-        Citymap citymap = cityMapMapper.selectById(user.getCitymap());
+        Citymap citymap = cityMapMapper.selectById(user.getCityMap());
         LeaderboardVO leaderBoardVO = new LeaderboardVO();
         leaderBoardVO.setName(citymap.getName());
         leaderBoardVO.setProsperity(citymap.getProsperity());
@@ -65,7 +65,7 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
     @Override
     public ComponentsVO getComponents(Long id){
         User user = userMapper.selectById(id);
-        Citymap citymap = cityMapMapper.selectById(user.getCitymap());
+        Citymap citymap = cityMapMapper.selectById(user.getCityMap());
         ComponentsVO componentsVO = new ComponentsVO();
         componentsVO.setGold(citymap.getGold());
         componentsVO.setProsperity(citymap.getProsperity());
@@ -77,7 +77,7 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
     @Override
     public void pushComponents(ComponentsParam param){
         User user = userMapper.selectById(param.getId());
-        Citymap citymap = cityMapMapper.selectById(user.getCitymap());
+        Citymap citymap = cityMapMapper.selectById(user.getCityMap());
         citymap.setGold(param.getGold());
         citymap.setProsperity(param.getProsperity());
         citymap.setConstructionspeed(param.getConstruction_speed());

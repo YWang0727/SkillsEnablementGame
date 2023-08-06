@@ -1,44 +1,33 @@
 package com.imyuewang.EduCity.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTPayload;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.imyuewang.EduCity.config.PasswordEncoder;
 import com.imyuewang.EduCity.enums.ResultCode;
 import com.imyuewang.EduCity.exception.ApiException;
 import com.imyuewang.EduCity.mapper.CitymapMapper;
 import com.imyuewang.EduCity.mapper.TakenmapcellMapper;
 import com.imyuewang.EduCity.mapper.UserQuizMapper;
 import com.imyuewang.EduCity.model.entity.Citymap;
-import com.imyuewang.EduCity.model.entity.Takenmapcell;
-import com.imyuewang.EduCity.model.entity.UserQuiz;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
-import com.imyuewang.EduCity.model.param.UserParam;
 import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.security.JwtManager;
-import com.imyuewang.EduCity.service.CitymapService;
 import com.imyuewang.EduCity.util.MailUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.service.UserService;
 import com.imyuewang.EduCity.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Objects;
 import java.util.Random;
-import java.util.UUID;
-
-
 
 
 /**
@@ -71,7 +60,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //get user from database
         User user = getUserByEmail(loginParam.getEmail());
         System.out.println(user);
-
+        if(user == null){
+            throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");
+        }
         // Throw error if user or password is wrong
         String pwLogin = loginParam.getPassword();
         String pwToken = user.getPassword();
@@ -81,10 +72,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if(user == null || !Objects.equals(pw, pwLogin)){
             throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");
         }
-        // Generate token
-        String token = JwtManager.generate(user.getId());
+        // Generate two tokens
+        //1. access token 5min
+        String accessToken = JwtManager.generate(user.getId(),5);
+        //2. refresh token 24h
+        String refreshToken = JwtManager.generate(user.getId(),24 * 60);
         UserVO userVO = getUserVOFromUser(user);
-        userVO.setToken(token);
+        userVO.setAccessToken(accessToken);
+        userVO.setRefreshToken(refreshToken);
         //set isFirst to 0
         user.setIsFirst(0);
         userMapper.updateById(user);
@@ -143,7 +138,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     private User setCityMapId(User newUser){
         User userWithId = getUserByEmail(newUser.getEmail());
         //set citymap id of new user
-        newUser.setCitymap(userWithId.getId());
+        newUser.setCityMap(userWithId.getId());
         userMapper.updateById(newUser);
         //return newuser with id and citymap id
         return getUserByEmail(newUser.getEmail());
@@ -182,6 +177,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return userMapper.selectOne(lqw);
     }
 
+    /********************************************************/
+    /**************    Refresh Access Token    **************/
+    /********************************************************/
+    public ResultVO refreshAccessToken(String refreshToken) {
+        //get userId from refresh token
+        JWT jwt = JwtManager.parse(refreshToken);
+        Long userId = (Long)jwt.getPayload(JWTPayload.SUBJECT);
+        //generate new access token
+        String newAccessToken = JwtManager.generate(userId,5);
+        //return new access token and refresh token
+        return new ResultVO(newAccessToken);
+    }
 
 }
 
