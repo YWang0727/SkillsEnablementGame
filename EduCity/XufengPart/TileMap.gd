@@ -9,6 +9,7 @@ var selectedLayer: int = 1
 var buildingLayer: int = 2
 var selectedBuildingType: int = -1  # 选择的图块索引
 var cellPosArray2D = [] # 储存每个房子的占地cell，防止overlap
+@onready var fontResourse = preload("res://Font/Roboto/Roboto-Medium.ttf")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -87,27 +88,31 @@ func _drawMap() -> void:
 			
 
 func _drawInBuildingCellsLabel(selectedBuildingType, cellPos) -> void:
+	var label = Label.new()
+	label.name = "Label" + str(cellPos)
+	label.position = map_to_local(cellPos)
+	label.add_theme_font_override("font", fontResourse)
+	label.add_theme_font_size_override("font_size", 18)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	add_child(label)
 	var cellsCount = _getCellsCount(selectedBuildingType)
 	match cellsCount:
 		# a building occupying 1 cell
 		1:
 			set_cell(buildingLayer,cellPos,inBuildingTile,Vector2i(0,0))
+			label.position = map_to_local(cellPos) - Vector2(64,40)
 		# a building occupying 2 cells
 		2:
 			set_cell(buildingLayer,cellPos,inBuildingTile,Vector2i(0,0))
 			set_cell(buildingLayer,cellPos+Vector2i(1, 0),inBuildingTile,Vector2i(0,0))
+			label.position = map_to_local(cellPos) - Vector2(32,16)
 		# a building occupying 4 cells
 		4:
 			set_cell(buildingLayer,cellPos,inBuildingTile,Vector2i(0,0))
 			set_cell(buildingLayer,cellPos+Vector2i(1, 0),inBuildingTile,Vector2i(0,0))
 			set_cell(buildingLayer,cellPos+Vector2i(0, 1),inBuildingTile,Vector2i(0,0))
 			set_cell(buildingLayer,cellPos+Vector2i(1, 1),inBuildingTile,Vector2i(0,0))
-	var label = Label.new()
-	label.name = "Label" + str(cellPos)
-	label.position = map_to_local(cellPos)
-	label.text = "test"
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	add_child(label)
+			label.position = map_to_local(cellPos) - Vector2(64,-2)
 
 
 func _eraseInBuildingCells(selectedBuildingType,cellPos) -> void:

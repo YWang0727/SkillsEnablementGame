@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://br6ymomytlp8p" path="res://XufengPart/Icons/down.png" id="12_fpq80"]
 [ext_resource type="Texture2D" uid="uid://hf2403e1h33j" path="res://XufengPart/Icons/centre.png" id="13_8ybs5"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="16_bbdut"]
-[ext_resource type="PackedScene" path="res://setting_buttons.tscn" id="16_kpiqd"]
+[ext_resource type="PackedScene" uid="uid://bprrpqv2m3u0m" path="res://setting_buttons.tscn" id="16_kpiqd"]
 [ext_resource type="Texture2D" uid="uid://c3cd3jtnngqlc" path="res://chatbot/assets/chatbot.png" id="17_sfjsg"]
 [ext_resource type="Script" path="res://chatbot/src/ChatBotButton.gd" id="18_oapmc"]
 
