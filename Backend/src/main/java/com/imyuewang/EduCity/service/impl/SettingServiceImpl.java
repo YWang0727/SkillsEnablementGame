@@ -63,14 +63,33 @@ public class SettingServiceImpl implements SettingService {
         User user = userMapper.selectById(userId);
         Long cityMapId = user.getCityMap();
 
-        // get gold and prosperity
+        // get number of each type of buildings
         PropertyInfoVO propertyInfoVO = new PropertyInfoVO();
-        propertyInfoVO.setResidentialBuildingAmount(getBuildingAmount(HouseType.RESIDENTIAL_BUILDING, cityMapId));
-        propertyInfoVO.setSupermarketAmount(getBuildingAmount(HouseType.SUPERMARKET, cityMapId));
-        propertyInfoVO.setBankAmount(getBuildingAmount(HouseType.BANK, cityMapId));
-        propertyInfoVO.setFarmAmount(getBuildingAmount(HouseType.FARM, cityMapId));
-        propertyInfoVO.setConstructionSiteAmount(getBuildingAmount(HouseType.CONSTRUCTION_SITE, cityMapId));
-        propertyInfoVO.setHospitalAmount(getBuildingAmount(HouseType.HOSPITAL, cityMapId));
+        Integer residentialNum = getBuildingAmount(HouseType.RESIDENTIAL_BUILDING_1, cityMapId) +
+                getBuildingAmount(HouseType.RESIDENTIAL_BUILDING_2, cityMapId) +
+                getBuildingAmount(HouseType.RESIDENTIAL_BUILDING_3, cityMapId);
+        Integer supermarketNum = getBuildingAmount(HouseType.SUPERMARKET_1, cityMapId) +
+                getBuildingAmount(HouseType.SUPERMARKET_2, cityMapId) +
+                getBuildingAmount(HouseType.SUPERMARKET_3, cityMapId);
+        Integer bankNum = getBuildingAmount(HouseType.BANK_1, cityMapId) +
+                getBuildingAmount(HouseType.BANK_2, cityMapId) +
+                getBuildingAmount(HouseType.BANK_3, cityMapId);
+        Integer farmNum = getBuildingAmount(HouseType.FARM_1, cityMapId) +
+                getBuildingAmount(HouseType.FARM_2, cityMapId) +
+                getBuildingAmount(HouseType.FARM_3, cityMapId);
+        Integer constructionSiteNum = getBuildingAmount(HouseType.CONSTRUCTION_SITE_1, cityMapId) +
+                getBuildingAmount(HouseType.CONSTRUCTION_SITE_2, cityMapId) +
+                getBuildingAmount(HouseType.CONSTRUCTION_SITE_3, cityMapId);
+        Integer hospitalNum = getBuildingAmount(HouseType.HOSPITAL_1, cityMapId) +
+                getBuildingAmount(HouseType.HOSPITAL_2, cityMapId) +
+                getBuildingAmount(HouseType.HOSPITAL_3, cityMapId);
+
+        propertyInfoVO.setResidentialBuildingAmount(residentialNum);
+        propertyInfoVO.setSupermarketAmount(supermarketNum);
+        propertyInfoVO.setBankAmount(bankNum);
+        propertyInfoVO.setFarmAmount(farmNum);
+        propertyInfoVO.setConstructionSiteAmount(constructionSiteNum);
+        propertyInfoVO.setHospitalAmount(hospitalNum);
 
         return propertyInfoVO;
     }
