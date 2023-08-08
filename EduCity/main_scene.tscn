@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://6updj4jobty0"]
+[gd_scene load_steps=25 format=3 uid="uid://6updj4jobty0"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_d68s8"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://ccteyvjw8o0k5" path="res://setting/assets/audio/button2.wav" id="17_m108b"]
 [ext_resource type="Texture2D" uid="uid://c3cd3jtnngqlc" path="res://chatbot/assets/images/chatbot.png" id="17_sfjsg"]
 [ext_resource type="Script" path="res://chatbot/src/ChatBotButton.gd" id="18_oapmc"]
+[ext_resource type="PackedScene" uid="uid://ra57c4ch8uqi" path="res://XufengPart/GoldsGetPanel.tscn" id="19_0pcfi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi4cg"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -87,50 +88,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_cigyq")
 icon = ExtResource("6_4c6en")
 icon_alignment = 1
 script = SubResource("GDScript_lw47u")
-
-[node name="CameraButtons" type="Node2D" parent="."]
-script = ExtResource("7_8dtfb")
-
-[node name="RightMoveButton" type="Button" parent="CameraButtons"]
-offset_left = 174.0
-offset_top = 506.0
-offset_right = 219.0
-offset_bottom = 552.0
-icon = ExtResource("9_yc4t2")
-icon_alignment = 1
-expand_icon = true
-
-[node name="LeftMoveButton" type="Button" parent="CameraButtons"]
-offset_left = 61.0
-offset_top = 508.0
-offset_right = 104.0
-offset_bottom = 550.0
-icon = ExtResource("10_w2yaw")
-expand_icon = true
-
-[node name="UpMoveButton" type="Button" parent="CameraButtons"]
-offset_left = 117.0
-offset_top = 449.0
-offset_right = 162.0
-offset_bottom = 495.0
-icon = ExtResource("11_2k7ii")
-expand_icon = true
-
-[node name="DownMoveButton" type="Button" parent="CameraButtons"]
-offset_left = 119.0
-offset_top = 565.0
-offset_right = 164.0
-offset_bottom = 611.0
-icon = ExtResource("12_fpq80")
-expand_icon = true
-
-[node name="CenterMoveButton" type="Button" parent="CameraButtons"]
-offset_left = 118.0
-offset_top = 506.0
-offset_right = 163.0
-offset_bottom = 552.0
-icon = ExtResource("13_8ybs5")
-expand_icon = true
 
 [node name="ErrorPannel" type="PopupPanel" parent="."]
 size = Vector2i(400, 150)
@@ -202,12 +159,63 @@ offset_bottom = 545.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="CameraButtons" type="Node2D" parent="."]
+script = ExtResource("7_8dtfb")
+
+[node name="RightMoveButton" type="Button" parent="CameraButtons"]
+offset_left = 174.0
+offset_top = 577.0
+offset_right = 219.0
+offset_bottom = 623.0
+icon = ExtResource("9_yc4t2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LeftMoveButton" type="Button" parent="CameraButtons"]
+offset_left = 61.0
+offset_top = 579.0
+offset_right = 104.0
+offset_bottom = 621.0
+icon = ExtResource("10_w2yaw")
+expand_icon = true
+
+[node name="UpMoveButton" type="Button" parent="CameraButtons"]
+offset_left = 117.0
+offset_top = 520.0
+offset_right = 162.0
+offset_bottom = 566.0
+icon = ExtResource("11_2k7ii")
+expand_icon = true
+
+[node name="DownMoveButton" type="Button" parent="CameraButtons"]
+offset_left = 119.0
+offset_top = 636.0
+offset_right = 164.0
+offset_bottom = 682.0
+icon = ExtResource("12_fpq80")
+expand_icon = true
+
+[node name="CenterMoveButton" type="Button" parent="CameraButtons"]
+offset_left = 118.0
+offset_top = 577.0
+offset_right = 163.0
+offset_bottom = 623.0
+icon = ExtResource("13_8ybs5")
+expand_icon = true
+
 [node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_m108b")
 bus = &"Sound"
 
+[node name="GoldsGetPanel" parent="." instance=ExtResource("19_0pcfi")]
+offset_left = 710.0
+offset_top = 405.0
+offset_right = 1210.0
+offset_bottom = 675.0
+
 [connection signal="attributes_show2" from="TileMap" to="components" method="_on_tile_map_attributes_show_2"]
 [connection signal="store_components" from="TileMap" to="components" method="_on_tile_map_store_components"]
+[connection signal="pressed" from="ChatBotButton" to="ChatBotButton" method="_on_chat_bot_pressed"]
 [connection signal="button_down" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_down"]
 [connection signal="button_up" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_up"]
 [connection signal="button_down" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_down"]
@@ -217,4 +225,4 @@ bus = &"Sound"
 [connection signal="button_down" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_down"]
 [connection signal="button_up" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_up"]
 [connection signal="pressed" from="CameraButtons/CenterMoveButton" to="CameraButtons" method="_on_center_move_button_pressed"]
-[connection signal="pressed" from="ChatBotButton" to="ChatBotButton" method="_on_chat_bot_pressed"]
+[connection signal="update_components" from="GoldsGetPanel" to="components" method="_on_golds_get_panel_update_components"]

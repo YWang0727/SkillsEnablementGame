@@ -52,6 +52,7 @@ var buildings_data = []
 var gold = 9999
 var prosperity = 0
 var construction_speed = 1
+var gold_get_time
 var mapDict = {} # key: cell position, value: {"house_type":int, "finish_time":string}
 
 # Setting

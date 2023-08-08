@@ -6,6 +6,7 @@ create table citymap
     prosperity        bigint      not null,
     gold              bigint      not null,
     constructionSpeed int         not null,
+    goldGetTime bigint not null,
     constraint CityMap_id_uindex
         unique (id)
 );

@@ -292,10 +292,7 @@ func http_completed(res, response_code, headers, route):
 		elif (route == "editPassword"):
 			alert.set_message(res.data)
 			alert.popup_centered()
-	else:
-		if (route == "getUserInfo"):
-			print("Fail to get user's data")
-		elif (route == "editPassword"):
+	if (route == "editPassword"):
 			print("Fail to change password")
 
 # update user_data in GameManager every time opening this scene

@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://ra57c4ch8uqi"]
+
+[ext_resource type="Script" path="res://XufengPart/GoldsGetPanel.gd" id="1_elyxc"]
+[ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://setting/src/common/themes/text_button.tres" id="1_s083u"]
+[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://setting/assets/Font/Roboto/Roboto-Regular.ttf" id="2_cdgom"]
+[ext_resource type="Theme" uid="uid://b8831njpc3mif" path="res://setting/src/common/themes/text_icon.tres" id="3_t3u73"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_we5nr"]
+bg_color = Color(0.905882, 0.866667, 0.803922, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="GoldsGetPanel" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -149.0
+offset_right = 260.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_we5nr")
+script = ExtResource("1_elyxc")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.0864429
+anchor_right = 0.5
+anchor_bottom = 0.0864429
+offset_left = -188.0
+offset_right = 188.0
+offset_bottom = 63.0
+grow_horizontal = 2
+theme = ExtResource("1_s083u")
+theme_override_font_sizes/font_size = 32
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -58.5
+offset_right = 274.0
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s083u")
+theme_override_fonts/font = ExtResource("2_cdgom")
+theme_override_font_sizes/font_size = 24
+text = "You've completed another day 
+and earned xxx golds!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ok" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.911765
+anchor_right = 0.5
+anchor_bottom = 0.911765
+offset_left = -55.0
+offset_top = -52.7059
+offset_right = 56.0
+offset_bottom = 0.294128
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_t3u73")
+theme_override_font_sizes/font_size = 24
+text = "OK"
+icon_alignment = 1
+
+[connection signal="pressed" from="ok" to="." method="_on_ok_pressed"]

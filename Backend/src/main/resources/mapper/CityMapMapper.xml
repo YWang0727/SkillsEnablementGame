@@ -5,15 +5,16 @@
 <mapper namespace="com.imyuewang.EduCity.mapper.CitymapMapper">
 
     <resultMap id="BaseResultMap" type="com.imyuewang.EduCity.model.entity.Citymap">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="prosperity" column="prosperity" jdbcType="BIGINT"/>
-            <result property="gold" column="gold" jdbcType="BIGINT"/>
-            <result property="constructionspeed" column="constructionSpeed" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="prosperity" column="prosperity" jdbcType="BIGINT"/>
+        <result property="gold" column="gold" jdbcType="BIGINT"/>
+        <result property="constructionspeed" column="constructionSpeed" jdbcType="INTEGER"/>
+        <result property="goldgettime" column="goldGetTime" jdbcType="BIGINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,name,prosperity,
-        gold,constructionSpeed
+        gold,constructionSpeed,goldgettime
     </sql>
 </mapper>

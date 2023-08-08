@@ -9,42 +9,31 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * 
+ *
  * @TableName citymap
  */
 @TableName(value ="citymap")
 @Data
 @AllArgsConstructor
 public class Citymap implements Serializable {
-    /**
-     * 
-     */
+
     @TableId(value = "id")
     private Long id;
 
-    /**
-     * 
-     */
     @TableField(value = "name")
     private String name;
 
-    /**
-     * 
-     */
     @TableField(value = "prosperity")
     private Long prosperity;
 
-    /**
-     * 
-     */
     @TableField(value = "gold")
     private Long gold;
 
-    /**
-     * 
-     */
     @TableField(value = "constructionSpeed")
     private Integer constructionspeed;
+
+    @TableField(value = "goldGetTime")
+    private Long goldgettime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -62,10 +51,11 @@ public class Citymap implements Serializable {
         }
         Citymap other = (Citymap) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getProsperity() == null ? other.getProsperity() == null : this.getProsperity().equals(other.getProsperity()))
-            && (this.getGold() == null ? other.getGold() == null : this.getGold().equals(other.getGold()))
-            && (this.getConstructionspeed() == null ? other.getConstructionspeed() == null : this.getConstructionspeed().equals(other.getConstructionspeed()));
+                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+                && (this.getProsperity() == null ? other.getProsperity() == null : this.getProsperity().equals(other.getProsperity()))
+                && (this.getGold() == null ? other.getGold() == null : this.getGold().equals(other.getGold()))
+                && (this.getConstructionspeed() == null ? other.getConstructionspeed() == null : this.getConstructionspeed().equals(other.getConstructionspeed()))
+                && (this.getGoldgettime() == null ? other.getGoldgettime() == null : this.getGoldgettime().equals(other.getGoldgettime()));
     }
 
     @Override
@@ -77,6 +67,7 @@ public class Citymap implements Serializable {
         result = prime * result + ((getProsperity() == null) ? 0 : getProsperity().hashCode());
         result = prime * result + ((getGold() == null) ? 0 : getGold().hashCode());
         result = prime * result + ((getConstructionspeed() == null) ? 0 : getConstructionspeed().hashCode());
+        result = prime * result + ((getGoldgettime() == null) ? 0 : getGoldgettime().hashCode());
         return result;
     }
 
@@ -91,6 +82,7 @@ public class Citymap implements Serializable {
         sb.append(", prosperity=").append(prosperity);
         sb.append(", gold=").append(gold);
         sb.append(", constructionspeed=").append(constructionspeed);
+        sb.append(", goldgettime=").append(goldgettime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

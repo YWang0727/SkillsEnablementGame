@@ -14,5 +14,6 @@ public class ComponentsVO {
     private long prosperity;
     private long gold;
     private int construction_speed;
+    private long gold_get_time;
 
 }

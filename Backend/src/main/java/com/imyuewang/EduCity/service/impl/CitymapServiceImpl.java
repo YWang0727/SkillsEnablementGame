@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.imyuewang.EduCity.mapper.UserMapper;
 import com.imyuewang.EduCity.model.entity.Citymap;
+import com.imyuewang.EduCity.model.entity.Takenmapcell;
 import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.ComponentsParam;
 import com.imyuewang.EduCity.model.vo.ComponentsVO;
@@ -16,13 +17,13 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* @author Sarah Wang
-* @description 针对表【citymap】的数据库操作Service实现
-* @createDate 2023-06-21 15:42:32
-*/
+ * @author Sarah Wang
+ * @description 针对表【citymap】的数据库操作Service实现
+ * @createDate 2023-06-21 15:42:32
+ */
 @Service
 public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
-    implements CitymapService{
+        implements CitymapService{
 
     @Resource
     private UserMapper userMapper;
@@ -70,6 +71,7 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
         componentsVO.setGold(citymap.getGold());
         componentsVO.setProsperity(citymap.getProsperity());
         componentsVO.setConstruction_speed(citymap.getConstructionspeed());
+        componentsVO.setGold_get_time(citymap.getGoldgettime());
         return componentsVO;
     }
 
@@ -78,9 +80,10 @@ public class CitymapServiceImpl extends ServiceImpl<CitymapMapper, Citymap>
     public void pushComponents(ComponentsParam param){
         User user = userMapper.selectById(param.getId());
         Citymap citymap = cityMapMapper.selectById(user.getCityMap());
-        citymap.setGold(param.getGold());
-        citymap.setProsperity(param.getProsperity());
-        citymap.setConstructionspeed(param.getConstruction_speed());
+        if (param.getGold() != null) citymap.setGold(param.getGold());
+        if (param.getProsperity() != null) citymap.setProsperity(param.getProsperity());
+        if (param.getConstruction_speed() != 0) citymap.setConstructionspeed(param.getConstruction_speed());
+        if (param.getGold_get_time() != null) citymap.setGoldgettime(param.getGold_get_time());
         cityMapMapper.updateById(citymap);
     }
 

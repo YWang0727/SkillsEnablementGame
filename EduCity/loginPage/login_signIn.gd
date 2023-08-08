@@ -361,6 +361,7 @@ func http_completed(res, response_code, headers, route) -> void:
 			if GameManager.user_id != null:
 				read_map()
 				_get_localStorage()
+				HttpLayer._getComponents()
 		return
 	if response_code == 200 && route == "register":
 		#if(res.code == 0000):
@@ -423,6 +424,13 @@ func http_completed(res, response_code, headers, route) -> void:
 			else:
 				GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
 		print("---------------------read map success!")
+		return
+	if response_code == 200 && route == "getComponents":
+		GameManager.gold = res.gold
+		GameManager.prosperity = res.prosperity
+		GameManager.construction_speed = res.construction_speed
+		GameManager.population = GameManager.gold + GameManager.prosperity + GameManager.construction_speed
+		GameManager.gold_get_time = res.gold_get_time
 		return
 	
 

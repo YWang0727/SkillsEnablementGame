@@ -7,5 +7,6 @@ public class ComponentsParam {
     private Long gold;
     private Long prosperity;
     private int construction_speed;
-    private long id;
+    private Long id;
+    private Long gold_get_time;
 }

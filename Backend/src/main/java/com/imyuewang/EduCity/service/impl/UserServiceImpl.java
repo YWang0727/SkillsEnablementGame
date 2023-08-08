@@ -31,10 +31,10 @@ import java.util.Random;
 
 
 /**
-* @author Sarah Wang
-* @description 针对表【user】的数据库操作Service实现
-* @createDate 2023-06-21 15:42:32
-*/
+ * @author Sarah Wang
+ * @description 针对表【user】的数据库操作Service实现
+ * @createDate 2023-06-21 15:42:32
+ */
 @Service
 @Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
@@ -128,7 +128,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             String avatarStr = Base64.getEncoder().encodeToString(user.getAvatar());
             userVO.setAvatarStr(avatarStr);
         }
-        
+
         //userVO.setToken(JwtManager.generate(user.getEmail()));
         return userVO;
     }
@@ -137,7 +137,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //set city map id == user id
         newUser = setCityMapId(newUser);
         //initialize citymap table
-        citymapMapper.insert(new Citymap(newUser.getId(), "My City", 0L,0L,1));
+        long unixTimestampInSeconds = System.currentTimeMillis() / 1000;
+        citymapMapper.insert(new Citymap(newUser.getId(), "My City", 0L,0L,1,unixTimestampInSeconds));
     }
 
     private User setCityMapId(User newUser){

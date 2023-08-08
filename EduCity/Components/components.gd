@@ -67,5 +67,8 @@ func _on_tile_map_attributes_show_2():
 	pass # Replace with function body.
 
 
+func _on_golds_get_panel_update_components():
+	_attributes_show()
+	pass # Replace with function body.
 
 
