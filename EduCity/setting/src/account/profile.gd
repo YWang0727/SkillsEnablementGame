@@ -15,6 +15,8 @@ var hospital: Label
 var farm: Label
 var constructionSite: Label
 var avatar: TextureRect
+var buttonSound: AudioStreamPlayer2D
+var cancelSound: AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +38,8 @@ func initiate_variables():
 	#buttons
 	accountSettingButton = get_node("Control/Body/Profile/BasicInfo/AccountSetting")
 	closeButton = get_node("Control/Header/Close")
+	buttonSound = get_node("Control/ButtonSound")
+	cancelSound = get_node("Control/CancelSound")
 	
 	# they are used to show data fetched from server
 	avatar = get_node("Control/Body/Profile/Avatar")
@@ -57,10 +61,12 @@ func connect_signals():
 
 # jump to account setting interface
 func _on_account_setting_pressed():
+	buttonSound.play()
 	self.hide()
 	get_parent().get_child(2).show()
 
 func _on_close_button_pressed():
+	cancelSound.play()
 	self.hide()
 
 

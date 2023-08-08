@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://btpkjxk3vm0gy"]
+[gd_scene load_steps=16 format=3 uid="uid://nc3cony35cdx"]
 
 [ext_resource type="Script" path="res://setting/src/account/account_setting.gd" id="1_h31y7"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="3_8w1ti"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dif1jqlltv07x" path="res://setting/assets/setting/header.png" id="4_3n4ul"]
 [ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://setting/src/common/themes/text_button.tres" id="5_qps74"]
 [ext_resource type="PackedScene" path="res://setting/src/common/popup/Alert.tscn" id="5_s2n7e"]
-[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/Icon_X.png" id="6_25jh5"]
 [ext_resource type="Texture2D" uid="uid://b204idkn7nsgj" path="res://setting/assets/account/Icon_ArrowLeft.png" id="7_4podt"]
+[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/images/Icon_X.png" id="7_h2jkr"]
 [ext_resource type="Texture2D" uid="uid://cvryfjg2nirqg" path="res://setting/assets/setting/avatar.jpg" id="7_wp00x"]
-[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://setting/src/common/themes/text_icon.tres" id="10_1bb51"]
+[ext_resource type="Theme" uid="uid://b8831njpc3mif" path="res://setting/src/common/themes/text_icon.tres" id="10_1bb51"]
+[ext_resource type="AudioStream" uid="uid://ccteyvjw8o0k5" path="res://setting/assets/audio/button2.wav" id="11_5npcj"]
+[ext_resource type="AudioStream" uid="uid://bfw0lbjbdiljx" path="res://setting/assets/audio/cancel2.wav" id="12_4fv5c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7gwxe"]
 content_margin_top = 10.0
@@ -105,7 +107,7 @@ scale = Vector2(0.271546, 0.269291)
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme = ExtResource("3_8w1ti")
-icon = ExtResource("6_25jh5")
+icon = ExtResource("7_h2jkr")
 
 [node name="Back" type="PanelContainer" parent="Control"]
 layout_mode = 1
@@ -279,3 +281,11 @@ theme = ExtResource("5_qps74")
 theme_override_font_sizes/font_size = 20
 text = "Cancel
 "
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("11_5npcj")
+bus = &"Sound"
+
+[node name="CancelSound" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("12_4fv5c")
+bus = &"Sound"

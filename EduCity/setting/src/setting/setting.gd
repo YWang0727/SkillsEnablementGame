@@ -5,6 +5,8 @@ var soundSlider: HSlider
 var closeButton: Button
 var exitButton: Button
 var saveButton: Button
+var buttonSound: AudioStreamPlayer2D
+var cancelSound: AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +23,8 @@ func initiate_variables():
 	closeButton = get_node("Control/Header/Close")
 	exitButton = get_node("Control/Body/VBoxContainer/Exit")
 	saveButton = get_node("Control/Body/VBoxContainer/Save")
+	buttonSound = get_node("Control/ButtonSound")
+	cancelSound = get_node("Control/CancelSound")
 	
 	saveButton.focus_mode = Control.FOCUS_NONE
 	exitButton.focus_mode = Control.FOCUS_NONE
@@ -37,22 +41,24 @@ func connect_signals():
 # control background music volume
 func _on_music_volume_changed(value: float):
 	GameManager.music_volume = value
-	AudioServer.set_bus_volume_db(0, linear_to_db(value))
-	AudioServer.set_bus_mute(0, value < 0.01)
+	AudioServer.set_bus_volume_db(1, linear_to_db(value))
+	AudioServer.set_bus_mute(1, value < 0.01)
 
 # control sound effect volume
 func _on_sound_volume_changed(value: float):
 	GameManager.sound_volume = value
-	AudioServer.set_bus_volume_db(1, linear_to_db(value))
-	AudioServer.set_bus_mute(1, value < 0.01)
+	AudioServer.set_bus_volume_db(2, linear_to_db(value))
+	AudioServer.set_bus_mute(2, value < 0.01)
 
 
 # go back to world window
 func _on_close_pressed():
+	cancelSound.play()
 	self.hide()
 
 # save game data to server
 func _on_save_pressed():
+	buttonSound.play()
 	Saving.save()
 	
 # quit game

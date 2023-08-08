@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dt3i5e1bo3d4n"
+path="res://.godot/imported/Energetic town.wav-5b34b2f2f302cc271b42250442888194.sample"
+
+[deps]
+
+source_file="res://setting/assets/audio/Energetic town.wav"
+dest_files=["res://.godot/imported/Energetic town.wav-5b34b2f2f302cc271b42250442888194.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

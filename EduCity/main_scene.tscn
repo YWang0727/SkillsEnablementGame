@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://ckpvbylmvtoo8"]
+[gd_scene load_steps=24 format=3 uid="uid://6updj4jobty0"]
 
-[ext_resource type="Script" path="res://main_scene.gd" id="1_1c5eb"]
+[ext_resource type="Script" path="res://main_scene.gd" id="1_d68s8"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
 [ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_1ue0x"]
 [ext_resource type="PackedScene" uid="uid://bk0awdfht7gu7" path="res://build_panel.tscn" id="2_oso2h"]
@@ -14,8 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://br6ymomytlp8p" path="res://XufengPart/Icons/down.png" id="12_fpq80"]
 [ext_resource type="Texture2D" uid="uid://hf2403e1h33j" path="res://XufengPart/Icons/centre.png" id="13_8ybs5"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="16_bbdut"]
-[ext_resource type="PackedScene" path="res://setting_buttons.tscn" id="16_kpiqd"]
-[ext_resource type="Texture2D" uid="uid://c3cd3jtnngqlc" path="res://chatbot/assets/chatbot.png" id="17_sfjsg"]
+[ext_resource type="PackedScene" uid="uid://bprrpqv2m3u0m" path="res://setting_buttons.tscn" id="16_kpiqd"]
+[ext_resource type="AudioStream" uid="uid://ccteyvjw8o0k5" path="res://setting/assets/audio/button2.wav" id="17_m108b"]
+[ext_resource type="Texture2D" uid="uid://c3cd3jtnngqlc" path="res://chatbot/assets/images/chatbot.png" id="17_sfjsg"]
 [ext_resource type="Script" path="res://chatbot/src/ChatBotButton.gd" id="18_oapmc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi4cg"]
@@ -60,7 +61,7 @@ shadow_size = 5
 shadow_offset = Vector2(20, 20)
 
 [node name="MainScene" type="Node2D"]
-script = ExtResource("1_1c5eb")
+script = ExtResource("1_d68s8")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_ihn2m")
@@ -200,6 +201,10 @@ offset_right = 155.0
 offset_bottom = 545.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_m108b")
+bus = &"Sound"
 
 [connection signal="attributes_show2" from="TileMap" to="components" method="_on_tile_map_attributes_show_2"]
 [connection signal="store_components" from="TileMap" to="components" method="_on_tile_map_store_components"]

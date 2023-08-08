@@ -9,6 +9,10 @@ var scrollContainer: ScrollContainer
 var sendButton: Button
 var exitButton: Button
 var newSession: Button
+var bubbleSound: AudioStreamPlayer2D
+var sendSound: AudioStreamPlayer2D
+var cancelSound: AudioStreamPlayer2D
+var clearSound: AudioStreamPlayer2D
 
 var optionNum: int = 0
 var scroll_vertical_size = 0
@@ -61,6 +65,10 @@ func initiate_variales():
 	scrollContainer = get_node("Panel/VBoxContainer/ScrollContainer")
 	exitButton = get_node("Panel/VBoxContainer/Head/HBoxContainer/Exit")
 	newSession = get_node("Panel/VBoxContainer/Head/HBoxContainer/NewSession")
+	bubbleSound = get_node("BubbleSound")
+	sendSound = get_node("SendSound")
+	cancelSound = get_node("CancelSound")
+	clearSound = get_node("ClearSound")
 	
 	newSession.focus_mode = Control.FOCUS_NONE
 
@@ -76,10 +84,13 @@ func _input(event: InputEvent):
 		get_viewport().set_input_as_handled()
 
 func exit_button_presssed():
+	cancelSound.play()
 	self.visible = false
 
 # create a new session window
 func new_session_button_presssed():
+	clearSound.play()
+	
 	# disable new session button
 	newSession.disabled = true
 	# clear chat history
@@ -98,6 +109,9 @@ func new_session_button_presssed():
 
 # process the messages sent by user
 func send_button_pressed():
+	# play sound
+	sendSound.play()
+	
 	add_bubble(messageInput.text, "right")
 	store_chat_history([messageInput.text], "right")
 	send_message(messageInput.text)
@@ -105,6 +119,10 @@ func send_button_pressed():
 
 # add bubble in bubbles scroller
 func add_bubble(message: String, arrow: String, clickable: bool = false):
+	# play bubble sound if it's from chatbot
+	if (arrow == "left" || arrow == "none"):
+		bubbleSound.play()
+	
 	var bubble = bubbleScene.instantiate()
 	bubble.message = message
 	bubble.arrow = arrow

@@ -37,7 +37,7 @@ func IsUserActive()-> bool:
 	var cur_sec = cur_time
 	var last_sec:int = GameManager.user_lastActiveTime
 	
-	var time_diff:int = (cur_sec - last_sec) + 2
+	var time_diff:int = (cur_sec - last_sec)
 	print(time_diff)
 	
 	if time_diff >= 3*60.0:

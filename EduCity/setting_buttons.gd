@@ -8,8 +8,10 @@ func _ready():
 	$VBoxContainer/accountButton.pressed.connect(to_profile)
 	
 func to_setting():
+	$ButtonSound.play()
 	$Setting.show()
 
 func to_profile():
+	$ButtonSound.play()
 	$Profile.show()
 	#get_tree().change_scene_to_file(profile_scene)
