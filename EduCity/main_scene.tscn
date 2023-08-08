@@ -107,36 +107,6 @@ offset_right = 400.0
 offset_bottom = 150.0
 text = "go to earn money"
 
-[node name="Node2D" type="Node2D" parent="."]
-visible = false
-
-[node name="Gold+" type="PopupPanel" parent="Node2D"]
-
-[node name="Label" type="Label" parent="Node2D/Gold+"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
-text = "gold+"
-
-[node name="Gold-" type="PopupPanel" parent="Node2D"]
-
-[node name="Label" type="Label" parent="Node2D/Gold-"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
-text = "gold--"
-
-[node name="Prosperity" type="PopupPanel" parent="Node2D"]
-
-[node name="Label" type="Label" parent="Node2D"]
-offset_left = 484.0
-offset_top = 24.0
-offset_right = 823.0
-offset_bottom = 108.0
-text = "lable!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-
 [node name="ChatBotButton" type="Button" parent="."]
 offset_left = 1703.0
 offset_top = 920.0
