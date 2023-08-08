@@ -47,10 +47,11 @@ color = Color(0, 0, 0, 0.45098)
 top_level = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.23
+anchor_left = 0.18
 anchor_top = 0.1
-anchor_right = 0.77
+anchor_right = 0.82
 anchor_bottom = 0.1
+grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0.207843, 0.207843, 0.207843, 1)
 theme_override_fonts/font = ExtResource("2_rdpdf")
 theme_override_font_sizes/font_size = 70
@@ -75,9 +76,9 @@ icon = ExtResource("5_8dv0k")
 [node name="Back" type="PanelContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.25
+anchor_left = 0.2
 anchor_top = 0.2
-anchor_right = 0.75
+anchor_right = 0.8
 anchor_bottom = 0.75
 offset_left = 50.0
 offset_right = 50.0
@@ -89,10 +90,11 @@ theme_override_styles/panel = ExtResource("6_o8gdy")
 [node name="Body" type="PanelContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.25
+anchor_left = 0.2
 anchor_top = 0.2
-anchor_right = 0.75
-anchor_bottom = 0.75
+anchor_right = 0.8
+anchor_bottom = 0.8
+grow_horizontal = 2
 theme_override_styles/panel = ExtResource("6_o8gdy")
 
 [node name="Profile" type="GridContainer" parent="Control/Body"]
@@ -109,11 +111,12 @@ expand_mode = 2
 
 [node name="BasicInfo" type="VBoxContainer" parent="Control/Body/Profile"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
 [node name="Username" type="HBoxContainer" parent="Control/Body/Profile/BasicInfo"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/Body/Profile/BasicInfo/Username"]
 layout_mode = 2
@@ -122,12 +125,14 @@ text = "Username:"
 
 [node name="Data" type="Label" parent="Control/Body/Profile/BasicInfo/Username"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("6_fy17c")
 text = "Data"
+autowrap_mode = 1
 
 [node name="Email" type="HBoxContainer" parent="Control/Body/Profile/BasicInfo"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/Body/Profile/BasicInfo/Email"]
 layout_mode = 2
@@ -136,8 +141,10 @@ text = "Email:"
 
 [node name="Data" type="Label" parent="Control/Body/Profile/BasicInfo/Email"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("6_fy17c")
 text = "data"
+autowrap_mode = 1
 
 [node name="AccountSetting" type="Button" parent="Control/Body/Profile/BasicInfo"]
 layout_mode = 2
@@ -155,11 +162,12 @@ layout_mode = 2
 
 [node name="PropertyInfo" type="VBoxContainer" parent="Control/Body/Profile"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
 [node name="ResidentialBuilding" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/ResidentialBuilding"]
 layout_mode = 2
@@ -173,7 +181,7 @@ text = "data"
 
 [node name="Bank" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/Bank"]
 layout_mode = 2
@@ -187,7 +195,7 @@ text = "data"
 
 [node name="Supermarket" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/Supermarket"]
 layout_mode = 2
@@ -201,7 +209,7 @@ text = "data"
 
 [node name="Hospital" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/Hospital"]
 layout_mode = 2
@@ -215,7 +223,7 @@ text = "data"
 
 [node name="Farm" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/Farm"]
 layout_mode = 2
@@ -229,7 +237,7 @@ text = "data"
 
 [node name="ConstructionSite" type="HBoxContainer" parent="Control/Body/Profile/PropertyInfo"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/Body/Profile/PropertyInfo/ConstructionSite"]
 layout_mode = 2
