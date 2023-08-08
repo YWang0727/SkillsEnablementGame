@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bprrpqv2m3u0m"]
+[gd_scene load_steps=12 format=3 uid="uid://bprrpqv2m3u0m"]
 
 [ext_resource type="Script" path="res://setting_buttons.gd" id="1_4sij2"]
 [ext_resource type="Texture2D" uid="uid://bbevn63gd8s8c" path="res://setting/assets/setting/setting.png" id="2_i2yfq"]
 [ext_resource type="Texture2D" uid="uid://bph7an4vvtvv7" path="res://setting/assets/account/home.png" id="3_7b1hy"]
-[ext_resource type="PackedScene" uid="uid://caynyc7x0vneo" path="res://setting/src/setting/setting.tscn" id="4_86h04"]
-[ext_resource type="PackedScene" uid="uid://btpkjxk3vm0gy" path="res://setting/src/account/account_setting.tscn" id="5_lc5mt"]
-[ext_resource type="PackedScene" uid="uid://qfoimsigg4dq" path="res://setting/src/account/profile.tscn" id="6_ugapw"]
+[ext_resource type="PackedScene" uid="uid://3jd644o07lt7" path="res://setting/src/setting/setting.tscn" id="4_86h04"]
+[ext_resource type="PackedScene" uid="uid://nc3cony35cdx" path="res://setting/src/account/account_setting.tscn" id="5_lc5mt"]
+[ext_resource type="PackedScene" uid="uid://cneo1674eijbu" path="res://setting/src/account/profile.tscn" id="6_ugapw"]
+[ext_resource type="AudioStream" uid="uid://ccteyvjw8o0k5" path="res://setting/assets/audio/button2.wav" id="7_jqfq0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_teath"]
 bg_color = Color(1, 1, 1, 1)
@@ -88,3 +89,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_engsf")
 icon = ExtResource("2_i2yfq")
 icon_alignment = 1
 expand_icon = true
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_jqfq0")
+bus = &"Sound"

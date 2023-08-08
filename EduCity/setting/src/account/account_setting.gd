@@ -11,6 +11,8 @@ var profileSave: Button
 var passwordSave: Button
 var profileCancel: Button
 var passwordCancel: Button
+var buttonSound: AudioStreamPlayer2D
+var cancelSound: AudioStreamPlayer2D
 
 var username: LineEdit
 var email: LineEdit
@@ -50,7 +52,10 @@ func initiate_variales():
 	avatar = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/HBoxContainer/DisplayAvatar")
 	oldPassword = get_node("Control/Body/VBoxContainer/OldPassword/LineEdit")
 	newPassword = get_node("Control/Body/VBoxContainer/NewPassword/LineEdit")
-
+	
+	buttonSound = get_node("Control/ButtonSound")
+	cancelSound = get_node("Control/CancelSound")
+	
 	profileSave.focus_mode = Control.FOCUS_NONE
 	passwordSave.focus_mode = Control.FOCUS_NONE
 	uploadFileButton.focus_mode = Control.FOCUS_NONE
@@ -73,15 +78,20 @@ func connect_signals():
 	self.visibility_changed.connect(_on_visibility_changed)
 
 func _on_close_button_pressed():
+	cancelSound.play()
 	self.hide()
 
 func _on_back_button_pressed():
+	cancelSound.play()
 	self.hide()
 	get_parent().get_child(1).show()
 
 
 # display the window for uploading file when pressing button upload
 func _on_fileupload_button_pressed():
+	# play button sound
+	buttonSound.play()
+	
 	if OS.get_name() == "Web":
 		# javascript native window
 		var window = JavaScriptBridge.get_interface("window")
@@ -142,6 +152,9 @@ func imageURLToByte(dataURL: String) -> PackedByteArray:
 # connected with edit_profile button
 # send saving profile request to server
 func edit_user_profile():
+	# play save button sound
+	buttonSound.play()
+	
 	if (!checkUsernameFormat(username.text)):
 		alert.set_message("Username is invalid")
 		alert.popup_centered()
@@ -215,6 +228,9 @@ func edit_user_profile_request_completed(result, response_code, headers, body, h
 
 # send editing password request to server
 func edit_user_password():
+	# play save button sound
+	buttonSound.play()
+	
 	if (!checkPasswordFormat(oldPassword.text) || !checkPasswordFormat(newPassword.text)):
 		alert.set_message("Password is invalid")
 		alert.popup_centered()

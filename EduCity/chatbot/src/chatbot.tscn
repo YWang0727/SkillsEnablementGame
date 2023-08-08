@@ -1,12 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwddtvth4mujs"]
+[gd_scene load_steps=17 format=3 uid="uid://lf2r3ldxhql2"]
 
 [ext_resource type="Script" path="res://chatbot/src/chatbot.gd" id="1_fkleo"]
 [ext_resource type="PackedScene" path="res://setting/src/common/popup/Alert.tscn" id="2_3eyp6"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="3_6b4uw"]
-[ext_resource type="Texture2D" uid="uid://dq015gcnpcpqq" path="res://chatbot/assets/Icon_Trash.png" id="3_qhlfh"]
-[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/Icon_X.png" id="4_73cbf"]
-[ext_resource type="Texture2D" uid="uid://bwxs1h0qb32wj" path="res://chatbot/assets/Icon_PaperPlane.png" id="4_i6h8i"]
+[ext_resource type="Texture2D" uid="uid://dq015gcnpcpqq" path="res://chatbot/assets/images/Icon_Trash.png" id="3_qhlfh"]
+[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/images/Icon_X.png" id="4_73cbf"]
+[ext_resource type="Texture2D" uid="uid://bwxs1h0qb32wj" path="res://chatbot/assets/images/Icon_PaperPlane.png" id="4_i6h8i"]
 [ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://setting/assets/Font/Roboto/Roboto-Regular.ttf" id="5_mgpbc"]
+[ext_resource type="AudioStream" uid="uid://dtd6uaf1adtd2" path="res://chatbot/assets/audio/bubble.wav" id="8_2f7ap"]
+[ext_resource type="AudioStream" uid="uid://bfw0lbjbdiljx" path="res://setting/assets/audio/cancel2.wav" id="9_i0c8u"]
+[ext_resource type="AudioStream" uid="uid://dk5g5po0bivfy" path="res://chatbot/assets/audio/send.wav" id="9_rxbfo"]
+[ext_resource type="AudioStream" uid="uid://c2piivec6uq7y" path="res://chatbot/assets/audio/clear.wav" id="11_edbn2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg1c3"]
 bg_color = Color(0.905882, 0.866667, 0.803922, 1)
@@ -142,3 +146,19 @@ expand_icon = true
 
 [node name="Alert" parent="." instance=ExtResource("2_3eyp6")]
 visible = false
+
+[node name="BubbleSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_2f7ap")
+bus = &"Sound"
+
+[node name="SendSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_rxbfo")
+bus = &"Sound"
+
+[node name="CancelSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_i0c8u")
+bus = &"Sound"
+
+[node name="ClearSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_edbn2")
+bus = &"Sound"

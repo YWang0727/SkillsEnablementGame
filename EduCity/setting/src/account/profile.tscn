@@ -1,14 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://qfoimsigg4dq"]
+[gd_scene load_steps=14 format=3 uid="uid://cneo1674eijbu"]
 
 [ext_resource type="Script" path="res://setting/src/account/profile.gd" id="1_tb1v1"]
 [ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://setting/assets/Font/Roboto/Roboto-Black.ttf" id="2_rdpdf"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="3_e5l8u"]
 [ext_resource type="Texture2D" uid="uid://dif1jqlltv07x" path="res://setting/assets/setting/header.png" id="3_nxdxn"]
-[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/Icon_X.png" id="5_k5ji4"]
+[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/images/Icon_X.png" id="5_8dv0k"]
 [ext_resource type="Texture2D" uid="uid://cvryfjg2nirqg" path="res://setting/assets/setting/avatar.jpg" id="5_lta0g"]
 [ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://setting/src/common/themes/text_button.tres" id="6_fy17c"]
 [ext_resource type="StyleBox" uid="uid://7umj2dibprd1" path="res://setting/src/common/themes/panelcontainer.tres" id="6_o8gdy"]
-[ext_resource type="Theme" uid="uid://docmovl1psw5x" path="res://setting/src/common/themes/text_icon.tres" id="8_ru3pk"]
+[ext_resource type="Theme" uid="uid://b8831njpc3mif" path="res://setting/src/common/themes/text_icon.tres" id="8_ru3pk"]
+[ext_resource type="AudioStream" uid="uid://bfw0lbjbdiljx" path="res://setting/assets/audio/cancel2.wav" id="10_rnqtc"]
+[ext_resource type="AudioStream" uid="uid://ccteyvjw8o0k5" path="res://setting/assets/audio/button2.wav" id="11_qglyw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hd1n4"]
 content_margin_top = 10.0
@@ -68,7 +70,7 @@ scale = Vector2(0.250005, 0.250042)
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme = ExtResource("3_e5l8u")
-icon = ExtResource("5_k5ji4")
+icon = ExtResource("5_8dv0k")
 
 [node name="Back" type="PanelContainer" parent="Control"]
 layout_mode = 1
@@ -238,3 +240,11 @@ text = "Construction Site:"
 layout_mode = 2
 theme = ExtResource("6_fy17c")
 text = "data"
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("11_qglyw")
+bus = &"Sound"
+
+[node name="CancelSound" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("10_rnqtc")
+bus = &"Sound"

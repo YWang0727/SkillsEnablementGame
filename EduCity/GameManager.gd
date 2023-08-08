@@ -83,8 +83,8 @@ func _ready():
 
 # initialize the volume of music and sound effect
 func set_volume():
-	AudioServer.set_bus_volume_db(0, linear_to_db(music_volume))
-	AudioServer.set_bus_volume_db(1, linear_to_db(sound_volume))
+	AudioServer.set_bus_volume_db(1, linear_to_db(music_volume))
+	AudioServer.set_bus_volume_db(2, linear_to_db(sound_volume))
 
 
 func initPropertyData():
