@@ -152,16 +152,19 @@ public class SettingServiceImpl implements SettingService {
         User user = userMapper.selectById(passwordParam.getId());
         String pwToken = user.getPassword();
         JWT jwt = JwtManager.parsePwToken(pwToken);
+        if(jwt == null){
+            throw new ApiException(ResultCode.VALIDATE_FAILED, "Old Password is incorrect!");
+        }
         String userPassword = jwt.getPayload(JWTPayload.SUBJECT).toString();
 
         // check if old password is correct
         if (!Objects.equals(oldPassword, userPassword)) {
             System.out.println("old password: " + oldPassword);
-            System.out.println("user password: " + userPassword);
-            throw new ApiException(ResultCode.VALIDATE_FAILED, "Password is incorrect!");
+            System.out.println("input password: " + userPassword);
+            throw new ApiException(ResultCode.VALIDATE_FAILED, "Old Password is incorrect!");
         }
 
-        user.setPassword(PasswordEncoder.encode(newPassword));
+        user.setPassword(JwtManager.generate(newPassword));
         userMapper.updateById(user);
     }
 }

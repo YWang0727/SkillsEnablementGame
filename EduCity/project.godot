@@ -27,6 +27,7 @@ Music="*res://setting/src/music/music.tscn"
 AlertPopup="*res://loginPage/alert_popup.gd"
 Saving="*res://XufengPart/Saving.gd"
 GlobalTimer="*res://Timer.gd"
+ActiveStatusCheckTimer="*res://loginPage/active_status_check_timer.gd"
 
 [display]
 

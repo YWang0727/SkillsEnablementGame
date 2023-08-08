@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfnvytbcmkuoa"]
+
+[ext_resource type="Script" path="res://loginPage/active_status_check_timer.gd" id="1_cy5sk"]
+
+[node name="ActiveStatusCheckTimer" type="Timer"]
+script = ExtResource("1_cy5sk")

@@ -12,6 +12,11 @@ var vScrollbar = VScrollBar.new()
 
 #var isScrollingToBottom: bool = false
 
+
+#User operation will update the last active time
+func _input(event):
+	GameManager.user_lastActiveTime = Time.get_unix_time_from_system()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	HttpLayer.connect("http_completed", http_completed)

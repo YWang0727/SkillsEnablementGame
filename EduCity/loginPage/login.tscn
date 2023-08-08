@@ -82,7 +82,7 @@ events = [SubResource("InputEventKey_8pldv")]
 RichTextLabel/colors/default_color = Color(0.121569, 0.121569, 0.121569, 0.996078)
 RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 0.729412)
 
-[node name="Control" type="Control"]
+[node name="LogSignScene" type="Control"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -665,7 +665,7 @@ text = "EduCity"
 fit_content = true
 scroll_active = false
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ActiveCodeTimer" type="Timer" parent="."]
 
 [connection signal="pressed" from="sign_in1/next_button_panel/next_button" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="sign_in1/get_activecode_button" to="." method="_on_get_activecode_button_pressed"]

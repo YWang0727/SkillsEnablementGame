@@ -19,6 +19,9 @@ var quiz3Button = Button.new()
 var completeList = []
 var buttonList = {}
 
+#User operation will update the last active time
+func _input(event):
+	GameManager.user_lastActiveTime = Time.get_unix_time_from_system()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

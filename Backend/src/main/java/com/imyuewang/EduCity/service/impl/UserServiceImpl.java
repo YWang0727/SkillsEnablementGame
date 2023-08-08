@@ -72,6 +72,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");
         }
         String pw = jwt.getPayload(JWTPayload.SUBJECT).toString();
+        System.out.println(pw);
+        System.out.println(pwLogin);
         if(user == null || !Objects.equals(pw, pwLogin)){
             throw new ApiException(ResultCode.PASSWORD_ERROR, "Password or email is incorrect!\nPlease try again!");
         }

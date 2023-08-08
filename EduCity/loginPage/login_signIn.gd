@@ -1,5 +1,7 @@
 extends Control
+
 enum panels {log, sign1, sign2}
+
 var currentPanel
 #user info
 var user_activeCode
@@ -86,7 +88,7 @@ func initiate_variables():
 	alertPopup = get_node("AlertPopup")
 	
 	#timer
-	timer = get_node("Timer")
+	timer = get_node("ActiveCodeTimer")
 	timer.connect("timeout", _on_timer_timeout)
 	
 func connect_signals():
@@ -135,7 +137,6 @@ func _on_eye_hide_3_toggled(button_pressed):
 	changePasswordHideState(passwordLog)
 	
 func changePasswordHideState(passwordNode: Node):
-	print(passwordNode.secret)
 	passwordNode.set_secret(!passwordNode.secret)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -263,7 +264,6 @@ func checkEmailFormat(new_text):
 	
 	
 func createLabel(text: String, position: Vector2, fontSize: int, textColor: Color, parent: Node):
-	print("create label")
 	var tagLabel = Label.new()
 	tagLabel.text = text
 	tagLabel.position = position
@@ -288,6 +288,7 @@ func _on_next_button_pressed():
 func _on_login_button_pressed():
 	#check the account is existed or not
 	login(emailLog.text, passwordLog.text);
+	ActiveStatusCheckTimer.startTimer()
 
 
 func _on_complete_button_pressed():
@@ -345,7 +346,7 @@ func read_map():
 	
 #******************************   Handle The Response Data From The Backend  ********************************#
 func http_completed(res, response_code, headers, route) -> void:
-	print(res)
+	#print(res)
 	if response_code == 200 && route == "login":
 		#save id to user_id in GameManager
 		if !res.code == 0000:
@@ -362,7 +363,6 @@ func http_completed(res, response_code, headers, route) -> void:
 				_get_localStorage()
 		return
 	if response_code == 200 && route == "register":
-		print(res)
 		#if(res.code == 0000):
 		AlertPopup.setPosition(0,0,'login')
 		AlertPopup.show_error_message(res['data'])
