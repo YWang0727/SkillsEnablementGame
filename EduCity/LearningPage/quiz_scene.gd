@@ -307,7 +307,7 @@ func _show_score():
 	
 	# communicate with attributes
 	GameManager.gold += golds
-	# pushComponents()
+	pushComponents()
 	
 	# attempts remaining
 	var attemptsLabel = get_node("ShowScore/Attempts")
@@ -332,8 +332,6 @@ func pushComponents():
 			"id": GameManager.user_id,
 	}
 	HttpLayer._pushComponents(_credential);
-	var s = preload("res://Components/components.tscn").instantiate()
-	s._attributes_show()
 	
 	
 func _on_tryAgain_pressed():
