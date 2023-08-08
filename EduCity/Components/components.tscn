@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Components/components.gd" id="1_7j8by"]
 [ext_resource type="Texture2D" uid="uid://cnpt54xa5uvcr" path="res://Components/gold.png" id="2_dvu66"]
 [ext_resource type="Texture2D" uid="uid://bgs1owmos1y7y" path="res://Leaderboard/rank.png" id="2_gsse6"]
-[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://setting/assets/Font/Roboto/Roboto-Black.ttf" id="2_npoxf"]
-[ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://setting/assets/Font/Roboto/Roboto-Light.ttf" id="2_rp827"]
+[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://Font/Roboto/Roboto-Black.ttf" id="2_npoxf"]
+[ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://Font/Roboto/Roboto-Light.ttf" id="2_rp827"]
 [ext_resource type="Texture2D" uid="uid://dsnoj3qqlypmn" path="res://Components/prosperity.png" id="3_qecg7"]
 [ext_resource type="Texture2D" uid="uid://0yiwgkrc75v8" path="res://Components/speed.png" id="4_mmtlh"]
 [ext_resource type="Texture2D" uid="uid://mwpc34oa712t" path="res://Components/population.png" id="5_1p8js"]
@@ -59,6 +59,7 @@ offset_left = 177.0
 offset_top = 45.0
 offset_right = 477.0
 offset_bottom = 185.0
+rotation = -0.00490787
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_rp827")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ahi74")
@@ -68,36 +69,24 @@ same_column_width = true
 fixed_icon_size = Vector2i(30, 30)
 item_0/text = " Gold                               "
 item_0/icon = ExtResource("2_dvu66")
+item_0/selectable = false
 item_1/text = "111"
+item_1/selectable = false
 item_2/text = " Prosperity                     "
 item_2/icon = ExtResource("3_qecg7")
+item_2/selectable = false
 item_3/text = "111"
+item_3/selectable = false
 item_4/text = " ConstructionSpeed     "
 item_4/icon = ExtResource("4_mmtlh")
+item_4/selectable = false
 item_5/text = "111"
+item_5/selectable = false
 item_6/text = " Population                    "
 item_6/icon = ExtResource("5_1p8js")
+item_6/selectable = false
 item_7/text = "111"
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-offset_left = 400.0
-offset_top = 22.0
-offset_right = 430.0
-offset_bottom = 52.0
-color = Color(0.529412, 0.807843, 0.980392, 1)
-
-[node name="Bt_Gold" type="Button" parent="ColorRect2"]
-layout_mode = 0
-offset_right = 30.0
-offset_bottom = 31.0
-text = "+"
-
-[node name="Label" type="Label" parent="."]
-offset_left = 353.0
-offset_top = 159.0
-offset_right = 393.0
-offset_bottom = 182.0
+item_7/selectable = false
 
 [node name="Bt_LeaderBoard" type="Button" parent="."]
 offset_left = 177.0
@@ -113,5 +102,4 @@ text = "LeaderBoard"
 icon = ExtResource("2_gsse6")
 expand_icon = true
 
-[connection signal="pressed" from="ColorRect2/Bt_Gold" to="." method="_on_gold_pressed"]
 [connection signal="pressed" from="Bt_LeaderBoard" to="." method="_on_bt_leader_board_pressed"]

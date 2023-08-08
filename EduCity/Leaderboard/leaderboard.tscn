@@ -1,17 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://q77g2t8y7440"]
+[gd_scene load_steps=9 format=3 uid="uid://q77g2t8y7440"]
 
 [ext_resource type="Script" path="res://Leaderboard/leaderboard.gd" id="1_hieti"]
+[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://Font/Roboto/Roboto-Black.ttf" id="2_6pjob"]
+[ext_resource type="Texture2D" uid="uid://dif1jqlltv07x" path="res://setting/assets/setting/header.png" id="3_f1nxe"]
+[ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="4_b4nbj"]
+[ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/images/Icon_X.png" id="5_3tnqt"]
+[ext_resource type="Theme" uid="uid://b8831njpc3mif" path="res://setting/src/common/themes/text_icon.tres" id="7_8p1x2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cym46"]
+content_margin_top = 10.0
+texture = ExtResource("3_f1nxe")
+texture_margin_left = 29.0
+texture_margin_top = 16.0
+texture_margin_right = 31.0
+texture_margin_bottom = 13.0
+modulate_color = Color(0.968627, 0.607843, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_momof"]
+content_margin_left = 70.0
+content_margin_top = 10.0
+content_margin_right = 70.0
+content_margin_bottom = 20.0
+bg_color = Color(0.905882, 0.866667, 0.803922, 1)
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_size = 20
 
 [node name="leader_board" type="Node"]
 script = ExtResource("1_hieti")
-metadata/_edit_vertical_guides_ = [960.0]
+metadata/_edit_vertical_guides_ = [960.0, 743.0, 1187.0]
 metadata/_edit_horizontal_guides_ = [520.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 650.0
-offset_top = 100.0
-offset_right = 1270.0
-offset_bottom = 980.0
+visible = false
+offset_left = -156.0
+offset_top = 68.0
+offset_right = 464.0
+offset_bottom = 948.0
+rotation = 0.0270474
 color = Color(1, 0.670588, 0.623529, 0.898039)
 
 [node name="leaderBoard" type="Label" parent="ColorRect"]
@@ -130,6 +156,120 @@ offset_right = 557.0
 offset_bottom = 123.0
 text = "check your rank"
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.443137)
+
+[node name="Header" type="Label" parent="Control"]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17
+anchor_top = 0.05
+anchor_right = 0.83
+anchor_bottom = 0.15
+offset_left = 1.60004
+offset_right = 1.59998
+offset_bottom = 1.0
+theme_override_colors/font_shadow_color = Color(0.207843, 0.207843, 0.207843, 1)
+theme_override_fonts/font = ExtResource("2_6pjob")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxTexture_cym46")
+text = "LeaderBoard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Control/Header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.27
+anchor_right = 0.95
+anchor_bottom = 0.82
+offset_left = -0.304077
+offset_top = 0.0200005
+offset_right = 179.28
+offset_bottom = 147.62
+scale = Vector2(0.271546, 0.269291)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("4_b4nbj")
+icon = ExtResource("5_3tnqt")
+
+[node name="Back" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.15
+anchor_right = 0.8
+anchor_bottom = 0.9
+offset_left = 36.0
+offset_top = -42.0
+offset_right = 36.0
+offset_bottom = -42.0
+rotation = -0.1309
+scale = Vector2(0.95, 0.95)
+pivot_offset = Vector2(960, 540)
+theme_override_styles/panel = SubResource("StyleBoxFlat_momof")
+
+[node name="Body" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.15
+anchor_right = 0.8
+anchor_bottom = 0.9
+theme_override_styles/panel = SubResource("StyleBoxFlat_momof")
+
+[node name="TitleList" type="ItemList" parent="Control"]
+offset_left = 530.0
+offset_top = 212.0
+offset_right = 1390.0
+offset_bottom = 263.0
+theme_override_font_sizes/font_size = 28
+item_count = 4
+max_columns = 4
+same_column_width = true
+fixed_column_width = 207
+item_0/text = "rank"
+item_1/text = "cityName"
+item_2/text = "prosperity"
+item_3/text = "map"
+
+[node name="ItemList" type="ItemList" parent="Control"]
+offset_left = 530.0
+offset_top = 264.0
+offset_right = 1390.0
+offset_bottom = 818.0
+theme_override_font_sizes/font_size = 28
+max_columns = 4
+same_column_width = true
+fixed_column_width = 207
+
+[node name="selfCheck" type="Button" parent="Control"]
+offset_left = 1251.0
+offset_top = 839.0
+offset_right = 1436.0
+offset_bottom = 880.0
+theme = ExtResource("7_8p1x2")
+text = "check my rank"
+
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
 [connection signal="item_activated" from="ColorRect/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="pressed" from="ColorRect/selfCheck" to="." method="_on_self_check_pressed"]
+[connection signal="pressed" from="Control/Header/Close" to="." method="_on_close_pressed"]
+[connection signal="item_activated" from="Control/ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="pressed" from="Control/selfCheck" to="." method="_on_self_check_pressed"]
