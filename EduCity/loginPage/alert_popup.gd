@@ -36,5 +36,4 @@ func tokenCheck(res) -> bool:
 			AlertPopup.show_error_message(res.data)
 			get_tree().change_scene_to_file("res://loginPage/login.tscn")
 			return false
-	
 	return true

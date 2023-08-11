@@ -443,13 +443,18 @@ func initializeGameManager(res) :
 				"cityMap" : res.data.cityMap,
 				"logoutTime" : res.data.logoutTime,
 				"accessToken" : res.data.accessToken,
-				"refreshToken" : res.data.refreshToken
+				"refreshToken" : res.data.refreshToken,
+				"isFirst" : res.data.isFirst,
+				"tokenValidityPeriod" : res.data.tokenValidityPeriod
 			}
 	GameManager.user_id = GameManager.user_data['id']
+	GameManager.user_isFirst = GameManager.user_data['isFirst']
 	GameManager.user_accessToken = GameManager.user_data['accessToken']
 	GameManager.user_refreshToken = GameManager.user_data['refreshToken']
-	GameManager.user_lastActiveTime = Time.get_unix_time_from_system()
-	
+	GameManager.user_lastActiveTime = int(Time.get_unix_time_from_system())
+	GameManager.user_tokenValidityPeriod = GameManager.user_data['tokenValidityPeriod']
+	GameManager.user_accessTokenDdl = int(Time.get_unix_time_from_system() + GameManager.user_tokenValidityPeriod*60)
+	AccesstokenCheckTimer.start()
 
 func setAlert(msg:String):
 	alertPopup.set_text(msg)

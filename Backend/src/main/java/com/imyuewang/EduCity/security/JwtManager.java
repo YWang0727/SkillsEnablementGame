@@ -41,7 +41,6 @@ public final class JwtManager {
                 put(JWTPayload.SUBJECT, userId); //put userId in 'sub'
             }
         };
-        //return "Bearer " + JWTUtil.createToken(map, secretKeyBytes);
         return JWTUtil.createToken(map, secretKeyBytes);
     }
 

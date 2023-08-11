@@ -35,5 +35,8 @@ public class UserVO {
 
     private String refreshToken;
 
+    private Integer isFirst;
+
+    private Integer tokenValidityPeriod;
 
 }

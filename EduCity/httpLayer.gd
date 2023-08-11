@@ -115,8 +115,9 @@ func _getActiveCode(_credentials):
 	_apiCore("auth/active", _credentials, false, "POST", "active")
 	
 func _getNewAccessToken(_credentials):
-	_apiCore("auth/refresh-access-token", _credentials, true,"POST", "refresh-access-token", GameManager.user_refreshToken)
+	_apiCore("user/refresh-access-token", _credentials, true,"POST", "refresh-access-token", GameManager.user_refreshToken)
 		
+
 # api for learning_related scene	
 func _completeLesson(_credentials):
 	_apiCore("learn/complete", _credentials, true, "POST", "complete", GameManager.user_accessToken)

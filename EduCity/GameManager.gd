@@ -1,6 +1,7 @@
 extends Node
 
 var user_id = null
+var user_isFirst = null
 
 #city id
 var other_id = null
@@ -10,6 +11,8 @@ var other_rank = null
 
 var user_accessToken = null
 var user_refreshToken = null
+var user_accessTokenDdl = null
+var user_tokenValidityPeriod = null
 var user_lastActiveTime = null
 
 var user_data = null

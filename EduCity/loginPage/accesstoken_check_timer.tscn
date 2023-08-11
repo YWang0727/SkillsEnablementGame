@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://o2a3rst64731"]
+
+[ext_resource type="Script" path="res://loginPage/accesstoken_check_timer.gd" id="1_nfhxq"]
+
+[node name="accesstoken_check_timer" type="Timer"]
+script = ExtResource("1_nfhxq")

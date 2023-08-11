@@ -3,6 +3,7 @@ package com.imyuewang.EduCity;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.imyuewang.EduCity.controller.api.AuthController;
 
+import com.imyuewang.EduCity.controller.api.UserController;
 import com.imyuewang.EduCity.exception.ApiException;
 import com.imyuewang.EduCity.mapper.CitymapMapper;
 import com.imyuewang.EduCity.mapper.UserMapper;
@@ -11,6 +12,7 @@ import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
 import com.imyuewang.EduCity.model.vo.ResultVO;
+import com.imyuewang.EduCity.security.JwtManager;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +28,8 @@ public class EduCityLoginRegisterTests {
 
     @Resource
     private AuthController authController;
+    @Resource
+    private UserController userController;
 
     private static UserMapper userMapper;
 
@@ -71,9 +75,21 @@ public class EduCityLoginRegisterTests {
         Assertions.assertNotNull(resultVO.getData());
     }
 
-    /**********************    Error Cases    ***********************/
     @Test
     @Order(4)
+    void testRefreshToken() {
+        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getEmail, "test@gmail.com"));
+        String refreshToken = JwtManager.generate(user.getId(), 24 * 60);
+        System.out.println(refreshToken);
+        ResultVO resultVO = userController.refreshAccessToken(refreshToken);
+        Assertions.assertEquals(0000, resultVO.getCode());
+        System.out.println(resultVO.getData());
+    }
+
+
+    /**********************    Error Cases    ***********************/
+    @Test
+    @Order(5)
     void testActiveEmailExisted() {
         RegisterParam param = new RegisterParam();
         param.setEmail("test@gmail.com");
@@ -82,7 +98,7 @@ public class EduCityLoginRegisterTests {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     void testLoginWrongPassword() {
         LoginParam loginParam = new LoginParam();
         loginParam.setEmail("test@gmail.com");
@@ -93,14 +109,14 @@ public class EduCityLoginRegisterTests {
         Assertions.assertEquals(4003, apiException.getResultCode().getCode());
     }
 
-    @AfterAll
-    static void cleanDatabase(){
-        // Get the test user's id
-        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getEmail, "test@gmail.com"));
-        // Delete the test user
-        userMapper.delete(new LambdaQueryWrapper<User>().eq(User::getEmail, "test@gmail.com"));
-        // Delete the test user's map
-        citymapMapper.delete(new LambdaQueryWrapper<Citymap>().eq(Citymap::getId, user.getId()));
-
-    }
+//    @AfterAll
+//    static void cleanDatabase(){
+//        // Get the test user's id
+//        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getEmail, "test@gmail.com"));
+//        // Delete the test user
+//        userMapper.delete(new LambdaQueryWrapper<User>().eq(User::getEmail, "test@gmail.com"));
+//        // Delete the test user's map
+//        citymapMapper.delete(new LambdaQueryWrapper<Citymap>().eq(Citymap::getId, user.getId()));
+//
+//    }
 }

@@ -616,6 +616,7 @@ offset_top = 278.0
 offset_right = 875.0
 offset_bottom = 357.0
 size_flags_vertical = 3
+metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Tabars"]
 layout_mode = 1

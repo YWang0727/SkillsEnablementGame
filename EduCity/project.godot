@@ -28,6 +28,7 @@ AlertPopup="*res://loginPage/alert_popup.gd"
 Saving="*res://XufengPart/Saving.gd"
 GlobalTimer="*res://Timer.gd"
 ActiveStatusCheckTimer="*res://loginPage/active_status_check_timer.gd"
+AccesstokenCheckTimer="*res://loginPage/accesstoken_check_timer.gd"
 
 [display]
 

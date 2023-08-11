@@ -34,5 +34,11 @@ public class UserController {
         return userService.getById(id);
     }
 
+    @PostMapping("/refresh-access-token")
+    @ApiOperation(value = "Refresh access token")
+    public ResultVO refreshAccessToken(@RequestHeader("Authorization") String refreshToken) {
+        //String token = "Bearer " + refreshToken;
+        return userService.refreshAccessToken(refreshToken);
+    }
 
 }

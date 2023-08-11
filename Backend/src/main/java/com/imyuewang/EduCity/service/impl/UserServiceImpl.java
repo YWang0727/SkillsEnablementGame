@@ -81,13 +81,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //1. access token 5min
         String accessToken = JwtManager.generate(user.getId(),5);
         //2. refresh token 24h
-        String refreshToken = JwtManager.generate(user.getId(),24 * 60);
+        String refreshToken = JwtManager.generate(user.getId(), 10);
         UserVO userVO = getUserVOFromUser(user);
         userVO.setAccessToken(accessToken);
         userVO.setRefreshToken(refreshToken);
-        //set isFirst to 0
-        user.setIsFirst(0);
-        userMapper.updateById(user);
+        userVO.setTokenValidityPeriod(5);
+
+        //userMapper.updateById(user);
         //return userVO
         return new ResultVO(userVO);
     }
@@ -189,9 +189,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     public ResultVO refreshAccessToken(String refreshToken) {
         //get userId from refresh token
         JWT jwt = JwtManager.parse(refreshToken);
-        Long userId = (Long)jwt.getPayload(JWTPayload.SUBJECT);
+        System.out.println(jwt.getPayload(JWTPayload.SUBJECT));
+        Object id = jwt.getPayload(JWTPayload.SUBJECT);
+        Long userId = Long.parseLong(id.toString());
         //generate new access token
-        String newAccessToken = JwtManager.generate(userId,5);
+        String newAccessToken = JwtManager.generate(userId,1);
         //return new access token and refresh token
         return new ResultVO(newAccessToken);
     }

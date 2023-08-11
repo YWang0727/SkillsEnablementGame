@@ -14,7 +14,7 @@ func _process(delta):
 
 
 func startTimer():
-	print("timer start!!!!")
+	#print("timer start!!!!")
 	var cur_time:int = Time.get_unix_time_from_system() 
 	print(cur_time)
 	self.start(60.0)
