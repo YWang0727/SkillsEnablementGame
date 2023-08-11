@@ -58,9 +58,9 @@ func _on_item_list_item_activated(index):
 	var itemList = get_node("Control/ItemList")
 	if index % 4 == 3:
 		GameManager.other_id = itemList.get_item_metadata(index)
-		GameManager.other_city_name = itemList.get_item_text(index - 3)
-		GameManager.other_prosperity = itemList.get_item_text(index - 2)
-		GameManager.other_rank = itemList.get_item_text(index - 1)
+		GameManager.other_city_name = itemList.get_item_text(index - 2)
+		GameManager.other_prosperity = itemList.get_item_text(index - 1)
+		GameManager.other_rank = itemList.get_item_text(index - 3)
 		get_tree().change_scene_to_file("res://Leaderboard/OtherMap.tscn")
 	
 

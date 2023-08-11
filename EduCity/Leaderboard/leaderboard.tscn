@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://q77g2t8y7440"]
 
 [ext_resource type="Script" path="res://Leaderboard/leaderboard.gd" id="1_hieti"]
-[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://Font/Roboto/Roboto-Black.ttf" id="2_6pjob"]
+[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://setting/assets/Font/Roboto/Roboto-Black.ttf" id="2_6pjob"]
 [ext_resource type="Texture2D" uid="uid://dif1jqlltv07x" path="res://setting/assets/setting/header.png" id="3_f1nxe"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="4_b4nbj"]
 [ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/images/Icon_X.png" id="5_3tnqt"]
@@ -235,6 +235,7 @@ anchor_bottom = 0.9
 theme_override_styles/panel = SubResource("StyleBoxFlat_momof")
 
 [node name="TitleList" type="ItemList" parent="Control"]
+layout_mode = 0
 offset_left = 530.0
 offset_top = 212.0
 offset_right = 1390.0
@@ -250,6 +251,7 @@ item_2/text = "prosperity"
 item_3/text = "map"
 
 [node name="ItemList" type="ItemList" parent="Control"]
+layout_mode = 0
 offset_left = 530.0
 offset_top = 264.0
 offset_right = 1390.0
@@ -260,6 +262,7 @@ same_column_width = true
 fixed_column_width = 207
 
 [node name="selfCheck" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 1251.0
 offset_top = 839.0
 offset_right = 1436.0
