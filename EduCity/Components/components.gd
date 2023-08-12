@@ -13,6 +13,8 @@ func _ready():
 	HttpLayer._getComponents()
 	pass # Replace with function body.
 
+func _process(delta):
+	_attributes_show()
 
 func _on_gold_pressed():
 	get_tree().change_scene_to_file("res://LearningPage/learning_scene.tscn")
