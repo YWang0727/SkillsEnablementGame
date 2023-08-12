@@ -9,7 +9,6 @@ var updateCellPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	HttpLayer.connect("http_completed", http_completed)
 	self.hide()
 
 
@@ -104,18 +103,6 @@ func getBuildingDataByID(id:int) -> Dictionary:
 #---------------------------------------------------------------------------
 #---------------------------------HTTPLAYER---------------------------------
 #---------------------------------------------------------------------------
-func http_completed(res, response_code, headers, route):
-	if route == "levelUp(":
-		HttpLayer._readMap()
-		return
-	if route == "readMap":
-		for i in range(0, res.num):
-			var cellPos_temp
-			cellPos_temp = position
-			cellPos_temp.x = res.x[i]
-			cellPos_temp.y = res.y[i]
-			GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
-
 
 func pushComponents():
 	var _credential = {
@@ -141,5 +128,6 @@ func levelUp(buildingID):
 			"finishTime": finishTime
 	}
 	HttpLayer._levelUp(_credential)
+	# update GameManager
 	GameManager.mapDict[updateCellPos]["finish_time"] = finishTime
 	GameManager.mapDict[updateCellPos]["house_type"] = buildingID

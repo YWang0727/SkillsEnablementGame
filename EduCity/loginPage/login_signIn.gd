@@ -424,6 +424,8 @@ func http_completed(res, response_code, headers, route) -> void:
 		GameManager.population = GameManager.gold + GameManager.prosperity + GameManager.construction_speed
 		GameManager.gold_get_time = res.gold_get_time
 		return
+	if response_code == 200 && route == "clearMapTime":
+		print("成功更新后端")
 	if response_code == 200 && route == "status":
 		# save data to knowledge status list in GameManager
 		for i in res['statusList'].size():
@@ -432,6 +434,8 @@ func http_completed(res, response_code, headers, route) -> void:
 		for i in res['completeList'].size():
 			GameManager.quizStatus.append(res['completeList'][i])	
 		print("---------------------get status success!")
+		# wait 0.5 second and change to main_sence
+		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://main_scene.tscn")
 		return
 
