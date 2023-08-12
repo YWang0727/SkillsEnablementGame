@@ -23,5 +23,4 @@ public interface TakenmapcellService extends IService<Takenmapcell> {
     void clearMapTime(MapDictParam param);
 
 
-
 }
