@@ -16,6 +16,7 @@ func _ready():
 	HttpLayer.connect("http_completed", http_completed)
 	_drawMap()
 	generateCellPosArray2D()
+	var readyFlage = 1
 	
 
 func _unhandled_input(event) -> void:
@@ -70,7 +71,6 @@ func _process(delta):
 			else:
 				_eraseInBuildingCells(GameManager.mapDict[cellPos]["house_type"],cellPos)
 				set_cell(buildingLayer,cellPos,GameManager.mapDict[cellPos]["house_type"],Vector2i(0,0))
-				addCellPosArray2D(cellPos,GameManager.mapDict[cellPos]["house_type"])
 				_freeLabel(cellPos)
 				_http_ClearMapTime(cellPos)
 
@@ -285,23 +285,8 @@ func http_completed(res, response_code, headers, route):
 	#if token is checked and valid, return true
 	if !AlertPopup.tokenCheck(res):
 		return	
-	if route == "buildHouse":
-		HttpLayer._readMap()
-		generateCellPosArray2D()
-		return
-	if route == "clearMapTime":
-		HttpLayer._readMap()
-		return
-	if route == "readMap":
-		for i in range(0, res.num):
-			var cellPos_temp
-			cellPos_temp = position
-			cellPos_temp.x = res.x[i]
-			cellPos_temp.y = res.y[i]
-			GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
 
 func _http_ClearMapTime(cellPos):
-	GameManager.mapDict[cellPos]["finish_time"] = 0
 	var _credential = {
 		"x": cellPos.x,
 		"y": cellPos.y,
@@ -309,6 +294,8 @@ func _http_ClearMapTime(cellPos):
 		"id": GameManager.user_id,
 	}
 	HttpLayer._clearMapTime(_credential)
+	# update gameManager
+	GameManager.mapDict[cellPos]["finish_time"] = 0
 
 func _http_buildHouse(cellPos,selectedBuildingType):
 	# Caculate build hours according to the construction speed now
@@ -324,3 +311,6 @@ func _http_buildHouse(cellPos,selectedBuildingType):
 		"finishTime": finishTime
 	}
 	HttpLayer._buildHouse(_credential)
+	# update gameManager
+	GameManager.mapDict[cellPos] = {"house_type":selectedBuildingType, "finish_time":finishTime}
+	addCellPosArray2D(cellPos,selectedBuildingType)

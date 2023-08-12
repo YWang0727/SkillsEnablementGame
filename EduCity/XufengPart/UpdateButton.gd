@@ -18,7 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mousePos = get_global_mouse_position() - Vector2(tileMap.position.x, tileMap.position.y)
 		updateCellPos = tileMap.local_to_map(mousePos)
 		buildingID = _getBuildingID(updateCellPos)
-		if buildingID != -1 and buildingID < 20:
+		if tileMap.selectedBuildingType == -1 and buildingID != -1 and buildingID < 20:
 				_setButtonPosition(updateCellPos, buildingID)
 				_setLableText(buildingID)
 				self.show()

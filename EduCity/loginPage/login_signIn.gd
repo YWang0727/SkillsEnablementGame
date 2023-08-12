@@ -317,6 +317,8 @@ func getActiveCode():
 			"email": email,
 	}
 	HttpLayer._getActiveCode(_credential)
+	
+
 func login(email:String, password:String):
 	var _credential = {
 			"email": email,
@@ -343,7 +345,15 @@ func _get_localStorage():
 func read_map():
 	HttpLayer._readMap()
 	
-	
+func _http_ClearMapTime(cellPos, houseType):
+	var _credential = {
+		"x": cellPos.x,
+		"y": cellPos.y,
+		"houseType": houseType,
+		"id": GameManager.user_id,
+	}
+	HttpLayer._clearMapTime(_credential)
+
 #******************************   Handle The Response Data From The Backend  ********************************#
 func http_completed(res, response_code, headers, route) -> void:
 	#print(res)
@@ -360,15 +370,14 @@ func http_completed(res, response_code, headers, route) -> void:
 			# get current user's learning status and save in localStorage
 			if GameManager.user_id != null:
 				read_map()
-				_get_localStorage()
 				HttpLayer._getComponents()
+				_get_localStorage()
 		return
 	if response_code == 200 && route == "register":
 		#if(res.code == 0000):
 		AlertPopup.setPosition(0,0,'login')
 		AlertPopup.show_error_message(res['data'])
 		print("------------------------resgister success!")
-		
 		return	
 	if response_code == 200 && route == "email":
 		if res['code'] == 4001:
@@ -393,16 +402,6 @@ func http_completed(res, response_code, headers, route) -> void:
 	if response_code == 200 && route == "refresh-access-token":
 		GameManager.user_accessToken = res.data
 		return
-	if response_code == 200 && route == "status":
-		# save data to knowledge status list in GameManager
-		for i in res['statusList'].size():
-			GameManager.statusList[i] = res['statusList'][i]	
-		# save data to quiz status list in GameManager	
-		for i in res['completeList'].size():
-			GameManager.quizStatus.append(res['completeList'][i])	
-		print("---------------------get status success!")
-		get_tree().change_scene_to_file("res://main_scene.tscn")
-		return
 	if response_code == 200 && route == "readMap":
 		for i in range(0, res.num):
 			var cellPos_temp
@@ -413,14 +412,7 @@ func http_completed(res, response_code, headers, route) -> void:
 			var nowTimestamp:int = Time.get_unix_time_from_system()
 			if res.finishTime[i] != 0 and res.finishTime[i] <= nowTimestamp:
 				GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":0}
-				# save new finish_time:0 in backend
-				var _credential = {
-					"x": res.x[i],
-					"y": res.y[i],
-					"houseType": res.houseType[i],
-					"id": GameManager.user_id,
-				}
-				HttpLayer._clearMapTime(_credential)
+				_http_ClearMapTime(cellPos_temp,res.houseType[i])
 			else:
 				GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
 		print("---------------------read map success!")
@@ -432,7 +424,16 @@ func http_completed(res, response_code, headers, route) -> void:
 		GameManager.population = GameManager.gold + GameManager.prosperity + GameManager.construction_speed
 		GameManager.gold_get_time = res.gold_get_time
 		return
-	
+	if response_code == 200 && route == "status":
+		# save data to knowledge status list in GameManager
+		for i in res['statusList'].size():
+			GameManager.statusList[i] = res['statusList'][i]	
+		# save data to quiz status list in GameManager	
+		for i in res['completeList'].size():
+			GameManager.quizStatus.append(res['completeList'][i])	
+		print("---------------------get status success!")
+		get_tree().change_scene_to_file("res://main_scene.tscn")
+		return
 
 func initializeGameManager(res) :
 	GameManager.user_data = {
