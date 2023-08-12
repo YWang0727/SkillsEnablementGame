@@ -287,7 +287,6 @@ func _on_next_button_pressed():
 	
 
 func _on_login_button_pressed():
-	#check the account is existed or not
 	login(emailLog.text, passwordLog.text);
 	ActiveStatusCheckTimer.startTimer()
 
@@ -365,6 +364,7 @@ func http_completed(res, response_code, headers, route) -> void:
 			initializeGameManager(res)
 			print(GameManager.user_data)
 			print("------------------------login success!")
+			$LoginLoadingScene.visible = true
 			# When login is !successful!, get the required data from the database to localStorage
 			# get current user's learning status and save in localStorage
 			if GameManager.user_id != null:
@@ -487,25 +487,20 @@ func setAlert(msg:String):
 
 #******************************   Timer Set  ********************************#
 func start_countdown():
-	
-	# 启动定时器，每秒更新按钮上的文本
 	timer.start(1.0)
 	countdown_sec = 60
 	update_button_text()
 	
 
 func _on_timer_timeout():
-	# 定时器时间到，每秒更新按钮上的文本
 	countdown_sec -= 1
 	update_button_text()
 
-	# 如果倒计时完成，停止定时器并启用按钮
 	if countdown_sec <= 0:
 		timer.stop()
 		getActiveCodeButton.disabled = false
 
 func update_button_text():
-	# 更新按钮上的文本，显示倒计时秒数
 	if countdown_sec > 0:
 		getActiveCodeButton.text = "Get new after " + str(countdown_sec) + " sec"
 	else:
