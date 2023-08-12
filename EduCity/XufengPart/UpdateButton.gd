@@ -58,13 +58,6 @@ func _on_pressed():
 	var prosperity = building_data["prosperity"]
 	if GameManager.gold >= cost:
 		GameManager.gold -= cost
-		GameManager.prosperity += prosperity
-		if buildingID == GameManager.BuildingType.constrction_site_1 or\
-		buildingID == GameManager.BuildingType.constrction_site_2 or\
-		buildingID == GameManager.BuildingType.constrction_site_3:
-			if GameManager.construction_speed < 6:
-				GameManager.construction_speed += 1
-		
 		tileMap._drawInBuildingCellsLabel(buildingID,updateCellPos)
 		levelUp(buildingID)
 		pushComponents()

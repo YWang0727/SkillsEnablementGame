@@ -299,11 +299,24 @@ func _http_ClearMapTime(cellPos):
 	_chang_attibution_after_build(GameManager.mapDict[cellPos]["house_type"])
 
 func _chang_attibution_after_build(selectedBuildingType):
-	var prosperity = GameManager.buildings_data[selectedBuildingType].prosperity
+	var building_data = getBuildingDataByID(selectedBuildingType)
+	var cost = building_data["cost"]
+	var prosperity = building_data["prosperity"]
 	GameManager.prosperity += prosperity
-	if selectedBuildingType == 4 and GameManager.construction_speed < 6:
-		GameManager.construction_speed += 1
+	if selectedBuildingType == GameManager.BuildingType.constrction_site_1 or\
+	selectedBuildingType == GameManager.BuildingType.constrction_site_2 or\
+	selectedBuildingType == GameManager.BuildingType.constrction_site_3:
+		if GameManager.construction_speed < 6:
+			GameManager.construction_speed += 1
 	emit_signal("store_components")
+
+	
+func getBuildingDataByID(id:int) -> Dictionary:
+	for building_data in GameManager.buildings_data:
+		if building_data["tileID"] == id:
+			return building_data
+	return {}
+
 
 func _http_buildHouse(cellPos,selectedBuildingType):
 	# Caculate build hours according to the construction speed now

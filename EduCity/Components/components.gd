@@ -37,7 +37,7 @@ func _attributes_show():
 	attributes.set_item_text(1,str(GameManager.gold))
 	attributes.set_item_text(3,str(GameManager.prosperity))
 	attributes.set_item_text(5,str(GameManager.construction_speed))
-	attributes.set_item_text(7,str(GameManager.population))
+	attributes.set_item_text(7,str(GameManager.gold + GameManager.prosperity + GameManager.construction_speed))
 	
 
 func pushComponents():

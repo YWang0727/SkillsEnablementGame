@@ -412,12 +412,18 @@ func http_completed(res, response_code, headers, route) -> void:
 			if res.finishTime[i] != 0 and res.finishTime[i] <= nowTimestamp:
 				GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":0}
 				_http_ClearMapTime(cellPos_temp,res.houseType[i])
-				
-				var selectedBuildingType = res.houseType[i]
-				var prosperity = GameManager.buildings_data[selectedBuildingType].prosperity
+				#var prosperity = GameManager.buildings_data[selectedBuildingType].prosperity
+				var building_data = getBuildingDataByID(res.houseType[i])
+				var cost = building_data["cost"]
+				var prosperity = building_data["prosperity"]
 				GameManager.prosperity += prosperity
-				if selectedBuildingType == 4 and GameManager.construction_speed < 6:
-					GameManager.construction_speed += 1
+
+				if res.houseType[i] == GameManager.BuildingType.constrction_site_1 or\
+				res.houseType[i] == GameManager.BuildingType.constrction_site_2 or\
+				res.houseType[i] == GameManager.BuildingType.constrction_site_3:
+					if GameManager.construction_speed < 6:
+						GameManager.construction_speed += 1
+			
 				var _credential = {
 					"gold": GameManager.gold,
 					"prosperity": GameManager.prosperity,
@@ -505,3 +511,8 @@ func update_button_text():
 	else:
 		getActiveCodeButton.text = "Get Active Code"
 
+func getBuildingDataByID(id:int) -> Dictionary:
+	for building_data in GameManager.buildings_data:
+		if building_data["tileID"] == id:
+			return building_data
+	return {}
