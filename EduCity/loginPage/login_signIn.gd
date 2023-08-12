@@ -57,6 +57,7 @@ func _ready():
 	set_focus()
 	
 	
+	
 func initiate_variables():
 	currentPanel = panels.log
 	#get node from whole panels
@@ -341,9 +342,7 @@ func _get_localStorage():
 	HttpLayer._getStatus({
 		"id": GameManager.user_id
 	})
-	
-func read_map():
-	HttpLayer._readMap()
+
 	
 func _http_ClearMapTime(cellPos, houseType):
 	var _credential = {
@@ -369,8 +368,8 @@ func http_completed(res, response_code, headers, route) -> void:
 			# When login is !successful!, get the required data from the database to localStorage
 			# get current user's learning status and save in localStorage
 			if GameManager.user_id != null:
-				read_map()
 				HttpLayer._getComponents()
+				HttpLayer._readMap()
 				_get_localStorage()
 		return
 	if response_code == 200 && route == "register":
@@ -413,6 +412,20 @@ func http_completed(res, response_code, headers, route) -> void:
 			if res.finishTime[i] != 0 and res.finishTime[i] <= nowTimestamp:
 				GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":0}
 				_http_ClearMapTime(cellPos_temp,res.houseType[i])
+				
+				var selectedBuildingType = res.houseType[i]
+				var prosperity = GameManager.buildings_data[selectedBuildingType].prosperity
+				GameManager.prosperity += prosperity
+				if selectedBuildingType == 4 and GameManager.construction_speed < 6:
+					GameManager.construction_speed += 1
+				var _credential = {
+					"gold": GameManager.gold,
+					"prosperity": GameManager.prosperity,
+					"construction_speed": GameManager.construction_speed,
+					"id": GameManager.user_id,
+				}
+				HttpLayer._pushComponents(_credential);
+				
 			else:
 				GameManager.mapDict[Vector2i(cellPos_temp)] = {"house_type":res.houseType[i], "finish_time":res.finishTime[i]}
 		print("---------------------read map success!")
