@@ -29,15 +29,13 @@ func http_completed(res, response_code, headers, route):
 		GameManager.gold = res.gold
 		GameManager.prosperity = res.prosperity
 		GameManager.construction_speed = res.construction_speed
-		GameManager.population = GameManager.gold + GameManager.prosperity + GameManager.construction_speed
-		_attributes_show()
+		#_attributes_show()
 	
 
 func _attributes_show():
 	attributes.set_item_text(1,str(GameManager.gold))
 	attributes.set_item_text(3,str(GameManager.prosperity))
 	attributes.set_item_text(5,str(GameManager.construction_speed))
-	attributes.set_item_text(7,str(GameManager.gold + GameManager.prosperity + GameManager.construction_speed))
 	
 
 func pushComponents():
@@ -54,7 +52,7 @@ func pushComponents():
 #目前只有建房子
 func _on_tile_map_store_components():
 	pushComponents();
-	_attributes_show();
+	#_attributes_show();
 	pass # Replace with function body.
 
 
@@ -64,13 +62,11 @@ func _on_bt_leader_board_pressed():
 	pass # Replace with function body.
 
 
-func _on_tile_map_attributes_show_2():
-	_attributes_show();
-	pass # Replace with function body.
+#func _on_tile_map_attributes_show_2():
+	#_attributes_show();
 
 
-func _on_golds_get_panel_update_components():
-	_attributes_show()
-	pass # Replace with function body.
-
+#func _on_golds_get_panel_update_components():
+	#_attributes_show()
+	
 

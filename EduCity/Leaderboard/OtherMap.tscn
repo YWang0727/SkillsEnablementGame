@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cyh2ebsnufook"]
 
 [ext_resource type="PackedScene" uid="uid://nx1lsqdvmrv2" path="res://XufengPart/TileMap.tscn" id="2_ig22v"]
-[ext_resource type="Script" path="res://XufengPart/CameraButtons.gd" id="3_d2jpx"]
+[ext_resource type="Script" path="res://Leaderboard/camera.gd" id="3_ra7k3"]
 [ext_resource type="Script" path="res://Leaderboard/OtherTileMap.gd" id="3_rvkqt"]
 [ext_resource type="Texture2D" uid="uid://jrr8rvonj2mr" path="res://XufengPart/Icons/right.png" id="4_hj4kn"]
 [ext_resource type="Texture2D" uid="uid://dhvnrff7amxo4" path="res://XufengPart/Icons/left.png" id="5_todc3"]
@@ -75,10 +75,10 @@ offset_bottom = 1063.0
 theme_override_font_sizes/font_size = 50
 text = "back"
 
-[node name="CameraButtons" type="Node2D" parent="."]
-script = ExtResource("3_d2jpx")
+[node name="CameraButtons1" type="Node2D" parent="."]
+script = ExtResource("3_ra7k3")
 
-[node name="RightMoveButton" type="Button" parent="CameraButtons"]
+[node name="RightMoveButton" type="Button" parent="CameraButtons1"]
 offset_left = 174.0
 offset_top = 577.0
 offset_right = 219.0
@@ -87,7 +87,7 @@ icon = ExtResource("4_hj4kn")
 icon_alignment = 1
 expand_icon = true
 
-[node name="LeftMoveButton" type="Button" parent="CameraButtons"]
+[node name="LeftMoveButton" type="Button" parent="CameraButtons1"]
 offset_left = 61.0
 offset_top = 579.0
 offset_right = 104.0
@@ -95,7 +95,7 @@ offset_bottom = 621.0
 icon = ExtResource("5_todc3")
 expand_icon = true
 
-[node name="UpMoveButton" type="Button" parent="CameraButtons"]
+[node name="UpMoveButton" type="Button" parent="CameraButtons1"]
 offset_left = 117.0
 offset_top = 520.0
 offset_right = 162.0
@@ -103,7 +103,7 @@ offset_bottom = 566.0
 icon = ExtResource("6_8t3v5")
 expand_icon = true
 
-[node name="DownMoveButton" type="Button" parent="CameraButtons"]
+[node name="DownMoveButton" type="Button" parent="CameraButtons1"]
 offset_left = 119.0
 offset_top = 636.0
 offset_right = 164.0
@@ -111,7 +111,7 @@ offset_bottom = 682.0
 icon = ExtResource("7_o4st4")
 expand_icon = true
 
-[node name="CenterMoveButton" type="Button" parent="CameraButtons"]
+[node name="CenterMoveButton" type="Button" parent="CameraButtons1"]
 offset_left = 118.0
 offset_top = 577.0
 offset_right = 163.0
@@ -128,13 +128,13 @@ theme = ExtResource("9_w25fd")
 text = "back"
 
 [connection signal="pressed" from="backold" to="." method="_on_back_pressed"]
-[connection signal="button_down" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/RightMoveButton" to="CameraButtons" method="_on_right_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/LeftMoveButton" to="CameraButtons" method="_on_left_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/UpMoveButton" to="CameraButtons" method="_on_up_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/UpMoveButton" to="CameraButtons" method="_on_up_move_button_button_up"]
-[connection signal="button_down" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_down"]
-[connection signal="button_up" from="CameraButtons/DownMoveButton" to="CameraButtons" method="_on_down_move_button_button_up"]
-[connection signal="pressed" from="CameraButtons/CenterMoveButton" to="CameraButtons" method="_on_center_move_button_pressed"]
+[connection signal="button_down" from="CameraButtons1/RightMoveButton" to="CameraButtons1" method="_on_right_move_button_button_down"]
+[connection signal="button_up" from="CameraButtons1/RightMoveButton" to="CameraButtons1" method="_on_right_move_button_button_up"]
+[connection signal="button_down" from="CameraButtons1/LeftMoveButton" to="CameraButtons1" method="_on_left_move_button_button_down"]
+[connection signal="button_up" from="CameraButtons1/LeftMoveButton" to="CameraButtons1" method="_on_left_move_button_button_up"]
+[connection signal="button_down" from="CameraButtons1/UpMoveButton" to="CameraButtons1" method="_on_up_move_button_button_down"]
+[connection signal="button_up" from="CameraButtons1/UpMoveButton" to="CameraButtons1" method="_on_up_move_button_button_up"]
+[connection signal="button_down" from="CameraButtons1/DownMoveButton" to="CameraButtons1" method="_on_down_move_button_button_down"]
+[connection signal="button_up" from="CameraButtons1/DownMoveButton" to="CameraButtons1" method="_on_down_move_button_button_up"]
+[connection signal="pressed" from="CameraButtons1/CenterMoveButton" to="CameraButtons1" method="_on_center_move_button_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

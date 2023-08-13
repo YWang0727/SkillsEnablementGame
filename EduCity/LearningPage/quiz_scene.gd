@@ -306,7 +306,7 @@ func _show_score():
 	goldLabel.text = goldLabel.text + var_to_str(golds)
 	
 	# communicate with attributes
-	GameManager.gold += golds
+	GameManager.gold += golds * 5
 	pushComponents()
 	
 	# attempts remaining

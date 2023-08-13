@@ -440,7 +440,6 @@ func http_completed(res, response_code, headers, route) -> void:
 		GameManager.gold = res.gold
 		GameManager.prosperity = res.prosperity
 		GameManager.construction_speed = res.construction_speed
-		GameManager.population = GameManager.gold + GameManager.prosperity + GameManager.construction_speed
 		GameManager.gold_get_time = res.gold_get_time
 		return
 	if response_code == 200 && route == "clearMapTime":

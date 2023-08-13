@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnsn8jn5g4gmi"]
+[gd_scene load_steps=11 format=3 uid="uid://bnsn8jn5g4gmi"]
 
 [ext_resource type="Script" path="res://Components/components.gd" id="1_7j8by"]
 [ext_resource type="Texture2D" uid="uid://cnpt54xa5uvcr" path="res://Components/gold.png" id="2_dvu66"]
@@ -7,7 +7,6 @@
 [ext_resource type="FontFile" uid="uid://dpl1elp7ttg1v" path="res://setting/assets/Font/Roboto/Roboto-Light.ttf" id="2_rp827"]
 [ext_resource type="Texture2D" uid="uid://dsnoj3qqlypmn" path="res://Components/prosperity.png" id="3_qecg7"]
 [ext_resource type="Texture2D" uid="uid://0yiwgkrc75v8" path="res://Components/speed.png" id="4_mmtlh"]
-[ext_resource type="Texture2D" uid="uid://mwpc34oa712t" path="res://Components/population.png" id="5_1p8js"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahi74"]
 bg_color = Color(1, 1, 1, 0.760784)
@@ -58,12 +57,12 @@ script = ExtResource("1_7j8by")
 offset_left = 177.0
 offset_top = 45.0
 offset_right = 477.0
-offset_bottom = 185.0
+offset_bottom = 153.0
 rotation = -0.00490787
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_rp827")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ahi74")
-item_count = 8
+item_count = 6
 max_columns = 2
 same_column_width = true
 fixed_icon_size = Vector2i(30, 30)
@@ -82,17 +81,12 @@ item_4/icon = ExtResource("4_mmtlh")
 item_4/selectable = false
 item_5/text = "111"
 item_5/selectable = false
-item_6/text = " Population                    "
-item_6/icon = ExtResource("5_1p8js")
-item_6/selectable = false
-item_7/text = "111"
-item_7/selectable = false
 
 [node name="Bt_LeaderBoard" type="Button" parent="."]
 offset_left = 177.0
-offset_top = 200.0
+offset_top = 176.0
 offset_right = 377.0
-offset_bottom = 250.0
+offset_bottom = 226.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_npoxf")
 theme_override_font_sizes/font_size = 20

@@ -64,7 +64,7 @@ var sound_volume = 0.7
 var property_data = {}
 
 #Components
-var population:int = 1000
+#var population:int = 1000
 var rank = 33
 
 # Chatbot
