@@ -2,7 +2,8 @@ extends Node
 
 
 var total_num = 1
-var mapPic = load("res://Leaderboard/rank.png")
+var mapPic = load("res://Leaderboard/population.png")
+var my_map_index
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,21 +43,26 @@ func http_completed(res, response_code, headers, route):
 			itemList.set_item_selectable(index - 3, false)
 			#map项存 mapid 值
 			itemList.set_item_metadata(index,res.all_id[i - 1])
+			itemList.set_item_custom_bg_color(index, Color(0.28, 0.28, 0.28, 1))
 			#itemList.set_item_icon (index, mapPic)
-			if res.all_name[i - 1] == res.name and res.all_prosperity[i - 1] == res.prosperity:
+			if res.all_id[i - 1] == GameManager.user_id:
+			#if res.all_name[i - 1] == res.name and res.all_prosperity[i - 1] == res.prosperity:
 				#get_node("ColorRect/my-info/myRank").text = str(i)
+				#设置自己的地图不可选择
+				my_map_index = index
+				itemList.set_item_selectable(index, false)
 				GameManager.rank = i
-				itemList.set_item_custom_bg_color((i - 1) * 4, Color(0, 0, 0, 1))
-				itemList.set_item_custom_bg_color((i - 1) * 4 + 1, Color(0, 0, 0, 1))
-				itemList.set_item_custom_bg_color((i - 1) * 4 + 2, Color(0, 0, 0, 1))
-				itemList.set_item_custom_bg_color((i - 1) * 4 + 3, Color(0, 0, 0, 1))
+				itemList.set_item_custom_bg_color(index - 3, Color(0, 0, 0, 1))
+				itemList.set_item_custom_bg_color(index - 2, Color(0, 0, 0, 1))
+				itemList.set_item_custom_bg_color(index - 1, Color(0, 0, 0, 1))
+				itemList.set_item_custom_bg_color(index, Color(0, 0, 0, 1))
 	
 
 
 
 func _on_item_list_item_activated(index):
 	var itemList = get_node("Control/ItemList")
-	if index % 4 == 3:
+	if index % 4 == 3 and index != my_map_index:
 		GameManager.other_id = itemList.get_item_metadata(index)
 		GameManager.other_city_name = itemList.get_item_text(index - 2)
 		GameManager.other_prosperity = itemList.get_item_text(index - 1)
@@ -66,14 +72,10 @@ func _on_item_list_item_activated(index):
 
 
 func _on_self_check_pressed():
-	#var itemList = get_node("ColorRect/ItemList")
 	var itemList = get_node("Control/ItemList")
 	itemList.select((GameManager.rank - 1) * 4)
 	itemList.ensure_current_is_visible()
-	pass # Replace with function body.
-
 
 
 func _on_close_pressed():
 	queue_free()
-	pass # Replace with function body.

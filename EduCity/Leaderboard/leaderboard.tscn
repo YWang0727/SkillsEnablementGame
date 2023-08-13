@@ -31,131 +31,6 @@ script = ExtResource("1_hieti")
 metadata/_edit_vertical_guides_ = [960.0, 743.0, 1187.0]
 metadata/_edit_horizontal_guides_ = [520.0]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_left = -156.0
-offset_top = 68.0
-offset_right = 464.0
-offset_bottom = 948.0
-rotation = 0.0270474
-color = Color(1, 0.670588, 0.623529, 0.898039)
-
-[node name="leaderBoard" type="Label" parent="ColorRect"]
-layout_mode = 0
-offset_left = 228.0
-offset_top = 42.0
-offset_right = 392.0
-offset_bottom = 84.0
-size_flags_stretch_ratio = 0.0
-theme_type_variation = &"HeaderLarge"
-text = "leaderboard"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="ColorRect"]
-layout_mode = 0
-offset_left = 471.0
-offset_top = 812.0
-offset_right = 583.0
-offset_bottom = 855.0
-text = "back to game"
-
-[node name="ItemList" type="ItemList" parent="ColorRect"]
-layout_mode = 2
-offset_left = 60.0
-offset_top = 202.0
-offset_right = 560.0
-offset_bottom = 762.0
-select_mode = 1
-max_columns = 4
-fixed_column_width = 113
-
-[node name="title" type="MenuBar" parent="ColorRect"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 147.0
-offset_right = 560.0
-offset_bottom = 185.0
-
-[node name="titleRank" type="Label" parent="ColorRect/title"]
-layout_mode = 0
-offset_left = 20.0
-offset_right = 65.0
-offset_bottom = 31.0
-size_flags_stretch_ratio = 0.0
-theme_type_variation = &"HeaderSmall"
-text = "rank"
-
-[node name="titleCityName" type="Label" parent="ColorRect/title"]
-layout_mode = 0
-offset_left = 110.0
-offset_right = 202.0
-offset_bottom = 31.0
-size_flags_stretch_ratio = 0.0
-theme_type_variation = &"HeaderSmall"
-text = "cityName"
-
-[node name="titleProsperity" type="Label" parent="ColorRect/title"]
-layout_mode = 0
-offset_left = 260.0
-offset_right = 360.0
-offset_bottom = 31.0
-size_flags_stretch_ratio = 0.0
-theme_type_variation = &"HeaderSmall"
-text = "prosperity"
-
-[node name="titleMap" type="Label" parent="ColorRect/title"]
-layout_mode = 0
-offset_left = 410.0
-offset_right = 454.0
-offset_bottom = 31.0
-size_flags_stretch_ratio = 0.0
-theme_type_variation = &"HeaderSmall"
-text = "map"
-
-[node name="my-info" type="MenuBar" parent="ColorRect"]
-visible = false
-layout_mode = 0
-offset_left = 60.0
-offset_top = 160.0
-offset_right = 560.0
-offset_bottom = 198.0
-
-[node name="myRank" type="Label" parent="ColorRect/my-info"]
-layout_mode = 2
-offset_left = 20.0
-offset_right = 32.0
-offset_bottom = 31.0
-size_flags_stretch_ratio = 0.0
-theme_type_variation = &"HeaderSmall"
-text = "myrank"
-
-[node name="myCityName" type="Label" parent="ColorRect/my-info"]
-layout_mode = 2
-offset_left = 110.0
-offset_right = 174.0
-offset_bottom = 31.0
-size_flags_stretch_ratio = 0.0
-theme_type_variation = &"HeaderSmall"
-text = "mycity"
-
-[node name="myProsperity" type="Label" parent="ColorRect/my-info"]
-layout_mode = 2
-offset_left = 260.0
-offset_right = 399.0
-offset_bottom = 31.0
-size_flags_stretch_ratio = 0.0
-theme_type_variation = &"HeaderSmall"
-text = "my_prosperity"
-
-[node name="selfCheck" type="Button" parent="ColorRect"]
-layout_mode = 0
-offset_left = 425.0
-offset_top = 92.0
-offset_right = 557.0
-offset_bottom = 123.0
-text = "check your rank"
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -237,7 +112,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_momof")
 [node name="TitleList" type="ItemList" parent="Control"]
 layout_mode = 0
 offset_left = 530.0
-offset_top = 212.0
+offset_top = 208.0
 offset_right = 1390.0
 offset_bottom = 263.0
 theme_override_font_sizes/font_size = 28
@@ -245,6 +120,7 @@ item_count = 4
 max_columns = 4
 same_column_width = true
 fixed_column_width = 207
+icon_mode = 0
 item_0/text = "rank"
 item_1/text = "cityName"
 item_2/text = "prosperity"
@@ -256,10 +132,12 @@ offset_left = 530.0
 offset_top = 264.0
 offset_right = 1390.0
 offset_bottom = 818.0
+theme_override_colors/guide_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 max_columns = 4
 same_column_width = true
 fixed_column_width = 207
+icon_mode = 0
 
 [node name="selfCheck" type="Button" parent="Control"]
 layout_mode = 0
@@ -270,9 +148,6 @@ offset_bottom = 880.0
 theme = ExtResource("7_8p1x2")
 text = "check my rank"
 
-[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
-[connection signal="item_activated" from="ColorRect/ItemList" to="." method="_on_item_list_item_activated"]
-[connection signal="pressed" from="ColorRect/selfCheck" to="." method="_on_self_check_pressed"]
 [connection signal="pressed" from="Control/Header/Close" to="." method="_on_close_pressed"]
 [connection signal="item_activated" from="Control/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="pressed" from="Control/selfCheck" to="." method="_on_self_check_pressed"]
