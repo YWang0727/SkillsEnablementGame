@@ -3,7 +3,7 @@ extends Node2D
 enum direction {right, left, up, down, default}
 var moveDirection = direction.default
 var border = 1000
-@onready var tileMap : Node = get_node("/root/MainScene/TileMap")
+@onready var tileMap : Node = get_node("/root/OtherMap/TileMap")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
