@@ -50,14 +50,12 @@ func _unhandled_input(event) -> void:
 			cellPos = local_to_map(get_global_mouse_position() - position)  # 将鼠标位置转换为TileMap单元位置
 			if _checkCellOverlap(selectedBuildingType,cellPos):
 				GameManager.gold = GameManager.gold - cost
-				#GameManager.prosperity += prosperity
-				#if selectedBuildingType == 4 and GameManager.construction_speed < 6:
-					#GameManager.construction_speed += 1
 				emit_signal("store_components")
 				_http_buildHouse(cellPos,selectedBuildingType)
 				clear_layer(selectedLayer)
 				_drawInBuildingCellsLabel(selectedBuildingType,cellPos)
 				selectedBuildingType = -1
+				
 
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.

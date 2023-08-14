@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqw71816isqu3"]
+
+[ext_resource type="Script" path="res://Components/changeGold.gd" id="1_g0wfc"]
+[ext_resource type="Theme" uid="uid://cxb1ocnyuadvq" path="res://setting/src/common/themes/text_button.tres" id="2_38mt2"]
+[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://setting/assets/Font/Roboto/Roboto-Regular.ttf" id="3_2ausg"]
+[ext_resource type="Theme" uid="uid://b8831njpc3mif" path="res://setting/src/common/themes/text_icon.tres" id="4_d087s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwcc5"]
+bg_color = Color(0.9, 0.86, 0.8, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="changeGold" type="Panel"]
+offset_left = 700.0
+offset_top = 391.0
+offset_right = 1220.0
+offset_bottom = 689.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vwcc5")
+script = ExtResource("1_g0wfc")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.0864429
+anchor_right = 0.5
+anchor_bottom = 0.0864429
+offset_left = -188.0
+offset_right = 188.0
+offset_bottom = 63.0
+grow_horizontal = 2
+theme = ExtResource("2_38mt2")
+theme_override_font_sizes/font_size = 32
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -58.5
+offset_right = 274.0
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_38mt2")
+theme_override_fonts/font = ExtResource("3_2ausg")
+theme_override_font_sizes/font_size = 24
+text = "You've completed quiz 
+and earned xxx golds!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ok" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.911765
+anchor_right = 0.5
+anchor_bottom = 0.911765
+offset_left = -55.0
+offset_top = -52.7059
+offset_right = 56.0
+offset_bottom = 0.294128
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_d087s")
+theme_override_font_sizes/font_size = 24
+text = "OK"
+icon_alignment = 1

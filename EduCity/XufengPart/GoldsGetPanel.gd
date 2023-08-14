@@ -26,7 +26,7 @@ func _ready():
 					getGolds += 1200
 	if getGolds > 0:
 		var label = get_node("label")
-		label.text = "You've completed another day\nand earned " + str(getGolds) + " golds!"
+		label.text = "You've completed a quiz\nand earned " + str(getGolds) + " golds!"
 		self.show()
 
 
