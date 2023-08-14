@@ -51,6 +51,7 @@ func http_completed(res, response_code, headers, route):
 				#设置自己的地图不可选择
 				my_map_index = index
 				itemList.set_item_selectable(index, false)
+				itemList.set_item_selectable(index - 3, true)
 				GameManager.rank = i
 				itemList.set_item_custom_bg_color(index - 3, Color(0, 0, 0, 1))
 				itemList.set_item_custom_bg_color(index - 2, Color(0, 0, 0, 1))
@@ -73,7 +74,7 @@ func _on_item_list_item_activated(index):
 
 func _on_self_check_pressed():
 	var itemList = get_node("Control/ItemList")
-	itemList.select((GameManager.rank - 1) * 4)
+	itemList.select((GameManager.rank - 1) * 4)	
 	itemList.ensure_current_is_visible()
 
 
