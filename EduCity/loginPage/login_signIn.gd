@@ -50,6 +50,9 @@ var timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#play animations
+	$LogoPlayer.play();
+	
 	HttpLayer.connect("http_completed", http_completed)
 	initiate_variables()
 	connect_signals()

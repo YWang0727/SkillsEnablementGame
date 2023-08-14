@@ -94,7 +94,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Override
     public ResultVO checkEmailIsExisted(RegisterParam param) {
-        System.out.println(param.getEmail());
         // check if email exists
         if (getUserByEmail(param.getEmail()) != null) {
             return new ResultVO(ResultCode.EMAIL_FOUND,"Email is already existed!\nPlease Try another one!");
@@ -108,6 +107,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /********************************************/
     @Override
     public ResultVO<String> register(RegisterParam newUser) {
+        System.out.println(newUser.getEmail());
+        if (getUserByEmail(newUser.getEmail()) != null) {
+            return new ResultVO(ResultCode.EMAIL_FOUND,"Email is already existed!\nPlease Try another one!");
+        }
         String tokenPassword = JwtManager.generate(newUser.getPassword());
         User user = new User();
         BeanUtil.copyProperties(newUser, user);
