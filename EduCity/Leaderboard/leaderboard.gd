@@ -25,10 +25,7 @@ func http_completed(res, response_code, headers, route):
 		return	
 		
 	if route == "leaderBoard":
-		#var itemList = get_node("ColorRect/ItemList")
 		var itemList = get_node("Control/ItemList")
-		#get_node("ColorRect/my-info/myCityName").text = res.name
-		#get_node("ColorRect/my-info/myProsperity").text = str(res.prosperity)
 		total_num = res.total_num
 		for i in range(1, total_num + 1):
 			itemList.add_item(str(i))
@@ -37,18 +34,16 @@ func http_completed(res, response_code, headers, route):
 			itemList.add_item("map")
 			#map's index
 			var index = (i - 1) * 4 + 3
-			#设置前三列不可选择
+			#first three colume is not selectable
 			itemList.set_item_selectable(index - 1, false)
 			itemList.set_item_selectable(index - 2, false)
 			itemList.set_item_selectable(index - 3, false)
-			#map项存 mapid 值
+			#"map" store mapid
 			itemList.set_item_metadata(index,res.all_id[i - 1])
 			itemList.set_item_custom_bg_color(index, Color(0.28, 0.28, 0.28, 1))
 			#itemList.set_item_icon (index, mapPic)
 			if res.all_id[i - 1] == GameManager.user_id:
-			#if res.all_name[i - 1] == res.name and res.all_prosperity[i - 1] == res.prosperity:
-				#get_node("ColorRect/my-info/myRank").text = str(i)
-				#设置自己的地图不可选择
+				#set my map is not selectable
 				my_map_index = index
 				itemList.set_item_selectable(index, false)
 				itemList.set_item_selectable(index - 3, true)
