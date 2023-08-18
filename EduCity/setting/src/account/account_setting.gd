@@ -20,6 +20,7 @@ var avatar: TextureRect
 var uploadedFile: PackedByteArray
 var oldPassword: LineEdit
 var newPassword: LineEdit
+var newCityName: LineEdit
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,9 +43,9 @@ func initiate_variales():
 	fileUploadWindow = get_node("Control/FileUploadWindow")
 	closeButton = get_node("Control/Header/Close")
 	backButton = get_node("Control/Header/BackButton")
-	profileSave = get_node("Control/Body/VBoxContainer/ProfileButtons/Save")
+	profileSave = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/ProfileButtons/Save")
 	passwordSave = get_node("Control/Body/VBoxContainer/PasswordButtons/Save")
-	profileCancel = get_node("Control/Body/VBoxContainer/ProfileButtons/Cancel")
+	profileCancel = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/ProfileButtons/Cancel")
 	passwordCancel = get_node("Control/Body/VBoxContainer/PasswordButtons/Cancel")
 	
 	username = get_node("Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Username/LineEdit")
@@ -52,6 +53,7 @@ func initiate_variales():
 	avatar = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/HBoxContainer/DisplayAvatar")
 	oldPassword = get_node("Control/Body/VBoxContainer/OldPassword/LineEdit")
 	newPassword = get_node("Control/Body/VBoxContainer/NewPassword/LineEdit")
+	newCityName = get_node("Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/CityName/LineEdit")
 	
 	buttonSound = get_node("Control/ButtonSound")
 	cancelSound = get_node("Control/CancelSound")

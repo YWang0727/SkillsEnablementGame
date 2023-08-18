@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nc3cony35cdx"]
+[gd_scene load_steps=17 format=3 uid="uid://nc3cony35cdx"]
 
 [ext_resource type="Script" path="res://setting/src/account/account_setting.gd" id="1_h31y7"]
 [ext_resource type="Theme" uid="uid://4qcodx2tfksw" path="res://setting/src/common/themes/pure_icon.tres" id="3_8w1ti"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cvryfjg2nirqg" path="res://setting/assets/setting/avatar.jpg" id="7_wp00x"]
 [ext_resource type="Theme" uid="uid://b8831njpc3mif" path="res://setting/src/common/themes/text_icon.tres" id="10_1bb51"]
 [ext_resource type="AudioStream" uid="uid://ccteyvjw8o0k5" path="res://setting/assets/audio/button2.wav" id="11_5npcj"]
+[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://Font/Roboto/Roboto-Black.ttf" id="11_cto6b"]
 [ext_resource type="AudioStream" uid="uid://bfw0lbjbdiljx" path="res://setting/assets/audio/cancel2.wav" id="12_4fv5c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7gwxe"]
@@ -115,13 +116,13 @@ anchors_preset = -1
 anchor_left = 0.2
 anchor_top = 0.15
 anchor_right = 0.8
-anchor_bottom = 0.9
+anchor_bottom = 0.95
 offset_left = 36.0
 offset_top = -42.0
 offset_right = 36.0
 offset_bottom = -42.0
 rotation = -0.1309
-scale = Vector2(0.95, 0.95)
+scale = Vector2(0.93, 0.93)
 pivot_offset = Vector2(960, 540)
 theme_override_styles/panel = SubResource("StyleBoxFlat_wjrio")
 
@@ -131,7 +132,7 @@ anchors_preset = -1
 anchor_left = 0.2
 anchor_top = 0.15
 anchor_right = 0.8
-anchor_bottom = 0.9
+anchor_bottom = 0.95
 theme_override_styles/panel = SubResource("StyleBoxFlat_wjrio")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Body"]
@@ -163,7 +164,7 @@ layout_mode = 2
 theme_override_constants/separation = 30
 
 [node name="DisplayAvatar" type="TextureRect" parent="Control/Body/VBoxContainer/HBoxContainer/Avatar/HBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 texture = ExtResource("7_wp00x")
 expand_mode = 2
@@ -175,6 +176,27 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("10_1bb51")
 text = "Upload File"
+
+[node name="HSeparator2" type="HSeparator" parent="Control/Body/VBoxContainer/HBoxContainer/Avatar"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_u8nyt")
+
+[node name="ProfileButtons" type="HBoxContainer" parent="Control/Body/VBoxContainer/HBoxContainer/Avatar"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Save" type="Button" parent="Control/Body/VBoxContainer/HBoxContainer/Avatar/ProfileButtons"]
+layout_mode = 2
+theme = ExtResource("10_1bb51")
+text = "Save"
+
+[node name="Cancel" type="Button" parent="Control/Body/VBoxContainer/HBoxContainer/Avatar/ProfileButtons"]
+layout_mode = 2
+theme = ExtResource("5_qps74")
+theme_override_font_sizes/font_size = 20
+text = "Cancel
+"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Body/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -191,8 +213,8 @@ text = "New Username:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Username"]
 layout_mode = 2
-theme = ExtResource("5_qps74")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("11_cto6b")
+theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5
 
@@ -206,30 +228,27 @@ text = "New Email:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Email"]
 layout_mode = 2
-theme = ExtResource("5_qps74")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="ProfileButtons" type="HBoxContainer" parent="Control/Body/VBoxContainer"]
+[node name="CityName" type="VBoxContainer" parent="Control/Body/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
 
-[node name="Save" type="Button" parent="Control/Body/VBoxContainer/ProfileButtons"]
-layout_mode = 2
-theme = ExtResource("10_1bb51")
-text = "Save"
-
-[node name="Cancel" type="Button" parent="Control/Body/VBoxContainer/ProfileButtons"]
+[node name="Label" type="Label" parent="Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/CityName"]
 layout_mode = 2
 theme = ExtResource("5_qps74")
+text = "New City Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/CityName"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Cancel
-"
+caret_blink = true
+caret_blink_interval = 0.5
 
 [node name="HSeparator" type="HSeparator" parent="Control/Body/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 15
 theme_override_styles/separator = SubResource("StyleBoxEmpty_u8nyt")
 
 [node name="Password" type="Label" parent="Control/Body/VBoxContainer"]
@@ -248,7 +267,7 @@ text = "Old Password:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/OldPassword"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5
 
@@ -262,7 +281,7 @@ text = "New Password:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/NewPassword"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5
 

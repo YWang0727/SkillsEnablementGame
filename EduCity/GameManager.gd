@@ -63,12 +63,13 @@ var music_volume = 0.7
 var sound_volume = 0.7
 var property_data = {}
 
+# Chatbot
+var chat_history = {}
+
 #Components
 #var population:int = 1000
 var rank = 33
 
-# Chatbot
-var chat_history = {}
 
 func _ready():
 	var file = FileAccess.open("res://XufengPart/BuildingType.json", FileAccess.READ)
@@ -84,12 +85,19 @@ func _ready():
 	initChatHistory()
 
 
+func initialize_global_variables():
+	music_volume = 0.7
+	sound_volume = 0.7
+	set_volume()
+	
+	initPropertyData()
+	initChatHistory()
+
 
 # initialize the volume of music and sound effect
 func set_volume():
 	AudioServer.set_bus_volume_db(1, linear_to_db(music_volume))
 	AudioServer.set_bus_volume_db(2, linear_to_db(sound_volume))
-
 
 func initPropertyData():
 	property_data = {
@@ -108,4 +116,3 @@ func initChatHistory():
 		"isNewSession": true,
 		"messages": []
 	}
-	

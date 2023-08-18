@@ -34,6 +34,7 @@ func tokenCheck(res) -> bool:
 		if res.code == 1001 || res.code == 1003:
 			AlertPopup.setPosition(0,0,'center')
 			AlertPopup.show_error_message(res.data)
+			GameManager.initialize_global_variables()
 			get_tree().change_scene_to_file("res://loginPage/login.tscn")
 			return false
 	return true
