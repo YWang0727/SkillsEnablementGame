@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://6updj4jobty0"]
+[gd_scene load_steps=27 format=3 uid="uid://6updj4jobty0"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_d68s8"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_ihn2m"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://c3cd3jtnngqlc" path="res://chatbot/assets/images/chatbot.png" id="17_sfjsg"]
 [ext_resource type="Script" path="res://chatbot/src/ChatBotButton.gd" id="18_oapmc"]
 [ext_resource type="PackedScene" uid="uid://ra57c4ch8uqi" path="res://XufengPart/GoldsGetPanel.tscn" id="19_0pcfi"]
+[ext_resource type="Script" path="res://IBMlink.gd" id="20_e75ig"]
+[ext_resource type="Texture2D" uid="uid://bxips6xqdhhj" path="res://LearningPage/Icon/link.png" id="20_ijjnm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi4cg"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -182,6 +184,18 @@ offset_left = 710.0
 offset_top = 405.0
 offset_right = 1210.0
 offset_bottom = 675.0
+
+[node name="IBMlink" type="Button" parent="."]
+offset_left = 173.0
+offset_top = 252.0
+offset_right = 273.0
+offset_bottom = 352.0
+tooltip_text = "Link to IBM SkillsBuild"
+icon = ExtResource("20_ijjnm")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("20_e75ig")
 
 [connection signal="attributes_show2" from="TileMap" to="components" method="_on_tile_map_attributes_show_2"]
 [connection signal="store_components" from="TileMap" to="components" method="_on_tile_map_store_components"]
