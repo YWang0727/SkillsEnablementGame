@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bf6b1b1grn7dg" path="res://chatbot/assets/images/Icon_X.png" id="7_h2jkr"]
 [ext_resource type="Texture2D" uid="uid://cvryfjg2nirqg" path="res://setting/assets/setting/avatar.jpg" id="7_wp00x"]
 [ext_resource type="Theme" uid="uid://b8831njpc3mif" path="res://setting/src/common/themes/text_icon.tres" id="10_1bb51"]
+[ext_resource type="FontFile" uid="uid://bpotl6svxf8yc" path="res://Font/Roboto/Roboto-Regular.ttf" id="11_0kyiv"]
 [ext_resource type="AudioStream" uid="uid://ccteyvjw8o0k5" path="res://setting/assets/audio/button2.wav" id="11_5npcj"]
-[ext_resource type="FontFile" uid="uid://ba3lduh7rj541" path="res://Font/Roboto/Roboto-Black.ttf" id="11_cto6b"]
 [ext_resource type="AudioStream" uid="uid://bfw0lbjbdiljx" path="res://setting/assets/audio/cancel2.wav" id="12_4fv5c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7gwxe"]
@@ -213,7 +213,7 @@ text = "New Username:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Username"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("11_cto6b")
+theme_override_fonts/font = ExtResource("11_0kyiv")
 theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5
@@ -228,6 +228,7 @@ text = "New Email:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Email"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("11_0kyiv")
 theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5
@@ -242,6 +243,7 @@ text = "New City Name:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/CityName"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("11_0kyiv")
 theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5
@@ -267,6 +269,7 @@ text = "Old Password:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/OldPassword"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("11_0kyiv")
 theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5
@@ -281,6 +284,7 @@ text = "New Password:"
 
 [node name="LineEdit" type="LineEdit" parent="Control/Body/VBoxContainer/NewPassword"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("11_0kyiv")
 theme_override_font_sizes/font_size = 20
 caret_blink = true
 caret_blink_interval = 0.5

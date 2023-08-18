@@ -19,4 +19,7 @@ public class EditUserParam {
     @Length(min = 1, max = 20, message = "Name must be between 1-20 digits in length.")
     private String name;
 
+    @NotBlank(message = "City name is required")
+    @Length(min = 1, max = 20, message = "City name must be between 1-20 digits in length.")
+    private String cityName;
 }

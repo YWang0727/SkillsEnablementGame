@@ -1,13 +1,11 @@
 extends CanvasLayer
 
-var account_setting_scene = preload("res://setting/src/account/account_setting.tscn")
-var main_scene: String = ("res://main_scene.tscn")
-
 # global variables
 var accountSettingButton: Button
 var closeButton: Button
 var username: Label
 var email: Label
+var cityName: Label
 var residentialBuilding: Label
 var bank: Label
 var supermarket: Label
@@ -45,6 +43,7 @@ func initiate_variables():
 	avatar = get_node("Control/Body/Profile/Avatar")
 	username = get_node("Control/Body/Profile/BasicInfo/Username/Data")
 	email = get_node("Control/Body/Profile/BasicInfo/Email/Data")
+	cityName = get_node("Control/Body/Profile/BasicInfo/CityName/Data")
 	residentialBuilding = get_node("Control/Body/Profile/PropertyInfo/ResidentialBuilding/Data")
 	bank = get_node("Control/Body/Profile/PropertyInfo/Bank/Data")
 	supermarket = get_node("Control/Body/Profile/PropertyInfo/Supermarket/Data")
@@ -122,6 +121,7 @@ func check_image_format(imageData: PackedByteArray) -> bool:
 	return false
 
 func update_user_property(data):
+	GameManager.property_data.cityName = data.cityName
 	GameManager.property_data.residentialBuilding = str(data.residentialBuildingAmount)
 	GameManager.property_data.bank = str(data.bankAmount)
 	GameManager.property_data.supermarket = str(data.supermarketAmount)
@@ -131,6 +131,8 @@ func update_user_property(data):
 
 # diaplay user property infomation in label
 func display_user_property_info(property_data):
+	cityName.text = property_data.cityName
+	
 	residentialBuilding.text = property_data.residentialBuilding
 	bank.text = property_data.bank
 	supermarket.text = property_data.supermarket

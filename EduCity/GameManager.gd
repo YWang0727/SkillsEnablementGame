@@ -101,6 +101,7 @@ func set_volume():
 
 func initPropertyData():
 	property_data = {
+		"cityName": "",
 		"residentialBuilding": "",
 		"bank": "",
 		"supermarket": "",
