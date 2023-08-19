@@ -10,7 +10,7 @@
             "All the above"
         ],
         "answers": [
-            2
+            1
         ]
       },
       {
@@ -23,7 +23,7 @@
             "All the above"
         ],
         "answers": [
-            1
+            0
         ]
       },
       {
@@ -36,7 +36,7 @@
             "All the above"
         ],
         "answers": [
-            3
+            2
         ]
       },
       {
@@ -49,7 +49,7 @@
             "Feature engineering"  
         ],
         "answers": [
-            1,2
+            0,1
         ]
       },
       {
@@ -62,7 +62,7 @@
             "All the above"
         ],
         "answers": [
-            2
+            1
         ]
       },
       {
@@ -75,7 +75,7 @@
             "All the above"        
         ],
         "answers": [
-            1
+            0
         ]
       },
       {
@@ -89,7 +89,7 @@
             "All the above"  
         ],
         "answers": [
-            5
+            4
         ]
       },
       {
@@ -102,7 +102,7 @@
             "Model Deployment"       
         ],
         "answers": [
-            3
+            2
         ]
       },
       {
@@ -115,7 +115,7 @@
             "Model Deployment"       
         ],
         "answers": [
-            4
+            3
         ]
       }
     ]

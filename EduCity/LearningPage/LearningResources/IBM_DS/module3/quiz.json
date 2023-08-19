@@ -10,7 +10,7 @@
             "Data Refinery"
         ],
         "answers": [
-            3,4
+            2,3
         ]
       },
       {
@@ -23,7 +23,7 @@
             "Insurance Fraud"          
         ],
         "answers": [
-            3,4
+            2,3
         ]
       },
       {
@@ -36,7 +36,7 @@
             "Data Gaps"                 
         ],
         "answers": [
-            4
+            3
         ]
       }
     ]
