@@ -23,5 +23,4 @@ public class LoginParam {
     //@Length(min = 4, max = 20, message = "Password must be between 4-20 characters in length.")
     //@ExceptionCode(value = 100003, message = "Invalid password.")
     private String password;
-
 }

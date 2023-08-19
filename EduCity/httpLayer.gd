@@ -115,7 +115,10 @@ func _getActiveCode(_credentials):
 	_apiCore("auth/active", _credentials, false, "POST", "active")
 	
 func _getNewAccessToken(_credentials):
-	_apiCore("user/refresh-access-token", _credentials, true,"POST", "refresh-access-token", GameManager.user_refreshToken)
+	_apiCore("user/refresh-access-token", _credentials, true,"Post", "refresh-access-token", GameManager.user_refreshToken)
+	
+func _setUserNotFirst(_credentials):
+	_apiCore("user/set-user-not-first", _credentials, true,"POST", "set-user-not-first", GameManager.user_accessToken)
 		
 
 # api for learning_related scene	

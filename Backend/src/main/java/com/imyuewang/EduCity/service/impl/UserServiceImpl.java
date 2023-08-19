@@ -12,6 +12,7 @@ import com.imyuewang.EduCity.mapper.UserQuizMapper;
 import com.imyuewang.EduCity.model.entity.Citymap;
 import com.imyuewang.EduCity.model.param.LoginParam;
 import com.imyuewang.EduCity.model.param.RegisterParam;
+import com.imyuewang.EduCity.model.param.UserParam;
 import com.imyuewang.EduCity.model.vo.ResultVO;
 import com.imyuewang.EduCity.model.vo.UserVO;
 import com.imyuewang.EduCity.security.JwtManager;
@@ -201,6 +202,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return new ResultVO(newAccessToken);
     }
 
+
+    /********************************************************/
+    /**************    Set User Not First      **************/
+    /********************************************************/
+
+    @Override
+    public ResultVO setUserNotFirst(UserParam param) {
+        //get user from database
+        User user = userMapper.selectById(param.getId());
+        //set user not first
+        user.setIsFirst(0);
+        userMapper.updateById(user);
+        //return userVO
+        return new ResultVO(0);
+    }
 }
 
 

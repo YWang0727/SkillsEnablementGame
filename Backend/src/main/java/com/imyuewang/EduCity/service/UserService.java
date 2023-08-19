@@ -36,4 +36,6 @@ public interface UserService extends IService<User> {
 
     ResultVO refreshAccessToken(String refreshToken);
 
+    ResultVO setUserNotFirst(UserParam param);
+
 }

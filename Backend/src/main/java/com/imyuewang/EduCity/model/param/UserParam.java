@@ -28,8 +28,12 @@ public class UserParam {
     @Length(min = 8, max = 20, message = "Username must be between 4-20 characters in length.", groups = CreateUser.class)
     private String name;
 
+    public Integer isFirst;
+
+    public Long id;
     public interface Update {}
 
     public interface CreateUser{}
+
 
 }
