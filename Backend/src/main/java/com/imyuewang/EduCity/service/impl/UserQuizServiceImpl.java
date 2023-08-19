@@ -108,7 +108,7 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
         // Put the status of each module into an array: 0 - not started, 1 - in progress, 2 - completed
         // Need to be modified according to the actual number of modules per knowledge
         for(int i = 0; i < kList.length; i ++){
-            if(i == 0){
+            if(i == 0 || i == 2 || i == 3){
                 if(kList[0] == 1 || kList[0] == 2){
                     kList[0] = 1;
                 }else if(kList[0] == 3){

@@ -1,0 +1,136 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "question": "The ability for businesses to rent computing services and software from a cloud service provider on a per unit or per month basis is best encapsulated by which of the following cloud business enablers?",
+        "options": [
+          "Business Scalability",
+          "Cost Flexibility",
+          "Masked Complexity",
+          "Market Adaptability"
+        ],
+        "answers": [
+            1
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Collaboration software such as Zoom, Mural, and Slack are all cloud services that facilitate team communication and information sharing in real-time. This benefit of cloud is best encapsulated by which of the following cloud business enablers?",
+        "options": [
+          "Market Adaptability",
+          "Masked Complexity",
+          "Context-driven Variability",
+          "Ecosystem Connectivity"
+        ],
+        "answers": [
+            3
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Company X owns and manages all its hardware and software, which are housed in an onsite Data Center. Which of the following describes the IT infrastructure that Company X employs?",
+        "options": [
+            "Traditional Infrastructure",  
+            "Public Cloud Infrastructure",
+            "Private Cloud Infrastructure",
+            "Hybrid Cloud Infrastructure"
+        ],
+        "answers": [
+            0
+        ]
+      },
+      {
+        "id": 4,
+        "question": "An organization using Traditional IT infrastructure may choose not to adopt a cloud deployment model for all of the following reasons EXCEPT:",
+        "options": [
+            "The system works just fine as is",
+            "Cloud Service Providers often lock organizations into lengthy and expensive contracts",
+            "Cloud migration is seen as being too costly and time-consuming",
+            "The data owned by the organization is too sensitive to be trusted to a third-party provider"
+        ],
+        "answers": [
+            1
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Which of the following is true of a public cloud? (Select all that apply)",
+        "options": [
+            "Although it can be free or inexpensive to access, it may be offered on a pay-per-usage model.",
+            "The cloud service provider is responsible for setting up the hardware, software, applications, and networking resources.",
+            "Multi-tenant environment where users share a pool of virtual resources that are automatically provisioned for and allocated to individual tenants.",
+            "It is often the best model for organizations concerned with securing highly sensitive data or adhering to compliance regulation"
+        ],
+        "answers": [
+            0,
+            1,
+            2
+        ]
+      },
+      {
+        "id": 6,
+        "question": "Infrastructure as a service (IaaS) provides companies _________________.",
+        "options": [
+            "With computing resources including servers, networking, storage, and data center space on a pay-per-use basis.",
+            "Distant computers 'in the cloud' that are owned and operated by others and that connect to a users‘ computer via the Internet and usually a web browser",
+            "A cloud-based environment with everything required to support the complete lifecycle of building and delivering web-based (cloud) applications",
+            "All of the above"
+        ],
+        "answers": [
+            0
+        ]
+      },
+      {
+        "id": 7,
+        "question": "Which of the following cloud delivery models provides sophisticated security and governance designed for a company's specific requirements?",
+        "options": [
+            "Public Cloud",
+            "Hybrid Cloud",
+            "Private Cloud",
+            "Edge Cloud"
+        ],
+        "answers": [
+            2
+        ]
+      },
+      {
+        "id": 8,
+        "question": "Acme Hospital is looking to migrate some of its workloads to the cloud. After consulting with a cloud development team, they decide on a model where general information apps will be hosted on a public cloud but sensitive data such as patient records will be stored on a private cloud. Which cloud deployment model has Acme Hospital chosen?",
+        "options": [
+            "Public Cloud",
+            "Hybrid Cloud",
+            "Private Cloud",
+            "Edge Cloud"
+        ],
+        "answers": [
+            1
+        ]
+      },
+      {
+        "id": 9,
+        "question": "Which of the following cloud service types addresses the user who does not pay for the software itself? It works like a rental. They have the authorization to use it for a period of time and pay for the software that they are using.",
+        "options": [
+            "SaaS",
+            "PaaS",
+            "IaaS",
+            "BPaaS"
+        ],
+        "answers": [
+            0
+        ]
+      },
+      {
+        "id": 10,
+        "question": "_______ as a service is primarily designed for developers looking to build an application but offloads infrastructure management, patches, updates, and other administrative tasks to the cloud service provider.",
+        "options": [
+            "SaaS",
+            "PaaS",
+            "IaaS",
+            "BPaaS"
+        ],
+        "answers": [
+            1
+        ]
+      }
+    ]
+  }

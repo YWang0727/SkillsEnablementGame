@@ -182,6 +182,7 @@ func _on_closeButton_pressed():
 	
 func _show_buttons(knowledge):
 	var module3_path = GameManager.reading_path + "/module3/reading.md"
+	print(module3_path)
 	if FileAccess.file_exists(module3_path):
 		lesson3Button.visible = true
 		quiz3Button.visible = true

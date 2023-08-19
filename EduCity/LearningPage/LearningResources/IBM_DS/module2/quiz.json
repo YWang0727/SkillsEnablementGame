@@ -1,0 +1,122 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "question":"Which of the following tasks is a typical role of a Data Engineer?",
+        "options": [
+            "Collect and clean data",
+            "Statistical computing",
+            "Visualizing the data",
+            "All the above"
+        ],
+        "answers": [
+            2
+        ]
+      },
+      {
+        "id": 2,
+        "question":"Which of the following tasks is a typical role of a Data Analyst?",
+        "options": [
+            "Collect and clean data",
+            "Statistical computing",
+            "Visualizing the data",
+            "All the above"
+        ],
+        "answers": [
+            1
+        ]
+      },
+      {
+        "id": 3,
+        "question":"Which of the following tasks is a typical role of a Data Scientist?",
+        "options": [
+            "Collect and clean data",
+            "Statistical computing",
+            "Visualizing the data",
+            "All the above"
+        ],
+        "answers": [
+            3
+        ]
+      },
+      {
+        "id": 4,
+        "question":"Data cleansing often consumes 80% of a data engineers’ or data scientists’ time. Which of the following tasks is specific to data cleansing? Select all that apply.",
+        "options": [
+            "Merging multiple datasets",
+            "Imputing for missing values",
+            "Visualizing the data set",
+            "Feature engineering"  
+        ],
+        "answers": [
+            1,2
+        ]
+      },
+      {
+        "id": 5,
+        "question":"Data Exploration can be best summarized as the process of ___________.",
+        "options": [
+            "Cleaning and organizing data into a usable format",
+            "Examining and visualizing data to find undiscovered patterns and relationships",
+            "Importing data into a machine learning model",
+            "All the above"
+        ],
+        "answers": [
+            2
+        ]
+      },
+      {
+        "id": 6,
+        "question":"Data Modeling can best be summarized as the process of ______________.",
+        "options": [
+            "Creating a visualization to communicate connections between data points and structures.",
+            "Cleaning and munging data into a usable format",
+            "Examining data for hidden patterns",
+            "All the above"        
+        ],
+        "answers": [
+            1
+        ]
+      },
+      {
+        "id": 7,
+        "question":"Which of the following is a Data Model?",
+        "options": [
+            "Entity-Relationship model",
+            "Relational data model",
+            "Object-oriented data model",
+            "Hierarchical data model",
+            "All the above"  
+        ],
+        "answers": [
+            5
+        ]
+      },
+      {
+        "id": 8,
+        "question":"_____________ is the stage whereby a data model is analyzed for its quality and efficiency in solving a problem.",
+        "options": [
+            "Data Cleansing",
+            "Data Modeling",
+            "Model Implementation",
+            "Model Deployment"       
+        ],
+        "answers": [
+            3
+        ]
+      },
+      {
+        "id": 9,
+        "question":"_____________ is the stage whereby a data model is tested for its quality and put into production.",
+        "options": [
+            "Data Cleansing",
+            "Data Modeling",
+            "Model Implementation",
+            "Model Deployment"       
+        ],
+        "answers": [
+            4
+        ]
+      }
+    ]
+  }

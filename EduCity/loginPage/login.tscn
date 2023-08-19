@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dc5mllfb4ul6n"]
+[gd_scene load_steps=26 format=3 uid="uid://dc5mllfb4ul6n"]
 
 [ext_resource type="Script" path="res://loginPage/login_signIn.gd" id="2_jj6vr"]
 [ext_resource type="Texture2D" uid="uid://cclg3j57gug3p" path="res://loginPage/img/bg (3).png" id="2_mqhxh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dgau6ji45fx4j" path="res://loginPage/logo3.png" id="6_ko20s"]
 [ext_resource type="PackedScene" uid="uid://btnes61b0avwx" path="res://loginPage/login_loading_scene.tscn" id="8_8rhro"]
 [ext_resource type="FontFile" uid="uid://cuov0ur21mnm3" path="res://loginPage/theme/static/Tektur-Medium.ttf" id="9_hlw4a"]
+[ext_resource type="Script" path="res://loginPage/dir.gd" id="9_x5u7h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phk7t"]
 bg_color = Color(0.619608, 0.709804, 0.356863, 1)
@@ -713,6 +714,9 @@ autoplay = "new_animation"
 libraries = {
 "": SubResource("AnimationLibrary_ltgfh")
 }
+
+[node name="dir" type="Node2D" parent="."]
+script = ExtResource("9_x5u7h")
 
 [connection signal="pressed" from="sign_in1/next_button_panel/next_button" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="sign_in1/get_activecode_button" to="." method="_on_get_activecode_button_pressed"]
