@@ -13,3 +13,4 @@ func _process(delta):
 #User operation will update the last active time	
 func _input(event):
 	GameManager.user_lastActiveTime = Time.get_unix_time_from_system()
+
