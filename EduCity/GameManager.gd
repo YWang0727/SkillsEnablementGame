@@ -96,6 +96,8 @@ func initialize_global_variables():
 
 # initialize the volume of music and sound effect
 func set_volume():
+	AudioServer.set_bus_mute(1, false)
+	AudioServer.set_bus_mute(2, false)
 	AudioServer.set_bus_volume_db(1, linear_to_db(music_volume))
 	AudioServer.set_bus_volume_db(2, linear_to_db(sound_volume))
 
