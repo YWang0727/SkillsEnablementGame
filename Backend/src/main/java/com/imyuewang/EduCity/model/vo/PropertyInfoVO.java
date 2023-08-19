@@ -10,6 +10,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class PropertyInfoVO {
 
+    private String cityName;
+
     private Integer residentialBuildingAmount;
 
     private Integer supermarketAmount;

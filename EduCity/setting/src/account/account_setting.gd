@@ -16,6 +16,8 @@ var cancelSound: AudioStreamPlayer2D
 
 var username: LineEdit
 var email: LineEdit
+var cityName: LineEdit
+var cityNameTempValue: String
 var avatar: TextureRect
 var uploadedFile: PackedByteArray
 var oldPassword: LineEdit
@@ -27,6 +29,7 @@ func _ready():
 	initiate_variales()
 	connect_signals()
 	display_user_info(GameManager.user_data)
+	cityName.text = GameManager.property_data.cityName
 	
 	if OS.get_name() == "Web":
 		var window = JavaScriptBridge.get_interface("window")
@@ -35,6 +38,7 @@ func _ready():
 func _on_visibility_changed():
 	if (visible):
 		display_user_info(GameManager.user_data)
+		cityName.text = GameManager.property_data.cityName
 
 func initiate_variales():
 	alert = get_node("Control/Alert")
@@ -42,13 +46,14 @@ func initiate_variales():
 	fileUploadWindow = get_node("Control/FileUploadWindow")
 	closeButton = get_node("Control/Header/Close")
 	backButton = get_node("Control/Header/BackButton")
-	profileSave = get_node("Control/Body/VBoxContainer/ProfileButtons/Save")
+	profileSave = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/ProfileButtons/Save")
 	passwordSave = get_node("Control/Body/VBoxContainer/PasswordButtons/Save")
-	profileCancel = get_node("Control/Body/VBoxContainer/ProfileButtons/Cancel")
+	profileCancel = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/ProfileButtons/Cancel")
 	passwordCancel = get_node("Control/Body/VBoxContainer/PasswordButtons/Cancel")
 	
 	username = get_node("Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Username/LineEdit")
 	email = get_node("Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/Email/LineEdit")
+	cityName = get_node("Control/Body/VBoxContainer/HBoxContainer/VBoxContainer/CityName/LineEdit")
 	avatar = get_node("Control/Body/VBoxContainer/HBoxContainer/Avatar/HBoxContainer/DisplayAvatar")
 	oldPassword = get_node("Control/Body/VBoxContainer/OldPassword/LineEdit")
 	newPassword = get_node("Control/Body/VBoxContainer/NewPassword/LineEdit")
@@ -155,6 +160,7 @@ func edit_user_profile():
 	# play save button sound
 	buttonSound.play()
 	
+	# check the validation of input
 	if (!checkUsernameFormat(username.text)):
 		alert.set_message("Username is invalid")
 		alert.popup_centered()
@@ -163,7 +169,13 @@ func edit_user_profile():
 		alert.set_message("Email is invalid")
 		alert.popup_centered()
 		return
-			
+	if (!checkCityNameFormat(cityName.text)):
+		alert.set_message("City name is invalid")
+		alert.popup_centered()
+		return
+	# store value of city name
+	cityNameTempValue = cityName.text
+	
 	var httpRequest = HTTPRequest.new()
 	add_child(httpRequest)
 	httpRequest.request_completed.connect(self.edit_user_profile_request_completed.bind(httpRequest))
@@ -182,7 +194,8 @@ func edit_user_profile():
 	var json = JSON.stringify({
 		"id": GameManager.user_id,
 		"name": username.text,
-		"email": email.text
+		"email": email.text,
+		"cityName": cityName.text
 	})
 	body.append_array(json.to_utf8_buffer())
 	body.append_array("\r\n".to_utf8_buffer())
@@ -214,9 +227,12 @@ func edit_user_profile_request_completed(result, response_code, headers, body, h
 			alert.set_message(response.data)
 			alert.popup_centered()
 			return
-			
+		
 		# update user_data in GameManager
 		HttpLayer.fetch_user_info(GameManager.user_id)
+		# update city name in GameManager
+		GameManager.property_data.cityName = cityNameTempValue
+		
 		alert.set_message(response.data)
 		alert.popup_centered()
 	else:
@@ -267,6 +283,14 @@ func checkEmailFormat(str: String) -> bool:
 	var regex = RegEx.new()
 	regex.compile(emailPattern)
 	return regex.search(str) != null
+
+func checkCityNameFormat(str: String) -> bool:
+	if (str == null):
+		return false
+	if (str.length() > 20 || str.length() < 1):
+		return false
+	return true
+
 
 # callback function of http request
 func http_completed(res, response_code, headers, route):

@@ -7,8 +7,10 @@ import com.imyuewang.EduCity.config.PasswordEncoder;
 import com.imyuewang.EduCity.enums.HouseType;
 import com.imyuewang.EduCity.enums.ResultCode;
 import com.imyuewang.EduCity.exception.ApiException;
+import com.imyuewang.EduCity.mapper.CitymapMapper;
 import com.imyuewang.EduCity.mapper.TakenmapcellMapper;
 import com.imyuewang.EduCity.mapper.UserMapper;
+import com.imyuewang.EduCity.model.entity.Citymap;
 import com.imyuewang.EduCity.model.entity.Takenmapcell;
 import com.imyuewang.EduCity.model.entity.User;
 import com.imyuewang.EduCity.model.param.EditPasswordParam;
@@ -35,6 +37,9 @@ public class SettingServiceImpl implements SettingService {
 
     @Resource
     private TakenmapcellMapper takenMapCellMapper;
+
+    @Resource
+    private CitymapMapper citymapMapper;
 
     /**
      * get userVO by user id
@@ -63,8 +68,12 @@ public class SettingServiceImpl implements SettingService {
         User user = userMapper.selectById(userId);
         Long cityMapId = user.getCityMap();
 
-        // get number of each type of buildings
         PropertyInfoVO propertyInfoVO = new PropertyInfoVO();
+        // get name of the city
+        Citymap citymap = citymapMapper.selectById(cityMapId);
+        propertyInfoVO.setCityName(citymap.getName());
+
+        // get number of each type of buildings
         Integer residentialNum = getBuildingAmount(HouseType.RESIDENTIAL_BUILDING_1, cityMapId) +
                 getBuildingAmount(HouseType.RESIDENTIAL_BUILDING_2, cityMapId) +
                 getBuildingAmount(HouseType.RESIDENTIAL_BUILDING_3, cityMapId);
@@ -126,8 +135,7 @@ public class SettingServiceImpl implements SettingService {
         }
         // check if email exists
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("email", email).
-                ne("id", user.getId());
+        queryWrapper.eq("email", email).ne("id", user.getId());
         if (userMapper.selectCount(queryWrapper) != 0) {
             throw new ApiException(ResultCode.FAILED,"Email already exists.");
         }
@@ -138,8 +146,13 @@ public class SettingServiceImpl implements SettingService {
         if (avatar.length != 0) {
             user.setAvatar(avatar);
         }
-
+        // update user information
         userMapper.updateById(user);
+
+        // update city name
+        Citymap citymap = citymapMapper.selectById(user.getCityMap());
+        citymap.setName(editUserParam.getCityName());
+        citymapMapper.updateById(citymap);
     }
 
     /**

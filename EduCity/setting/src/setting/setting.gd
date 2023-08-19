@@ -61,7 +61,12 @@ func _on_save_pressed():
 	buttonSound.play()
 	Saving.save()
 	
-# quit game
+# exit game
 func _on_exit_pressed():
-	get_tree().quit()
+	Saving.save_auto()
+	GameManager.initialize_global_variables()
+	buttonSound.finished.connect(_on_exit_helper)
+	buttonSound.play()
 
+func _on_exit_helper():
+	get_tree().change_scene_to_file("res://loginPage/login.tscn")
