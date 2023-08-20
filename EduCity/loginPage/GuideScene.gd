@@ -4,7 +4,8 @@ var picture;
 var currentImageIndex : int = 0
 var imagePaths : Array = ["res://loginPage/img/guidePictures/1.png", "res://loginPage/img/guidePictures/2.png", 
 "res://loginPage/img/guidePictures/3.png","res://loginPage/img/guidePictures/4.png","res://loginPage/img/guidePictures/5.png",
-"res://loginPage/img/guidePictures/6.png","res://loginPage/img/guidePictures/7.png","res://loginPage/img/guidePictures/8.png"]
+"res://loginPage/img/guidePictures/6.png","res://loginPage/img/guidePictures/7.png","res://loginPage/img/guidePictures/8.png",
+"res://loginPage/img/guidePictures/9.png","res://loginPage/img/guidePictures/10.png"]
 var buttonSound: AudioStreamPlayer2D
 var cancelSound: AudioStreamPlayer2D
 

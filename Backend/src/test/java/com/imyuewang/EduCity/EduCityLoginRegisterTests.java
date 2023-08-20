@@ -54,11 +54,11 @@ public class EduCityLoginRegisterTests {
     @Order(2)
     void testRegister() {
         RegisterParam param = new RegisterParam();
-        param.setEmail("test@gmail.com");
+        param.setEmail("test1@gmail.com");
         ResultVO resultVO = authController.getActiveCode(param);
         String activeCode = (String) resultVO.getData();
         param.setActivecode(activeCode);
-        param.setName("test");
+        param.setName("test1");
         param.setPassword("123456");
         resultVO = authController.register(param);
         Assertions.assertEquals(0000, resultVO.getCode());
@@ -68,7 +68,7 @@ public class EduCityLoginRegisterTests {
     @Order(3)
     void testLogin() {
         LoginParam param = new LoginParam();
-        param.setEmail("test@gmail.com");
+        param.setEmail("test1@gmail.com");
         param.setPassword("123456");
         ResultVO resultVO = authController.login(param);
         Assertions.assertEquals(0000, resultVO.getCode());
@@ -92,7 +92,7 @@ public class EduCityLoginRegisterTests {
     @Order(5)
     void testActiveEmailExisted() {
         RegisterParam param = new RegisterParam();
-        param.setEmail("test@gmail.com");
+        param.setEmail("test1@gmail.com");
         ResultVO resultVO = authController.checkEmailIsExisted(param);
         Assertions.assertEquals(4000, resultVO.getCode());
     }
@@ -101,7 +101,7 @@ public class EduCityLoginRegisterTests {
     @Order(6)
     void testLoginWrongPassword() {
         LoginParam loginParam = new LoginParam();
-        loginParam.setEmail("test@gmail.com");
+        loginParam.setEmail("test1@gmail.com");
         loginParam.setPassword("1234567");
         ApiException apiException = Assertions.assertThrows(ApiException.class, () -> {
             authController.login(loginParam);
