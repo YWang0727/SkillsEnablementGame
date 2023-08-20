@@ -109,12 +109,12 @@ public class UserQuizServiceImpl extends ServiceImpl<UserQuizMapper, UserQuiz>
         // Need to be modified according to the actual number of modules per knowledge
         for(int i = 0; i < kList.length; i ++){
             if(i == 0 || i == 2 || i == 3){
-                if(kList[0] == 1 || kList[0] == 2){
-                    kList[0] = 1;
-                }else if(kList[0] == 3){
-                    kList[0] = 2;
+                if(kList[i] == 1 || kList[i] == 2){
+                    kList[i] = 1;
+                }else if(kList[i] == 3){
+                    kList[i] = 2;
                 }else{
-                    kList[0] = 0;
+                    kList[i] = 0;
                 }
             }else{
                 if(kList[i] == 1){
