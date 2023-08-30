@@ -111,8 +111,8 @@ func pushComponents():
 func levelUp(buildingID):
 	var buildHours = (24 - (GameManager.construction_speed - 1) * 4) / 2
 	var nowTimestamp:int = Time.get_unix_time_from_system()
-	#var finishTime = nowTimestamp + buildHours * 3600
-	var finishTime = nowTimestamp + buildHours # 用于测试，单位为秒
+	var finishTime = nowTimestamp + buildHours * 3600
+	#var finishTime = nowTimestamp + buildHours # 用于测试，单位为秒
 	var _credential = {
 			"x": updateCellPos.x,
 			"y": updateCellPos.y,
